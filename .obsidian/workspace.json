@@ -1,0 +1,263 @@
+{
+  "main": {
+    "id": "96dc3b59f65d8ee1",
+    "type": "split",
+    "children": [
+      {
+        "id": "5e7e80a9c28e7d53",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a5bf8423e7921c1f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "log.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "log"
+            }
+          },
+          {
+            "id": "502904e07e16456f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Sin título.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Sin título"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "46117c1759ee3ae8",
+    "type": "split",
+    "children": [
+      {
+        "id": "a8499203a4e5891f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c28423c10d02b890",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de archivos"
+            }
+          },
+          {
+            "id": "26e6ff654a8d5e10",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Buscar"
+            }
+          },
+          {
+            "id": "c9bbe30df7bdc6a0",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 332.5
+  },
+  "right": {
+    "id": "4512af0ab763bf1a",
+    "type": "split",
+    "children": [
+      {
+        "id": "495f282641f382e2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "920b98e8a9903236",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "CLAUDE.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Enlaces entrantes de CLAUDE"
+            }
+          },
+          {
+            "id": "995ebf027668432a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "raw/assets/Fundamentos de AWS.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Enlaces salientes de Fundamentos de AWS"
+            }
+          },
+          {
+            "id": "b2d334f59e9d969a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "a4b187c669717181",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas las propiedades"
+            }
+          },
+          {
+            "id": "53204e2b63bbd0a1",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "raw/assets/Fundamentos de AWS.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Esquema de Fundamentos de AWS"
+            }
+          },
+          {
+            "id": "f063d7ef6fd2d473",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "review-queue-list-view"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir selector rápido": false,
+      "graph:Abrir vista gráfica": false,
+      "canvas:Crear nuevo lienzo": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Crear nueva base": false,
+      "obsidian-spaced-repetition:Revisar Tarjetas": false
+    }
+  },
+  "active": "a5bf8423e7921c1f",
+  "lastOpenFiles": [
+    "raw/notas curso mejorado/01 Fundamentos de AWS/01.00 Fundamentos de AWS — Índice.md",
+    "raw/notas curso mejorado/01 Fundamentos de AWS/01.02 AWS Global Infrastructure.md",
+    "raw/notas curso mejorado/01 Fundamentos de AWS/01.10 CloudFormation — Basics.md",
+    "raw/notas curso mejorado/01 Fundamentos de AWS/01.09 S3 — Patterns y Anti-Patterns.md",
+    "raw/notas curso mejorado/01 Fundamentos de AWS/01.04 Default VPC (Virtual Private Cloud) — Basics.md",
+    "raw/notas curso mejorado/01 Fundamentos de AWS/01.03 Availability Zones (AZ).md",
+    "raw/notas curso mejorado/01 Fundamentos de AWS/01.01 Servicios públicos vs. privados.md",
+    "raw/notas curso mejorado/01 Fundamentos de AWS/01.07 Conectarse a EC2.md",
+    "raw/notas curso mejorado/01 Fundamentos de AWS/01.06 Amazon Machine Image (AMI).md",
+    "raw/notas curso mejorado/01 Fundamentos de AWS/01.05 Elastic Compute Cloud (EC2) — Basics.md",
+    "raw/notas curso/IAM, ACCOUNTS and AWS organization.md",
+    "raw/notas curso/Fundamentos de AWS.md",
+    "log.md",
+    "CLAUDE.md",
+    "log.md.tmp.21824.e1a1394291cc",
+    "guia-estudio.md.tmp.21824.36fba6d6d7e6",
+    "index.md.tmp.21824.c5e3192e0058",
+    "index.md.tmp.21824.4b400e07ca47",
+    "wiki/concepts/observability-costs.md.tmp.21824.cde2ca7f3276",
+    "wiki/services/CloudTrail.md.tmp.21824.8055bbc8e204",
+    "wiki/services/CloudWatchLogs.md.tmp.21824.7a3b542dc7ff",
+    "wiki/domains/dva-troubleshooting.md.tmp.21824.eb0032b484ca",
+    "wiki/glossary/trust-policy.md.tmp.21824.60dac9aa1e3b",
+    "wiki/services/IAM.md.tmp.21824.3e8d92aeea90",
+    "wiki/glossary/metric-filter.md",
+    "wiki/glossary/external-id.md",
+    "wiki/glossary/failover.md",
+    "wiki/glossary/multi-az.md",
+    "wiki/glossary/cross-account.md",
+    "wiki/glossary/throttling.md",
+    "wiki/glossary/sla.md",
+    "wiki/glossary/presigned-url.md",
+    "wiki/glossary/hypervisor.md",
+    "demos.md",
+    "guia-estudio.md",
+    "index.md",
+    "raw/assets/Pasted image 20260614013829.png",
+    "raw/assets/Pasted image 20260614005711.png",
+    "raw/assets/Pasted image 20260613233815.png",
+    "raw/assets/Pasted image 20260717142547.png",
+    "raw/assets/Pasted image 20260718001921.png",
+    "raw/assets/Pasted image 20260718001902.png",
+    "raw/assets/Pasted image 20260718001835.png",
+    "raw/assets/Pasted image 20260718000702.png",
+    "raw/assets/Pasted image 20260717235731.png",
+    "raw/assets/Pasted image 20260717234806.png"
+  ]
+}

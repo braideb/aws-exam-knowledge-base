@@ -1,0 +1,31 @@
+---
+title: Failover
+category: glossary
+tags: [route53, ha, resiliencia, dns]
+exam: [DVA-C02, SAA-C03, DOP-C02]
+sources: []
+updated: 2026-08-12
+---
+
+# Failover
+
+> **En una línea:** el cambio automático hacia un recurso de respaldo cuando el primario deja de responder.
+
+## Definición
+
+Mecanismo (manual o automático) que redirige tráfico, o resolución DNS, desde un recurso que falló hacia uno sano. En Route 53 se implementa con una failover routing policy + health checks; en RDS Multi-AZ es automático (60–120 s); en DR es la operación central de cualquier estrategia (Pilot Light, Warm Standby, Active/Active).
+
+## Dónde aparece
+
+- [[Route53]] — failover routing policy, MX failover con prioridades escalonadas, [[ttl|TTL]] bajo (~60 s) en registros de failover de DR
+- [[ha-ft-dr]] — RDS Multi-AZ failover; "failover automático" es palabra clave de **HA**
+- [[availability]], [[region-resilient]], [[globally-resilient]] — un escenario de failover DNS multi-region apunta a Route 53 por ser globally resilient
+
+## Dato de examen
+
+- "Minimizar downtime, recuperación rápida, failover automático" → palabra clave de **HA**, no de **FT** (que espera cero downtime, no un failover).
+- Antes de un failover DNS planeado: bajar el TTL con anticipación (días antes) para que el cache viejo expire rápido.
+
+## Ver también
+
+[[ha-ft-dr]] · [[ttl]] · [[region-resilient]] · [[globally-resilient]]
