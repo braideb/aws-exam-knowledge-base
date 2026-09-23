@@ -4,7 +4,7 @@ category: concept
 tags: [costos, optimizacion, cloudwatch, cloudtrail, logs, gobernanza, finops]
 exam: [DVA-C02, DOP-C02, SAA-C03]
 sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md"]
-updated: 2026-07-24
+updated: 2026-09-22
 ---
 
 # Costos de observabilidad y gobierno
@@ -22,7 +22,7 @@ Los precios cambian, pero **qué se cobra** no. La regla que resume todo el bloq
 | Servicio / funcionalidad | Costo |
 |---|---|
 | **[[IAM]]** (users, groups, roles, policies) | Gratis |
-| **STS** ([[temporary-credentials|credenciales temporales]]) | Gratis |
+| **STS** ([[temporary-credentials\|credenciales temporales]]) | Gratis |
 | **[[Organizations]]** | Gratis |
 | **SCPs** | Gratis |
 | **[[CloudTrail]] — Event History (90 días)** | Gratis |
@@ -52,6 +52,16 @@ En orden de importancia práctica:
 | **Activar data events selectivamente** | Solo sobre los recursos que importan, con advanced event selectors |
 | **Revisar métricas custom** buscando alta cardinalidad | Cada par único es una métrica facturada |
 | **AWS Budgets** con alerta | No evita el gasto, pero avisa **antes** de la factura |
+
+## Costos de cómputo y red que sorprenden
+
+Fuera de la observabilidad, tres cargos de [[EC2]] que aparecen en preguntas de optimización:
+
+- **Toda IPv4 pública se cobra** desde feb-2024, esté en uso o no: la [[elastic-ip|Elastic IP]] asociada a una instancia corriendo también. Antes solo se cobraban las ociosas. Salida por NAT Gateway o llegada por [[vpc-endpoints]] evitan asignarlas.
+- **Detener una instancia no frena el costo de [[EBS]]**: el volumen se sigue facturando por GB-mes aprovisionado. Los **snapshots**, en cambio, se cobran por **datos usados**, no por el tamaño del volumen.
+- **Borrar una AMI no borra sus snapshots** — siguen apareciendo en la factura.
+
+El compromiso a largo plazo (Reserved, Savings Plans) y la capacidad sobrante (Spot) se comparan en [[ec2-purchase-options]].
 
 ## Preguntas de examen frecuentes
 

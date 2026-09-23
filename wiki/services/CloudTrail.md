@@ -4,7 +4,7 @@ category: service
 tags: [cloudtrail, auditoria, api-logging, trails, governance, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.13 CloudTrail.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.14 Route 53 (R53) — Fundamentos.md", "raw/doc oficial/Understanding CloudTrail events.md", "raw/doc oficial/Validating CloudTrail log file integrity.md"]
-updated: 2026-07-25
+updated: 2026-09-23
 ---
 
 # CloudTrail

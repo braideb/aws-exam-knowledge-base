@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, development, serverless, apis, sdk]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-08-12
+updated: 2026-09-22
 ---
 
 # DVA-C02 · Dominio 1 — Development with AWS Services
@@ -15,7 +15,7 @@ updated: 2026-08-12
 
 ## Resumen de lo que el examen evalúa
 
-Desarrollar código para aplicaciones hospedadas en AWS: arquitecturas event-driven, uso de APIs/SDK/CLI, patrones [[serverless]] (Lambda), y uso de data stores desde el código (DynamoDB, S3, ElastiCache).
+Desarrollar código para aplicaciones hospedadas en AWS: arquitecturas event-driven (donde la [[idempotency|idempotencia]] es clave), uso de APIs/SDK/CLI, patrones [[serverless]] (Lambda), y uso de data stores desde el código (DynamoDB, S3, ElastiCache).
 
 ## Task statements oficiales (exam guide)
 
@@ -33,9 +33,17 @@ Desarrollar código para aplicaciones hospedadas en AWS: arquitecturas event-dri
 | Arquitecturas event-driven con S3 Events / EventBridge | [[S3]], [[EventBridge]] | ✅ (EventBridge inicial) |
 | Uso de CLI, perfiles y credenciales | [[aws-cli]], [[IAM]] | ✅ |
 | Cifrado desde la app ([[envelope-encryption\|envelope encryption]], [[data-encryption-key\|DEKs]]) | [[KMS]], [[s3-encryption]] | ✅ |
+| **Lambda con acceso a recursos privados en VPC**: private subnets, security groups, salida por NAT Gateway | [[lambda-in-vpc]] | ✅ con página propia; falta la página general de Lambda |
+| Permisos con que corre el código (execution role vs resource policy) | [[execution-role]] | ✅ |
+| Acceso privado a S3/DynamoDB/SQS desde el código, sin internet | [[vpc-endpoints]], [[gateway-vs-interface-endpoint]] | ✅ |
+| Credenciales del SDK dentro de una instancia | [[ec2-instance-metadata]] | ✅ |
+| Requisitos de recursos (memoria, cores) al elegir dónde corre el código | [[ec2-instance-types]] | ✅ |
+| Apps [[stateless\|stateless]] y sesiones off-host | [[horizontal-vs-vertical-scaling]] | ✅ |
 
 ## Servicios más importantes para este dominio
 
-Presentes en la wiki: [[S3]], [[EventBridge]], [[KMS]].
+Presentes en la wiki: [[S3]], [[EventBridge]], [[KMS]], [[EC2]], [[EBS]].
+
+> **Lo que aporta el ingest de VPC al Task 2 (Lambda):** las tres configuraciones posibles de una función respecto a la red, la trampa de la subnet pública (la ENI de una Lambda **nunca** recibe IP pública), los permisos de `AWSLambdaVPCAccessExecutionRole` y el error `ENILimitReached` por agotamiento de IPs. Ver [[lambda-in-vpc]].
 
 > ⚠️ **Huecos grandes pendientes de ingest** (el curso aún no los cubrió): **Lambda**, **API Gateway**, **DynamoDB**, **SQS/SNS**, **Step Functions**, **ElastiCache**, SDK patterns (reintentos, backoff, paginación). Son el corazón de este dominio — prioridad alta para próximos ingest.

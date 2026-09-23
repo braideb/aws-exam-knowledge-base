@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, seguridad, policies, autenticacion]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Principal
@@ -22,6 +22,7 @@ En una policy, el campo **`Principal`** indica a quién aplica el statement — 
 - [[IAM]] — Principal → Authentication → Authorization
 - [[iam-policy-evaluation]] — anatomía del statement
 - [[S3]] — bucket policies con `Principal` para acceso anónimo o [[cross-account]]
+- También en: [[aws-account]] · [[dva-security]]
 
 ## Dato de examen
 

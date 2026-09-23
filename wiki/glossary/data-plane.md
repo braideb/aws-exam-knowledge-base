@@ -4,7 +4,7 @@ category: glossary
 tags: [arquitectura, cloudtrail, api]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Data Plane
@@ -19,6 +19,7 @@ Lo que ocurre *dentro* del recurso: `GetObject`/`PutObject` en [[S3]], `Invoke` 
 
 - [[CloudTrail]] — los **Data Events** son opt-in, con **costo extra** y volumen enorme
 - [[S3]] — el alias de un access point se usa como si fuera un bucket name en operaciones de data plane
+- También en: [[observability-costs]]
 
 ## Dato de examen
 

@@ -4,7 +4,7 @@ category: glossary
 tags: [route53, ha, resiliencia, dns]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-08-12
+updated: 2026-09-23
 ---
 
 # Failover
@@ -20,6 +20,7 @@ Mecanismo (manual o automático) que redirige tráfico, o resolución DNS, desde
 - [[Route53]] — failover routing policy, MX failover con prioridades escalonadas, [[ttl|TTL]] bajo (~60 s) en registros de failover de DR
 - [[ha-ft-dr]] — RDS Multi-AZ failover; "failover automático" es palabra clave de **HA**
 - [[availability]], [[region-resilient]], [[globally-resilient]] — un escenario de failover DNS multi-region apunta a Route 53 por ser globally resilient
+- También en: [[nat-gateway-vs-nat-instance]]
 
 ## Dato de examen
 

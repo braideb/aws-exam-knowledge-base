@@ -4,7 +4,7 @@ category: glossary
 tags: [arquitectura, event-driven, serverless, sqs, lambda]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Idempotency (idempotencia)
@@ -22,6 +22,7 @@ Cómo se logra: deduplicar por un ID único del evento, usar escrituras condicio
 - [[S3]] — Event Notifications: entrega **at least once** → "diseñar consumidores idempotentes"
 - [[EventBridge]] — reintentos y DLQ
 - [[dva-development]] — arquitecturas event-driven, pilar del DVA-C02
+- También en: [[horizontal-vs-vertical-scaling]]
 
 ## Dato de examen
 

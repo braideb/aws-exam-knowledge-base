@@ -4,7 +4,7 @@ category: glossary
 tags: [s3, storage, almacenamiento]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-22
 ---
 
 # Object Storage
@@ -28,6 +28,7 @@ Los tres modelos que el examen contrasta:
 - [[S3]] — "no es file store ni block store: no se monta como disco"
 - [[EC2]] — Instance Store y EBS como block storage
 - [[s3-storage-classes]] — la dimensión económica del object storage
+- [[storage-types]] — object vs block vs file, y por qué solo block bootea
 
 ## Dato de examen
 

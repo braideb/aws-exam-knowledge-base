@@ -4,7 +4,7 @@ category: glossary
 tags: [modelos-de-servicio, serverless, lambda, arquitectura]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Serverless
@@ -22,6 +22,7 @@ Ejemplos: Lambda, DynamoDB on-demand, [[S3]], SQS, API Gateway, EventBridge, Far
 - [[EC2]] — "eventos, ejecuciones cortas, no quiero administrar servidores → Lambda o gestionado"
 - [[shared-responsibility-model]] — parchear Lambda/DynamoDB es **de AWS**
 - [[dva-development]] — pilar del dominio de Development
+- También en: [[CloudFormation]] · [[EventBridge]] · [[S3]]
 
 ## Dato de examen
 

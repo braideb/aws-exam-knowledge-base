@@ -4,7 +4,7 @@ category: service
 tags: [cloudfront, cdn, edge, oac, signed-urls, https]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/doc oficial/Restrict access to an Amazon S3 origin.md"]
-updated: 2026-07-18
+updated: 2026-09-19
 ---
 
 # CloudFront
@@ -27,7 +27,7 @@ Para que el bucket S3 de origen **no sea público** pero CloudFront sí pueda le
 
 1. El bucket queda privado (Block Public Access on).
 2. Se crea un **OAC** en la distribución.
-3. La bucket policy permite al principal de CloudFront (`cloudfront.amazonaws.com`) con condición `AWS:SourceArn` = el ARN de la distribución.
+3. La bucket policy permite al principal de CloudFront (`cloudfront.amazonaws.com`) con condición `AWS:SourceArn` = el ARN de la distribución (evita el [[confused-deputy|confused deputy]]).
 
 > **OAC** es el mecanismo actual; **OAI** es el legacy que aparece en material viejo. Diferencias que caen en el examen: solo OAC soporta **PUT/DELETE dinámicos**, **SSE-KMS** y todas las regiones (incluidas opt-in). Si el origen usa SSE-KMS, la **key policy** debe permitir a `cloudfront.amazonaws.com` (`kms:Decrypt`, `kms:Encrypt`, `kms:GenerateDataKey*`) con condición `AWS:SourceArn` = ARN de la distribución (ver [[s3-encryption]]).
 >
@@ -41,7 +41,7 @@ Para que el bucket S3 de origen **no sea público** pero CloudFront sí pueda le
 | Muchos archivos | No | **Signed Cookie** cubre varios |
 | Cache/escala | No cachea | Cachea en edge |
 
-Regla: acceso puntual a un objeto → presigned URL de [[S3]]; contenido premium distribuido por CDN → CloudFront signed URLs/cookies.
+Regla: acceso puntual a un objeto → [[presigned-url|presigned URL]] de [[S3]]; contenido premium distribuido por CDN → CloudFront signed URLs/cookies.
 
 ## Integración con otros servicios
 

@@ -4,7 +4,7 @@ category: service
 tags: [cloudformation, iac, templates, stacks, yaml]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.10 CloudFormation — Basics.md"]
-updated: 2026-07-23
+updated: 2026-09-19
 ---
 
 # CloudFormation
@@ -45,7 +45,7 @@ updated: 2026-07-23
 | **CloudFormation** | Solo AWS, declarativo, gratis (pagás recursos) | YAML/JSON | Lo maneja AWS |
 | **Terraform** | Multi-cloud | HCL | **Vos** manejás el state file |
 | **CDK** | Genera CloudFormation por debajo | TypeScript/Python/… | Vía CFN |
-| **SAM** | Extensión de CFN para **serverless** (Lambda/API GW/DynamoDB) | YAML | Vía CFN |
+| **SAM** | Extensión de CFN para **[[serverless\|serverless]]** (Lambda/API GW/DynamoDB) | YAML | Vía CFN |
 
 - "Solo AWS, declarativo, sin manejar state" → **CloudFormation**.
 - "Misma herramienta para AWS y Azure/GCP" → **Terraform**.

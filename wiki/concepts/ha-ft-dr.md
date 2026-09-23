@@ -4,7 +4,7 @@ category: concept
 tags: [resiliencia, high-availability, fault-tolerance, disaster-recovery]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.13 HA vs. FT vs. DR.md"]
-updated: 2026-07-23
+updated: 2026-09-22
 ---
 
 # High Availability vs. Fault Tolerance vs. Disaster Recovery
@@ -25,7 +25,7 @@ Tres conceptos que se confunden todo el tiempo:
 
 HA **no garantiza ausencia de fallos**. Si un componente falla y su reemplazo tarda unos segundos (y los usuarios lo notan), **sigue siendo HA**: el objetivo es solo maximizar el uptime.
 
-| [[availability|Disponibilidad]] | Downtime/año | Por mes |
+| [[availability\|Disponibilidad]] | Downtime/año | Por mes |
 |---|---|---|
 | 99% (two 9's) | ~3,65 días | ~7,2 h |
 | 99.9% (three 9's) | ~8,77 horas | ~43 min |
@@ -65,6 +65,12 @@ Qué pasa si el edificio se inunda/incendia. Se mide con:
 - HA: [[multi-az|multi-AZ]] ([[global-infrastructure]]), Auto Scaling + ELB, RDS Multi-AZ ([[failover]] 60–120 s).
 - FT: redundancia activa-activa en cada componente ([[S3]], DynamoDB, Aurora con réplicas).
 - DR: backups/replicación cross-region ([[S3]] CRR); un plan de DR **no probado no es un plan** (game days).
+
+### Snapshots de EBS como mecanismo de DR
+
+Un volumen [[EBS]] vive en una sola AZ. El **snapshot** lo copia a [[S3]], que es de región: eso convierte un recurso de AZ en uno que sobrevive a la caída de esa AZ. Desde el snapshot se restaura en otra AZ (*cross-AZ restore*) o, copiándolo primero, en otra región — el patrón de backup/restore clásico, con un **RPO** igual al intervalo entre snapshots.
+
+> Cuidado con el **RTO**: un volumen restaurado sufre [[lazy-restore|lazy restore]] y rinde poco hasta que se traen todos los bloques. Si el RTO es ajustado, hace falta **Fast Snapshot Restore** o forzar la lectura previa.
 
 ## Preguntas de examen frecuentes
 

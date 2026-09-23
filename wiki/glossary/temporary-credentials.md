@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, sts, roles, credenciales, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Temporary Credentials (credenciales temporales)
@@ -24,6 +24,9 @@ El `SessionToken` es lo que las distingue de unas access keys de largo plazo. **
 - [[IAM]] — IAM Roles, STS y los 5 escenarios
 - [[aws-cli]] — cadena de credenciales; perfiles que asumen rol
 - [[EC2]] — [[instance-profile]]: credenciales temporales entregadas por IMDS
+- [[ec2-instance-metadata]] — se obtienen del IMDS en `iam/security-credentials/`
+- [[execution-role]] — el equivalente para Lambda
+- También en: [[Organizations]] · [[observability-costs]]
 
 ## Dato de examen
 

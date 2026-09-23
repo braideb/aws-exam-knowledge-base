@@ -4,7 +4,7 @@ category: glossary
 tags: [consistencia, sistemas-distribuidos, kms, s3, iam]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Eventual Consistency
@@ -26,6 +26,7 @@ Dónde aparece cada una en AWS:
 
 - [[S3]] — "consistencia **strong read-after-write** para todas las operaciones" (dato de examen)
 - [[KMS]] — un grant recién creado tarda en propagarse → **grant token**
+- También en: [[IAM]]
 
 ## Dato de examen
 

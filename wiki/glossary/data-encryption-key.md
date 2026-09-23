@@ -4,7 +4,7 @@ category: glossary
 tags: [kms, cifrado, dek, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # DEK — Data Encryption Key
@@ -26,6 +26,8 @@ Es la pieza central de la [[envelope-encryption]]. [[S3]] con SSE-KMS genera **u
 
 - [[KMS]] — sección "DEKs y envelope encryption"
 - [[s3-encryption]] — S3 Bucket Keys: S3 fabrica las DEKs **localmente** a partir de una bucket key temporal
+- [[EBS]] — DEK única por volumen, en claro solo en la memoria del EC2 host
+- También en: [[dva-development]]
 
 ## Dato de examen
 

@@ -4,7 +4,7 @@ category: glossary
 tags: [cloudwatch-logs, cloudwatch, observabilidad, monitoring]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-08-12
+updated: 2026-09-23
 ---
 
 # Metric Filter
@@ -21,6 +21,8 @@ Regla configurada sobre un log group que busca un patrón (por ejemplo, la palab
 - [[CloudWatch]], [[CloudTrail]] — metric filters + alarms sobre eventos de auditoría
 - [[dimension]], [[high-cardinality]] — las dimensions extraídas por un metric filter crean una variación nueva por cada par único; usar dimensions en un metric filter impide configurar el *default value*
 - [[dva-troubleshooting]], [[observability-costs]]
+- [[vpc-flow-logs]] — para alarmar sobre rechazos cuando el destino es CloudWatch Logs
+- También en: [[VPC]]
 
 ## Dato de examen
 

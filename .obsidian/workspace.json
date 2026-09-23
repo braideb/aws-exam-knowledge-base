@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "5e7e80a9c28e7d53",
+        "id": "2d6adcb8057afbba",
         "type": "tabs",
         "children": [
           {
-            "id": "a5bf8423e7921c1f",
+            "id": "0348f350388ef604",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,20 +19,6 @@
               },
               "icon": "lucide-file",
               "title": "log"
-            }
-          },
-          {
-            "id": "502904e07e16456f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Sin título.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Sin título"
             }
           }
         ]
@@ -94,7 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 332.5
+    "width": 764.5
   },
   "right": {
     "id": "4512af0ab763bf1a",
@@ -211,53 +197,53 @@
       "obsidian-spaced-repetition:Revisar Tarjetas": false
     }
   },
-  "active": "a5bf8423e7921c1f",
+  "active": "0348f350388ef604",
   "lastOpenFiles": [
-    "raw/notas curso mejorado/01 Fundamentos de AWS/01.00 Fundamentos de AWS — Índice.md",
-    "raw/notas curso mejorado/01 Fundamentos de AWS/01.02 AWS Global Infrastructure.md",
-    "raw/notas curso mejorado/01 Fundamentos de AWS/01.10 CloudFormation — Basics.md",
-    "raw/notas curso mejorado/01 Fundamentos de AWS/01.09 S3 — Patterns y Anti-Patterns.md",
-    "raw/notas curso mejorado/01 Fundamentos de AWS/01.04 Default VPC (Virtual Private Cloud) — Basics.md",
-    "raw/notas curso mejorado/01 Fundamentos de AWS/01.03 Availability Zones (AZ).md",
-    "raw/notas curso mejorado/01 Fundamentos de AWS/01.01 Servicios públicos vs. privados.md",
-    "raw/notas curso mejorado/01 Fundamentos de AWS/01.07 Conectarse a EC2.md",
-    "raw/notas curso mejorado/01 Fundamentos de AWS/01.06 Amazon Machine Image (AMI).md",
-    "raw/notas curso mejorado/01 Fundamentos de AWS/01.05 Elastic Compute Cloud (EC2) — Basics.md",
-    "raw/notas curso/IAM, ACCOUNTS and AWS organization.md",
-    "raw/notas curso/Fundamentos de AWS.md",
-    "log.md",
-    "CLAUDE.md",
-    "log.md.tmp.21824.e1a1394291cc",
-    "guia-estudio.md.tmp.21824.36fba6d6d7e6",
-    "index.md.tmp.21824.c5e3192e0058",
-    "index.md.tmp.21824.4b400e07ca47",
-    "wiki/concepts/observability-costs.md.tmp.21824.cde2ca7f3276",
-    "wiki/services/CloudTrail.md.tmp.21824.8055bbc8e204",
-    "wiki/services/CloudWatchLogs.md.tmp.21824.7a3b542dc7ff",
-    "wiki/domains/dva-troubleshooting.md.tmp.21824.eb0032b484ca",
-    "wiki/glossary/trust-policy.md.tmp.21824.60dac9aa1e3b",
-    "wiki/services/IAM.md.tmp.21824.3e8d92aeea90",
-    "wiki/glossary/metric-filter.md",
-    "wiki/glossary/external-id.md",
-    "wiki/glossary/failover.md",
-    "wiki/glossary/multi-az.md",
-    "wiki/glossary/cross-account.md",
-    "wiki/glossary/throttling.md",
-    "wiki/glossary/sla.md",
-    "wiki/glossary/presigned-url.md",
-    "wiki/glossary/hypervisor.md",
-    "demos.md",
-    "guia-estudio.md",
-    "index.md",
-    "raw/assets/Pasted image 20260614013829.png",
-    "raw/assets/Pasted image 20260614005711.png",
-    "raw/assets/Pasted image 20260613233815.png",
-    "raw/assets/Pasted image 20260717142547.png",
-    "raw/assets/Pasted image 20260718001921.png",
-    "raw/assets/Pasted image 20260718001902.png",
-    "raw/assets/Pasted image 20260718001835.png",
-    "raw/assets/Pasted image 20260718000702.png",
-    "raw/assets/Pasted image 20260717235731.png",
-    "raw/assets/Pasted image 20260717234806.png"
+    "raw/notas curso mejorado/00 Índice general.md",
+    "wiki/services/sedoXWPKk",
+    "wiki/comparisons/sedPdoOUg",
+    "wiki/concepts/sedOSqhzs",
+    "wiki/concepts/sedSSkGVS",
+    "wiki/concepts/sed5DxlOq",
+    "wiki/services/sedscGaqp",
+    "wiki/comparisons/nat-gateway-vs-nat-instance.md.tmp.3656.44efd33c7d75",
+    "wiki/glossary/bastion-host.md.tmp.3656.4c184276290b",
+    "wiki/services/VPC.md.tmp.3656.da5275d5ebbd",
+    "wiki/services/VPC.md.tmp.3656.c756ea6430f1",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.24 Instance Metadata (IMDS).md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.23 Horizontal vs Vertical Scaling.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.22 Instance Status Checks y Auto Recovery.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.21 Capacity Reservations.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.20 Dedicated Hosts y Dedicated Instances.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.19 Reserved Instances y Savings Plans.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.18 EC2 Purchase Options - On-Demand y Spot.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.17 Amazon Machine Image (AMI).md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.16 Demostración - Instalación manual de WordPress.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.15 Elastic IP.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.14 Network Interfaces (ENI), IPs y DNS.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.13 EBS Encryption.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.12 Demostración - EBS Volumes e Instance Store.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.11 EBS Snapshots, Restore y Fast Snapshot Restore (FSR).md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.10 Instance Store vs EBS.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.09 Instance Store Volumes.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.08 EBS Volume Types - HDD (st1 y sc1).md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.07 EBS Volume Types - Provisioned IOPS SSD (io1, io2, Block Express).md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.06 EBS Volume Types - General Purpose SSD (gp2 y gp3).md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.05 Elastic Block Store (EBS) — Basics.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.04 Storage Refresh.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.03 EC2 Instance Types.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.02 EC2 Architecture and Resilience.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.01 Virtualization 101.md",
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.00 Elastic Compute Cloud (EC2) — Índice.md",
+    "raw/assets/Pasted image 20260919152127.png",
+    "raw/assets/Pasted image 20260919152411.png",
+    "raw/assets/Pasted image 20260921221232.png",
+    "raw/assets/Pasted image 20260921221054.png",
+    "raw/assets/Pasted image 20260921192643.png",
+    "raw/assets/Pasted image 20260921191031.png",
+    "raw/assets/Pasted image 20260921181611.png",
+    "raw/assets/Pasted image 20260921175824.png",
+    "raw/assets/Pasted image 20260921174039.png",
+    "raw/assets/Pasted image 20260921173238.png"
   ]
 }

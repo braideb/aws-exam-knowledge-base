@@ -4,7 +4,7 @@ category: service
 tags: [cloudwatch-logs, logging, log-groups, metric-filters, monitoring]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.12 CloudWatch Logs.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/doc oficial/Working with log groups and log streams - Amazon CloudWatch Logs.md", "raw/doc oficial/Creating metrics from log events using filters - Amazon CloudWatch Logs.md"]
-updated: 2026-07-25
+updated: 2026-09-22
 ---
 
 # CloudWatch Logs
@@ -71,6 +71,8 @@ Las dos palancas reales, en orden:
 Borrar logs viejos ataca solo el almacenamiento, no la ingesta. Detalle completo en [[observability-costs]].
 
 ## Integración con otros servicios
+
+- [[vpc-flow-logs]] — destino habitual de los flow logs cuando hacen falta **alarmas** ([[metric-filter|metric filters]]) o búsquedas con Logs Insights. Las alternativas son S3 (archivado barato + Athena) y Kinesis Data Firehose (casi tiempo real).
 
 - [[CloudWatch]] — metric filters → métricas → alarms.
 - [[observability-costs]] — qué se cobra y cómo controlarlo.

@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, seguridad, best-practices, policies]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-19
 ---
 
 # Least Privilege (mínimo privilegio)
@@ -29,4 +29,4 @@ Principio rector de [[IAM]]: se parte de que **todo está denegado** (default de
 
 ## Ver también
 
-[[permissions-boundary]] · [[role-separation]] · [[blast-radius]] · [[temporary-credentials]]
+[[permissions-boundary]] · [[role-separation]] · [[blast-radius]] · [[temporary-credentials]] · [[abac]]

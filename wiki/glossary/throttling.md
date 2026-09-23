@@ -4,7 +4,7 @@ category: glossary
 tags: [kms, limites, performance, s3]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-08-12
+updated: 2026-09-23
 ---
 
 # Throttling
@@ -19,6 +19,7 @@ Respuesta de un servicio AWS cuando el volumen de llamadas supera su límite de 
 
 - [[data-encryption-key]], [[s3-encryption]] — SSE-KMS llama a KMS **por cada objeto** (5.500–50.000 req/s según region); **S3 Bucket Keys** reduce hasta 99% esas llamadas
 - [[dva-troubleshooting]] — throttling de Lambda/API Gateway como causa de errores 4xx/5xx
+- También en: [[VPC]]
 
 ## Dato de examen
 

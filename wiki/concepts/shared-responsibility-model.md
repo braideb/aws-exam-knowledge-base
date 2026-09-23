@@ -4,7 +4,7 @@ category: concept
 tags: [seguridad, fundamentos, iaas, paas, saas]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.12 Modelo de responsabilidad compartida (Shared Responsibility Model).md"]
-updated: 2026-07-18
+updated: 2026-09-23
 ---
 
 # Shared Responsibility Model
@@ -22,12 +22,14 @@ Modelo que divide la responsabilidad de seguridad entre AWS y el cliente:
 
 La línea de corte depende del modelo de servicio. Con **[[iaas|IaaS]]** ([[EC2]]) el corte está en el [[hypervisor]]: de ahí para abajo AWS, de ahí para arriba vos.
 
-| Capa | On-Prem | [[iaas\|IaaS]] | [[paas\|PaaS]] | [[saas\|SaaS]] |
-|---|---|---|---|---|
-| Application / Data | Vos | Vos | Vos | AWS |
-| Runtime / Container / O.S. | Vos | Vos | AWS | AWS |
-| Hypervisor / Servers / Infra | Vos | AWS | AWS | AWS |
-| Facilities | Vos | AWS | AWS | AWS |
+| Capa | On-Prem | DC Hosted | [[iaas\|IaaS]] | [[paas\|PaaS]] | [[saas\|SaaS]] |
+|---|---|---|---|---|---|
+| Interface / Application / Data | Vos | Vos | Vos | Vos | AWS |
+| Runtime / Container / O.S. | Vos | Vos | Vos | AWS | AWS |
+| Hypervisor / Servers / Infra | Vos | Vos | AWS | AWS | AWS |
+| Facilities | Vos | **Proveedor** | AWS | AWS | AWS |
+
+*DC Hosted* = tus servidores en el datacenter de un tercero (colocation): el proveedor solo pone el edificio, la energía y la refrigeración.
 
 ![[Pasted image 20260627160129.png]]
 

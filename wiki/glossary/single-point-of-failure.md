@@ -4,7 +4,7 @@ category: glossary
 tags: [resiliencia, high-availability, arquitectura]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Single Point of Failure (SPOF)
@@ -23,6 +23,10 @@ Cómo se acumula la disponibilidad ([[ha-ft-dr]]):
 
 - [[ha-ft-dr]] — cálculo de disponibilidad en serie vs. paralelo
 - [[global-infrastructure]] — dimensionamiento N+1 entre AZs
+- [[VPC]] — un solo NAT Gateway zonal para varias AZs
+- [[nat-gateway-vs-nat-instance]] — la NAT instance sin failover es un SPOF
+- [[horizontal-vs-vertical-scaling]] — escalar vertical deja una sola instancia como SPOF
+- También en: [[vpc-design]]
 
 ## Dato de examen
 

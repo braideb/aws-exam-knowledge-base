@@ -4,7 +4,7 @@ category: service
 tags: [eventbridge, eventos, event-driven, automatizacion, cloudwatch-events]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.11 CloudWatch — Basics.md", "raw/doc oficial/Using EventBridge - Amazon Simple Storage Service.md"]
-updated: 2026-07-25
+updated: 2026-09-19
 ---
 
 # EventBridge
@@ -17,7 +17,7 @@ El **hub de eventos** de AWS — la evolución de CloudWatch Events (mismo backe
 
 - Reaccionar a cambios de estado ("una instancia se detuvo" → Lambda).
 - Arquitecturas **event-driven** (pilar de DVA-C02) — con consumidores [[idempotency|idempotentes]].
-- Tareas programadas sin servidores (cron serverless).
+- Tareas programadas sin servidores (cron [[serverless|serverless]]).
 
 ## Características clave
 

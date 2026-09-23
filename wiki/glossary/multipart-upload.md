@@ -4,7 +4,7 @@ category: glossary
 tags: [s3, performance, upload, storage]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Multipart Upload
@@ -25,12 +25,13 @@ En vez de un único stream, [[S3]] recibe partes independientes y las ensambla. 
 ## Dónde aparece
 
 - [[S3]] — sección Performance
+- También en: [[dva-development]] · [[s3-encryption]]
 
 ## Dato de examen
 
 - **Permisos**: iniciar/subir/completar usan `s3:PutObject`; **abortar** requiere `s3:AbortMultipartUpload` y listar partes `s3:ListMultipartUploadParts`.
 - **Costo invisible**: los multipart **incompletos se siguen facturando** → lifecycle rule `AbortIncompleteMultipartUpload`.
-- El **ETag de un objeto multipart NO es el MD5** del contenido (es un checksum de checksums) → rompe verificaciones ingenuas de integridad.
+- El **[[etag|ETag]] de un objeto multipart NO es el MD5** del contenido (es un checksum de checksums) → rompe verificaciones ingenuas de integridad.
 - Con SSE-KMS hace falta **`kms:GenerateDataKey` y `kms:Decrypt`** (uno al iniciar, el otro al subir partes).
 
 ## Ver también

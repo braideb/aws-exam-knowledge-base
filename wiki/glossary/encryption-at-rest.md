@@ -4,7 +4,7 @@ category: glossary
 tags: [cifrado, seguridad, tls, sse]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Encryption at Rest / in Transit
@@ -26,6 +26,8 @@ En [[S3]] el cifrado in transit ocurre **siempre** (HTTPS); las decisiones inter
 - [[s3-encryption]] — contexto y tabla comparativa de los cuatro métodos
 - [[KMS]] — cifrado en reposo de S3/EBS/RDS/DynamoDB
 - [[shared-responsibility-model]] — el cifrado client-side y server-side es responsabilidad **del cliente**
+- [[EBS]] — cifrado de volúmenes y snapshots con AES-256, sin impacto de rendimiento
+- También en: [[dva-security]]
 
 ## Dato de examen
 

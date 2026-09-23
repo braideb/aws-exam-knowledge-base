@@ -2,8 +2,8 @@
 
 > Índice de todas las **demos prácticas** del curso (learn.cantrill.io), extraídas de las notas de `raw/notas curso mejorado/`. Cada demo linkea a la página wiki relacionada. El LLM lo actualiza cuando se ingestan notas nuevas con demos.
 
-**Última actualización:** 2026-07-18
-**Total de demos:** 22
+**Última actualización:** 2026-09-22
+**Total de demos:** 39
 
 ---
 
@@ -33,6 +33,33 @@
 | My first EC2 Instance — PART 1 | https://learn.cantrill.io/courses/1101194/lectures/64085773 | [[EC2]] |
 | My first EC2 Instance — PART 2 | https://learn.cantrill.io/courses/1101194/lectures/64085774 | [[EC2]] |
 | Registering a Domain with Route53 | https://learn.cantrill.io/courses/1101194/lectures/25301533 | [[Route53]] |
+
+## VPC
+
+| Demo | Link | Página wiki |
+|---|---|---|
+| Custom VPC | https://learn.cantrill.io/courses/1101194/lectures/45241152 | [[VPC]] |
+| Crear las subnets del VPC design | https://learn.cantrill.io/courses/1101194/lectures/26953794 | [[vpc-design]] |
+| Configuring A4L public subnets and jumpbox — PART 1 | https://learn.cantrill.io/courses/1101194/lectures/26982553 | [[VPC]] |
+| Configuring A4L public subnets and jumpbox — PART 2 | https://learn.cantrill.io/courses/1101194/lectures/27186078 | [[VPC]] |
+| Implementar private internet access con NAT Gateway | https://learn.cantrill.io/courses/1101194/lectures/26982643 | [[nat-gateway-vs-nat-instance]] |
+
+## EC2 y almacenamiento
+
+| Demo | Link | Página wiki |
+|---|---|---|
+| EC2 SSH vs EC2 Instance Connect | https://learn.cantrill.io/courses/1101194/lectures/27806428 | [[EC2]] |
+| Instalación manual de WordPress — PART 1 | https://learn.cantrill.io/courses/1101194/lectures/27806465 | [[EC2]] |
+| Instalación manual de WordPress — PART 2 | https://learn.cantrill.io/courses/1101194/lectures/27806466 | [[EC2]] |
+| Creating an Animals4life AMI — PART 1 | https://learn.cantrill.io/courses/1101194/lectures/27806468 | [[golden-ami]] |
+| Creating an Animals4life AMI — PART 2 | https://learn.cantrill.io/courses/1101194/lectures/29064547 | [[golden-ami]] |
+| Copy & Sharing an AMI | https://learn.cantrill.io/courses/1101194/lectures/27806469 | [[EC2]] |
+| EBS Volumes — PART 1 | https://learn.cantrill.io/courses/1101194/lectures/27806446 | [[EBS]] |
+| EBS Volumes — PART 2 | https://learn.cantrill.io/courses/1101194/lectures/28705524 | [[EBS]] |
+| EBS Volumes — PART 3 | https://learn.cantrill.io/courses/1101194/lectures/28705526 | [[instance-store-vs-ebs]] |
+| Status Check y Auto Recovery | https://learn.cantrill.io/courses/1101194/lectures/27806478 | [[EC2]] |
+| Shutdown, Terminate & Termination Protection | https://learn.cantrill.io/courses/1101194/lectures/27806479 | [[EC2]] |
+| Viendo los metadatos en una instancia EC2 | https://learn.cantrill.io/courses/1101194/lectures/27806481 | [[ec2-instance-metadata]] |
 
 ## S3
 
@@ -64,3 +91,7 @@
 ## Demos pendientes según las notas
 
 La nota `04 S3.md` lista demos que el curso menciona pero que quedaron **pendientes de completar** (sin link propio en las notas): aplicar una bucket policy, habilitar versioning + MFA Delete, Transfer Acceleration + speed test, crear KMS Key y cifrar/descifrar, replicación entre buckets. Si al avanzar el curso aparecen sus links, agregarlos acá.
+
+De la **Instalación manual de WordPress**, la **Parte 2** quedó en las notas como link sin contenido transcrito (ver [[06.16 Demostración - Instalación manual de WordPress]]).
+
+Las secciones nuevas de VPC (05.09–05.13: endpoints, flow logs, Lambda en VPC, peering y cheat sheet) **no traen demos**.

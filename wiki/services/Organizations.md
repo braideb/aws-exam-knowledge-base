@@ -4,7 +4,7 @@ category: service
 tags: [organizations, scp, multi-account, consolidated-billing, gobernanza]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.10 AWS Organizations.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.11 Service Control Policies (SCP).md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/doc oficial/Terminology and concepts for AWS Organizations.md", "raw/doc oficial/Service control policies (SCPs).md", "raw/doc oficial/SCP evaluation - AWS Organizations.md"]
-updated: 2026-07-25
+updated: 2026-09-19
 ---
 
 # AWS Organizations
@@ -151,7 +151,7 @@ Las dos reglas (doc oficial, con escenarios de examen):
 
 Consecuencia práctica: un Allow en una OU **nunca "recupera"** lo denegado (o no permitido) más arriba — la evaluación entre niveles es siempre **intersección**.
 
-- Recomendación oficial: **no** attachear SCPs al root sin probar antes en una OU con pocas cuentas; usar **service last accessed data** de IAM para detectar qué servicios se usan realmente antes de restringir.
+- Recomendación oficial: **no** attachear SCPs al root sin probar antes en una OU con pocas cuentas; usar **service last accessed data** de IAM para detectar qué servicios se usan realmente antes de restringir ([[least-privilege|least privilege]]).
 - ⚠️ Si deshabilitás el policy type SCP en el root, **todos los SCPs se desattachean de todo**; al rehabilitarlo, vuelve solo `FullAWSAccess` — los attachments anteriores **se pierden** (hay que rearmarlos a mano).
 
 ## Integración con otros servicios

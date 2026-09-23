@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, seguridad, cross-account, roles, ataques]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-19
 ---
 
 # Confused Deputy
@@ -30,4 +30,4 @@ Un SaaS (el "deputy") tiene permiso para asumir roles en las cuentas de **muchos
 
 ## Ver también
 
-[[trust-policy]] · [[principal]] · [[least-privilege]]
+[[trust-policy]] · [[principal]] · [[least-privilege]] · [[cross-account]]

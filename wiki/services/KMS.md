@@ -4,7 +4,7 @@ category: service
 tags: [kms, seguridad, cifrado, claves, dek, envelope-encryption, key-policy]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/04 S3/04.05 KMS (Key Management Service).md", "raw/doc oficial/AWS KMS keys - AWS Key Management Service.md", "raw/doc oficial/Rotate AWS KMS keys - AWS Key Management Service.md", "raw/doc oficial/Grants in AWS KMS - AWS Key Management Service.md", "raw/doc oficial/Multi-Region keys in AWS KMS - AWS Key Management Service.md"]
-updated: 2026-07-25
+updated: 2026-09-22
 ---
 
 # KMS — Key Management Service
@@ -62,7 +62,7 @@ Este patrón es **[[envelope-encryption]]** y es la base de todo el cifrado en A
 
 ### Key Policies
 
-Toda KMS Key tiene **exactamente una** key policy (resource policy). **KMS no confía en la cuenta por defecto** — a diferencia del resto de AWS, la confianza debe ser explícita:
+Toda KMS Key tiene **exactamente una** key policy (resource policy). **KMS no confía en la cuenta por defecto** — a diferencia del resto de AWS, la confianza debe ser explícita (la misma lógica que una [[trust-policy|trust policy]]):
 
 ```json
 { "Sid": "Enable IAM User Permissions",
@@ -92,7 +92,7 @@ Tercer mecanismo de autorización (además de key policy e IAM policies): un **g
 
 - El grantee usa el permiso **sin mencionar el grant** (como si viniera de una policy). Se elimina con **retire** (lo hace el retiring principal del grant, "terminé de usarlo") o **revoke** (lo hace un admin, "te corto el acceso").
 - **[[eventual-consistency|Eventual consistency]]**: un grant recién creado puede tardar segundos/minutos en propagarse → para usarlo YA está el **grant token** (string base64 no-secreto que devuelve **solo `CreateGrant`**; `ListGrants` da el grant ID, no el token).
-- **Grant constraints**: por **[[encryption-context|encryption context]]** (solo claves simétricas) o por **`SourceArn`** (solo requests en nombre de un recurso concreto — obligatorio cuando el grantee es un service principal).
+- **Grant constraints**: por **[[encryption-context|encryption context]]** (solo claves simétricas) o por **`SourceArn`** (solo requests en nombre de un recurso concreto — obligatorio cuando el grantee es un service principal — es la defensa contra el [[confused-deputy|confused deputy]]).
 - Solo permite **grant operations** (cifrar/descifrar, DescribeKey, crear/retirar grants…) y deben ser soportadas por el tipo de clave (una simétrica no puede grantear `Sign`). Grantee = cualquier principal IAM, **nunca un IAM group ni una organización**.
 - ⚠️ `kms:CreateGrant` es tan sensible como `kms:PutKeyPolicy`: quien puede crear grants puede dar acceso a la clave a terceros (aunque quien recibió el permiso *vía otro grant* solo puede delegar lo que le fue granteado). Límite: **50.000 grants por clave**.
 
@@ -107,6 +107,8 @@ Claves **relacionadas** en distintas regiones con el **mismo key ID y mismo mate
 - Gotcha: la mayoría de los servicios AWS las tratan como claves comunes — ej. **S3 CRR igual descifra y re-cifra** con la clave del destino aunque ambas sean réplicas relacionadas.
 
 ## Integración con otros servicios
+
+- [[EBS]] — cada volumen cifrado recibe su propia [[data-encryption-key|DEK]] vía `GenerateDataKeyWithoutPlaintext`; la clave en claro solo vive en la memoria del EC2 host, nunca en disco. Un snapshot hereda la DEK del volumen.
 
 - [[S3]] / [[s3-encryption]] — SSE-KMS, bucket keys.
 - [[IAM]] — key policy + identity policies.

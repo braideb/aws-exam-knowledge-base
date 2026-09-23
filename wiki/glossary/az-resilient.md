@@ -4,7 +4,7 @@ category: glossary
 tags: [resiliencia, infraestructura, availability-zones]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # AZ Resilient
@@ -21,7 +21,11 @@ Ejemplos: instancia [[EC2]], volumen EBS, subnet de [[VPC]], RDS single-AZ, NAT 
 
 - [[global-infrastructure]] — tabla de los tres niveles de resiliencia
 - [[EC2]] — "la instancia vive en una subnet → una AZ"
-- [[VPC]] — las subnets se mapean 1:1 a una AZ
+- [[VPC]] — las subnets se mapean 1:1 a una AZ; el NAT Gateway zonal es AZ resilient
+- [[vpc-design]] — por qué se repiten las subnets de cada tier en varias AZs
+- [[nat-gateway-vs-nat-instance]] — un NAT GW por AZ (o el modo regional)
+- [[EBS]] — el volumen vive en una AZ; el snapshot (en S3) es el que sube a región
+- También en: [[ec2-cheat-sheet]] · [[vpc-cheat-sheet]]
 
 ## Dato de examen
 

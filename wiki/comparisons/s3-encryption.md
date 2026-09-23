@@ -4,7 +4,7 @@ category: comparison
 tags: [s3, kms, cifrado, sse, encryption, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/04 S3/04.06 S3 Object Encryption.md", "raw/notas curso mejorado/04 S3/04.07 S3 Bucket Keys.md", "raw/notas curso mejorado/04 S3/04.05 KMS (Key Management Service).md", "raw/doc oficial/Using server-side encryption with Amazon S3 managed keys (SSE-S3) - Amazon Simple Storage Service.md", "raw/doc oficial/Using server-side encryption with AWS KMS keys (SSE-KMS) - Amazon Simple Storage Service.md"]
-updated: 2026-07-25
+updated: 2026-09-19
 ---
 
 # Comparativa: Cifrado de objetos en S3
@@ -67,7 +67,7 @@ Con SSE-S3, un admin full de S3 **puede leer los datos** (las claves viven en S3
 
 ## S3 Bucket Keys (optimización de SSE-KMS)
 
-Problema: SSE-KMS llama a KMS **por cada objeto** (costo + [[throttling]] de 5.500–50.000 req/s según region). Solución: una **bucket key temporal** generada por la KMS Key, con la que **S3 fabrica las [[data-encryption-key|DEKs]] localmente**.
+Problema: SSE-KMS ([[envelope-encryption|envelope encryption]] con una DEK por objeto) llama a KMS **por cada objeto** (costo + [[throttling]] de 5.500–50.000 req/s según region). Solución: una **bucket key temporal** generada por la KMS Key, con la que **S3 fabrica las [[data-encryption-key|DEKs]] localmente**.
 
 - Menos llamadas a KMS → menor costo, más escala. AWS habla de hasta **99% menos llamadas**: en vez de una por objeto, una cada tanto para renovar la bucket key.
 - **No retroactivo** (solo objetos nuevos). Para re-cifrar lo existente → **Batch Operations** con Copy in-place ([[S3]]).

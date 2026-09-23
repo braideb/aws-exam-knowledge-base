@@ -4,7 +4,7 @@ category: glossary
 tags: [iaas, ec2, shared-responsibility, virtualizacion]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-08-12
+updated: 2026-09-22
 ---
 
 # Hypervisor
@@ -20,6 +20,8 @@ El hypervisor es la capa que particiona un servidor físico en instancias virtua
 - [[EC2]] — "el IaaS clásico de AWS... AWS gestiona del hypervisor para abajo"
 - [[iaas]] — "el corte está justo en el hypervisor"
 - [[shared-responsibility-model]] — tabla de capas On-Prem / IaaS / PaaS / SaaS
+- [[virtualization]] — cómo se llegó de la binary translation a SR-IOV
+- [[nitro]] — el hypervisor propio de AWS
 
 ## Dato de examen
 

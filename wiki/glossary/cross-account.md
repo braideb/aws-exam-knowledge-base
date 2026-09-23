@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, s3, kms, seguridad, roles]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-08-12
+updated: 2026-09-23
 ---
 
 # Cross-Account
@@ -22,6 +22,7 @@ Patrón de acceso donde una identidad de la Cuenta A accede a un recurso de la C
 - [[IAM]] — uno de los cinco escenarios estándar para usar roles
 - [[iam-policy-evaluation]] — identity + resource policy: unión en misma cuenta, **intersección obligatoria** en cross-account
 - [[confused-deputy]], [[trust-policy]] — el [[external-id|External ID]] como defensa en escenarios cross-account con terceros
+- También en: [[CloudWatchLogs]] · [[dva-security]] · [[s3-encryption]]
 
 ## Dato de examen
 

@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, deployment, cicd, iac, cloudformation]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-08-12
+updated: 2026-09-22
 ---
 
 # DVA-C02 · Dominio 3 — Deployment
@@ -33,9 +33,15 @@ Preparar artefactos y desplegarlos: entornos de dev/test, despliegues automatiza
 |---|---|---|
 | CloudFormation: templates, secciones | [[CloudFormation]] | ⚠️ inicial |
 | Hosting estático como target de deploy | [[S3]] (static hosting), [[CloudFront]] | ✅ parcial |
+| **Artefactos inmutables: AMI baking y el AMI lifecycle** | [[golden-ami]], [[EC2]] | ✅ |
+| Dimensionar el entorno (memoria, cores) del Task 1 | [[ec2-instance-types]] | ✅ |
+| Escalar el entorno desplegado: horizontal vs vertical | [[horizontal-vs-vertical-scaling]] | ✅ |
+| Modelo de costos de los entornos (dev/test vs prod) | [[ec2-purchase-options]] | ✅ |
 
 ## Servicios más importantes para este dominio
 
-Presente en la wiki: [[CloudFormation]] (inicial).
+Presente en la wiki: [[CloudFormation]] (inicial), [[EC2]] y [[EBS]] como destino de despliegue.
 
-> ⚠️ **El dominio con más huecos** — el curso todavía no llegó a esta parte: **CodePipeline, CodeBuild, CodeDeploy**, **AWS SAM**, **Elastic Beanstalk**, **CDK**, estrategias de deployment (blue/green, canary, rolling, all-at-once), versionado/aliases de Lambda. Prioridad alta cuando el curso avance — 24% del examen depende de esto.
+> **El patrón que sí cubre la wiki hoy:** despliegue **inmutable** vía [[golden-ami|AMI baking]] — lanzar, configurar, hornear la AMI y relanzar desde ella. Su contraste de examen es configurar en boot con **user data**: baking da arranque rápido y determinista (clave para autoscaling) pero exige rehornear ante cualquier cambio; user data es más flexible y más lento. Una AMI **no se edita** y es **regional**.
+
+> ⚠️ **Sigue siendo el dominio con más huecos** — el curso todavía no llegó a esta parte: **CodePipeline, CodeBuild, CodeDeploy**, **AWS SAM**, **Elastic Beanstalk**, **CDK**, estrategias de deployment (blue/green, canary, rolling, all-at-once), versionado/aliases de Lambda. Prioridad alta cuando el curso avance — 24% del examen depende de esto.

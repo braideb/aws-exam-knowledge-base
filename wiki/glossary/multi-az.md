@@ -4,7 +4,7 @@ category: glossary
 tags: [resiliencia, rds, ha, availability-zones]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-08-12
+updated: 2026-09-19
 ---
 
 # Multi-AZ
@@ -20,6 +20,7 @@ Configuración donde un servicio (RDS, ELB, Auto Scaling) mantiene réplicas act
 - [[ha-ft-dr]] — HA se logra con Multi-AZ + Auto Scaling + ELB; RDS Multi-AZ falla en 60–120 s
 - [[global-infrastructure]] — tabla de niveles de resiliencia, RDS Multi-AZ como ejemplo de [[region-resilient]]
 - [[region-resilient]]
+- [[vpc-design]] — subnets por tier repetidas en 3 AZs (+1 de reserva)
 
 ## Dato de examen
 

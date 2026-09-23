@@ -4,7 +4,7 @@ category: service
 tags: [cloudwatch, monitoring, metrics, alarms, dimensions, namespaces]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.11 CloudWatch — Basics.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/doc oficial/Metrics concepts - Amazon CloudWatch.md", "raw/doc oficial/Using Amazon CloudWatch alarms.md"]
-updated: 2026-07-24
+updated: 2026-09-22
 ---
 
 # CloudWatch
@@ -72,6 +72,9 @@ De la doc: existen **metric alarms, composite alarms** (combinan varias con AND/
 - Una **composite alarm solo puede notificar vía SNS** — no ejecuta acciones EC2/Auto Scaling.
 
 ## Integración con otros servicios
+
+- [[EC2]] — los **status checks** (System e Instance) son métricas de CloudWatch, y una alarma sobre el System Status es lo que dispara el **auto-recovery**.
+- [[EBS]] — métricas de IOPS, throughput y **balance de [[burst-credit|créditos de burst]]** de gp2: el lugar donde se ve venir que un volumen va a caer a su baseline.
 
 - [[EC2]] — métricas nativas + agent para las de SO.
 - [[CloudWatchLogs]] — [[metric-filter|metric filters]] generan métricas desde logs.

@@ -4,7 +4,7 @@ category: glossary
 tags: [resiliencia, sla, high-availability, s3]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Availability (disponibilidad)
@@ -29,6 +29,7 @@ No confundir con [[durability|durabilidad]]: un dato puede estar perfectamente a
 - [[ha-ft-dr]] — tabla de nueves y cómo se acumula en serie/paralelo
 - [[s3-storage-classes]] — disponibilidad diseñada por clase (Standard 99.99% · IA 99.9% · One Zone-IA 99.5%)
 - [[Route53]] — el único servicio AWS con **[[sla|SLA]] del 100%**
+- También en: [[S3]]
 
 ## Dato de examen
 

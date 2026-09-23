@@ -4,7 +4,7 @@ category: service
 tags: [iam, seguridad, users, groups, roles, sts, federacion, access-keys]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.03 IAM — Conceptos básicos.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.02 IAM Users.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.04 Restricciones y datos útiles de IAM.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.05 IAM Groups.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.06 IAM Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.08 Service-Linked Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.09 Security Token Service (STS).md", "raw/doc oficial/IAM users - AWS Identity and Access Management.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/doc oficial/Temporary security credentials in IAM - AWS Identity and Access Management.md", "raw/doc oficial/Using AWS Identity and Access Management Access Analyzer - AWS Identity and Access Management.md"]
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # IAM — Identity and Access Management
@@ -159,7 +159,10 @@ Relacionado: `iam:PassRole` = permiso para *entregarle* un rol a un servicio (co
 - Máximo **2 por user** (para rotar sin downtime: crear nueva → migrar → desactivar vieja → borrar).
 - La **Secret Access Key se muestra una sola vez**.
 - Regla de oro: si algo corre **dentro de AWS**, usar **roles**, no access keys.
-- Otros tipos de credencial de un user: SSH keys (CodeCommit) y server certificates. Configuración de uso en la CLI: ver [[aws-cli]].
+- Otros tipos de credencial de un user: SSH keys (CodeCommit) y server certificates (usar **ACM** salvo en regions que ACM no soporta). Configuración de uso en la CLI: ver [[aws-cli]].
+- Un user creado por **CLI/API nace sin ninguna credencial**; desde la consola hay que elegir al menos password o access keys. Desactivar la password (consola) **no** afecta sus access keys ni sus permisos.
+- Alternativa reciente a las access keys para personas: **`aws login`** — la CLI/SDK se autentica con las credenciales de consola del user (requiere el permiso `SignInLocalDevelopmentAccess`).
+- Si una app usa credenciales de un IAM user (*service account*): **nunca embeber las keys en el código** — los SDK/CLI las leen de ubicaciones conocidas; mejor aún, un rol.
 
 **El prefijo del Access Key ID delata el tipo de credencial** (dato de examen fácil de reconocer):
 
@@ -210,13 +213,16 @@ El error más caro y más común es **subirlas a Git**: hay bots escaneando GitH
 | Users por cuenta | **5.000** |
 | Groups por cuenta | 300 |
 | Groups por user | 10 |
-| Duración sesión STS | 15 min – 12 h (role chaining: máx **1 h**) |
+| Duración sesión STS | 15 min – 12 h (role chaining: máx **1 h**; pedir `DurationSeconds` > 3600 en chaining **falla**) |
 
 Como IAM es **global**, estos límites son **por cuenta, no por region**: no podés tener 5.000 users en `us-east-1` y otros 5.000 en `eu-west-1`.
 
 > El límite de **5.000** no es un número para memorizar y olvidar: es **el argumento detrás de la mitad de los escenarios de roles del examen**. Cada vez que el enunciado diga "20.000 empleados", "millones de usuarios de una app" o "una cantidad desconocida de accesos", la pista es que la respuesta **no** son IAM users.
 
 ## Integración con otros servicios
+
+- [[ec2-instance-metadata]] — el [[instance-profile]] entrega las credenciales del role a la instancia a través del IMDS (`169.254.169.254`). Es el motivo por el que nunca hay que poner access keys en una instancia — y por el que conviene exigir **IMDSv2**.
+- [[execution-role]] — el equivalente serverless: el role que Lambda asume para correr tu código ([[lambda-in-vpc]]).
 
 - [[Organizations]] — multi-cuenta con roles + `sts:AssumeRole` ("switch role").
 - [[KMS]] — key policies + IAM policies para acceso a claves.

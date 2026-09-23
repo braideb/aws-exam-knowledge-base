@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, ec2, roles, credenciales, imds]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Instance Profile
@@ -22,6 +22,8 @@ La instancia obtiene [[temporary-credentials|credenciales temporales]] a través
 - [[EC2]] — integración con IAM: "credenciales temporales vía instance profile, sin access keys"
 - [[aws-cli]] — paso **6** (último) de la cadena de credenciales
 - [[IAM]] — escenario 1 de uso de roles: un servicio AWS actúa por vos
+- [[ec2-instance-metadata]] — el mecanismo concreto por el que la instancia recibe las credenciales
+- También en: [[dva-security]]
 
 ## Dato de examen
 

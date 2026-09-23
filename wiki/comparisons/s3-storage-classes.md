@@ -4,7 +4,7 @@ category: comparison
 tags: [s3, storage-classes, glacier, intelligent-tiering, lifecycle, costos]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/04 S3/04.08 S3 Object Storage Classes.md", "raw/notas curso mejorado/04 S3/04.09 S3 Lifecycle Configuration.md", "raw/doc oficial/Understanding and managing Amazon S3 storage classes - Amazon Simple Storage Service.md", "raw/doc oficial/Transitioning objects using Amazon S3 Lifecycle - Amazon Simple Storage Service.md"]
-updated: 2026-07-25
+updated: 2026-09-19
 ---
 
 # Comparativa: S3 Storage Classes
@@ -37,7 +37,7 @@ Todas las clases tienen **11 nueves de [[durability|durabilidad]]**; cambian [[a
 | **One Zone-IA** | **1** | 30 d | 128 KB | Sí | ms | Infrecuente + **reemplazable** (réplicas, intermedios) |
 | **Glacier Instant** | ≥3 | 90 d | 128 KB | Sí (mayor) | ms | Archivo con acceso instantáneo raro (~trimestral) |
 | **Glacier Flexible** | ≥3 | 90 d | —* | Sí + retrieval job | min–horas | Archivo frío (~1/6 del precio de Standard) |
-| **Glacier Deep Archive** | ≥3 | 180 d | —* | Sí + retrieval job | horas–días | Archivo "congelado": retención legal, backups |
+| **Glacier Deep Archive** | ≥3 | 180 d | —* | Sí + retrieval job | horas–días | Archivo "congelado": retención legal ([[worm\|WORM]]), backups |
 | **Intelligent-Tiering** | ≥3 | — | — | **No** (fee de monitoreo por cada 1.000 objetos) | ms–horas | Patrón de acceso **desconocido/cambiante** |
 
 > \* Glacier Flexible/Deep Archive no tienen mínimo facturable de objeto, pero **cada objeto suma ~40 KB de overhead de metadata** (32 KB a tarifa Glacier + 8 KB a tarifa Standard) — por eso millones de objetos chicos siguen siendo mala idea. El curso lo simplifica como "mínimo 40 KB"; la doc oficial lo detalla como overhead.

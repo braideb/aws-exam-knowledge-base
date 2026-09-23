@@ -4,7 +4,7 @@ category: concept
 tags: [iam, policies, seguridad, deny, allow, permissions-boundary, scp]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.01 IAM Identity Policies.md", "raw/doc oficial/Policies and permissions in AWS Identity and Access Management - AWS Identity and Access Management.md", "raw/doc oficial/Policy evaluation logic - AWS Identity and Access Management.md", "raw/doc oficial/Permissions boundaries for IAM entities - AWS Identity and Access Management.md"]
-updated: 2026-07-24
+updated: 2026-09-19
 ---
 
 # Evaluación de IAM Policies
@@ -29,7 +29,7 @@ Una **policy** es un documento JSON con statements que **conceden (Allow)** o **
 | `Sid` | Etiqueta opcional para humanos |
 | `Effect` | `Allow` o `Deny` |
 | `Action` | Operaciones (`s3:*`, `s3:GetObject`) |
-| `Resource` | [[arn|ARNs]] afectados |
+| `Resource` | [[arn\|ARNs]] afectados |
 | [[principal\|`Principal`]] | **Solo en resource policies** — a quién aplica |
 | `Condition` | Lógica extra (IP, MFA, tags…) |
 
@@ -114,7 +114,7 @@ La regla de tres pasos alcanza para la mayoría de las preguntas. La versión co
 4. **Permissions boundary** → si existe, la acción tiene que estar dentro del techo.
 5. **Session policy** → si las credenciales vienen de STS con una, también tiene que permitirlo.
 6. **Identity policy** → tiene que permitirlo.
-7. Si nada permitió → **deny implícito**.
+7. Si nada permitió → **[[implicit-deny|deny implícito]]**.
 
 > La forma corta: **cualquier capa puede denegar; todas las capas relevantes tienen que permitir.**
 

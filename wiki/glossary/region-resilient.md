@@ -4,7 +4,7 @@ category: glossary
 tags: [resiliencia, infraestructura, regions, availability-zones]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Region Resilient
@@ -21,7 +21,8 @@ Ejemplos: [[S3]], DynamoDB, [[VPC]], ELB, RDS [[multi-az|Multi-AZ]].
 
 - [[global-infrastructure]] — tabla de los tres niveles de resiliencia
 - [[S3]] — "los objetos se replican entre las AZs de la region y no salen de ella"
-- [[VPC]] — "se crea en una cuenta y una region; opera desde múltiples AZs"
+- [[VPC]] — "se crea en una cuenta y una region; opera desde múltiples AZs"; el Internet Gateway también es region resilient
+- También en: [[nat-gateway-vs-nat-instance]] · [[vpc-cheat-sheet]]
 
 ## Dato de examen
 

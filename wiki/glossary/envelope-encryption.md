@@ -4,7 +4,7 @@ category: glossary
 tags: [kms, cifrado, dek, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-07-24
+updated: 2026-09-23
 ---
 
 # Envelope Encryption
@@ -25,6 +25,8 @@ Patrón base de todo el cifrado en AWS. Como una KMS Key solo cifra hasta **4 KB
 
 - [[KMS]] — sección "DEKs y envelope encryption"
 - [[s3-encryption]] — SSE-KMS genera **una DEK por objeto**; los Bucket Keys optimizan ese patrón
+- [[EBS]] — cada volumen cifrado recibe su propia DEK; el snapshot hereda la misma
+- También en: [[dva-development]] · [[dva-security]] · [[ec2-cheat-sheet]]
 
 ## Dato de examen
 
