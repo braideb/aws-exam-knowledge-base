@@ -4,7 +4,7 @@ category: glossary
 tags: [ec2, virtualizacion, hypervisor]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.01 Virtualization 101.md"]
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # Nitro
@@ -19,6 +19,7 @@ Nitro mueve la red, el almacenamiento y la seguridad a **hardware dedicado**, de
 
 - [[virtualization]] — el cierre de la evolución de la virtualización
 - [[EC2]] — por qué el overhead es mínimo
+- También en: [[enhanced-networking]]
 
 ## Dato de examen
 

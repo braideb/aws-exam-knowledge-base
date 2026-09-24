@@ -3,8 +3,8 @@ title: Eventual Consistency
 category: glossary
 tags: [consistencia, sistemas-distribuidos, kms, s3, iam]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/doc oficial/Grants in AWS KMS - AWS Key Management Service.md", "raw/doc oficial/Rotate AWS KMS keys - AWS Key Management Service.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.03 IAM — Conceptos básicos.md"]
+updated: 2026-09-24
 ---
 
 # Eventual Consistency
@@ -26,7 +26,7 @@ Dónde aparece cada una en AWS:
 
 - [[S3]] — "consistencia **strong read-after-write** para todas las operaciones" (dato de examen)
 - [[KMS]] — un grant recién creado tarda en propagarse → **grant token**
-- También en: [[IAM]]
+- También en: [[IAM]] · [[idempotency]] · [[ttl]]
 
 ## Dato de examen
 

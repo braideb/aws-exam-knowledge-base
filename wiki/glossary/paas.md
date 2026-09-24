@@ -3,8 +3,8 @@ title: PaaS (Platform as a Service)
 category: glossary
 tags: [modelos-de-servicio, paas, shared-responsibility]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.12 Modelo de responsabilidad compartida (Shared Responsibility Model).md"]
+updated: 2026-09-24
 ---
 
 # PaaS — Platform as a Service
@@ -20,6 +20,7 @@ Ejemplos en AWS: Elastic Beanstalk, RDS (motor gestionado), ECS Fargate.
 ## Dónde aparece
 
 - [[shared-responsibility-model]] — tabla de capas por modelo de servicio
+- También en: [[iaas]] · [[saas]] · [[serverless]]
 
 ## Dato de examen
 

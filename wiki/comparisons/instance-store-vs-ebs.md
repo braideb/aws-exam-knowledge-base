@@ -4,7 +4,7 @@ category: comparison
 tags: [ec2, ebs, instance-store, storage, iops]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.09 Instance Store Volumes.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.10 Instance Store vs EBS.md"]
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # Instance Store vs EBS
@@ -59,7 +59,7 @@ La forma más rápida de resolver una pregunta que da un número:
 | Requisito | Respuesta |
 |---|---|
 | Barato | **st1** o **sc1** |
-| Throughput / streaming | **st1** |
+| [[throughput\|Throughput]] / streaming | **st1** |
 | Bootear | **NO** st1 ni sc1 — solo SSD |
 | Hasta **16.000** [[iops\|IOPS]] | **gp2 / gp3** |
 | Hasta **64.000** IOPS | **io1 / io2** |

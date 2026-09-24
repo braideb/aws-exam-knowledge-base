@@ -3,8 +3,8 @@ title: Object Storage
 category: glossary
 tags: [s3, storage, almacenamiento]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-22
+sources: ["raw/notas curso mejorado/04 S3/04.09 S3 Lifecycle Configuration.md", "raw/doc oficial/What is Amazon S3 - Amazon Simple Storage Service.md", "raw/doc oficial/Transitioning objects using Amazon S3 Lifecycle - Amazon Simple Storage Service.md"]
+updated: 2026-09-24
 ---
 
 # Object Storage
@@ -29,6 +29,7 @@ Los tres modelos que el examen contrasta:
 - [[EC2]] — Instance Store y EBS como block storage
 - [[s3-storage-classes]] — la dimensión económica del object storage
 - [[storage-types]] — object vs block vs file, y por qué solo block bootea
+- También en: [[delete-marker]] · [[etag]] · [[multipart-upload]] · [[prefix]]
 
 ## Dato de examen
 

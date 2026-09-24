@@ -4,7 +4,7 @@ category: glossary
 tags: [vpc, routing, route-tables, cidr]
 exam: [SAA-C03, DVA-C02, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.04 VPC Routing e Internet Gateway.md", "raw/doc oficial/How route priority works - Amazon Virtual Private Cloud.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Longest prefix match
@@ -28,7 +28,7 @@ Si dos rutas tienen **el mismo** destino, la **estática** le gana a la **propag
 - [[VPC]] — prioridad de rutas y local route
 - [[vpc-endpoints]] — la ruta del gateway endpoint le gana a la default hacia el NAT
 - [[vpc-peering]] — por qué los CIDRs no pueden solaparse: la ruta local siempre gana
-- También en: [[nat-gateway-vs-nat-instance]] · [[vpc-cheat-sheet]]
+- También en: [[nat-gateway-vs-nat-instance]] · [[vpc-cheat-sheet]] · [[prefix-list]] · [[public-subnet]]
 
 ## Dato de examen
 

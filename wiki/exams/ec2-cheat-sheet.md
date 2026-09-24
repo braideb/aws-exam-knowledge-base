@@ -4,7 +4,7 @@ category: exam
 tags: [ec2, ebs, storage, repaso, cheat-sheet, dva-c02]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.00 Elastic Compute Cloud (EC2) — Índice.md"]
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # EC2 y almacenamiento — Cheat sheet de examen
@@ -73,7 +73,7 @@ Destilado del módulo 06. A diferencia del de VPC, el curso no trae este resumen
 | **Garantizar** que voy a poder lanzar | Reserva **zonal** u **On-Demand Capacity Reservation** |
 | Licencias por socket o core físico | **Dedicated Host** |
 | Compliance: no compartir hardware | **Dedicated Instances** |
-| Credenciales para el SDK en la instancia | **IMDS** + instance profile |
+| Credenciales para el SDK en la instancia | **IMDS** + [[instance-profile\|instance profile]] |
 | Proteger esas credenciales de un SSRF | **IMDSv2** (`HttpTokens: required`) |
 | Usuarios que se deslogean al escalar | Sesiones **off-host** ([[stateless]]) |
 | Acceso admin sin abrir puertos ni llaves | **SSM Session Manager** |

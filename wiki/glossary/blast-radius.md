@@ -3,8 +3,8 @@ title: Blast Radius
 category: glossary
 tags: [resiliencia, seguridad, arquitectura, multi-account]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.01 Cuenta de AWS (AWS Account).md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.08 S3 Buckets — Basics.md"]
+updated: 2026-09-24
 ---
 
 # Blast Radius
@@ -22,6 +22,7 @@ Radios típicos: un bucket de [[S3]] → la **region**; una [[aws-account|AWS Ac
 - [[aws-account]] — "las cuentas contienen el blast radius de errores y exploits" (DEV/TEST/PROD separadas)
 - [[S3]] — el blast radius de un bucket es la region
 - [[global-infrastructure]] — repartir componentes entre AZs
+- También en: [[data-sovereignty]] · [[globally-resilient]] · [[least-privilege]] · [[region-resilient]] · [[single-point-of-failure]]
 
 ## Dato de examen
 

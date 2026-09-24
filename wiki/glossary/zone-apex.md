@@ -3,8 +3,8 @@ title: Zone Apex
 category: glossary
 tags: [dns, route53, records, alias]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/doc oficial/Choosing between alias and non-alias records - Amazon Route 53.md", "raw/doc oficial/Supported DNS record types - Amazon Route 53.md"]
+updated: 2026-09-24
 ---
 
 # Zone Apex
@@ -21,6 +21,7 @@ Ese conflicto es exactamente lo que resuelven los **ALIAS records** de [[Route53
 
 - [[Route53]] — tipos de record y ALIAS records
 - [[alias-vs-cname]] — la comparación completa
+- También en: [[ttl]]
 
 ## Dato de examen
 

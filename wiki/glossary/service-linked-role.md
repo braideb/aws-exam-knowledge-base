@@ -3,8 +3,8 @@ title: Service-Linked Role
 category: glossary
 tags: [iam, roles, seguridad, servicios]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-25
+sources: ["raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.08 Service-Linked Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md"]
+updated: 2026-09-24
 ---
 
 # Service-Linked Role
@@ -31,7 +31,7 @@ Los usan Auto Scaling, ELB, RDS, EKS, [[Organizations]], GuardDuty, Config, Trus
 ## Dato de examen
 
 - **No se puede borrar mientras el servicio lo esté usando** — es la diferencia que más se pregunta. Un rol normal lo borrás cuando querés (y rompés todo); acá AWS te protege de vos mismo.
-- Tampoco se puede editar su permissions policy ni su trust policy. La ventaja: **AWS lo actualiza solo** cuando el servicio incorpora funciones nuevas.
+- Tampoco se puede editar su permissions policy ni su [[trust-policy|trust policy]]. La ventaja: **AWS lo actualiza solo** cuando el servicio incorpora funciones nuevas.
 - Los **SCPs no afectan a los service-linked roles** ([[Organizations]]).
 - Permiso para crearlos: `iam:CreateServiceLinkedRole` con condition `iam:AWSServiceName`. ⚠️ El nombre del servicio **varía y es case sensitive** — se busca en la doc, no se adivina.
 

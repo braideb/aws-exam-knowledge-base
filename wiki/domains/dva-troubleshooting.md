@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, troubleshooting, optimization, monitoring, logging]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # DVA-C02 · Dominio 4 — Troubleshooting and Optimization
@@ -32,6 +32,10 @@ Diagnosticar y resolver problemas de aplicaciones: observabilidad (métricas, lo
 | Métricas, dimensions, alarms | [[CloudWatch]] | ✅ fuerte |
 | Logs centralizados, [[metric-filter\|metric filters]] | [[CloudWatchLogs]] | ✅ fuerte |
 | Auditoría de API, quién-hizo-qué | [[CloudTrail]] | ✅ fuerte |
+| Resolution, retención, [[percentile\|percentiles]], alarms high resolution y "M out of N" | [[CloudWatch]] | ✅ fuerte |
+| Métricas custom desde el código (`PutMetricData`, agent) | [[CloudWatch]], [[custom-metric]] | ✅ |
+| **Tracing distribuido**: segments, service map, annotations vs metadata, daemon + IAM | [[XRay]] | ⚠️ solo curso, sin doc oficial |
+| Sacar logs en vivo: [[subscription-filter\|subscription filters]], export a S3, agregación multi-cuenta | [[CloudWatchLogs]] | ✅ |
 | Reaccionar a eventos (remediación) | [[EventBridge]] | ⚠️ inicial |
 | Optimización de performance en S3 (multipart, TA) | [[S3]] | ✅ |
 | Optimización de costos de storage (lifecycle, classes) | [[s3-storage-classes]] | ✅ |
@@ -42,14 +46,16 @@ Diagnosticar y resolver problemas de aplicaciones: observabilidad (métricas, lo
 | Instancia que no responde: System vs Instance status check, auto-recovery | [[EC2]] | ✅ |
 | Volumen que "se puso lento": [[burst-credit\|créditos]] agotados de gp2 | [[ebs-volume-types]] | ✅ |
 | Volumen restaurado que rinde poco al principio | [[lazy-restore]], [[EBS]] | ✅ |
-| IOPS aprovisionadas que no se alcanzan (tope por instancia) | [[ebs-optimized]], [[instance-store-vs-ebs]] | ✅ |
+| [[iops\|IOPS]] aprovisionadas que no se alcanzan (tope por instancia) | [[ebs-optimized]], [[instance-store-vs-ebs]] | ✅ |
 | Lambda en VPC que falla con `ENILimitReached` o pierde internet | [[lambda-in-vpc]] | ✅ |
 | Optimización de costo de cómputo | [[ec2-purchase-options]] | ✅ |
 
 ## Servicios más importantes para este dominio
 
-[[CloudWatch]], [[CloudWatchLogs]], [[CloudTrail]], [[EventBridge]] — todos con página. Se suman [[EC2]] y [[EBS]] como objeto de diagnóstico.
+[[CloudWatch]], [[CloudWatchLogs]], [[XRay]], [[CloudTrail]], [[EventBridge]] — todos con página. Se suman [[EC2]] y [[EBS]] como objeto de diagnóstico.
+
+> **Las tres patas de la observabilidad:** métricas ([[CloudWatch]]: *cuánto*), logs ([[CloudWatchLogs]]: *qué pasó*) y trazas ([[XRay]]: *por dónde pasó la request y cuánto tardó cada tramo* — [[distributed-tracing]]). "Quién hizo qué" no es ninguna de las tres: es auditoría, [[CloudTrail]].
 
 > **El razonamiento de troubleshooting que más rinde:** los [[vpc-flow-logs|flow logs]] dicen *que* se bloqueó, no *quién*. Si se ve el **request ACCEPT y la respuesta REJECT**, corta la **NACL** (le falta la regla outbound de ephemeral ports); si se ve **solo el request REJECT**, puede ser el SG o la NACL de entrada. Y para ver el **contenido** de los paquetes no sirven los flow logs: hace falta [[traffic-mirroring|Traffic Mirroring]].
 
-> ⚠️ **Huecos pendientes de ingest**: **X-Ray** (tracing distribuido — el gran ausente y muy preguntado en DVA), CloudWatch **Logs Insights**, ServiceLens, análisis de errores de Lambda/API Gateway ([[throttling]], cold starts, códigos 4xx/5xx).
+> ⚠️ **Huecos pendientes de ingest**: clippings de doc oficial de **X-Ray** (la página sale solo del curso), CloudWatch **Logs Insights**, **Embedded Metric Format**, ServiceLens, análisis de errores de Lambda/API Gateway ([[throttling]], cold starts, códigos 4xx/5xx).

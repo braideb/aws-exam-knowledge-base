@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, seguridad, cross-account, roles, ataques]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: []
-updated: 2026-09-19
+updated: 2026-09-24
 ---
 
 # Confused Deputy
@@ -13,7 +13,7 @@ updated: 2026-09-19
 
 ## Definición
 
-Un SaaS (el "deputy") tiene permiso para asumir roles en las cuentas de **muchos** clientes. Si un atacante adivina o averigua el ARN de tu rol y consigue que el SaaS lo asuma en su nombre, el deputy ejecuta acciones en **tu** cuenta creyendo actuar para otro cliente.
+Un [[saas|SaaS]] (el "deputy") tiene permiso para asumir roles en las cuentas de **muchos** clientes. Si un atacante adivina o averigua el ARN de tu rol y consigue que el SaaS lo asuma en su nombre, el deputy ejecuta acciones en **tu** cuenta creyendo actuar para otro cliente.
 
 **Mitigación: [[external-id|`External ID`]].** Un identificador secreto que la [[trust-policy]] del rol exige mediante `sts:ExternalId`; el SaaS debe presentarlo al asumir. Sin el valor correcto, no hay asunción.
 
@@ -22,6 +22,7 @@ Un SaaS (el "deputy") tiene permiso para asumir roles en las cuentas de **muchos
 - [[IAM]] — gotchas: "un rol de terceros (SaaS) debe exigir External ID"
 - [[CloudFront]] — variante del mismo patrón: la bucket policy de OAC exige `AWS:SourceArn` = ARN de la distribución
 - [[KMS]] — `SourceArn` como grant constraint obligatorio cuando el grantee es un service principal
+- También en: [[cross-account]] · [[external-id]] · [[trust-policy]]
 
 ## Dato de examen
 

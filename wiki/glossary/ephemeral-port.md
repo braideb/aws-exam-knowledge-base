@@ -4,7 +4,7 @@ category: glossary
 tags: [networking, tcp, nacl, firewall]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.05 Stateful vs Stateless Firewalls.md", "raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.06 Network Access Control Lists (NACLs).md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Ephemeral port
@@ -20,7 +20,7 @@ Al abrir una conexión TCP, el cliente elige un puerto de origen al azar (el ran
 - [[security-groups-vs-nacls]] — por qué las NACLs necesitan una regla para la respuesta
 - [[VPC]] — reglas de NACL; el NAT Gateway usa los puertos 1024–65535
 - [[vpc-flow-logs]] — el puerto alto que aparece en `srcport`/`dstport` y delata a la NACL
-- También en: [[dva-troubleshooting]] · [[vpc-cheat-sheet]]
+- También en: [[dva-troubleshooting]] · [[vpc-cheat-sheet]] · [[stateful-firewall]] · [[stateless-firewall]]
 
 ## Dato de examen
 

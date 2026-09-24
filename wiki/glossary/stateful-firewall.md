@@ -4,7 +4,7 @@ category: glossary
 tags: [networking, firewall, security-groups]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.05 Stateful vs Stateless Firewalls.md", "raw/doc oficial/Control traffic to your AWS resources using security groups - Amazon Virtual Private Cloud.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Stateful firewall
@@ -19,7 +19,7 @@ Identifica que request y response pertenecen a la misma conexión. Si permite el
 
 - [[security-groups-vs-nacls]] — los **Security Groups** son stateful
 - [[VPC]] — sección Security Groups y NACLs
-- También en: [[vpc-cheat-sheet]] · [[vpc-flow-logs]]
+- También en: [[vpc-cheat-sheet]] · [[vpc-flow-logs]] · [[ephemeral-port]] · [[implicit-deny]] · [[stateless-firewall]]
 
 ## Dato de examen
 

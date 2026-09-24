@@ -3,8 +3,8 @@ title: Role Separation
 category: glossary
 tags: [kms, seguridad, iam, cifrado, compliance]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/notas curso mejorado/04 S3/04.06 S3 Object Encryption.md", "raw/notas curso mejorado/04 S3/04.05 KMS (Key Management Service).md"]
+updated: 2026-09-24
 ---
 
 # Role Separation (separación de roles)
@@ -21,6 +21,7 @@ Caso canónico: un administrador con acceso total a [[S3]] **no puede leer** obj
 
 - [[KMS]] — casos de uso y gotchas
 - [[s3-encryption]] — "Por qué SSE-KMS y no SSE-S3": con SSE-S3 las claves viven en S3, así que el admin **sí** lee los datos
+- También en: [[control-plane]] · [[data-plane]] · [[encryption-at-rest]] · [[envelope-encryption]] · [[least-privilege]]
 
 ## Dato de examen
 

@@ -4,7 +4,7 @@ category: comparison
 tags: [vpc, nat, nat-gateway, nat-instance, ha, ipv6]
 exam: [SAA-C03, DVA-C02, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.08 Network Address Translation (NAT) y NAT Gateway.md", "raw/doc oficial/Compare NAT gateways and NAT instances - Amazon Virtual Private Cloud.md", "raw/doc oficial/Enable private resources to communicate outside the VPC - Amazon Virtual Private Cloud.md", "raw/doc oficial/NAT gateway basics - Amazon Virtual Private Cloud.md", "raw/doc oficial/Regional NAT gateways for automatic multi-AZ expansion - Amazon Virtual Private Cloud.md", "raw/doc oficial/Connect to the internet or other networks using NAT devices - Amazon Virtual Private Cloud.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Comparativa: NAT Gateway vs NAT instance
@@ -40,7 +40,7 @@ Las dos dan a una private subnet **salida a internet sin entrada iniciada desde 
 |---|---|---|
 | Dónde vive | Una AZ, en una public subnet | La VPC; se expande a las AZs con [[eni\|ENIs]] |
 | Public subnet | Necesaria | **No hace falta** |
-| HA multi-AZ | Uno por AZ + una route table por AZ | Automática (hasta 60 min para sumar una AZ nueva) |
+| HA [[multi-az\|multi-AZ]] | Uno por AZ + una route table por AZ | Automática (hasta 60 min para sumar una AZ nueva) |
 | IPs | Hasta 8 | Hasta 32 por AZ |
 | NAT privado | ✅ | ❌ |
 

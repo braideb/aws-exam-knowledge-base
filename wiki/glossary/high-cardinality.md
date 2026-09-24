@@ -3,8 +3,8 @@ title: High Cardinality (alta cardinalidad)
 category: glossary
 tags: [cloudwatch, metrics, costos, observabilidad]
 exam: [DVA-C02, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md"]
+updated: 2026-09-24
 ---
 
 # High Cardinality (alta cardinalidad)
@@ -22,10 +22,11 @@ El problema en [[CloudWatch]]: cada combinación única de métrica + [[dimensio
 - [[observability-costs]] — tercer motor de costo
 - [[CloudWatchLogs]] — las dimensions extraídas por un [[metric-filter]] crean una variación nueva por cada par único
 - [[CloudWatch]] — máx **30 dimensions** por métrica
+- También en: [[XRay]] · [[custom-metric]] · [[dimension]] · [[distributed-tracing]]
 
 ## Dato de examen
 
-- Regla práctica: las **métricas** son para valores acotados (instance ID, tipo de instancia, entorno); los **logs** son para lo de alta cardinalidad (request IDs). Si el escenario necesita rastrear un request individual, la respuesta es **logs o X-Ray**, no una métrica con dimensión por request.
+- Regla práctica: las **métricas** son para valores acotados (instance ID, tipo de instancia, entorno); los **logs** son para lo de alta cardinalidad (request IDs). Si el escenario necesita rastrear un request individual, la respuesta es **logs o [[XRay|X-Ray]]**, no una métrica con dimensión por request.
 - En un metric filter, usar dimensions **impide** configurar el *default value* — otro motivo para no abusar de ellas.
 
 ## Ver también

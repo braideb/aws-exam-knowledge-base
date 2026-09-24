@@ -4,12 +4,12 @@ category: glossary
 tags: [vpc, ec2, security, ssh]
 exam: [SAA-C03, DVA-C02, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.04 VPC Routing e Internet Gateway.md", "raw/doc oficial/Infrastructure security in Amazon VPC - Amazon Virtual Private Cloud.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Bastion host (jumpbox)
 
-> **En una línea:** una instancia en una **public subnet** que sirve de puerta de entrada para administrar recursos privados.
+> **En una línea:** una instancia en una **[[public-subnet|public subnet]]** que sirve de puerta de entrada para administrar recursos privados.
 
 ## Definición
 

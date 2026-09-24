@@ -4,7 +4,7 @@ category: concept
 tags: [costos, optimizacion, cloudwatch, cloudtrail, logs, gobernanza, finops]
 exam: [DVA-C02, DOP-C02, SAA-C03]
 sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md"]
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # Costos de observabilidad y gobierno
@@ -31,7 +31,7 @@ Los precios cambian, pero **qué se cobra** no. La regla que resume todo el bloq
 | **CloudTrail — data events** | Se cobra por evento |
 | **CloudTrail — Insights** | Se cobra por evento analizado |
 | **[[CloudWatch]] — métricas básicas** | Gratis |
-| **CloudWatch — detailed monitoring, métricas custom, alarmas** | Se cobra |
+| **CloudWatch — detailed monitoring, [[custom-metric\|métricas custom]], alarmas** | Se cobra |
 | **[[CloudWatchLogs]] — ingesta, almacenamiento y consultas** | Se cobra |
 
 ## Los tres motores de costo

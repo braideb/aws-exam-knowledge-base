@@ -4,7 +4,7 @@ category: glossary
 tags: [networking, nat, vpc]
 exam: [SAA-C03, DVA-C02, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.08 Network Address Translation (NAT) y NAT Gateway.md", "raw/doc oficial/Connect to the internet or other networks using NAT devices - Amazon Virtual Private Cloud.md"]
-updated: 2026-09-19
+updated: 2026-09-24
 ---
 
 # IP masquerading
@@ -25,6 +25,7 @@ Es un tipo de NAT (en rigor NAT + PAT, traducción de puertos). Permite que un r
 
 - [[VPC]] — sección NAT y NAT Gateway
 - [[nat-gateway-vs-nat-instance]]
+- También en: [[egress-only-internet-gateway]] · [[elastic-ip]]
 
 ## Dato de examen
 

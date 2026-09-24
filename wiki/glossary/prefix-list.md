@@ -4,7 +4,7 @@ category: glossary
 tags: [vpc, routing, endpoints, security-groups]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.09 VPC Endpoints.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Prefix list
@@ -19,7 +19,7 @@ En vez de escribir a mano las decenas de rangos públicos que usa un servicio en
 
 - [[vpc-endpoints]] — el gateway endpoint agrega una ruta cuyo **destino es una prefix list**
 - [[VPC]] — route tables
-- También en: [[gateway-vs-interface-endpoint]]
+- También en: [[gateway-vs-interface-endpoint]] · [[privatelink]] · [[security-groups-vs-nacls]]
 
 ## Dato de examen
 

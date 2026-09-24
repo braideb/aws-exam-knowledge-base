@@ -4,7 +4,7 @@ category: service
 tags: [organizations, scp, multi-account, consolidated-billing, gobernanza]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.10 AWS Organizations.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.11 Service Control Policies (SCP).md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/doc oficial/Terminology and concepts for AWS Organizations.md", "raw/doc oficial/Service control policies (SCPs).md", "raw/doc oficial/SCP evaluation - AWS Organizations.md"]
-updated: 2026-09-19
+updated: 2026-09-24
 ---
 
 # AWS Organizations
@@ -70,7 +70,7 @@ El flujo real:
 5. STS devuelve [[temporary-credentials|credenciales temporales]] nuevas, con los permisos del rol, típicamente por 1 h.
 6. Opera en Prod **sin haber tenido nunca un usuario propio ahí**.
 
-Es el mismo mecanismo que usa Lambda con su execution role ([[IAM]]); la única diferencia es que ahí el `Principal` de la trust policy era un servicio y acá es otra cuenta.
+Es el mismo mecanismo que usa Lambda con su [[execution-role|execution role]] ([[IAM]]); la única diferencia es que ahí el `Principal` de la trust policy era un servicio y acá es otra cuenta.
 
 ![[Pasted image 20260707010344.png]]
 

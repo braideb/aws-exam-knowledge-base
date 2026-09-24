@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "2d6adcb8057afbba",
+        "id": "f1b545fd9442000b",
         "type": "tabs",
         "children": [
           {
-            "id": "0348f350388ef604",
+            "id": "d9ea490212d59120",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "log.md",
+                "file": "CLAUDE.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "log"
+              "title": "CLAUDE"
             }
           }
         ]
@@ -80,7 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 764.5
+    "width": 342.16668701171875
   },
   "right": {
     "id": "4512af0ab763bf1a",
@@ -197,53 +197,53 @@
       "obsidian-spaced-repetition:Revisar Tarjetas": false
     }
   },
-  "active": "0348f350388ef604",
+  "active": "d9ea490212d59120",
   "lastOpenFiles": [
+    "log.md.tmp.42520.463f940f6b6e",
+    "wiki/domains/sedHKQwYv",
+    "wiki/domains/sedeGq3bO",
+    "wiki/glossary/sed5Oh0e6",
+    "wiki/services/XRay.md.tmp.42520.9550ec830726",
+    "wiki/services/sed1qX51H",
+    "wiki/services/sedojeMAK",
+    "wiki/services/sedkK5iI9",
+    "wiki/glossary/sed23ANiU",
+    "wiki/concepts/sedwm10QM",
+    "wiki/concepts/sedCvTHp0",
+    "raw/doc oficial/Transitioning objects using Amazon S3 Lifecycle - Amazon Simple Storage Service.md",
+    "raw/notas curso mejorado/07 Monitoring and logging/07.08 VPC Flow Logs.md",
+    "wiki/glossary/distributed-tracing.md",
+    "wiki/glossary/near-real-time.md",
+    "wiki/glossary/subscription-filter.md",
+    "wiki/glossary/percentile.md",
+    "wiki/glossary/high-resolution-metric.md",
+    "wiki/glossary/custom-metric.md",
+    "wiki/services/XRay.md",
+    "raw/notas curso mejorado/07 Monitoring and logging/07.07 AWS X-Ray — Service Map.md",
+    "raw/notas curso mejorado/07 Monitoring and logging/07.06 CloudWatch Logs — Subscriptions y Aggregation.md",
+    "raw/notas curso mejorado/07 Monitoring and logging/07.05 CloudWatch Logs — Architecture.md",
+    "raw/notas curso mejorado/07 Monitoring and logging/07.04 CloudWatch Alarms.md",
+    "raw/notas curso mejorado/07 Monitoring and logging/07.03 CloudWatch — Resolution, Retention y Statistics.md",
+    "raw/notas curso mejorado/07 Monitoring and logging/07.02 CloudWatch Data (Namespace, Datapoint, Metric, Dimensions).md",
+    "raw/notas curso mejorado/07 Monitoring and logging/07.01 CloudWatch — Architecture Concepts.md",
+    "raw/notas curso mejorado/07 Monitoring and logging/07.00 Monitoring and logging — Índice.md",
+    "raw/notas curso/Monitoring and logging.md",
+    "raw/assets/Pasted image 20260923020921.png",
+    "raw/assets/Pasted image 20260923235801.png",
+    "raw/notas curso/notas_mejoradas.md",
+    "raw/notas curso/notas_mejoradas extra.md",
+    "raw/assets/Pasted image 20260924000637.png",
+    "raw/assets/Pasted image 20260924000314.png",
+    "raw/assets/Pasted image 20260924000304.png",
+    "raw/assets/Pasted image 20260924000057.png",
+    "raw/assets/Pasted image 20260923231906.png",
+    "raw/assets/Pasted image 20260923231759.png",
+    "raw/assets/Pasted image 20260923231558.png",
+    "raw/assets/Pasted image 20260923230819.png",
+    "log.md",
     "raw/notas curso mejorado/00 Índice general.md",
-    "wiki/services/sedoXWPKk",
-    "wiki/comparisons/sedPdoOUg",
-    "wiki/concepts/sedOSqhzs",
-    "wiki/concepts/sedSSkGVS",
-    "wiki/concepts/sed5DxlOq",
-    "wiki/services/sedscGaqp",
-    "wiki/comparisons/nat-gateway-vs-nat-instance.md.tmp.3656.44efd33c7d75",
-    "wiki/glossary/bastion-host.md.tmp.3656.4c184276290b",
-    "wiki/services/VPC.md.tmp.3656.da5275d5ebbd",
-    "wiki/services/VPC.md.tmp.3656.c756ea6430f1",
     "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.24 Instance Metadata (IMDS).md",
     "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.23 Horizontal vs Vertical Scaling.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.22 Instance Status Checks y Auto Recovery.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.21 Capacity Reservations.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.20 Dedicated Hosts y Dedicated Instances.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.19 Reserved Instances y Savings Plans.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.18 EC2 Purchase Options - On-Demand y Spot.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.17 Amazon Machine Image (AMI).md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.16 Demostración - Instalación manual de WordPress.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.15 Elastic IP.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.14 Network Interfaces (ENI), IPs y DNS.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.13 EBS Encryption.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.12 Demostración - EBS Volumes e Instance Store.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.11 EBS Snapshots, Restore y Fast Snapshot Restore (FSR).md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.10 Instance Store vs EBS.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.09 Instance Store Volumes.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.08 EBS Volume Types - HDD (st1 y sc1).md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.07 EBS Volume Types - Provisioned IOPS SSD (io1, io2, Block Express).md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.06 EBS Volume Types - General Purpose SSD (gp2 y gp3).md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.05 Elastic Block Store (EBS) — Basics.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.04 Storage Refresh.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.03 EC2 Instance Types.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.02 EC2 Architecture and Resilience.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.01 Virtualization 101.md",
-    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.00 Elastic Compute Cloud (EC2) — Índice.md",
-    "raw/assets/Pasted image 20260919152127.png",
-    "raw/assets/Pasted image 20260919152411.png",
-    "raw/assets/Pasted image 20260921221232.png",
-    "raw/assets/Pasted image 20260921221054.png",
-    "raw/assets/Pasted image 20260921192643.png",
-    "raw/assets/Pasted image 20260921191031.png",
-    "raw/assets/Pasted image 20260921181611.png",
-    "raw/assets/Pasted image 20260921175824.png",
-    "raw/assets/Pasted image 20260921174039.png",
-    "raw/assets/Pasted image 20260921173238.png"
+    "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.22 Instance Status Checks y Auto Recovery.md"
   ]
 }

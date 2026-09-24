@@ -2,9 +2,9 @@
 
 > El LLM mantiene este archivo actualizado en cada ingest. Leer primero al responder queries.
 
-**Total de páginas:** 130 (45 de conocimiento + 83 términos de glosario + 2 de examen)
-**Fuentes ingestadas:** notas del curso **completas (88/88 secciones, módulos 01–06)** + 86 clippings de doc oficial
-**Última actualización:** 2026-09-22
+**Total de páginas:** 137 (46 de conocimiento + 89 términos de glosario + 2 de examen)
+**Fuentes ingestadas:** notas del curso **completas (96/96 secciones, módulos 01–07)** + 86 clippings de doc oficial
+**Última actualización:** 2026-09-24
 
 ---
 
@@ -21,8 +21,9 @@
 | [[Organizations]] | AWS Organizations | Estructura, consolidated billing, SCPs |
 | [[Route53]] | Route 53 | Hosted zones, tipos de record DNS, TTL, alias |
 | [[CloudFormation]] | CloudFormation | Templates, secciones (inicial) |
-| [[CloudWatch]] | CloudWatch | Namespaces, metrics, dimensions, alarms |
-| [[CloudWatchLogs]] | CloudWatch Logs | Log groups/streams, metric filters, retención |
+| [[CloudWatch]] | CloudWatch | Arquitectura (endpoint público, agent), namespaces, metrics, dimensions, resolution y retención, statistics, alarms (M of N, high resolution) |
+| [[CloudWatchLogs]] | CloudWatch Logs | Log groups/streams, metric filters, retención, export a S3, subscriptions, agregación multi-cuenta |
+| [[XRay]] | AWS X-Ray | Distributed tracing: trace/segments/subsegments, service map, integración por servicio, annotations vs metadata |
 | [[CloudTrail]] | CloudTrail | Event history, trails, tipos de evento, global service events |
 | [[CloudFront]] | CloudFront | CDN, OAC, signed URLs (inicial) |
 | [[EventBridge]] | EventBridge | Hub de eventos, integración S3 (inicial) |
@@ -43,7 +44,7 @@
 | [[observability-costs]] | Qué es gratis y qué se cobra en gobierno/observabilidad, los 3 motores de costo, cómo controlarlos |
 | [[vpc-design]] | Sizing y estructura de una VPC: rangos a evitar, AZs × tiers, tamaños de VPC, plan por region/cuenta |
 | [[vpc-endpoints]] | Acceso privado a servicios AWS: gateway vs interface, PrivateLink, endpoint policy, private DNS |
-| [[vpc-flow-logs]] | Metadatos del tráfico IP, campos, cómo deducir si cortó el SG o la NACL, criterio de destino |
+| [[vpc-flow-logs]] | Metadatos del tráfico IP, formato del record, ejemplo ICMP, cómo deducir si cortó el SG o la NACL, criterio de destino |
 | [[vpc-peering]] | Unir dos VPCs: no transitivo, CIDRs sin solapar, los tres pasos, qué NO hace |
 | [[lambda-in-vpc]] | Las tres configuraciones de red de una función, la trampa de la subnet pública, ENILimitReached |
 | [[storage-types]] | DAS vs NAS, block/file/object, efímero vs persistente, IOPS × block size = throughput |
@@ -88,7 +89,7 @@ Un archivo por **término**: definición corta y atómica de la jerga que aparec
 [[stateful-firewall]] · [[stateless-firewall]] · [[ephemeral-port]] · [[implicit-deny]]
 
 **Observabilidad y costos**
-[[dimension]] · [[high-cardinality]] · [[metric-filter]]
+[[dimension]] · [[high-cardinality]] · [[metric-filter]] · [[custom-metric]] · [[high-resolution-metric]] · [[percentile]] · [[subscription-filter]] · [[near-real-time]] · [[distributed-tracing]]
 
 **Límites y performance**
 [[throttling]] · [[iops]] · [[throughput]] · [[burst-credit]]
@@ -112,7 +113,7 @@ Identificados en las páginas actuales, todavía sin entrada — se van agregand
 | [[dva-development]] | Development with AWS Services | DVA-C02 | 32% | ⚠️ Parcial — Lambda solo por el lado de red ([[lambda-in-vpc]]); faltan la página de Lambda, API GW, DynamoDB, SQS/SNS |
 | [[dva-security]] | Security | DVA-C02 | 26% | ✅ Fuerte — reforzada con IMDSv2 y cifrado de EBS; falta Cognito, Secrets Manager |
 | [[dva-deployment]] | Deployment | DVA-C02 | 24% | ⚠️ Mínima — ya cubre AMI baking; faltan Code*, SAM, Beanstalk |
-| [[dva-troubleshooting]] | Troubleshooting and Optimization | DVA-C02 | 18% | ✅ Fuerte — reforzada con flow logs, status checks y créditos de EBS; falta X-Ray |
+| [[dva-troubleshooting]] | Troubleshooting and Optimization | DVA-C02 | 18% | ✅ Fuerte — reforzada con flow logs, status checks, créditos de EBS y el módulo 07 (X-Ray, subscriptions, resolution); faltan Logs Insights y EMF |
 
 ### DOP-C02 — AWS Certified DevOps Engineer – Professional
 
@@ -167,8 +168,9 @@ Estructura: un archivo por sección (`NN.MM Título.md`) con navegación, + índ
 - `04 S3/` (17 secciones) — S3 en profundidad, KMS, encryption, storage classes, lifecycle, replication, presigned URLs, CORS, object lock
 - `05 Virtual private cloud (VPC) Basics/` (13 secciones) — VPC sizing, custom VPC, subnets, routing e IGW, stateful vs stateless, NACLs, security groups, NAT Gateway *(05.01–05.08, ingestadas 2026-09-19)*; VPC endpoints, flow logs, Lambda en VPC, peering y cheat sheet *(05.09–05.13, ingestadas 2026-09-22)*
 - `06 Elastic Compute Cloud (EC2)/` (24 secciones, segmentadas e **ingestadas 2026-09-22**) — virtualización, arquitectura y resiliencia, instance types, storage refresh, EBS y sus tipos de volumen, instance store, snapshots y FSR, cifrado, ENI/IPs/DNS, Elastic IP, AMI, purchase options, status checks, scaling, IMDS, + 2 demos con comandos
+- `07 Monitoring and logging/` (8 secciones, segmentadas e **ingestadas 2026-09-24**) — arquitectura de CloudWatch, namespace/datapoint/metric/dimensions, resolution/retention/statistics, alarms, arquitectura de CloudWatch Logs, subscriptions y agregación, X-Ray, VPC Flow Logs
 
-> ✅ **Las 88 secciones están ingestadas.** El ingest del **2026-09-22** saldó las dos deudas que quedaban: VPC 05.09–05.13 y el módulo 06 completo. Antes: el módulo **05 (05.01–05.08)** se ingestó el 2026-09-19; los módulos **02, 03 y 04** fueron expandidos por el humano el 2026-07-23/24 e ingestados el 2026-07-25; el módulo 01 se ingestó el 2026-07-23. El próximo material tiene que venir de módulos nuevos del curso (07+) o de clippings nuevos. `raw/definiciones/` existe pero está **vacía**.
+> ✅ **Las 96 secciones están ingestadas.** El módulo **07** se ingestó el **2026-09-24**. El ingest del **2026-09-22** saldó las dos deudas que quedaban: VPC 05.09–05.13 y el módulo 06 completo. Antes: el módulo **05 (05.01–05.08)** se ingestó el 2026-09-19; los módulos **02, 03 y 04** fueron expandidos por el humano el 2026-07-23/24 e ingestados el 2026-07-25; el módulo 01 se ingestó el 2026-07-23. El próximo material tiene que venir de módulos nuevos del curso (08+) o de clippings nuevos. `raw/definiciones/` existe pero está **vacía**.
 
 Cada página wiki cita en `sources` los **segmentos específicos** que la alimentan.
 
@@ -181,5 +183,7 @@ Complementan las notas con límites numéricos, permisos exactos y features no c
 - 37 clippings ingestados 2026-09-19 (tercer lote, **Amazon VPC**): qué es y cómo funciona, connectivity options, CIDR blocks/IP addressing/subnets, DNS (Route 53 Resolver, atributos), DHCP option sets (3), route tables y prioridad de rutas, internet gateway, NAT devices/NAT gateways/regional NAT/NAT64/NAT instance, comparativa NAT, security groups (8), NACLs, infrastructure security.
 
 > ⚠️ **No hay clippings de EC2 ni de EBS.** El ingest del 2026-09-22 se apoyó **solo en las notas del curso**, sin contraste contra doc oficial. Las páginas de EC2/EBS marcan con `⚠️ Outdated` lo que se sabe desactualizado (IMDSv2, cobro de IPv4 públicas, auto-recovery por defecto, generaciones de instance types), pero conviene traer clippings de Amazon EC2 y EBS para cruzar límites numéricos.
+
+> ⚠️ **Tampoco hay clippings de X-Ray, ni de las subscriptions/export de CloudWatch Logs.** [[XRay]] sale solo del curso (07.07); los complementos que no vienen de la slide (daemon UDP 2000, sampling, annotations) están marcados como tales.
 
 Los task statements oficiales citados en las 4 páginas de `wiki/domains/` vienen del [AWS Certified Developer - Associate (DVA-C02) — Exam Guide oficial](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html).

@@ -4,7 +4,7 @@ category: glossary
 tags: [vpc, networking, peering, hibrido]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.12 VPC Peering.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Transit Gateway (TGW)
@@ -19,7 +19,7 @@ Funciona como un hub: cada VPC se *attachea* una sola vez al TGW y, a partir de 
 
 - [[vpc-peering]] — el límite que hace falta superar
 - [[VPC]] — opciones de conectividad
-- También en: [[vpc-cheat-sheet]]
+- También en: [[vpc-cheat-sheet]] · [[edge-to-edge-routing]]
 
 ## Dato de examen
 

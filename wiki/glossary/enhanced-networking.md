@@ -4,7 +4,7 @@ category: glossary
 tags: [ec2, networking, performance, virtualizacion]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.01 Virtualization 101.md"]
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # Enhanced Networking (SR-IOV)
@@ -19,6 +19,7 @@ El nombre genérico de la técnica es **SR-IOV** (*Single Root I/O Virtualizatio
 
 - [[virtualization]] — el último escalón de la evolución
 - [[ec2-instance-types]] — la `n` de un tipo como `R5dn` indica networking mejorado
+- También en: [[nitro]]
 
 ## Dato de examen
 

@@ -4,7 +4,7 @@ category: glossary
 tags: [security, firewall, iam, nacl, security-groups]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.06 Network Access Control Lists (NACLs).md", "raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.07 VPC Security Groups (SGs).md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Implicit deny
@@ -26,7 +26,7 @@ El comportamiento por defecto cuando ninguna regla matchea. Se distingue del **e
 - [[security-groups-vs-nacls]] — por qué un SG no puede bloquear una IP concreta
 - [[VPC]] — regla `*` de las NACLs
 - [[iam-policy-evaluation]] — el mismo principio en IAM (Deny > Allow > default deny)
-- También en: [[S3]]
+- También en: [[S3]] · [[permissions-boundary]] · [[stateful-firewall]]
 
 ## Dato de examen
 

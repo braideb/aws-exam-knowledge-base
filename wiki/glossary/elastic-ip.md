@@ -4,7 +4,7 @@ category: glossary
 tags: [vpc, ec2, networking, ipv4, nat-gateway]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.08 Network Address Translation (NAT) y NAT Gateway.md", "raw/doc oficial/What is Amazon VPC - Amazon Virtual Private Cloud.md", "raw/doc oficial/IP addressing for your VPCs and subnets - Amazon Virtual Private Cloud.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Elastic IP (EIP)
@@ -26,7 +26,7 @@ A diferencia de la IP pública "normal" de una instancia (que sale de un pool de
 - [[VPC]] — IPs públicas IPv4; el NAT Gateway público necesita una EIP al crearse
 - [[nat-gateway-vs-nat-instance]] — IP pública de cada opción
 - [[EC2]] — asociarla a la ENI primaria borra la IP pública dinámica; desasociarla asigna una nueva
-- También en: [[observability-costs]] · [[vpc-cheat-sheet]]
+- También en: [[observability-costs]] · [[vpc-cheat-sheet]] · [[eni]] · [[ip-masquerading]] · [[public-subnet]]
 
 ## Dato de examen
 

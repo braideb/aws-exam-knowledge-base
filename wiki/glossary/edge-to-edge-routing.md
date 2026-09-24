@@ -4,7 +4,7 @@ category: glossary
 tags: [vpc, peering, routing]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.12 VPC Peering.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Edge-to-edge routing
@@ -18,7 +18,7 @@ Un [[vpc-peering|peering]] conecta los *recursos* de dos VPCs, no sus puertas de
 ## Dónde aparece
 
 - [[vpc-peering]] — dentro de "qué NO hace un peering"
-- También en: [[VPC]] · [[vpc-cheat-sheet]]
+- También en: [[VPC]] · [[vpc-cheat-sheet]] · [[transit-gateway]]
 
 ## Dato de examen
 

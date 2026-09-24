@@ -4,7 +4,7 @@ category: service
 tags: [iam, seguridad, users, groups, roles, sts, federacion, access-keys]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.03 IAM — Conceptos básicos.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.02 IAM Users.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.04 Restricciones y datos útiles de IAM.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.05 IAM Groups.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.06 IAM Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.08 Service-Linked Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.09 Security Token Service (STS).md", "raw/doc oficial/IAM users - AWS Identity and Access Management.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/doc oficial/Temporary security credentials in IAM - AWS Identity and Access Management.md", "raw/doc oficial/Using AWS Identity and Access Management Access Analyzer - AWS Identity and Access Management.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # IAM — Identity and Access Management
@@ -43,7 +43,7 @@ Sus tres funciones: **Identity Provider** (crear/modificar/borrar identidades) �
 
 **Permisos efectivos de un user** = **unión** de sus policies inline + sus managed + las policies de **todos** los grupos a los que pertenece. Y sobre esa unión, cualquier **Deny explícito gana**. Ejemplo: Ana está en `Desarrolladores` (`s3:*`) y en `Contratistas` (Deny sobre el bucket de finanzas) → puede todo en S3 **excepto** ese bucket, sin importar el orden.
 
-**Groups — trampas de examen**: no se puede loguear a un grupo, no hay grupo "todos" por defecto, **no se anidan** (jerarquía plana; para simularla hay que duplicar policies o poner a la persona en varios grupos, hasta 10), y **no son identidades** → no pueden ir como `Principal` en una resource policy **ni** en una trust policy.
+**Groups — trampas de examen**: no se puede loguear a un grupo, no hay grupo "todos" por defecto, **no se anidan** (jerarquía plana; para simularla hay que duplicar policies o poner a la persona en varios grupos, hasta 10), y **no son identidades** → no pueden ir como `Principal` en una resource policy **ni** en una [[trust-policy|trust policy]].
 
 > **El patrón para "que un grupo pueda asumir un rol"** (porque no se puede listar el grupo en la trust policy): se le da al **grupo** una policy que permite `sts:AssumeRole` sobre el ARN del rol, y la **trust policy del rol confía en la cuenta**. Así, agregar a alguien al grupo le habilita el rol.
 
@@ -64,7 +64,7 @@ Detalle de **password policy**: si activás expiración de passwords, hay que da
 > Analogía del curso: el **user** es tu credencial de empleado (tu foto, tu nombre, solo vos la usás). El **rol** es el **casco naranja de visitante** colgado en la entrada: no tiene nombre, cualquiera autorizado se lo pone, y lo devuelve al terminar.
 
 Dos policies por rol:
-- **[[trust-policy|Trust policy]]** → quién puede asumirlo (identidades de la cuenta, otras cuentas, servicios AWS, identidades federadas). Es **un muro alrededor del rol**: si el principal no está permitido, `AssumeRole` **falla**, punto.
+- **Trust policy** → quién puede asumirlo (identidades de la cuenta, otras cuentas, servicios AWS, identidades federadas). Es **un muro alrededor del rol**: si el principal no está permitido, `AssumeRole` **falla**, punto.
 - **Permissions policy** → qué puede hacer quien lo asume.
 
 Para no confundirlas: la **trust policy mira hacia afuera** (quién entra), la **permissions policy mira hacia adentro** (qué puede tocar).
@@ -112,7 +112,7 @@ Las tres primeras son las que hay que reconocer en el examen. `GetCallerIdentity
 ![[Pasted image 20260705173934.png]]
 
 **Los 5 escenarios de uso de roles:**
-1. **Servicio AWS actúa por vos** (Lambda execution role, [[instance-profile|instance role]] de EC2) — nunca hardcodear access keys.
+1. **Servicio AWS actúa por vos** (Lambda [[execution-role|execution role]], [[instance-profile|instance role]] de EC2) — nunca hardcodear access keys.
 2. **[[break-glass|Break glass]]**: acceso de emergencia temporal y auditado.
 3. **Federación corporativa** (AD/SAML): supera el límite de 5.000 users, SSO.
 4. **Web Identity Federation** (Google/Facebook/Cognito): millones de usuarios de una app asumen un rol.
@@ -156,7 +156,7 @@ Relacionado: `iam:PassRole` = permiso para *entregarle* un rol a un servicio (co
 ### Access Keys
 
 - Credenciales de **largo plazo** para CLI/API. **No rotan solas.**
-- Máximo **2 por user** (para rotar sin downtime: crear nueva → migrar → desactivar vieja → borrar).
+- Máximo **2 por user** (para rotar sin downtime: crear nueva → migrar → verificar → **desactivar** la vieja y esperar → borrar; si algo se rompe, se **reactiva** la vieja — desactivar es reversible, borrar no).
 - La **Secret Access Key se muestra una sola vez**.
 - Regla de oro: si algo corre **dentro de AWS**, usar **roles**, no access keys.
 - Otros tipos de credencial de un user: SSH keys (CodeCommit) y server certificates (usar **ACM** salvo en regions que ACM no soporta). Configuración de uso en la CLI: ver [[aws-cli]].
@@ -193,7 +193,7 @@ Las access keys se justifican cada vez menos: código en AWS → **rol**; person
 4. **Borrar** la comprometida.
 5. Buscar **puertas traseras**: usuarios, roles o recursos creados por el atacante.
 
-El error más caro y más común es **subirlas a Git**: hay bots escaneando GitHub que encuentran una key en minutos y levantan instancias para minar cripto. Le siguen hardcodearlas en una AMI (quedan en cada copia y cada backup), crearlas para el **root user** y no rotarlas nunca.
+El error más caro y más común es **subirlas a Git**: hay bots escaneando GitHub que encuentran una key en minutos y levantan instancias para minar cripto. Le siguen hardcodearlas en una AMI (quedan en cada copia y cada backup), crearlas para el **root user** y no rotarlas nunca. Prevención: `.gitignore`, `git-secrets` o escaneo pre-commit, y nunca versionar `~/.aws/credentials`.
 
 ### Auditoría de credenciales
 
@@ -222,7 +222,7 @@ Como IAM es **global**, estos límites son **por cuenta, no por region**: no pod
 ## Integración con otros servicios
 
 - [[ec2-instance-metadata]] — el [[instance-profile]] entrega las credenciales del role a la instancia a través del IMDS (`169.254.169.254`). Es el motivo por el que nunca hay que poner access keys en una instancia — y por el que conviene exigir **IMDSv2**.
-- [[execution-role]] — el equivalente serverless: el role que Lambda asume para correr tu código ([[lambda-in-vpc]]).
+- [[execution-role]] — el equivalente [[serverless]]: el role que Lambda asume para correr tu código ([[lambda-in-vpc]]).
 
 - [[Organizations]] — multi-cuenta con roles + `sts:AssumeRole` ("switch role").
 - [[KMS]] — key policies + IAM policies para acceso a claves.
@@ -234,7 +234,7 @@ Como IAM es **global**, estos límites son **por cuenta, no por region**: no pod
 - Más de 5.000 identidades → **roles + federación**, nunca "pedir aumento de límite".
 - En una **trust policy no se permite wildcard (`*`) en el ARN del `Principal`**; y a un **service-linked role no se le puede aplicar [[permissions-boundary|permissions boundary]]**.
 - Identidad externa (AD, Google) **no puede usarse directamente**: solo puede **asumir un rol**.
-- Un rol de terceros (SaaS) debe exigir **[[external-id|External ID]]** en la trust policy (evita [[confused-deputy]]).
+- Un rol de terceros ([[saas|SaaS]]) debe exigir **[[external-id|External ID]]** en la trust policy (evita [[confused-deputy]]).
 - Las credenciales temporales ya emitidas siguen vivas al quitar permisos → revocar con policy `aws:TokenIssueTime`.
 - No generar [[presigned-url|presigned URLs]] de S3 con un rol (expiran con la sesión).
 - "Access key `AKIA…` hardcodeada en una EC2" → el error es la key en sí: la respuesta es **instance role**.

@@ -3,8 +3,8 @@ title: Multipart Upload
 category: glossary
 tags: [s3, performance, upload, storage]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/doc oficial/Uploading and copying objects using multipart upload in Amazon S3 - Amazon Simple Storage Service.md", "raw/doc oficial/Using server-side encryption with Amazon S3 managed keys (SSE-S3) - Amazon Simple Storage Service.md", "raw/notas curso mejorado/04 S3/04.04 S3 Performance Optimization.md"]
+updated: 2026-09-24
 ---
 
 # Multipart Upload
@@ -25,7 +25,7 @@ En vez de un único stream, [[S3]] recibe partes independientes y las ensambla. 
 ## Dónde aparece
 
 - [[S3]] — sección Performance
-- También en: [[dva-development]] · [[s3-encryption]]
+- También en: [[dva-development]] · [[s3-encryption]] · [[etag]] · [[object-storage]] · [[prefix]] · [[presigned-url]]
 
 ## Dato de examen
 

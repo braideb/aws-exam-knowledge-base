@@ -3,8 +3,8 @@ title: Trust Policy
 category: glossary
 tags: [iam, roles, sts, seguridad, policies]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.06 IAM Roles.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md"]
+updated: 2026-09-24
 ---
 
 # Trust Policy
@@ -27,12 +27,12 @@ Es una resource policy: lleva campo **`Principal`**. Si el principal está autor
 - [[IAM]] — sección IAM Roles y los 5 escenarios de uso
 - [[KMS]] — la key policy sigue la misma lógica de confianza explícita
 - [[Organizations]] — `OrganizationAccountAccessRole` y el "switch role"
-- También en: [[arn]]
+- También en: [[arn]] · [[break-glass]] · [[confused-deputy]] · [[cross-account]] · [[execution-role]] · [[external-id]] · [[federation]] · [[instance-profile]] · [[principal]] · [[service-linked-role]] · [[temporary-credentials]]
 
 ## Dato de examen
 
 - **No se permite wildcard (`*`) en el ARN del `Principal`** de una trust policy.
-- Un rol para un tercero (SaaS) debe exigir **[[external-id|External ID]]** en la trust policy → previene el [[confused-deputy]].
+- Un rol para un tercero ([[saas|SaaS]]) debe exigir **[[external-id|External ID]]** en la trust policy → previene el [[confused-deputy]].
 - [[cross-account|Cross-account]]: hacen falta **las dos puntas** — trust policy en el rol destino **y** permiso `sts:AssumeRole` en la identidad de origen.
 
 ## Ver también

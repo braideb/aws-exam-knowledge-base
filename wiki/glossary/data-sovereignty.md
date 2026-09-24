@@ -3,8 +3,8 @@ title: Data Sovereignty
 category: glossary
 tags: [compliance, regions, gobernanza, legal]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/notas curso mejorado/04 S3/04.10 S3 Replication.md"]
+updated: 2026-09-24
 ---
 
 # Data Sovereignty
@@ -19,6 +19,7 @@ Principio legal por el cual la información se rige por la jurisdicción del ter
 
 - [[global-infrastructure]] — "soberanía de datos" como motivo de la separación por regions
 - [[S3]] — SRR (misma region) como caso de uso de soberanía; CRR como decisión **deliberada** de sacar datos
+- También en: [[cidr]] · [[region-resilient]]
 
 ## Dato de examen
 

@@ -4,7 +4,7 @@ category: service
 tags: [route53, dns, hosted-zones, records, ttl, dominios]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.14 Route 53 (R53) — Fundamentos.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.15 DNS Record Types.md", "raw/doc oficial/Supported DNS record types - Amazon Route 53.md", "raw/doc oficial/Choosing between alias and non-alias records - Amazon Route 53.md"]
-updated: 2026-07-23
+updated: 2026-09-24
 ---
 
 # Route 53
@@ -56,13 +56,13 @@ El **DNS administrado** de AWS: registra dominios y hospeda **zone files** en na
 | **PTR** | IP → nombre (reverse DNS) | El inverso del A record |
 | **SRV** | Descubrir servicios (priority/weight/port + host) | Usado por protocolos como SIP/LDAP |
 
-**Trío anti-spam (todos TXT):** **SPF** (qué servidores pueden enviar mail del dominio) · **DKIM** (firma criptográfica que prueba no-alteración) · **DMARC** (qué hacer con los que fallan + a dónde reportar). Casi obligatorio al usar **Amazon SES**. **MX failover:** varios MX con prioridades escalonadas (10/20/30); menor número = mayor prioridad; mismo número = reparto de carga. El destino de un MX debe resolver a un **A record**, nunca a una IP ni CNAME.
+**Trío anti-spam (todos TXT):** **SPF** (qué servidores pueden enviar mail del dominio) · **DKIM** (firma criptográfica que prueba no-alteración) · **DMARC** (qué hacer con los que fallan + a dónde reportar). Casi obligatorio al usar **Amazon SES**. **MX [[failover]]:** varios MX con prioridades escalonadas (10/20/30); menor número = mayor prioridad; mismo número = reparto de carga. El destino de un MX debe resolver a un **A record**, nunca a una IP ni CNAME.
 
 ### TTL y caching
 
 - [[ttl|TTL]] en segundos = cuánto puede **cachearse** un record.
 - Respuesta **authoritative** (del name server de la zone) vs. **non-authoritative** (cache del resolver).
-- Tip práctico: **bajar el TTL con anticipación** (días antes, para que expire el TTL viejo) antes de migrar; tras estabilizar, **volver a subirlo**. TTL bajo (60 s) también en registros de **[[failover]] de DR**.
+- Tip práctico: **bajar el TTL con anticipación** (días antes, para que expire el TTL viejo) antes de migrar; tras estabilizar, **volver a subirlo**. TTL bajo (60 s) también en registros de **failover de DR**.
 - Trade-off: TTL alto = menos consultas/más barato pero cambios lentos; TTL bajo = cambios casi inmediatos pero más consultas/costo.
 
 ![[Pasted image 20260627180030.png]]
@@ -84,7 +84,8 @@ El **DNS administrado** de AWS: registra dominios y hospeda **zone files** en na
 
 - "Apuntar `midominio.com` (apex) a un ELB/CloudFront/S3" → **ALIAS**, nunca CNAME.
 - CNAME a una dirección IP → inválido; eso es un A record.
-- Un CNAME en un nombre **bloquea cualquier otro record** con ese mismo nombre (limitación del estándar DNS).
+- Un CNAME en un nombre **bloquea cualquier otro record** con ese mismo nombre (limitación del estándar DNS). **Por eso** está prohibido en el apex: el apex lleva obligatoriamente **SOA y NS**, y el CNAME no puede convivir con ellos. Además agrega una consulta extra (resolver el alias y después el destino).
+- PTR (reverse DNS) para una **[[elastic-ip|Elastic IP]]** → se pide a AWS por soporte/formulario; no se crea en una hosted zone propia.
 - MX con valor terminado en punto = FQDN absoluto; sin punto = relativo a la zone.
 - R53 = globally resilient; buen candidato en escenarios de failover DNS multi-region.
 

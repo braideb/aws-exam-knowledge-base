@@ -4,7 +4,7 @@ category: comparison
 tags: [vpc, security-groups, nacl, firewall, stateful, stateless, ephemeral-ports]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.05 Stateful vs Stateless Firewalls.md", "raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.06 Network Access Control Lists (NACLs).md", "raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.07 VPC Security Groups (SGs).md", "raw/doc oficial/Infrastructure security in Amazon VPC - Amazon Virtual Private Cloud.md", "raw/doc oficial/Control subnet traffic with network access control lists - Amazon Virtual Private Cloud.md", "raw/doc oficial/Control traffic to your AWS resources using security groups - Amazon Virtual Private Cloud.md", "raw/doc oficial/Security group rules - Amazon Virtual Private Cloud.md", "raw/doc oficial/Default security groups for your VPCs - Amazon Virtual Private Cloud.md"]
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # Comparativa: Security Groups vs NACLs
@@ -32,7 +32,7 @@ Toda conexión TCP tiene dos mitades: el **request** (del cliente, desde un [[ep
 | Tipos de regla | **Solo ALLOW** | **ALLOW y DENY** |
 | Qué no permitís | [[implicit-deny\|Implicit deny]] (sin forma de denegar explícitamente) | Explicit DENY + regla `*` (implicit deny) |
 | Evaluación | **Todas las reglas juntas** | **En orden** por número (1–32766), la **primera que matchea** gana |
-| Source/destination | IP, CIDR, prefix list **o otro SG** (referencias lógicas, self-reference) | Solo IP/CIDR (no entiende recursos lógicos) |
+| Source/destination | IP, [[cidr\|CIDR]], [[prefix-list\|prefix list]] **o otro SG** (referencias lógicas, self-reference) | Solo IP/[[cidr\|CIDR]] (no entiende recursos lógicos) |
 | Alcance | Instancias con el SG, estén en la subnet que estén | Todo lo que **cruza el borde** de la subnet; no el tráfico dentro de la misma subnet |
 | Default | Default SG: inbound desde sí mismo, outbound all. SG nuevo: nada inbound, all outbound | **Default NACL: permite todo**. Custom NACL nueva: **deniega todo** |
 | Asociación | Varios SGs por recurso (se suman) | 1 NACL por subnet; 1 NACL → N subnets |

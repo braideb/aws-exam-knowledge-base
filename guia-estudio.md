@@ -2,8 +2,8 @@
 
 > El LLM mantiene este archivo actualizado en cada ingest (ver `CLAUDE.md` → sección `guia-estudio.md`). Propone el **orden de aprendizaje** del material ya ingestado en `wiki/` — no está organizado por examen ni por peso de dominio (eso vive en `index.md`), sino por prerequisitos conceptuales: qué conviene entender antes de qué.
 
-**Última actualización:** 2026-09-22 *(ingest de VPC 05.09–05.13 y del módulo 06 — EC2. Dos cambios de orden, no solo agregados: **[[storage-types]] se adelanta al Bloque 4**, porque es prerequisito tanto de EBS como de S3 y hasta ahora el bloque de S3 lo daba por sabido; y el **Bloque 4 deja de ser una sola página** para convertirse en el más largo de la guía, con cómputo y almacenamiento en bloque juntos. El Bloque 3 suma las cuatro páginas nuevas de VPC)*
-**Páginas cubiertas:** 45 (41 de estudio + 4 mapas de dominio DVA-C02) + 83 términos de glosario (transversales) + 2 cheat sheets de repaso
+**Última actualización:** 2026-09-24 *(ingest del módulo 07 — Monitoring and logging: [[XRay]] entra al Bloque 6 **entre Logs y CloudTrail**, cerrando las tres patas de la observabilidad —métricas, logs, trazas— antes de pasar a auditoría; [[vpc-flow-logs]] no se mueve del Bloque 3, porque se entiende por los firewalls, pero su lectura profunda suma 07.08. Anterior, 2026-09-22: ingest de VPC 05.09–05.13 y del módulo 06 — EC2. Dos cambios de orden, no solo agregados: **[[storage-types]] se adelanta al Bloque 4**, porque es prerequisito tanto de EBS como de S3 y hasta ahora el bloque de S3 lo daba por sabido; y el **Bloque 4 deja de ser una sola página** para convertirse en el más largo de la guía, con cómputo y almacenamiento en bloque juntos. El Bloque 3 suma las cuatro páginas nuevas de VPC)*
+**Páginas cubiertas:** 46 (42 de estudio + 4 mapas de dominio DVA-C02) + 89 términos de glosario (transversales) + 2 cheat sheets de repaso
 
 ---
 
@@ -57,7 +57,7 @@
 10. [[Route53]] — DNS, hosted zones, tipos de record, TTL. *Se apoya en el DNS de la VPC (Route 53 Resolver, private hosted zones); útil antes de hosting en S3.*
 11. [[alias-vs-cname]] — la comparación que cae en el examen. *Inmediatamente después de Route53.*
 
-> 📖 Lectura profunda: [[01.04 Default VPC (Virtual Private Cloud) — Basics]] · [[05.00 Virtual private cloud (VPC) Basics — Índice|Módulo 05 completo (05.01–05.13: sizing, custom VPC, subnets, routing e IGW, stateful vs stateless, NACLs, security groups, NAT Gateway, endpoints, flow logs, Lambda en VPC, peering, cheat sheet)]] · [[01.14 Route 53 (R53) — Fundamentos]] · [[01.15 DNS Record Types]]
+> 📖 Lectura profunda: [[01.04 Default VPC (Virtual Private Cloud) — Basics]] · [[05.00 Virtual private cloud (VPC) Basics — Índice|Módulo 05 completo (05.01–05.13: sizing, custom VPC, subnets, routing e IGW, stateful vs stateless, NACLs, security groups, NAT Gateway, endpoints, flow logs, Lambda en VPC, peering, cheat sheet)]] · [[07.08 VPC Flow Logs]] · [[01.14 Route 53 (R53) — Fundamentos]] · [[01.15 DNS Record Types]]
 > 🎯 Repaso: [[vpc-cheat-sheet]] al terminar el bloque.
 
 ## Bloque 4 — Cómputo y almacenamiento en bloque
@@ -92,15 +92,16 @@
 
 ## Bloque 6 — Observabilidad y auditoría
 
-*Ver qué pasa (métricas/logs), reaccionar (eventos) y auditar quién hizo qué.*
+*Ver qué pasa (métricas, logs y trazas), auditar quién hizo qué y reaccionar (eventos).*
 
-1. [[CloudWatch]] — namespaces, metrics, dimensions, alarms. *La base conceptual del bloque.*
-2. [[CloudWatchLogs]] — log groups/streams, metric filters. *Extiende CloudWatch a logs.*
-3. [[CloudTrail]] — auditoría de API, trails, global service events. *Después de Logs porque sus eventos suelen mandarse ahí.*
-4. [[EventBridge]] — reaccionar a eventos casi en tiempo real. *Cierra el ciclo observar → reaccionar; contrasta con el delay de CloudTrail.*
-5. [[observability-costs]] — qué es gratis, qué se cobra y los 3 motores de gasto. *Va último del bloque: solo tiene sentido sabiendo qué son métricas custom, data events y dimensions. Cierra con la regla que ordena todo: el gobierno (IAM/Organizations/SCPs) es gratis, lo que se paga es observar.*
+1. [[CloudWatch]] — arquitectura, namespaces, metrics, dimensions, resolution/retención, alarms. *La base conceptual del bloque.*
+2. [[CloudWatchLogs]] — log groups/streams, metric filters, export a S3, subscriptions. *Extiende CloudWatch a logs; las subscriptions reusan Lambda/Kinesis como destinos, alcanza con saber que existen.*
+3. [[XRay]] — distributed tracing, segments, service map, annotations. *Tercera pata de la observabilidad: tiene sentido después de métricas y logs, porque resuelve lo que ellos no pueden (seguir una request individual sin explotar la cardinalidad). Muy DVA.*
+4. [[CloudTrail]] — auditoría de API, trails, global service events. *Después de Logs porque sus eventos suelen mandarse ahí.*
+5. [[EventBridge]] — reaccionar a eventos casi en tiempo real. *Cierra el ciclo observar → reaccionar; contrasta con el delay de CloudTrail.*
+6. [[observability-costs]] — qué es gratis, qué se cobra y los 3 motores de gasto. *Va último del bloque: solo tiene sentido sabiendo qué son métricas custom, data events y dimensions. Cierra con la regla que ordena todo: el gobierno (IAM/Organizations/SCPs) es gratis, lo que se paga es observar.*
 
-> 📖 Lectura profunda: [[01.11 CloudWatch — Basics]] · [[03.12 CloudWatch Logs]] · [[03.13 CloudTrail]] · [[03.14 Precios]]
+> 📖 Lectura profunda: [[01.11 CloudWatch — Basics]] · [[03.12 CloudWatch Logs]] · [[07.00 Monitoring and logging — Índice|Módulo 07 completo (07.01–07.08: arquitectura de CloudWatch, datos, resolution/retention, alarms, arquitectura de Logs, subscriptions y agregación, X-Ray, flow logs)]] · [[03.13 CloudTrail]] · [[03.14 Precios]]
 
 ## Bloque 7 — Infraestructura como código
 

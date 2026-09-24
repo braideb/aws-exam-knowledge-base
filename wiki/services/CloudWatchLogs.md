@@ -1,10 +1,10 @@
 ---
 title: CloudWatch Logs
 category: service
-tags: [cloudwatch-logs, logging, log-groups, metric-filters, monitoring]
+tags: [cloudwatch-logs, logging, log-groups, metric-filters, subscriptions, monitoring]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.12 CloudWatch Logs.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/doc oficial/Working with log groups and log streams - Amazon CloudWatch Logs.md", "raw/doc oficial/Creating metrics from log events using filters - Amazon CloudWatch Logs.md"]
-updated: 2026-09-22
+sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.12 CloudWatch Logs.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/notas curso mejorado/07 Monitoring and logging/07.05 CloudWatch Logs — Architecture.md", "raw/notas curso mejorado/07 Monitoring and logging/07.06 CloudWatch Logs — Subscriptions y Aggregation.md", "raw/doc oficial/Working with log groups and log streams - Amazon CloudWatch Logs.md", "raw/doc oficial/Creating metrics from log events using filters - Amazon CloudWatch Logs.md"]
+updated: 2026-09-24
 ---
 
 # CloudWatch Logs
@@ -13,16 +13,20 @@ updated: 2026-09-22
 
 Servicio **público** para **almacenar, supervisar y analizar logs** — desde servicios AWS, on-premises u otras nubes. Un log = `[timestamp] + [mensaje]`.
 
-> **Es regional**: los log groups viven en una region y no se ven desde otra. Centralizar logs de varias regiones o cuentas requiere replicarlos explícitamente con **subscription filters**.
+Tiene **dos caras**, y el examen las separa:
+- **Ingestion** — meter los logs en el sistema (log groups, streams, retención, metric filters).
+- **Subscription** — entregarlos a otros productos (Lambda, Kinesis, Firehose, OpenSearch).
+
+> **Es regional**: los logs van a la region donde corre el servicio que los genera, y los log groups no se ven desde otra. **Excepción:** servicios globales como [[Route53]] (query logging) envían a **`us-east-1`**. Centralizar logs de varias regiones o cuentas requiere [[subscription-filter|subscription filters]].
 
 ## Características clave
 
 ### Arquitectura
 
 ```
-Log Group   ← retención y permisos se fijan ACÁ
+Log Group   ← retención, permisos y cifrado (KMS) se fijan ACÁ
 └── Log Stream  ← secuencia de events de UNA fuente
-    └── Log Event  ← timestamp + mensaje
+    └── Log Event  ← timestamp + raw message
 ```
 
 Ejemplo: 10 instancias EC2 enviando `/var/log/messages` → **1 log group**, **10 log streams**. La retención se configura una vez, a nivel group.
@@ -30,6 +34,8 @@ Ejemplo: 10 instancias EC2 enviando `/var/log/messages` → **1 log group**, **1
 **Regla de diseño:** un log group **por tipo de log**, un log stream **por fuente**.
 
 ![[Pasted image 20260708223126.png]]
+
+![[Pasted image 20260923225616.png]]
 
 ### Cómo llegan los datos
 
@@ -43,16 +49,44 @@ Ejemplo: 10 instancias EC2 enviando `/var/log/messages` → **1 log group**, **1
 
 ### Metric Filters
 
-Patrones que escanean los log groups y **generan métricas** al coincidir (ej: contar `ERROR`). Métrica → **alarm** → notificación. Es lo que convierte a Logs de depósito pasivo en monitoreo activo.
+Patrones que escanean los log groups y **generan métricas** al coincidir (ej: contar `ERROR`). **[[metric-filter|Metric filter]] → métrica → alarm** → notificación. Es lo que convierte a Logs de depósito pasivo en monitoreo activo.
 
 Anatomía (doc oficial): **filter pattern** (qué buscar) + **metric name/namespace** (dónde publicar) + **metric value** (qué publicar: `1` para contar, o un número extraído del log, ej. bytes) + opcionales **default value** y **dimensions**.
 
 - **No son retroactivos**: solo publican datapoints de eventos **posteriores** a la creación del filter.
 - Si el filtro **no encuentra coincidencias no publica un cero**: no publica nada. Por eso la alarm asociada debe configurarse con **`treatMissingData: notBreaching`**, o queda permanentemente en `INSUFFICIENT_DATA`. (Del lado del filter, la otra mitad de la solución es el *default value = 0*.)
 - **Default value = 0** evita métricas "agujereadas" en períodos con logs pero sin matches (si no llegan logs en el minuto, no se publica nada igual). ⚠️ Con dimensions asignadas **no se puede** usar default value.
-- Las **[[dimension|dimensions]]** extraídas del log crean **una variación nueva de la métrica por cada par único** — cuidado con la [[high-cardinality|cardinalidad]]/costo (se facturan como custom metrics).
+- Las **[[dimension|dimensions]]** extraídas del log crean **una variación nueva de la métrica por cada par único** — cuidado con la [[high-cardinality|cardinalidad]]/costo (se facturan como [[custom-metric|custom metrics]]).
 - La **unit** se fija al crear el filter; cambiarla después **no tiene efecto**.
-- Percentile statistics disponibles solo si la métrica **nunca publica valores negativos**. Solo funcionan en log groups de clase **Standard**.
+- [[percentile|Percentile]] statistics disponibles solo si la métrica **nunca publica valores negativos**. Solo funcionan en log groups de clase **Standard**.
+
+### Sacar los logs: export a S3 vs subscriptions
+
+| | **Export a S3** (`CreateExportTask`) | **Subscription filter** |
+|---|---|---|
+| Latencia | **Hasta 12 h** — no es real time | Real time o [[near-real-time\|near real time]] según destino |
+| Modo | Tarea puntual sobre un rango de tiempo | Continuo, por log group |
+| Destino | Un bucket de [[S3]] | Lambda, Kinesis Data Streams, Firehose, OpenSearch |
+| Uso típico | Archivar históricos | Procesar/centralizar en vivo |
+
+> ⚠️ Outdated: el curso dice que el export solo admite buckets con **SSE-S3**. Hoy **también SSE-KMS** (la key policy debe permitir a CloudWatch Logs usar la key). Solo puede haber **una export task activa por cuenta**.
+
+### Subscriptions
+
+Un [[subscription-filter|subscription filter]] se crea sobre un log group y define: **pattern** (qué eventos), **ARN del destino**, **distribution** (cómo se reparten los datos) y el **IAM role** que CloudWatch Logs usa para escribir en el destino. Máx **2 subscription filters por log group**.
+
+| Destino | Latencia | Para qué |
+|---|---|---|
+| **Lambda** (custom) | Real time | Entregar a cualquier lado con código propio |
+| **OpenSearch** (ex Elasticsearch) | Real time | Nativo, vía una Lambda gestionada por AWS |
+| **Kinesis Data Streams** | Real time | Base de la agregación multi-cuenta |
+| **Firehose** (Amazon Data Firehose, ex Kinesis Data Firehose) | **Near real time** (buffer) | A S3 / terceros sin código |
+
+![[Pasted image 20260923230418.png]]
+
+**Log aggregation multi-cuenta:** cada cuenta apunta su subscription filter a un **Kinesis Data Stream central**; **Firehose** lee del stream y persiste en **S3**. Para el salto [[cross-account]], la cuenta central crea un **destination** de CloudWatch Logs (envuelve al stream) con una **destination policy** que autoriza a las cuentas origen.
+
+![[Pasted image 20260923230724.png]]
 
 ### Datos de la doc oficial
 
@@ -72,12 +106,12 @@ Borrar logs viejos ataca solo el almacenamiento, no la ingesta. Detalle completo
 
 ## Integración con otros servicios
 
-- [[vpc-flow-logs]] — destino habitual de los flow logs cuando hacen falta **alarmas** ([[metric-filter|metric filters]]) o búsquedas con Logs Insights. Las alternativas son S3 (archivado barato + Athena) y Kinesis Data Firehose (casi tiempo real).
-
 - [[CloudWatch]] — metric filters → métricas → alarms.
+- [[vpc-flow-logs]] — destino habitual de los flow logs cuando hacen falta **alarmas** (metric filters) o búsquedas con Logs Insights. Las alternativas son S3 (archivado barato + Athena) y Firehose (casi tiempo real).
 - [[observability-costs]] — qué se cobra y cómo controlarlo.
 - [[CloudTrail]] — puede enviar sus eventos aquí para alarmar sobre actividad de API.
 - [[S3]] — destino de exportación/archivado; también S3 Access Logs pueden entregarse acá (opción moderna).
+- [[KMS]] — cifrado del log group con una key propia.
 
 ## Gotchas y trampas del examen
 
@@ -86,3 +120,9 @@ Borrar logs viejos ataca solo el almacenamiento, no la ingesta. Detalle completo
 - "Retener logs 7 años al menor costo" → **archivar en S3/Glacier**, no dejarlos en CloudWatch Logs.
 - "Alertar cuando aparece X en los logs" → **[[metric-filter|metric filter]] + alarm + SNS**.
 - Logs de una app custom u on-premises → **CloudWatch Agent** (no hay magia nativa).
+- "Enviar logs a S3 **en (casi) tiempo real**" → **subscription + Firehose**, no `CreateExportTask` (hasta 12 h).
+- "Procesar cada evento de log **en tiempo real**" → subscription con **Lambda** o Kinesis Data Streams; Firehose es *near* real time.
+- "Centralizar logs de varias cuentas" → subscription filters → **Kinesis Data Stream central** (destination + destination policy) → Firehose → S3.
+- No encontrás los logs de Route 53 en tu region → están en **us-east-1**.
+
+> 📖 Lectura profunda: [[03.12 CloudWatch Logs]] · [[07.05 CloudWatch Logs — Architecture]] · [[07.06 CloudWatch Logs — Subscriptions y Aggregation]]

@@ -2,8 +2,8 @@
 
 > Índice de todas las **demos prácticas** del curso (learn.cantrill.io), extraídas de las notas de `raw/notas curso mejorado/`. Cada demo linkea a la página wiki relacionada. El LLM lo actualiza cuando se ingestan notas nuevas con demos.
 
-**Última actualización:** 2026-09-22
-**Total de demos:** 39
+**Última actualización:** 2026-09-24
+**Total de demos:** 40
 
 ---
 
@@ -84,6 +84,7 @@
 | Demo | Link | Página wiki |
 |---|---|---|
 | Demo de CloudWatch (sin título en la nota) | https://learn.cantrill.io/courses/1101194/lectures/25301525 | [[CloudWatch]] |
+| Lambda & AWS X-Ray | https://learn.cantrill.io/courses/1101194/lectures/46260482 | [[XRay]] |
 | Simple Automation With CloudFormation | https://learn.cantrill.io/courses/1101194/lectures/25216284 | [[CloudFormation]] |
 
 ---
@@ -94,4 +95,4 @@ La nota `04 S3.md` lista demos que el curso menciona pero que quedaron **pendien
 
 De la **Instalación manual de WordPress**, la **Parte 2** quedó en las notas como link sin contenido transcrito (ver [[06.16 Demostración - Instalación manual de WordPress]]).
 
-Las secciones nuevas de VPC (05.09–05.13: endpoints, flow logs, Lambda en VPC, peering y cheat sheet) **no traen demos**.
+Las secciones nuevas de VPC (05.09–05.13: endpoints, flow logs, Lambda en VPC, peering y cheat sheet) **no traen demos**. Del módulo 07 (Monitoring and logging), la única demo es la de Lambda & X-Ray.

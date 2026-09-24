@@ -3,8 +3,8 @@ title: Globally Resilient
 category: glossary
 tags: [resiliencia, infraestructura, global]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.03 Availability Zones (AZ).md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.03 IAM — Conceptos básicos.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.14 Route 53 (R53) — Fundamentos.md"]
+updated: 2026-09-24
 ---
 
 # Globally Resilient
@@ -22,6 +22,7 @@ Ejemplos: [[IAM]], [[Route53]], [[CloudFront]], STS, Organizations.
 - [[global-infrastructure]] — tabla de los tres niveles de resiliencia
 - [[IAM]] — "es global, globally resilient y gratis"
 - [[Route53]] — única base de datos global, **[[sla|SLA]] del 100%**
+- También en: [[az-resilient]] · [[edge-location]] · [[failover]] · [[region-resilient]]
 
 ## Dato de examen
 

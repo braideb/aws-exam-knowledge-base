@@ -3,8 +3,8 @@ title: SaaS (Software as a Service)
 category: glossary
 tags: [modelos-de-servicio, saas, shared-responsibility]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.12 Modelo de responsabilidad compartida (Shared Responsibility Model).md"]
+updated: 2026-09-24
 ---
 
 # SaaS — Software as a Service
@@ -18,6 +18,7 @@ El proveedor opera la pila completa —instalaciones, hardware, SO, runtime y la
 ## Dónde aparece
 
 - [[shared-responsibility-model]] — tabla de capas por modelo de servicio
+- También en: [[IAM]] · [[confused-deputy]] · [[external-id]] · [[iaas]] · [[paas]] · [[trust-policy]]
 
 ## Dato de examen
 

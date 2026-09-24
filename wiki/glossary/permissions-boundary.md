@@ -3,8 +3,8 @@ title: Permissions Boundary
 category: glossary
 tags: [iam, policies, seguridad, delegacion]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/doc oficial/Permissions boundaries for IAM entities - AWS Identity and Access Management.md", "raw/doc oficial/Policies and permissions in AWS Identity and Access Management - AWS Identity and Access Management.md", "raw/doc oficial/Policy evaluation logic - AWS Identity and Access Management.md"]
+updated: 2026-09-24
 ---
 
 # Permissions Boundary
@@ -26,7 +26,7 @@ Si además hay un [[Organizations|SCP]], las **tres capas** deben permitir la ac
 - [[iam-policy-evaluation]] — sección "Permissions boundaries en detalle"
 - [[IAM]] — a un service-linked role no se le puede aplicar boundary
 - [[Organizations]] — el SCP es el mismo mecanismo a nivel cuenta
-- También en: [[aws-account]]
+- También en: [[aws-account]] · [[abac]] · [[least-privilege]] · [[service-linked-role]]
 
 ## Dato de examen
 

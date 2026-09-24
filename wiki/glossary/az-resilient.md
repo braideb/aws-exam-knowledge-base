@@ -3,8 +3,8 @@ title: AZ Resilient
 category: glossary
 tags: [resiliencia, infraestructura, availability-zones]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.03 Availability Zones (AZ).md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.05 Elastic Compute Cloud (EC2) — Basics.md", "raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.03 VPC Subnets.md"]
+updated: 2026-09-24
 ---
 
 # AZ Resilient
@@ -25,7 +25,7 @@ Ejemplos: instancia [[EC2]], volumen EBS, subnet de [[VPC]], RDS single-AZ, NAT 
 - [[vpc-design]] — por qué se repiten las subnets de cada tier en varias AZs
 - [[nat-gateway-vs-nat-instance]] — un NAT GW por AZ (o el modo regional)
 - [[EBS]] — el volumen vive en una AZ; el snapshot (en S3) es el que sube a región
-- También en: [[ec2-cheat-sheet]] · [[vpc-cheat-sheet]]
+- También en: [[ec2-cheat-sheet]] · [[vpc-cheat-sheet]] · [[cidr]] · [[eni]] · [[globally-resilient]] · [[multi-az]] · [[region-resilient]] · [[single-point-of-failure]]
 
 ## Dato de examen
 

@@ -3,8 +3,8 @@ title: Presigned URL
 category: glossary
 tags: [s3, iam, temporary-credentials, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-08-12
+sources: ["raw/doc oficial/Download and upload objects with presigned URLs - Amazon Simple Storage Service.md", "raw/notas curso mejorado/04 S3/04.11 S3 Presigned URLs.md", "raw/notas curso mejorado/04 S3/04.10 S3 Replication.md"]
+updated: 2026-09-24
 ---
 
 # Presigned URL
@@ -13,7 +13,7 @@ updated: 2026-08-12
 
 ## Definición
 
-Es la URL normal de un objeto S3 más query params con las credenciales del generador, un timestamp, la validez y una firma criptográfica SigV4. El servicio recalcula la firma en cada uso: no se puede editar la URL para apuntar a otro objeto o extender su vida, y el generador no necesita estar online cuando se usa, porque toda la autorización viaja dentro de la URL. Sirve tanto para GET (descarga) como para PUT (upload directo al bucket, el patrón estándar de formularios de carga en apps serverless).
+Es la URL normal de un objeto S3 más query params con las credenciales del generador, un timestamp, la validez y una firma criptográfica SigV4. El servicio recalcula la firma en cada uso: no se puede editar la URL para apuntar a otro objeto o extender su vida, y el generador no necesita estar online cuando se usa, porque toda la autorización viaja dentro de la URL. Sirve tanto para GET (descarga) como para PUT (upload directo al bucket, el patrón estándar de formularios de carga en apps [[serverless]]).
 
 ## Dónde aparece
 

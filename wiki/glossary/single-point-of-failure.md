@@ -3,8 +3,8 @@ title: Single Point of Failure (SPOF)
 category: glossary
 tags: [resiliencia, high-availability, arquitectura]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.13 HA vs. FT vs. DR.md", "raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.04 VPC Routing e Internet Gateway.md"]
+updated: 2026-09-24
 ---
 
 # Single Point of Failure (SPOF)
@@ -24,9 +24,9 @@ Cómo se acumula la disponibilidad ([[ha-ft-dr]]):
 - [[ha-ft-dr]] — cálculo de disponibilidad en serie vs. paralelo
 - [[global-infrastructure]] — dimensionamiento N+1 entre AZs
 - [[VPC]] — un solo NAT Gateway zonal para varias AZs
-- [[nat-gateway-vs-nat-instance]] — la NAT instance sin failover es un SPOF
+- [[nat-gateway-vs-nat-instance]] — la NAT instance sin [[failover]] es un SPOF
 - [[horizontal-vs-vertical-scaling]] — escalar vertical deja una sola instancia como SPOF
-- También en: [[vpc-design]]
+- También en: [[vpc-design]] · [[availability]] · [[az-resilient]] · [[blast-radius]]
 
 ## Dato de examen
 

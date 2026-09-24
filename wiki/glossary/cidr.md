@@ -3,8 +3,8 @@ title: CIDR
 category: glossary
 tags: [networking, vpc, subnets, ip]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/doc oficial/VPC CIDR blocks - Amazon Virtual Private Cloud.md", "raw/doc oficial/Create a VPC - Amazon Virtual Private Cloud.md", "raw/doc oficial/Subnet CIDR blocks - Amazon Virtual Private Cloud.md"]
+updated: 2026-09-24
 ---
 
 # CIDR — Classless Inter-Domain Routing
@@ -29,7 +29,7 @@ Rangos privados (RFC 1918): `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`.
 - [[VPC]] — reglas de CIDR, Default VPC (`172.31.0.0/16`), IPs reservadas por subnet, CIDRs secundarios e IPv6
 - [[vpc-design]] — cómo dividir un rango (`/16` → 16 × `/20`) y planificar rangos por region/cuenta
 - [[longest-prefix-match]] — el prefijo decide qué ruta gana
-- También en: [[vpc-peering]]
+- También en: [[vpc-peering]] · [[prefix-list]] · [[security-groups-vs-nacls]] · [[vpc-cheat-sheet]]
 
 ## Dato de examen
 

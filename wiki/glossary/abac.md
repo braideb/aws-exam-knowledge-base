@@ -3,8 +3,8 @@ title: ABAC (Attribute-Based Access Control)
 category: glossary
 tags: [iam, policies, tags, seguridad, escalabilidad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-25
+sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.01 IAM Identity Policies.md"]
+updated: 2026-09-24
 ---
 
 # ABAC — Attribute-Based Access Control

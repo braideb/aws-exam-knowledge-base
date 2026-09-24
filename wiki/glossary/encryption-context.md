@@ -3,8 +3,8 @@ title: Encryption Context
 category: glossary
 tags: [kms, cifrado, seguridad, aad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/doc oficial/Using server-side encryption with AWS KMS keys (SSE-KMS) - Amazon Simple Storage Service.md", "raw/doc oficial/Grants in AWS KMS - AWS Key Management Service.md"]
+updated: 2026-09-24
 ---
 
 # Encryption Context
@@ -23,6 +23,7 @@ Doble utilidad:
 
 - [[s3-encryption]] — S3 usa por defecto el **ARN del objeto** (o el **del bucket** si hay Bucket Keys)
 - [[KMS]] — grant constraints por encryption context (**solo claves simétricas**)
+- También en: [[data-encryption-key]] · [[envelope-encryption]]
 
 ## Dato de examen
 

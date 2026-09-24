@@ -3,8 +3,8 @@ title: Control Plane
 category: glossary
 tags: [arquitectura, cloudtrail, api, gobernanza]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.13 CloudTrail.md", "raw/doc oficial/Referencing access points with ARNs, access point aliases, or virtual-hosted–style URIs - Amazon Simple Storage Service.md", "raw/doc oficial/Understanding CloudTrail events.md"]
+updated: 2026-09-24
 ---
 
 # Control Plane
@@ -19,6 +19,7 @@ El conjunto de APIs de gestión: crear una instancia [[EC2]], crear un bucket, c
 
 - [[CloudTrail]] — los **Management Events** son las operaciones de control plane, y están **activados por defecto**
 - [[S3]] — el **alias** de un access point sirve para data plane pero **no** para control plane
+- También en: [[data-plane]] · [[role-separation]]
 
 ## Dato de examen
 

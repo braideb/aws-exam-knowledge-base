@@ -4,7 +4,7 @@ category: exam
 tags: [vpc, networking, repaso, cheat-sheet, dva-c02]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.13 Resumen para el examen (cheat sheet).md"]
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # VPC — Cheat sheet de examen
@@ -13,7 +13,7 @@ Repaso rápido de lo que más se pregunta de redes. Cada punto linkea a la pági
 
 ## Los puntos, uno por línea
 
-- **VPC:** servicio **regional**, abarca todas las AZs. CIDR IPv4 de **/28 a /16**. El CIDR primario no se cambia. IPv6 opcional (**/56**). → [[VPC]]
+- **VPC:** servicio **regional**, abarca todas las AZs. [[cidr|CIDR]] IPv4 de **/28 a /16**. El CIDR primario no se cambia. IPv6 opcional (**/56**). → [[VPC]]
 - **Default VPC:** `172.31.0.0/16`, una por región, subnets `/20` públicas por AZ e IGW ya listo. → [[VPC]]
 - **Subnet:** vive en **una sola AZ**, no se mueve. CIDR dentro del de la VPC, sin solapar. **5 IPs reservadas** por subnet. Bloque IPv6 = **/64**. → [[vpc-design]]
 - **Pública vs privada:** pública = ruta `0.0.0.0/0` → **IGW** + IP pública. Privada = sin esa ruta; sale por **NAT**. → [[public-subnet]]

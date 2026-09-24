@@ -3,8 +3,8 @@ title: Principal
 category: glossary
 tags: [iam, seguridad, policies, autenticacion]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/doc oficial/Grants in AWS KMS - AWS Key Management Service.md", "raw/doc oficial/Policies and permissions in AWS Identity and Access Management - AWS Identity and Access Management.md", "raw/doc oficial/Bucket policy examples using condition keys - Amazon Simple Storage Service.md"]
+updated: 2026-09-24
 ---
 
 # Principal
@@ -22,7 +22,7 @@ En una policy, el campo **`Principal`** indica a quién aplica el statement — 
 - [[IAM]] — Principal → Authentication → Authorization
 - [[iam-policy-evaluation]] — anatomía del statement
 - [[S3]] — bucket policies con `Principal` para acceso anónimo o [[cross-account]]
-- También en: [[aws-account]] · [[dva-security]]
+- También en: [[aws-account]] · [[dva-security]] · [[CloudFront]] · [[KMS]] · [[abac]] · [[confused-deputy]] · [[federation]] · [[permissions-boundary]] · [[trust-policy]]
 
 ## Dato de examen
 

@@ -4,7 +4,7 @@ category: glossary
 tags: [ec2, ebs, performance, red]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.03 EC2 Instance Types.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.07 EBS Volume Types - Provisioned IOPS SSD (io1, io2, Block Express).md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # EBS-optimized
@@ -19,8 +19,8 @@ updated: 2026-09-23
 
 - [[ec2-instance-types]] — qué definís al elegir un tipo
 - [[ebs-volume-types]] — el tope por instancia de los volúmenes io1/io2
-- [[instance-store-vs-ebs]] — el límite de ~260.000 IOPS por instancia
-- También en: [[EBS]] · [[EC2]] · [[dva-troubleshooting]] · [[ec2-cheat-sheet]] · [[virtualization]]
+- [[instance-store-vs-ebs]] — el límite de ~260.000 [[iops|IOPS]] por instancia
+- También en: [[EBS]] · [[EC2]] · [[dva-troubleshooting]] · [[ec2-cheat-sheet]] · [[virtualization]] · [[throughput]]
 
 ## Dato de examen
 

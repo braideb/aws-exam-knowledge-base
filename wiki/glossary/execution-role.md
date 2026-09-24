@@ -4,7 +4,7 @@ category: glossary
 tags: [lambda, iam, roles, permisos]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.11 Lambda en una VPC.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Execution role
@@ -13,13 +13,14 @@ updated: 2026-09-23
 
 ## Definición
 
-Cuando Lambda invoca una función, asume ese role y le entrega a tu código [[temporary-credentials|credenciales temporales]]. Todo lo que la función haga contra AWS se autoriza con **sus** permisos, no con los de quien la invocó. Es el equivalente en serverless del [[instance-profile]] de EC2.
+Cuando Lambda invoca una función, asume ese role y le entrega a tu código [[temporary-credentials|credenciales temporales]]. Todo lo que la función haga contra AWS se autoriza con **sus** permisos, no con los de quien la invocó. Es el equivalente en [[serverless]] del [[instance-profile]] de EC2.
 
 ## Dónde aparece
 
 - [[lambda-in-vpc]] — necesita `AWSLambdaVPCAccessExecutionRole` para crear y borrar sus ENIs
 - [[IAM]] — escenarios de uso de roles
-- También en: [[dva-development]] · [[dva-security]]
+- [[XRay]] — el execution role de una Lambda necesita `xray:PutTraceSegments` para enviar traces
+- También en: [[dva-development]] · [[dva-security]] · [[Organizations]]
 
 ## Dato de examen
 

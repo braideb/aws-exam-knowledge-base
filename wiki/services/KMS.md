@@ -4,7 +4,7 @@ category: service
 tags: [kms, seguridad, cifrado, claves, dek, envelope-encryption, key-policy]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/04 S3/04.05 KMS (Key Management Service).md", "raw/doc oficial/AWS KMS keys - AWS Key Management Service.md", "raw/doc oficial/Rotate AWS KMS keys - AWS Key Management Service.md", "raw/doc oficial/Grants in AWS KMS - AWS Key Management Service.md", "raw/doc oficial/Multi-Region keys in AWS KMS - AWS Key Management Service.md"]
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # KMS — Key Management Service
@@ -90,7 +90,7 @@ La gracia es que se dan **por separado**: alguien puede rotar la clave y cambiar
 
 Tercer mecanismo de autorización (además de key policy e IAM policies): un **grant** da permisos **temporales y solo de Allow** (jamás Deny) sobre **exactamente una** KMS key, sin tocar ninguna policy. Es como los usan los **servicios AWS** que cifran at rest: crean un grant en tu nombre, usan la clave y lo **retiran** al terminar.
 
-- El grantee usa el permiso **sin mencionar el grant** (como si viniera de una policy). Se elimina con **retire** (lo hace el retiring principal del grant, "terminé de usarlo") o **revoke** (lo hace un admin, "te corto el acceso").
+- El grantee usa el permiso **sin mencionar el grant** (como si viniera de una policy). Se elimina con **retire** (lo hace el retiring [[principal]] del grant, "terminé de usarlo") o **revoke** (lo hace un admin, "te corto el acceso").
 - **[[eventual-consistency|Eventual consistency]]**: un grant recién creado puede tardar segundos/minutos en propagarse → para usarlo YA está el **grant token** (string base64 no-secreto que devuelve **solo `CreateGrant`**; `ListGrants` da el grant ID, no el token).
 - **Grant constraints**: por **[[encryption-context|encryption context]]** (solo claves simétricas) o por **`SourceArn`** (solo requests en nombre de un recurso concreto — obligatorio cuando el grantee es un service principal — es la defensa contra el [[confused-deputy|confused deputy]]).
 - Solo permite **grant operations** (cifrar/descifrar, DescribeKey, crear/retirar grants…) y deben ser soportadas por el tipo de clave (una simétrica no puede grantear `Sign`). Grantee = cualquier principal IAM, **nunca un IAM group ni una organización**.

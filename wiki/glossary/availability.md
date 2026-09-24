@@ -3,8 +3,8 @@ title: Availability (disponibilidad)
 category: glossary
 tags: [resiliencia, sla, high-availability, s3]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/doc oficial/Understanding and managing Amazon S3 storage classes - Amazon Simple Storage Service.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.13 HA vs. FT vs. DR.md", "raw/doc oficial/What is Amazon S3 - Amazon Simple Storage Service.md"]
+updated: 2026-09-24
 ---
 
 # Availability (disponibilidad)
@@ -29,7 +29,7 @@ No confundir con [[durability|durabilidad]]: un dato puede estar perfectamente a
 - [[ha-ft-dr]] — tabla de nueves y cómo se acumula en serie/paralelo
 - [[s3-storage-classes]] — disponibilidad diseñada por clase (Standard 99.99% · IA 99.9% · One Zone-IA 99.5%)
 - [[Route53]] — el único servicio AWS con **[[sla|SLA]] del 100%**
-- También en: [[S3]]
+- También en: [[S3]] · [[durability]] · [[object-storage]]
 
 ## Dato de examen
 

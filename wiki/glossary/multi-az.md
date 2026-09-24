@@ -3,8 +3,8 @@ title: Multi-AZ
 category: glossary
 tags: [resiliencia, rds, ha, availability-zones]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-19
+sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.13 HA vs. FT vs. DR.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.03 Availability Zones (AZ).md", "raw/doc oficial/Regional NAT gateways for automatic multi-AZ expansion - Amazon Virtual Private Cloud.md"]
+updated: 2026-09-24
 ---
 
 # Multi-AZ
@@ -21,6 +21,7 @@ Configuración donde un servicio (RDS, ELB, Auto Scaling) mantiene réplicas act
 - [[global-infrastructure]] — tabla de niveles de resiliencia, RDS Multi-AZ como ejemplo de [[region-resilient]]
 - [[region-resilient]]
 - [[vpc-design]] — subnets por tier repetidas en 3 AZs (+1 de reserva)
+- También en: [[failover]] · [[nat-gateway-vs-nat-instance]]
 
 ## Dato de examen
 

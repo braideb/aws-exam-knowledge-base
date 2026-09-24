@@ -107,3 +107,14 @@
 - [[06.22 Instance Status Checks y Auto Recovery|Instance Status Checks y Auto Recovery]]
 - [[06.23 Horizontal vs Vertical Scaling|Horizontal vs Vertical Scaling]]
 - [[06.24 Instance Metadata (IMDS)|Instance Metadata (IMDS)]]
+
+## [[07.00 Monitoring and logging — Índice|Módulo 07 — Monitoring and logging]] (8 secciones)
+
+- [[07.01 CloudWatch — Architecture Concepts|CloudWatch — Architecture Concepts]]
+- [[07.02 CloudWatch Data (Namespace, Datapoint, Metric, Dimensions)|CloudWatch Data (Namespace, Datapoint, Metric, Dimensions)]]
+- [[07.03 CloudWatch — Resolution, Retention y Statistics|CloudWatch — Resolution, Retention y Statistics]]
+- [[07.04 CloudWatch Alarms|CloudWatch Alarms]]
+- [[07.05 CloudWatch Logs — Architecture|CloudWatch Logs — Architecture]]
+- [[07.06 CloudWatch Logs — Subscriptions y Aggregation|CloudWatch Logs — Subscriptions y Aggregation]]
+- [[07.07 AWS X-Ray — Service Map|AWS X-Ray — Service Map]]
+- [[07.08 VPC Flow Logs|VPC Flow Logs]]

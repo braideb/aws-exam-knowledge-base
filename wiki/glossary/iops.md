@@ -4,7 +4,7 @@ category: glossary
 tags: [storage, ebs, performance]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.04 Storage Refresh.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # IOPS
@@ -24,7 +24,7 @@ Con 16 KB y 100 IOPS son ~1,6 MB/s; con 1 MB y 500 IOPS son 500 MB/s. Por eso el
 - [[storage-types]] — la fórmula y las tres variables
 - [[ebs-volume-types]] — el tope de IOPS de cada tipo
 - [[instance-store-vs-ebs]] — la escalera de decisión
-- También en: [[EBS]] · [[ec2-cheat-sheet]]
+- También en: [[EBS]] · [[ec2-cheat-sheet]] · [[CloudWatch]] · [[burst-credit]] · [[dva-troubleshooting]] · [[ebs-optimized]] · [[ec2-instance-types]] · [[lazy-restore]] · [[throughput]]
 
 ## Dato de examen
 

@@ -4,7 +4,7 @@ category: glossary
 tags: [networking, firewall, nacl]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.05 Stateful vs Stateless Firewalls.md", "raw/doc oficial/Control subnet traffic with network access control lists - Amazon Virtual Private Cloud.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Stateless firewall
@@ -19,7 +19,7 @@ Ve el request y la response como tráfico independiente. Cada conexión necesita
 
 - [[security-groups-vs-nacls]] — las **NACLs** son stateless
 - [[VPC]] — sección Security Groups y NACLs
-- También en: [[vpc-cheat-sheet]] · [[vpc-flow-logs]]
+- También en: [[vpc-cheat-sheet]] · [[vpc-flow-logs]] · [[ephemeral-port]] · [[stateful-firewall]] · [[stateless]]
 
 ## Dato de examen
 

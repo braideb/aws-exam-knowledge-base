@@ -4,7 +4,7 @@ category: glossary
 tags: [vpc, subnets, routing, igw]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.04 VPC Routing e Internet Gateway.md", "raw/doc oficial/Subnets for your VPC - Amazon Virtual Private Cloud.md", "raw/doc oficial/Enable internet access for a VPC using an internet gateway - Amazon Virtual Private Cloud.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Public subnet
@@ -27,7 +27,7 @@ updated: 2026-09-23
 - [[VPC]] — tipos de subnet y receta de public subnet
 - [[nat-gateway-vs-nat-instance]] — el NAT GW zonal va en una public subnet
 - [[lambda-in-vpc]] — poner la función en una subnet pública **no** le da internet
-- También en: [[vpc-cheat-sheet]]
+- También en: [[vpc-cheat-sheet]] · [[bastion-host]] · [[egress-only-internet-gateway]] · [[longest-prefix-match]]
 
 ## Dato de examen
 

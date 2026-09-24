@@ -4,7 +4,7 @@ category: comparison
 tags: [s3, kms, cifrado, sse, encryption, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/04 S3/04.06 S3 Object Encryption.md", "raw/notas curso mejorado/04 S3/04.07 S3 Bucket Keys.md", "raw/notas curso mejorado/04 S3/04.05 KMS (Key Management Service).md", "raw/doc oficial/Using server-side encryption with Amazon S3 managed keys (SSE-S3) - Amazon Simple Storage Service.md", "raw/doc oficial/Using server-side encryption with AWS KMS keys (SSE-KMS) - Amazon Simple Storage Service.md"]
-updated: 2026-09-19
+updated: 2026-09-24
 ---
 
 # Comparativa: Cifrado de objetos en S3
@@ -30,8 +30,8 @@ Todo cifrado server-side tiene **dos** partes, y cada método reparte la respons
 |---|---|---|---|
 | **Client-Side** | VOS | VOS | AWS **nunca** ve el plaintext |
 | **SSE-C** | VOS (mandás la clave en cada PUT/GET) | S3 | S3 guarda solo un hash de la clave |
-| **SSE-S3** (AES-256, default) | S3 | S3 | Cero control de claves, **sin role separation** |
-| **SSE-KMS** | [[KMS]] | S3 | Rotación ✅ [[role-separation\|Role separation]] ✅ Auditoría CloudTrail ✅ |
+| **SSE-S3** (AES-256, default) | S3 | S3 | Cero control de claves, **sin [[role-separation\|role separation]]** |
+| **SSE-KMS** | [[KMS]] | S3 | Rotación ✅ Role separation ✅ Auditoría CloudTrail ✅ |
 
 Qué viaja por el túnel HTTPS: en **client-side** ya va ciphertext; en los tres SSE va el **plaintext original** (dentro de HTTPS) y S3 lo ve momentáneamente al recibirlo. De ahí que solo client-side garantice que AWS nunca vio los datos en claro — a costa de que **si perdés la clave, perdés los datos**, y AWS no puede ayudarte porque nunca la tuvo.
 

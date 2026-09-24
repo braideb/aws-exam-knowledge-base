@@ -3,8 +3,8 @@ title: Metric Filter
 category: glossary
 tags: [cloudwatch-logs, cloudwatch, observabilidad, monitoring]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.12 CloudWatch Logs.md", "raw/notas curso mejorado/07 Monitoring and logging/07.05 CloudWatch Logs — Architecture.md"]
+updated: 2026-09-24
 ---
 
 # Metric Filter
@@ -22,13 +22,14 @@ Regla configurada sobre un log group que busca un patrón (por ejemplo, la palab
 - [[dimension]], [[high-cardinality]] — las dimensions extraídas por un metric filter crean una variación nueva por cada par único; usar dimensions en un metric filter impide configurar el *default value*
 - [[dva-troubleshooting]], [[observability-costs]]
 - [[vpc-flow-logs]] — para alarmar sobre rechazos cuando el destino es CloudWatch Logs
-- También en: [[VPC]]
+- También en: [[VPC]] · [[custom-metric]] · [[subscription-filter]]
 
 ## Dato de examen
 
 - "Alertar cuando aparece X en los logs" → **metric filter + alarm + SNS**.
+- No confundir con el [[subscription-filter|subscription filter]]: el metric filter convierte logs en **métricas**; el subscription filter **reenvía los logs** a Lambda/Kinesis/Firehose.
 - Cada combinación única de dimension generada por un metric filter se factura aparte — cuidado con la [[high-cardinality|alta cardinalidad]].
 
 ## Ver también
 
-[[CloudWatchLogs]] · [[dimension]] · [[high-cardinality]]
+[[CloudWatchLogs]] · [[dimension]] · [[high-cardinality]] · [[subscription-filter]] · [[custom-metric]]

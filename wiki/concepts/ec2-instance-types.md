@@ -4,7 +4,7 @@ category: concept
 tags: [ec2, instance-types, performance, costos]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.03 EC2 Instance Types.md"]
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # EC2 Instance Types
@@ -30,7 +30,7 @@ Elegir un **instance type** y un **size** define, de una sola vez, mucho más qu
 | **Compute Optimized** | Mucho procesamiento: media encoding, HPC, modelado científico, gaming, ML | C5, C5n |
 | **Memory Optimized** | Mucha memoria por dólar: datasets en memoria, cachés, ciertas DB | R5/R5a, X1/X1e, High Memory (u-Xtb1), z1d |
 | **Accelerated Computing** | GPUs y hardware programable | P3 (Tesla v100), G4 (NVIDIA T4), F1 (FPGA), Inf1 |
-| **Storage Optimized** | Almacenamiento local enorme y rapidísimo, IOPS o throughput secuencial | I3/I3en (NVMe), D2 (dense HDD), H1 |
+| **Storage Optimized** | Almacenamiento local enorme y rapidísimo, [[iops\|IOPS]] o [[throughput\|throughput]] secuencial | I3/I3en (NVMe), D2 (dense HDD), H1 |
 
 Las de la familia **T** son el *burst pool* de cómputo: más baratas asumiendo uso bajo con picos ocasionales, y funcionan con el mismo modelo de [[burst-credit|créditos]] que gp2 — si el balde se vacía, la CPU queda limitada al baseline.
 

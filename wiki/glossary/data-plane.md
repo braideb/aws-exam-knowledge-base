@@ -3,8 +3,8 @@ title: Data Plane
 category: glossary
 tags: [arquitectura, cloudtrail, api]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/doc oficial/Referencing access points with ARNs, access point aliases, or virtual-hosted–style URIs - Amazon Simple Storage Service.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.13 CloudTrail.md", "raw/doc oficial/Understanding CloudTrail events.md"]
+updated: 2026-09-24
 ---
 
 # Data Plane
@@ -19,7 +19,7 @@ Lo que ocurre *dentro* del recurso: `GetObject`/`PutObject` en [[S3]], `Invoke` 
 
 - [[CloudTrail]] — los **Data Events** son opt-in, con **costo extra** y volumen enorme
 - [[S3]] — el alias de un access point se usa como si fuera un bucket name en operaciones de data plane
-- También en: [[observability-costs]]
+- También en: [[observability-costs]] · [[control-plane]] · [[role-separation]]
 
 ## Dato de examen
 

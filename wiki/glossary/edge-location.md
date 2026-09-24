@@ -3,8 +3,8 @@ title: Edge Location
 category: glossary
 tags: [infraestructura, cdn, edge, cloudfront]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.02 AWS Global Infrastructure.md", "raw/notas curso mejorado/04 S3/04.04 S3 Performance Optimization.md"]
+updated: 2026-09-24
 ---
 
 # Edge Location
@@ -22,6 +22,7 @@ Qué corre en el edge: [[CloudFront]] (CDN), **Lambda@Edge / CloudFront Function
 - [[global-infrastructure]] — sección Edge Locations
 - [[CloudFront]] — cachea y sirve desde el edge
 - [[S3]] — Transfer Acceleration sube por la edge location más cercana
+- También en: [[ttl]]
 
 ## Dato de examen
 

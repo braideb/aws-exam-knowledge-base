@@ -3,8 +3,8 @@ title: WORM (Write Once, Read Many)
 category: glossary
 tags: [s3, object-lock, compliance, retencion, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-24
+sources: ["raw/notas curso mejorado/04 S3/04.17 S3 Object Lock.md", "raw/doc oficial/Locking objects with Object Lock - Amazon Simple Storage Service.md", "raw/doc oficial/What is Amazon S3 - Amazon Simple Storage Service.md"]
+updated: 2026-09-24
 ---
 
 # WORM — Write Once, Read Many
@@ -25,6 +25,7 @@ Modelo de almacenamiento inmutable exigido por normativas financieras y legales.
 
 - [[S3]] — sección Object Lock (WORM)
 - [[s3-storage-classes]] — Glacier Deep Archive para retención legal
+- También en: [[delete-marker]] · [[durability]]
 
 ## Dato de examen
 

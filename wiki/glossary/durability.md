@@ -3,8 +3,8 @@ title: Durability (durabilidad)
 category: glossary
 tags: [s3, storage, resiliencia, sla]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-22
+sources: ["raw/doc oficial/Understanding and managing Amazon S3 storage classes - Amazon Simple Storage Service.md", "raw/notas curso mejorado/04 S3/04.08 S3 Object Storage Classes.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.08 S3 Buckets — Basics.md"]
+updated: 2026-09-24
 ---
 
 # Durability (durabilidad)
@@ -24,6 +24,7 @@ Mide la pérdida permanente de datos. En [[S3]] es de **11 nueves** (99.99999999
 - [[S3]] — "durabilidad 11 nueves vs. disponibilidad 99.99% en Standard"
 - [[s3-storage-classes]] — todas las clases comparten los 11 nueves; cambian disponibilidad, costo y latencia
 - [[ephemeral-storage]] — el extremo opuesto: almacenamiento que no promete durar
+- También en: [[availability]] · [[delete-marker]] · [[etag]] · [[eventual-consistency]] · [[object-storage]] · [[worm]]
 
 ## Dato de examen
 

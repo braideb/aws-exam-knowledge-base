@@ -3,8 +3,8 @@ title: Temporary Credentials
 category: glossary
 tags: [iam, sts, roles, credenciales, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-09-23
+sources: ["raw/doc oficial/Temporary security credentials in IAM - AWS Identity and Access Management.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md"]
+updated: 2026-09-24
 ---
 
 # Temporary Credentials (credenciales temporales)
@@ -26,7 +26,7 @@ El `SessionToken` es lo que las distingue de unas access keys de largo plazo. **
 - [[EC2]] — [[instance-profile]]: credenciales temporales entregadas por IMDS
 - [[ec2-instance-metadata]] — se obtienen del IMDS en `iam/security-credentials/`
 - [[execution-role]] — el equivalente para Lambda
-- También en: [[Organizations]] · [[observability-costs]]
+- También en: [[Organizations]] · [[observability-costs]] · [[break-glass]] · [[federation]] · [[least-privilege]] · [[presigned-url]] · [[trust-policy]]
 
 ## Dato de examen
 

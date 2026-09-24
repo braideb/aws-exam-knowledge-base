@@ -4,7 +4,7 @@ category: service
 tags: [cloudtrail, auditoria, api-logging, trails, governance, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.13 CloudTrail.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.14 Route 53 (R53) — Fundamentos.md", "raw/doc oficial/Understanding CloudTrail events.md", "raw/doc oficial/Validating CloudTrail log file integrity.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # CloudTrail
@@ -46,7 +46,7 @@ Cuando la acción la hizo alguien asumiendo un rol, `userIdentity` muestra `assu
 |---|---|---|
 | **Management** | Operaciones de **[[control-plane\|control plane]]** (crear EC2, VPC…) y eventos no-API como `ConsoleLogin` | ✅ |
 | **Data** | Operaciones de **[[data-plane\|data plane]]** dentro de un recurso (GetObject en S3, `Invoke` de Lambda, item-level de DynamoDB, `Publish` de SNS, mensajes SQS) | ❌ opt-in, **costo extra**, volumen enorme |
-| **Network activity** | Llamadas de API que atraviesan un **VPC endpoint** — las ve el dueño del endpoint (`eventType: AwsVpceEvent`; error `VpceAccessDenied` = bloqueado por la endpoint policy) | ❌ opt-in, costo extra |
+| **Network activity** | Llamadas de API que atraviesan un **VPC endpoint** — las ve el dueño del endpoint (`eventType: AwsVpceEvent`; error `VpceAccessDenied` = bloqueado por la [[endpoint-policy\|endpoint policy]]) | ❌ opt-in, costo extra |
 | **Insights** | Patrones **inusuales** de actividad: picos de call rate o de error rate vs. el baseline histórico de la cuenta. Emite un evento al **empezar** y otro al **terminar** la anomalía | ❌ opt-in, costo extra |
 
 Detalles de data events (doc oficial): se seleccionan por **resource type** con event selectors — básicos solo para S3 objects/Lambda/DynamoDB; el resto (S3 Access Points, Object Lambda, S3 Express, tablas, etc.) requiere **advanced event selectors**. Los logs **no vienen ordenados** cronológicamente.

@@ -3,8 +3,8 @@ title: SLA (Service Level Agreement)
 category: glossary
 tags: [disponibilidad, route53, s3, resiliencia]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-08-12
+sources: ["raw/notas curso mejorado/04 S3/04.10 S3 Replication.md", "raw/doc oficial/Supported DNS record types - Amazon Route 53.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.14 Route 53 (R53) — Fundamentos.md"]
+updated: 2026-09-24
 ---
 
 # SLA (Service Level Agreement)

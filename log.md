@@ -162,3 +162,63 @@
 - **Problemas en `raw/` (el LLM no los edita):** (1) en 05.09, 05.12 y 05.13 el ancla `[[05.04 …#Prioridad de las routes]]` está rota — el encabezado real es "Route Tables: prioridad de routes"; (2) 05.02 línea 52 tiene un `**` suelto ("5 CIDR block IPv6 /56**"); (3) la tabla de 05.08 todavía dice "45 Gbps"; (4) 05.01: "para le ejemplo" y doble negación en "No se recomienda no usar direcciones que empiecen con 10.0".
 - **Temas sin página propia, por cantidad de páginas que los mencionan:** STS (42, cubierto dentro de [[IAM]]), **Lambda (32)**, RDS (23), **DynamoDB (22)**, ELB/ALB (17), SNS (14), SQS (13), **API Gateway (10)**, Systems Manager/Session Manager (8), Direct Connect (8), Auto Scaling (5). Para DVA-C02 las prioridades siguen siendo Lambda, DynamoDB y API Gateway; Session Manager ya tiene material suficiente para una entrada de glosario o de concepto.
 - **Sin clippings de doc oficial** para endpoints, flow logs, peering, Lambda en VPC, ni para EC2/EBS: los datos del curso quedan sin contrastar (sobre todo 05.09–05.12, que el humano marcó para revisar).
+
+## [2026-09-24] ingest | Módulo 07 — Monitoring and logging (07.01–07.08)
+
+**Fuente:** `raw/notas curso mejorado/07 Monitoring and logging/`, segmentado ese mismo día a partir de `raw/notas curso/Monitoring and logging.md` (por pedido explícito del humano). 8 secciones: arquitectura de CloudWatch, namespace/datapoint/metric/dimensions, resolution/retention/statistics, alarms, arquitectura de CloudWatch Logs, subscriptions y agregación, X-Ray, VPC Flow Logs.
+
+**Página nueva (1):** [[XRay]] — distributed tracing, trace/segment/subsegment, service map, cómo se habilita por servicio, permisos IAM. Lleva ⚠️ de "sin contraste con doc oficial" y marca aparte los complementos que no vienen de la slide (daemon UDP 2000, sampling por defecto, annotations vs metadata, migración a OpenTelemetry).
+
+**Páginas actualizadas:**
+- [[CloudWatch]] — arquitectura (endpoint público, IGW vs interface endpoint, integración nativa vs agent, custom metrics), identidad de una métrica (Namespace + MetricName + Dimensions), agregación por dimensions solo en métricas nativas, tabla standard vs high resolution, parámetros de alarm (Period / Evaluation Periods / Datapoints to Alarm / Condition), high resolution alarms de 10/30 s, EventBridge como alarm action. +4 gotchas. Se eliminó un bullet de [[EC2]] que estaba **duplicado** en "Integración".
+- [[CloudWatchLogs]] — las dos caras (ingestion/subscription), excepción regional de Route 53 → `us-east-1`, cifrado KMS por log group, tabla export a S3 vs subscription, subscriptions (componentes, destinos por latencia, máx 2 por log group), agregación multi-cuenta (destination + destination policy). +4 gotchas.
+- [[vpc-flow-logs]] — "desde el punto de captura hacia abajo", ACCEPTED/REJECTED/ALL, Amazon Time Sync (`169.254.169.123`) en lo no registrado, formato del record, ejemplo ICMP (ACCEPT de entrada + REJECT de respuesta = NACL), Athena no es destino. El ⚠️ de fuente pendiente se mantiene: 07.08 confirma lo central, pero sigue siendo material del curso.
+- [[dva-troubleshooting]] — 4 filas nuevas de cobertura, las "tres patas de la observabilidad", X-Ray fuera de los huecos (queda pendiente su doc oficial; se suman Logs Insights y EMF).
+- [[observability-costs]], [[high-cardinality]] — links a los términos nuevos.
+
+**Actualizaciones posteriores al curso:** export a S3 ahora admite **SSE-KMS** (el curso dice solo SSE-S3) → `⚠️ Outdated` en [[CloudWatchLogs]]; Elasticsearch → **OpenSearch**, Kinesis Data Firehose → **Amazon Data Firehose**; flow logs también a Firehose; X-Ray → OpenTelemetry/ADOT.
+
+**Glosario (+6, total 89):** [[custom-metric]] · [[high-resolution-metric]] · [[percentile]] · [[subscription-filter]] · [[near-real-time]] · [[distributed-tracing]]. Actualizadas: [[dimension]] y [[metric-filter]] (datos nuevos y `sources` completados, que estaban vacíos), [[execution-role]], [[instance-profile]], [[cross-account]] (backlinks).
+
+**Otros:** [[index]] (130 → **137** páginas; notas del curso 88 → **96** secciones, módulos 01–07; aviso de que no hay clippings de X-Ray), [[guia-estudio]] (**[[XRay]] entra al Bloque 6 entre Logs y CloudTrail**: métricas → logs → trazas, y recién después auditoría; lectura profunda del módulo 07 en los Bloques 3 y 6), [[demos]] (+1: Lambda & X-Ray, total **40**).
+
+**Pendiente:** clippings de doc oficial de X-Ray y de subscriptions/export de CloudWatch Logs; Logs Insights y Embedded Metric Format (task statements del dominio 4, sin fuente todavía).
+
+## [2026-09-24] lint | Revisión post-ingest del módulo 07
+
+**Estructura:** 0 links rotos (el único hit, en la entrada del 09-23 de este log, es texto entre backticks que cita un ancla rota de `raw/`; es un falso positivo) · 0 imágenes rotas · 0 páginas huérfanas · las 137 páginas en [[index]] · todas las páginas que no son glosario en [[guia-estudio]] · 0 pipes de alias sin escapar en tablas (uno se detectó y se corrigió en [[observability-costs]] durante el ingest) · frontmatter completo en todas.
+
+**Contradicciones:** ninguna. Se cruzaron la tabla de retención de métricas, basic/detailed monitoring, destinos de flow logs (CloudWatch Logs / S3 / Firehose en [[VPC]], [[vpc-cheat-sheet]] y [[vpc-flow-logs]]), la latencia de flow logs y el cifrado del export de Logs.
+
+**Corregido:** 6 backlinks faltantes en "Dónde aparece" que venían de páginas nuevas o editadas ([[execution-role]] e [[instance-profile]] ← [[XRay]]; [[custom-metric]], [[percentile]] y [[subscription-filter]] ← [[dva-troubleshooting]]; [[cross-account]] ← [[CloudWatchLogs]] con descripción). Primera aparición linkeada de `custom metrics` y `percentile` en [[CloudWatchLogs]].
+
+**Pendiente (no se tocó; decide el humano):**
+- **51 entradas de glosario con `sources: []`** (eran 53: este ingest completó [[dimension]] y [[metric-filter]]).
+- **~35 links glosario → glosario** que no figuran en "Dónde aparece" del término destino (ej. [[least-privilege]] ← 10 términos). Por convención de hecho se tratan como "Ver también" y no como backlinks; si se quieren listar, es una pasada mecánica.
+- **Temas sin página propia** que ahora pesan más: **Lambda** (sigue siendo el hueco #1: X-Ray, subscriptions y Lambda en VPC la mencionan), **Kinesis/Firehose** (aparece en 5 páginas como destino, sin página), SNS, Auto Scaling.
+- **Imágenes sin usar en `raw/assets/`**: 6 capturas del 2026-09-23/24 (`…022643`, `…202850`, `…203416`, `…231906`, `…235801`, `…000304`) que no aparecen en ninguna nota. Probablemente eran para el módulo 07.
+
+## [2026-09-24] lint | Lint profundo previo al commit
+
+Además de lo estructural (links, imágenes, huérfanas, índice, guía, pipes en tablas), esta pasada chequeó: frontmatter completo y válido (`category` coherente con la carpeta, `exam` con valores válidos, fechas ISO, **cada path de `sources` existe**), convención de nombres de archivo, code fences y tablas con columnas consistentes, **frescura** (mtime de cada fuente vs `updated:`), fuentes de `raw/` sin citar, **regla de primera aparición del glosario** y backlinks.
+
+**Resultado final:** 0 links rotos · 0 imágenes rotas · 0 huérfanas · 0 pipes sin escapar · 0 errores de frontmatter · 0 tablas rotas · 0 fuentes sin citar · 0 páginas desactualizadas contra su fuente · backlinks convergentes (0 pendientes).
+
+**Frescura: 8 páginas con fuente más nueva que su `updated:`** ([[aws-account]], [[aws-cli]], [[arn]], [[Route53]], [[alias-vs-cname]], [[global-infrastructure]], [[S3]], [[ip-masquerading]]). Las fuentes no cambiaron desde el commit del 08-13 (o del 09-23 en el caso de 05.08), pero varias páginas eran anteriores a ese commit, así que se abrió cada fuente y se comparó a mano. Casi todo estaba cubierto; lo que faltaba se agregó:
+- [[IAM]] — prevención de filtraciones de access keys (`.gitignore`, `git-secrets`, escaneo pre-commit) y el rollback de la rotación (reactivar la key vieja si algo se rompe).
+- [[Route53]] — **por qué** el CNAME está prohibido en el apex (tiene que convivir con SOA/NS) y que el PTR de una Elastic IP se pide por soporte.
+- [[alias-vs-cname]] — filas "qué ve el cliente" y "health checks / routing policies".
+- [[S3]] — renombrar una "carpeta" = copiar y borrar cada objeto.
+
+**Glosario — primera aparición:** 30 términos que aparecían sin link en páginas que nunca los linkeaban (ej. [[throughput]] en [[EBS]], [[S3]] y [[CloudWatch]]; [[saas]] y [[serverless]] en [[IAM]]; [[cidr]] y [[prefix-list]] en [[security-groups-vs-nacls]]). En 18 casos (13 páginas) el link no estaba en la **primera** aparición: en 10 se movió, y en 8 se agregó en la primera aparición conservando el link posterior porque estaba en una lista de links (ej. [[transit-gateway]] y [[traffic-mirroring]] en [[VPC]], [[trust-policy]] en [[IAM]]). Se ignoraron los títulos (no se linkea dentro de un heading) y los falsos positivos: "principal" como adjetivo, "Availability" dentro de "Availability Zone", "prefix" dentro de "prefix list", "stateless" en contexto de firewall (ahí va [[stateless-firewall]], ya linkeado) y la "subscription filter policy" de SNS en [[dva-troubleshooting]], que es otro concepto.
+
+**Glosario — backlinks:** se completaron las líneas "También en:" de "Dónde aparece". **Criterio fijado:** un término "aparece" en una página si ella lo linkea **fuera** de su propia sección "Dónde aparece". Una primera versión del script contaba también esas listas, y eso generaba recíprocos espurios ("A lista a B porque B linkea a A"); se revirtieron.
+
+**Glosario — `sources`:** de 51 entradas con `sources: []` quedan **2**. Criterio: candidatas = fuentes de las páginas no-glosario listadas en "Dónde aparece"; se quedan las que mencionan el término literalmente (máx. 3, por cantidad de menciones). Las dos que quedan vacías, [[confused-deputy]] e [[idempotency]], **no aparecen en ninguna fuente de `raw/`**: entraron desde conocimiento general. Se dejan vacías a propósito, en vez de inventarles una fuente.
+
+**Notas para el commit:**
+- `raw/doc oficial/Transitioning objects using Amazon S3 Lifecycle…` figura como modificado en git, pero el diff normalizado está vacío: es un cambio de finales de línea hecho fuera del LLM (mtime 2026-09-24 02:30). Sin impacto en [[s3-storage-classes]].
+- El único "link roto" que reporta el script está en la entrada del 2026-09-23 de este log: es texto entre backticks que cita un ancla rota de `raw/`. Es un falso positivo.
+- `.obsidian/graph.json` y `.obsidian/workspace.json` son estado de la UI de Obsidian.
+
+**Sigue pendiente (no es de lint):** clippings de doc oficial de X-Ray, EC2/EBS, endpoints/flow logs/peering; páginas de Lambda y Kinesis/Firehose; las 6 imágenes sin usar en `raw/assets/` (`…022643`, `…202850`, `…203416`, `…231906`, `…235801`, `…000304`).

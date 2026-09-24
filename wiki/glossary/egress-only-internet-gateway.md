@@ -4,7 +4,7 @@ category: glossary
 tags: [vpc, ipv6, igw, routing]
 exam: [SAA-C03, DVA-C02, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.08 Network Address Translation (NAT) y NAT Gateway.md", "raw/doc oficial/How Amazon VPC works - Amazon Virtual Private Cloud.md", "raw/doc oficial/Create a VPC - Amazon Virtual Private Cloud.md"]
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # Egress-Only Internet Gateway (EIGW)
@@ -24,7 +24,7 @@ Como las IPv6 de AWS son públicas, no hay NAT para IPv6. Si querés que una pri
 
 - [[VPC]] — sección IPv6 y NAT
 - [[nat-gateway-vs-nat-instance]] — para IPv6 no se usa NAT
-- También en: [[vpc-cheat-sheet]]
+- También en: [[vpc-cheat-sheet]] · [[ip-masquerading]]
 
 ## Dato de examen
 

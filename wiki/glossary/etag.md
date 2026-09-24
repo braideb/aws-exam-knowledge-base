@@ -3,8 +3,8 @@ title: ETag
 category: glossary
 tags: [s3, integridad, multipart, http]
 exam: [DVA-C02, SAA-C03]
-sources: []
-updated: 2026-07-25
+sources: ["raw/notas curso mejorado/04 S3/04.07 S3 Bucket Keys.md", "raw/doc oficial/Uploading and copying objects using multipart upload in Amazon S3 - Amazon Simple Storage Service.md", "raw/doc oficial/Bucket policy examples using condition keys - Amazon Simple Storage Service.md"]
+updated: 2026-09-24
 ---
 
 # ETag
@@ -24,6 +24,7 @@ Header HTTP que identifica una versión concreta del contenido de un objeto. En 
 
 - [[S3]] — Performance: el ETag de un objeto multipart no sirve para verificar integridad de forma ingenua
 - [[s3-encryption]] — S3 Bucket Keys y el caso de replicación
+- También en: [[multipart-upload]]
 
 ## Dato de examen
 

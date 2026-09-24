@@ -3,8 +3,8 @@ title: Break Glass
 category: glossary
 tags: [iam, roles, seguridad, operaciones, patrones]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: []
-updated: 2026-07-25
+sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md"]
+updated: 2026-09-24
 ---
 
 # Break Glass
