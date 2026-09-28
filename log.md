@@ -222,3 +222,93 @@ Además de lo estructural (links, imágenes, huérfanas, índice, guía, pipes e
 - `.obsidian/graph.json` y `.obsidian/workspace.json` son estado de la UI de Obsidian.
 
 **Sigue pendiente (no es de lint):** clippings de doc oficial de X-Ray, EC2/EBS, endpoints/flow logs/peering; páginas de Lambda y Kinesis/Firehose; las 6 imágenes sin usar en `raw/assets/` (`…022643`, `…202850`, `…203416`, `…231906`, `…235801`, `…000304`).
+
+## [2026-09-28] update | Segmentación del módulo 08 — Containers, ECS y ECR
+
+**Fuente:** `raw/notas curso/Containers, ECS & ECR.md` (392 líneas, 16 imágenes), módulo nuevo del curso que no tenía versión segmentada. Se segmentó por pedido explícito del humano.
+
+**Secciones nuevas en `raw/notas curso mejorado/08 Containers, ECS y ECR/` (10):**
+- **Containers (08.01–08.03):** virtualización vs containerization (duplicación del guest OS, densidad), anatomía de image y container (Dockerfile → layers read-only + R/W layer, tabla instrucción → layer), registry y key concepts, y la demo de container of cats en EC2 con sus comandos.
+- **ECS (08.04–08.07):** concepts (container definition vs task definition, sidecar/X-Ray, tabla de los **tres roles**: task / task execution / container instance, service, service auto scaling, rolling vs blue/green), cluster types (management compartido, EC2 mode con ASG y capacity provider, placement strategies/constraints, Fargate con inyección de ENI, `awsvpc`/target `ip` vs `bridge`/dynamic port mapping, costos y Fargate Spot, tabla EC2 mode vs Fargate), la tabla de decisión EC2 vs ECS (EC2) vs Fargate y la demo de Fargate.
+- **ECR (08.08):** estructura registry → repository → image → tag, tag immutability, público vs privado, repository policy, scanning basic/enhanced (Inspector), lifecycle policies, comandos de push y CodeBuild con privileged mode.
+- **Kubernetes y EKS (08.09–08.10):** estructura del cluster, pods, componentes del control plane y del node, resumen; EKS (dónde corre, control plane y etcd managed multi-AZ, tipos de nodes, IRSA / EKS Pod Identity, storage providers, arquitectura con ENIs inyectadas y public endpoint).
+
+**Correcciones al original:** encabezado duplicado `## Elasti## Elastic Kubernetes Service (EKS) 101`; `**` suelto al final del párrafo del capacity provider; nota de edición "(el bloque de código también es nuevo)" en ECR; `## summary kubernetes` pasa a ser `### Resumen` de 08.09; el "Ejemplo visual" de EKS pasa a tabla + bloque "Qué muestra".
+
+**Agregado desde los slides (no estaba en el texto):** los detalles del kube-scheduler (affinity/anti-affinity, data locality); los tipos de node de EKS (Windows, GPU, Inferentia, Bottlerocket, Outposts, Local Zones); FSx for Lustre y FSx for NetApp ONTAP como storage providers. Van en los bloques "Qué muestra".
+
+**Imágenes:** las 16 capturas nuevas estaban en la raíz del vault. Se movieron con `git mv` a `raw/assets/`, junto al resto. Las 16 resuelven.
+
+**Actualizados:** `08.00 Índice` del módulo (nuevo) y `00 Índice general` (bloque del módulo 08, 10 secciones). 0 links rotos (119 destinos verificados), 0 pipes de alias sin escapar en tablas.
+
+**Pendiente:**
+- La demo de Fargate (08.07) solo tiene el link de la lección, sin pasos ni comandos.
+- **Todavía no está ingestado en `wiki/`**. Abre temas sin página propia: **ECS** (service), **ECR** (service), **EKS**, containers/Docker (concept) y la comparación EC2 mode vs Fargate. Para DVA-C02 lo importante es ECS: task role vs execution role, deploys y ECR.
+
+## [2026-09-28] ingest | Módulo 08 — Containers, ECS y ECR (08.01–08.10)
+
+**Fuente:** `raw/notas curso mejorado/08 Containers, ECS y ECR/`, segmentado hoy (ver entrada anterior). Sin clippings de doc oficial de ECS/ECR/EKS: **este ingest es solo de notas del curso**.
+
+**Detección (según el ⚠️ del flujo de Ingest):** 10 archivos nunca citados (las 10 secciones del módulo 08). 14 fuentes marcadas como "modificadas", todas **falsos positivos**. Diez son fuentes de 01.xx/02.xx/03.xx y clippings de IAM, S3 y ARN con un solo commit y sin diff en el worktree; son las mismas que el ingest del 09-23 ya había verificado. Las otras cuatro son la URL del exam guide citada por las páginas de dominio, que no es un archivo. Se tratan en el lint de hoy.
+
+**Páginas nuevas (5):**
+- [[ECS]] (service) — building blocks (cluster, container definition vs task definition, task, service), **los tres roles** (task / task execution / container instance), cluster types, **scaling en dos capas** (service auto scaling vs capacity provider), placement strategies/constraints, rolling vs blue/green con CodeDeploy, 8 gotchas.
+- [[ECR]] (service) — estructura registry → repository → image → tag, tag immutability, público vs privado, repository policy, scanning basic/enhanced (Inspector), lifecycle policies, push, CodeBuild con privileged mode.
+- [[EKS]] (service) — incluye **Kubernetes 101** como sección (sin página propia: el curso lo da como base de EKS, no como tema independiente), nodes self-managed / managed / Fargate, IRSA / EKS Pod Identity, arquitectura de red.
+- [[containers]] (concept) — VM vs container, image = layers read-only + R/W layer, Dockerfile, registry, comandos de la demo.
+- [[ecs-ec2-vs-fargate]] (comparison) — qué administrás, qué pagás, placement, `awsvpc` + target `ip` vs `bridge` + dynamic port mapping, tabla de decisión del curso.
+
+Las cuatro páginas de servicio/comparación llevan ⚠️ "sin contraste con doc oficial". Lo que **no viene del curso** está marcado aparte: el log driver `awslogs`, los estados `PROVISIONING`/`PENDING`, el ejemplo 100/200 de rolling, y las acciones `ecr:GetAuthorizationToken` / `ecr:BatchGetImage`.
+
+**Glosario (+9, total 98):** [[task-role]] · [[sidecar]] · [[dynamic-port-mapping]] · [[capacity-provider]] · [[target-tracking-scaling]] · [[rolling-deployment]] · [[blue-green-deployment]] · [[vendor-lock-in]] · [[irsa]]. Backlinks agregados en 16 entradas existentes ([[eni]], [[ephemeral-port]], [[execution-role]], [[instance-profile]], [[temporary-credentials]], [[serverless]], [[control-plane]]…). No se crearon entradas para `pod` ni para los demás términos de Kubernetes: se definen en la tabla de [[EKS]], que ya es la página que los desarrolla.
+
+**Páginas actualizadas:**
+- [[IAM]] — el "mismo patrón con nombres distintos" ahora linkea [[task-role]], [[ECS]], [[irsa]] y [[EKS]].
+- [[XRay]] — la fila de ECS linkea [[sidecar]] y el task role.
+- [[EC2]] — ECS en integración (container instances; Fargate como alternativa).
+- [[aws-cli]] — el paso 5 de la cadena de credenciales linkea [[task-role]].
+- [[virtualization]] — [[containers]] como paso siguiente.
+- [[ec2-purchase-options]] — Fargate linkea [[ecs-ec2-vs-fargate]].
+- Glosario: [[paas]], [[serverless]], [[instance-profile]] y [[execution-role]].
+
+**Dominios:**
+- [[dva-deployment]] pasa de "mínima" a "parcial": images como artefacto, build + push en CI/CD y el primer material real de **rolling vs blue/green (canary/linear)**.
+- [[dva-security]] suma los tres roles de ECS e IRSA, más la seguridad de images en ECR.
+- [[dva-troubleshooting]] suma tasks que no arrancan (execution role, capacidad, dynamic port mapping), el sidecar de X-Ray y los costos de containers.
+- [[dva-development]] suma los microservicios en containers.
+
+**Otros:**
+- [[index]]: 137 → **151** páginas (51 de conocimiento + 98 de glosario + 2 de examen); nuevas categorías de glosario "Containers" y "Deployment y scaling".
+- [[guia-estudio]]: **bloque nuevo, 7 — Containers**, ubicado entre observabilidad e IaC, porque ECS reusa roles, ENIs/SGs, EC2, CloudWatch Logs y X-Ray. IaC pasa a ser el bloque 8.
+- [[demos]]: +2 demos, 40 → **42**.
+
+**Pendiente:** clippings de doc oficial de **ECS** (es lo más preguntado del módulo para DVA: roles, deploys, network modes) y de ECR. CodeBuild y CodeDeploy siguen sin página propia; hoy solo aparecen por su rol en ECS/ECR.
+
+## [2026-09-28] lint | Revisión completa post-ingest del módulo 08
+
+**Estructura:**
+- 0 links rotos y 0 imágenes rotas en `wiki/`, `raw/notas curso mejorado/`, [[index]], [[guia-estudio]], [[demos]] y este log (el chequeo ignora código entre backticks).
+- 0 páginas huérfanas; las 149 páginas de `wiki/` figuran en [[index]], y todas las que no son glosario figuran en [[guia-estudio]].
+- 0 pipes de alias sin escapar en tablas.
+- 0 contradicciones en los datos numéricos que se repiten entre páginas (NAT Gateway 5→100 Gbps, retención de Event History 90 días, límites de S3 5 TB / 5 GB, 4 KB de KMS, bloques de 16 KB / 1 MB, escalera de IOPS 3.000 / 64.000 / 256.000 / ~260.000, Savings Plans 66% / 72%, CIDR `/16`–`/28`).
+
+**Corregido:**
+- **Backlinks de glosario:** 10 links reales desde páginas que no son de glosario no figuraban en "Dónde aparece": [[task-role]] ← [[ECR]] · [[XRay]] · [[dva-development]] · [[dva-security]]; [[sidecar]] ← [[dva-development]] · [[dva-troubleshooting]]; [[capacity-provider]] y [[dynamic-port-mapping]] ← [[dva-troubleshooting]]; [[irsa]] ← [[dva-security]]; [[elastic-ip]] ← [[Route53]] (este es viejo). Se agregaron en la línea "También en".
+- **Detector de modificados:** [[arn]], [[aws-account]], [[global-infrastructure]] y [[s3-storage-classes]] seguían marcadas porque el log del 09-23 las dio por verificadas pero su `updated:` nunca se actualizó ([[aws-cli]] se actualizó hoy por el ingest). Se re-verificó con git que sus fuentes no cambiaron (un solo commit, worktree limpio) y se les puso `updated: 2026-09-28`. El detector queda en **0 fuentes pendientes**. Las 4 páginas de dominio citan la URL del exam guide, que el detector no puede fechar: es esperado.
+
+**Pendiente (no se tocó; decide el humano):**
+- **97 links entre términos del glosario** que no figuran en el "Dónde aparece" del término linkeado (por ejemplo, [[least-privilege]] linkea a [[principal]]). Por convención esas relaciones van en "Ver también" y no en "Dónde aparece", así que no se consideran huecos. Si se prefiere listarlas, es un cambio masivo sobre 60+ entradas.
+- **[[confused-deputy]] e [[idempotency]] siguen con `sources: []`**. Ninguna fuente de `raw/` menciona esos términos: salen del conocimiento general, no del curso ni de la doc curada. El lint del 09-23 contaba 53 entradas así; hoy quedan 2.
+- **Temas sin página propia, por cantidad de páginas que los mencionan:** Lambda (38), RDS (25), DynamoDB (25), ELB/ALB (24, más relevante ahora que ECS y EKS se apoyan en él), SQS (15), SNS (15), API Gateway (11), Systems Manager / Parameter Store (9), Auto Scaling (9), Direct Connect (8), EFS (6), CodeBuild / CodeDeploy / Beanstalk (3–4). Para DVA-C02 la prioridad sigue siendo **Lambda, DynamoDB y API Gateway**; con el módulo 08, **ELB** pasa a ser el hueco más citado entre las páginas de cómputo.
+- **Sin clippings de doc oficial** para ECS, ECR, EKS, X-Ray, EC2/EBS ni endpoints/flow logs/peering.
+- Los problemas en `raw/` que reportó el lint del 09-23 (anclas rotas en 05.09/05.12/05.13, `**` suelto en 05.02, "45 Gbps" en la tabla de 05.08, typos de 05.01) siguen ahí: el LLM no edita `raw/` salvo pedido explícito.
+
+## [2026-09-28] lint | Limpieza de imágenes sin usar en `raw/assets/`
+
+**Pedido del humano:** eliminar todas las imágenes que no se usan.
+
+**Método:** para cada imagen de `raw/assets/` se buscó su nombre (tal cual, URL-encoded y sin extensión) en todos los `.md`, `.canvas` y `.json` de `Knowledge Bases/`, no solo de `AWS/`, porque Obsidian resuelve los embeds por nombre. No cuentan como uso `workspace.json`, `graph.json` y este log, que solo las nombra como texto.
+
+**Resultado:** 239 imágenes, 199 en uso y **40 sin ninguna referencia**. Ninguna de las 40 estaba referenciada tampoco en el último commit (`git grep` en `HEAD`), así que no es una referencia borrada por accidente. Son capturas que se pegaron y nunca se embebieron, de 2026-06-27 a 2026-09-24. Incluyen las 6 que el lint del 09-24 ya había detectado (`…022643`, `…202850`, `…203416`, `…231906`, `…235801`, `…000304`). Aquel lint contaba menos porque no cubría las carpetas de `raw/`.
+
+**Eliminadas con `git rm`** (40): quedan **199 imágenes, todas en uso**. 0 embeds rotos después de borrar. Se pueden recuperar desde git mientras no se reescriba la historia (`git checkout HEAD -- "raw/assets/<nombre>"`).

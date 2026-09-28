@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, sts, saml, oidc, cognito, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/doc oficial/Temporary security credentials in IAM - AWS Identity and Access Management.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md"]
-updated: 2026-09-24
+updated: 2026-09-28
 ---
 
 # Federation — federación de identidades
@@ -28,7 +28,7 @@ Para apps móviles/web la recomendación oficial es **Cognito** (mismos IdPs + a
 
 - [[IAM]] — escenarios 3 y 4 de uso de roles; datos de STS
 - [[dva-security]] — dominio de seguridad del DVA-C02
-- También en: [[principal]] · [[temporary-credentials]]
+- También en: [[principal]] · [[temporary-credentials]] · [[irsa]]
 
 ## Dato de examen
 

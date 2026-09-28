@@ -4,7 +4,7 @@ category: service
 tags: [x-ray, tracing, observabilidad, microservices, troubleshooting]
 exam: [DVA-C02, DOP-C02]
 sources: ["raw/notas curso mejorado/07 Monitoring and logging/07.07 AWS X-Ray — Service Map.md"]
-updated: 2026-09-24
+updated: 2026-09-28
 ---
 
 # AWS X-Ray
@@ -48,7 +48,7 @@ El servicio de **[[distributed-tracing|distributed tracing]]** de AWS: sigue cad
 | Servicio | Cómo |
 |---|---|
 | **EC2** | Instalar el **X-Ray daemon/agent** + SDK en la app |
-| **ECS** | Daemon como contenedor en la task (sidecar) |
+| **[[ECS]]** | Daemon como contenedor en la task ([[sidecar]]); permisos en el [[task-role\|task role]] |
 | **Lambda** | Toggle **Active tracing** |
 | **Elastic Beanstalk** | Daemon **preinstalado**, se activa en la config |
 | **API Gateway** | Opción **por stage** |

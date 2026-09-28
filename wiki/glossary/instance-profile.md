@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, ec2, roles, credenciales, imds]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md"]
-updated: 2026-09-24
+updated: 2026-09-28
 ---
 
 # Instance Profile
@@ -24,13 +24,13 @@ La instancia obtiene [[temporary-credentials|credenciales temporales]] a través
 - [[IAM]] — escenario 1 de uso de roles: un servicio AWS actúa por vos
 - [[ec2-instance-metadata]] — el mecanismo concreto por el que la instancia recibe las credenciales
 - [[XRay]] — el daemon en EC2 publica traces con los permisos del instance role
-- También en: [[dva-security]] · [[ec2-cheat-sheet]] · [[execution-role]] · [[service-linked-role]] · [[temporary-credentials]] · [[trust-policy]]
+- También en: [[dva-security]] · [[ec2-cheat-sheet]] · [[execution-role]] · [[service-linked-role]] · [[temporary-credentials]] · [[trust-policy]] · [[ECS]] · [[task-role]]
 
 ## Dato de examen
 
 - "¿Cómo accede una app en EC2 a S3 **sin hardcodear keys**?" → **instance profile / instance role**. Es la respuesta correcta prácticamente siempre.
 - La CLI usa el instance profile solo si **no** encontró credenciales antes en la cadena: `--profile` y las **variables de entorno** lo pisan.
-- El equivalente en contenedores es el **ECS task role** (paso 5 de la cadena).
+- El equivalente en contenedores es el **[[task-role|ECS task role]]** (paso 5 de la cadena).
 
 ## Ver también
 

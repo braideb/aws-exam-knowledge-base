@@ -4,7 +4,7 @@ category: glossary
 tags: [streaming, observabilidad, latencia]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/07 Monitoring and logging/07.06 CloudWatch Logs — Subscriptions y Aggregation.md", "raw/notas curso mejorado/07 Monitoring and logging/07.08 VPC Flow Logs.md"]
-updated: 2026-09-24
+updated: 2026-09-28
 ---
 
 # Near Real Time
@@ -26,6 +26,7 @@ El examen usa la distinción como pista: **real time** = cada evento se procesa 
 - [[CloudWatchLogs]] — destinos de subscriptions
 - [[vpc-flow-logs]] — destino Firehose
 - [[subscription-filter]]
+- También en: [[ECR]]
 
 ## Dato de examen
 

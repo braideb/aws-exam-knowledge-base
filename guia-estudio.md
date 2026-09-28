@@ -2,8 +2,8 @@
 
 > El LLM mantiene este archivo actualizado en cada ingest (ver `CLAUDE.md` → sección `guia-estudio.md`). Propone el **orden de aprendizaje** del material ya ingestado en `wiki/` — no está organizado por examen ni por peso de dominio (eso vive en `index.md`), sino por prerequisitos conceptuales: qué conviene entender antes de qué.
 
-**Última actualización:** 2026-09-24 *(ingest del módulo 07 — Monitoring and logging: [[XRay]] entra al Bloque 6 **entre Logs y CloudTrail**, cerrando las tres patas de la observabilidad —métricas, logs, trazas— antes de pasar a auditoría; [[vpc-flow-logs]] no se mueve del Bloque 3, porque se entiende por los firewalls, pero su lectura profunda suma 07.08. Anterior, 2026-09-22: ingest de VPC 05.09–05.13 y del módulo 06 — EC2. Dos cambios de orden, no solo agregados: **[[storage-types]] se adelanta al Bloque 4**, porque es prerequisito tanto de EBS como de S3 y hasta ahora el bloque de S3 lo daba por sabido; y el **Bloque 4 deja de ser una sola página** para convertirse en el más largo de la guía, con cómputo y almacenamiento en bloque juntos. El Bloque 3 suma las cuatro páginas nuevas de VPC)*
-**Páginas cubiertas:** 46 (42 de estudio + 4 mapas de dominio DVA-C02) + 89 términos de glosario (transversales) + 2 cheat sheets de repaso
+**Última actualización:** 2026-09-28 *(ingest del módulo 08 — Containers, ECS y ECR: **bloque nuevo, el 7 — Containers**, que se ubica **después de observabilidad y antes de IaC**. Va después del 6 y no pegado a cómputo (bloque 4) porque ECS reusa casi todo lo anterior: [[virtualization]] y [[EC2]] (bloque 4), ENIs y security groups (bloque 3), roles (bloque 2), y [[CloudWatchLogs]] + el daemon de [[XRay]] como [[sidecar]] (bloque 6). IaC pasa a ser el bloque 8. Anterior, 2026-09-24: ingest del módulo 07 — Monitoring and logging: [[XRay]] entra al Bloque 6 **entre Logs y CloudTrail**, cerrando las tres patas de la observabilidad —métricas, logs, trazas— antes de pasar a auditoría; [[vpc-flow-logs]] no se mueve del Bloque 3, porque se entiende por los firewalls, pero su lectura profunda suma 07.08. Anterior, 2026-09-22: ingest de VPC 05.09–05.13 y del módulo 06 — EC2. Dos cambios de orden, no solo agregados: **[[storage-types]] se adelanta al Bloque 4**, porque es prerequisito tanto de EBS como de S3 y hasta ahora el bloque de S3 lo daba por sabido; y el **Bloque 4 deja de ser una sola página** para convertirse en el más largo de la guía, con cómputo y almacenamiento en bloque juntos. El Bloque 3 suma las cuatro páginas nuevas de VPC)*
+**Páginas cubiertas:** 51 (47 de estudio + 4 mapas de dominio DVA-C02) + 98 términos de glosario (transversales) + 2 cheat sheets de repaso
 
 ---
 
@@ -103,7 +103,19 @@
 
 > 📖 Lectura profunda: [[01.11 CloudWatch — Basics]] · [[03.12 CloudWatch Logs]] · [[07.00 Monitoring and logging — Índice|Módulo 07 completo (07.01–07.08: arquitectura de CloudWatch, datos, resolution/retention, alarms, arquitectura de Logs, subscriptions y agregación, X-Ray, flow logs)]] · [[03.13 CloudTrail]] · [[03.14 Precios]]
 
-## Bloque 7 — Infraestructura como código
+## Bloque 7 — Containers
+
+*Del "una VM por app" al "un proceso aislado por app": qué es un container, cómo lo orquesta AWS y dónde se guardan las images. Pesa en DVA por los roles de ECS y las estrategias de deployment.*
+
+1. [[containers]] — VM vs container, images como layers read-only + R/W layer, Dockerfile, registry. *Primero, porque todo lo que sigue da por sabido qué es una image. Se apoya en [[virtualization]] (bloque 4).*
+2. [[ECS]] — cluster, task definition, service, los tres roles, scaling en dos capas, rolling vs blue/green. *El corazón del bloque; necesita IAM roles (bloque 2), ENIs y SGs (bloque 3) y CloudWatch Logs / X-Ray (bloque 6).*
+3. [[ecs-ec2-vs-fargate]] — los dos modos de cluster, networking (`awsvpc` vs `bridge`) y costos. *Inmediatamente después de ECS: es la decisión de examen del bloque, y usa [[ec2-purchase-options]].*
+4. [[ECR]] — el registry: repositories, tags, scanning, repository policies, push. *Después de ECS porque su gotcha principal (quién hace el pull) solo se entiende sabiendo qué es el task execution role.*
+5. [[EKS]] — Kubernetes 101 y Kubernetes managed. *Al final: se entiende por contraste con ECS (IRSA ↔ task role, Fargate profiles ↔ Fargate). Para DVA pesa menos que ECS.*
+
+> 📖 Lectura profunda: [[08.00 Containers, ECS y ECR — Índice|Módulo 08 completo (08.01–08.10: containers, images y registry, demo de Docker en EC2, ECS concepts, cluster types, EC2 vs ECS vs Fargate, demo de Fargate, ECR, Kubernetes 101, EKS)]]
+
+## Bloque 8 — Infraestructura como código
 
 1. [[CloudFormation]] — templates y secciones. *Va último por ahora: declara recursos de todos los bloques anteriores. Página inicial, se ampliará con el curso.*
 
@@ -113,8 +125,8 @@
 
 ## Sugerencia de ruta
 
-- **Si arrancás de cero**: bloques en orden, 1 → 7.
-- **Si ya viste el curso** (este material sale de tus notas): usá los bloques como checklist de repaso y saltá directo a las páginas de comparación ([[s3-storage-classes]], [[s3-encryption]], [[alias-vs-cname]], [[security-groups-vs-nacls]], [[nat-gateway-vs-nat-instance]], [[gateway-vs-interface-endpoint]], [[ebs-volume-types]], [[instance-store-vs-ebs]], [[ec2-purchase-options]], [[horizontal-vs-vertical-scaling]]) + las secciones "Gotchas" de cada página, que es donde vive el jugo de examen.
+- **Si arrancás de cero**: bloques en orden, 1 → 8.
+- **Si ya viste el curso** (este material sale de tus notas): usá los bloques como checklist de repaso y saltá directo a las páginas de comparación ([[s3-storage-classes]], [[s3-encryption]], [[alias-vs-cname]], [[security-groups-vs-nacls]], [[nat-gateway-vs-nat-instance]], [[gateway-vs-interface-endpoint]], [[ebs-volume-types]], [[instance-store-vs-ebs]], [[ec2-purchase-options]], [[horizontal-vs-vertical-scaling]], [[ecs-ec2-vs-fargate]]) + las secciones "Gotchas" de cada página, que es donde vive el jugo de examen.
 - **Última pasada antes del examen**: los dos cheat sheets, [[vpc-cheat-sheet]] y [[ec2-cheat-sheet]]. **No están en la secuencia** — no enseñan nada nuevo, condensan lo ya leído en tablas de "escenario → respuesta" y listas de números. Leerlos antes de estudiar el tema no sirve.
 - **Práctica activa**: al terminar un bloque, pedí un **quiz** ("quiz bloque 2") para repasar en activo lo que acabás de leer.
 

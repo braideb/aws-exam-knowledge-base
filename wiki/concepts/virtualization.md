@@ -4,7 +4,7 @@ category: concept
 tags: [ec2, virtualizacion, hypervisor, nitro, performance]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.01 Virtualization 101.md"]
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # Virtualización
@@ -61,4 +61,4 @@ Este tema **no se pregunta directamente** en el DVA-C02: es el andamiaje concept
 
 ## Ver también
 
-[[EC2]] · [[hypervisor]] · [[enhanced-networking]] · [[nitro]] · [[iaas]] · [[shared-responsibility-model]]
+[[EC2]] · [[containers]] (el paso siguiente: aislar apps sin un OS por app) · [[hypervisor]] · [[enhanced-networking]] · [[nitro]] · [[iaas]] · [[shared-responsibility-model]]

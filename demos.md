@@ -2,8 +2,8 @@
 
 > Índice de todas las **demos prácticas** del curso (learn.cantrill.io), extraídas de las notas de `raw/notas curso mejorado/`. Cada demo linkea a la página wiki relacionada. El LLM lo actualiza cuando se ingestan notas nuevas con demos.
 
-**Última actualización:** 2026-09-24
-**Total de demos:** 40
+**Última actualización:** 2026-09-28
+**Total de demos:** 42
 
 ---
 
@@ -79,6 +79,13 @@
 | KMS — Encrypting the battleplans with KMS | https://learn.cantrill.io/courses/1101194/lectures/25997329 | [[KMS]] |
 | Object Encryption and Role Separation | https://learn.cantrill.io/courses/1101194/lectures/25997332 | [[s3-encryption]] |
 
+## Containers
+
+| Demo | Link | Página wiki |
+|---|---|---|
+| Creating "container of cats" Docker image | https://learn.cantrill.io/courses/1101194/lectures/36184903 | [[containers]] |
+| Deploying "container of cats" using Fargate | https://learn.cantrill.io/courses/1101194/lectures/36185027 | [[ECS]] |
+
 ## Monitoreo e IaC
 
 | Demo | Link | Página wiki |
@@ -96,3 +103,5 @@ La nota `04 S3.md` lista demos que el curso menciona pero que quedaron **pendien
 De la **Instalación manual de WordPress**, la **Parte 2** quedó en las notas como link sin contenido transcrito (ver [[06.16 Demostración - Instalación manual de WordPress]]).
 
 Las secciones nuevas de VPC (05.09–05.13: endpoints, flow logs, Lambda en VPC, peering y cheat sheet) **no traen demos**. Del módulo 07 (Monitoring and logging), la única demo es la de Lambda & X-Ray.
+
+Del módulo 08 (Containers), la demo de **Docker en EC2** tiene los comandos transcritos (build, run, push a Docker Hub; ver [[08.03 Demostración - Container of cats (Docker en EC2)]]). La de **Fargate** solo tiene el link y una descripción, sin pasos (ver [[08.07 Demostración - Container of cats en Fargate]]).

@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, s3, kms, seguridad, roles]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/doc oficial/Creating an access point - Amazon Simple Storage Service.md", "raw/doc oficial/Policies and permissions in AWS Identity and Access Management - AWS Identity and Access Management.md", "raw/doc oficial/Using server-side encryption with AWS KMS keys (SSE-KMS) - Amazon Simple Storage Service.md"]
-updated: 2026-09-24
+updated: 2026-09-28
 ---
 
 # Cross-Account
@@ -23,7 +23,7 @@ Patrón de acceso donde una identidad de la Cuenta A accede a un recurso de la C
 - [[iam-policy-evaluation]] — identity + resource policy: unión en misma cuenta, **intersección obligatoria** en cross-account
 - [[confused-deputy]], [[trust-policy]] — el [[external-id|External ID]] como defensa en escenarios cross-account con terceros
 - [[CloudWatchLogs]] — agregación de logs multi-cuenta con un destination + destination policy ([[subscription-filter]])
-- También en: [[dva-security]] · [[s3-encryption]]
+- También en: [[dva-security]] · [[s3-encryption]] · [[ECR]]
 
 ## Dato de examen
 

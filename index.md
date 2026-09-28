@@ -2,9 +2,9 @@
 
 > El LLM mantiene este archivo actualizado en cada ingest. Leer primero al responder queries.
 
-**Total de páginas:** 137 (46 de conocimiento + 89 términos de glosario + 2 de examen)
-**Fuentes ingestadas:** notas del curso **completas (96/96 secciones, módulos 01–07)** + 86 clippings de doc oficial
-**Última actualización:** 2026-09-24
+**Total de páginas:** 151 (51 de conocimiento + 98 términos de glosario + 2 de examen)
+**Fuentes ingestadas:** notas del curso **completas (106/106 secciones, módulos 01–08)** + 86 clippings de doc oficial
+**Última actualización:** 2026-09-28
 
 ---
 
@@ -25,6 +25,9 @@
 | [[CloudWatchLogs]] | CloudWatch Logs | Log groups/streams, metric filters, retención, export a S3, subscriptions, agregación multi-cuenta |
 | [[XRay]] | AWS X-Ray | Distributed tracing: trace/segments/subsegments, service map, integración por servicio, annotations vs metadata |
 | [[CloudTrail]] | CloudTrail | Event history, trails, tipos de evento, global service events |
+| [[ECS]] | Elastic Container Service | Cluster, task/container definitions, service, los 3 roles, scaling en dos capas, placement, rolling vs blue/green |
+| [[ECR]] | Elastic Container Registry | Registry/repository/tag, tag immutability, repository policy, scanning (Inspector), lifecycle policies, push |
+| [[EKS]] | Elastic Kubernetes Service | Kubernetes 101 (pods, control plane, nodes), nodes self-managed/managed/Fargate, IRSA/Pod Identity, arquitectura de red |
 | [[CloudFront]] | CloudFront | CDN, OAC, signed URLs (inicial) |
 | [[EventBridge]] | EventBridge | Hub de eventos, integración S3 (inicial) |
 
@@ -51,6 +54,7 @@
 | [[virtualization]] | De la binary translation a SR-IOV y Nitro; por qué el cifrado de EBS no pesa |
 | [[ec2-instance-types]] | Las cinco categorías y el esquema de nombres `R5dn.8xlarge` |
 | [[ec2-instance-metadata]] | IMDS, `169.254.169.254`, credenciales del role, IMDSv1 vs IMDSv2 y el SSRF |
+| [[containers]] | VM vs container, image = layers read-only + R/W layer, Dockerfile, registry |
 
 ---
 
@@ -79,8 +83,14 @@ Un archivo por **término**: definición corta y atómica de la jerga que aparec
 **Cómputo y virtualización**
 [[nitro]] · [[enhanced-networking]] · [[ebs-optimized]] · [[host-affinity]] · [[golden-ami]]
 
+**Containers**
+[[task-role]] · [[sidecar]] · [[dynamic-port-mapping]] · [[capacity-provider]] · [[irsa]]
+
 **Arquitectura**
-[[idempotency]] · [[stateless]]
+[[idempotency]] · [[stateless]] · [[vendor-lock-in]]
+
+**Deployment y scaling**
+[[rolling-deployment]] · [[blue-green-deployment]] · [[target-tracking-scaling]]
 
 **Redes y DNS**
 [[cidr]] · [[zone-apex]] · [[ttl]] · [[public-subnet]] · [[longest-prefix-match]] · [[eni]] · [[elastic-ip]] · [[ip-masquerading]] · [[egress-only-internet-gateway]] · [[bastion-host]] · [[dedicated-tenancy]] · [[privatelink]] · [[prefix-list]] · [[endpoint-policy]] · [[transit-gateway]] · [[edge-to-edge-routing]] · [[traffic-mirroring]]
@@ -110,9 +120,9 @@ Identificados en las páginas actuales, todavía sin entrada — se van agregand
 
 | Página | Dominio | Examen | Peso | Cobertura actual |
 |--------|---------|--------|------|------------------|
-| [[dva-development]] | Development with AWS Services | DVA-C02 | 32% | ⚠️ Parcial — Lambda solo por el lado de red ([[lambda-in-vpc]]); faltan la página de Lambda, API GW, DynamoDB, SQS/SNS |
-| [[dva-security]] | Security | DVA-C02 | 26% | ✅ Fuerte — reforzada con IMDSv2 y cifrado de EBS; falta Cognito, Secrets Manager |
-| [[dva-deployment]] | Deployment | DVA-C02 | 24% | ⚠️ Mínima — ya cubre AMI baking; faltan Code*, SAM, Beanstalk |
+| [[dva-development]] | Development with AWS Services | DVA-C02 | 32% | ⚠️ Parcial — Lambda solo por el lado de red ([[lambda-in-vpc]]); containers con [[ECS]]; faltan la página de Lambda, API GW, DynamoDB, SQS/SNS |
+| [[dva-security]] | Security | DVA-C02 | 26% | ✅ Fuerte — reforzada con IMDSv2, cifrado de EBS y los roles de ECS/EKS; falta Cognito, Secrets Manager |
+| [[dva-deployment]] | Deployment | DVA-C02 | 24% | ⚠️ Parcial — AMI baking, images en ECR y rolling vs blue/green en ECS; faltan Code* como servicios, SAM, Beanstalk |
 | [[dva-troubleshooting]] | Troubleshooting and Optimization | DVA-C02 | 18% | ✅ Fuerte — reforzada con flow logs, status checks, créditos de EBS y el módulo 07 (X-Ray, subscriptions, resolution); faltan Logs Insights y EMF |
 
 ### DOP-C02 — AWS Certified DevOps Engineer – Professional
@@ -142,6 +152,7 @@ Identificados en las páginas actuales, todavía sin entrada — se van agregand
 | [[instance-store-vs-ebs]] | Efímero vs persistente + la escalera de IOPS hasta el corte de los 260.000 |
 | [[ec2-purchase-options]] | On-Demand / Spot / Reserved / Savings Plans / Dedicated / Capacity Reservations |
 | [[horizontal-vs-vertical-scaling]] | Downtime, techo, granularidad y el requisito de sesiones off-host |
+| [[ecs-ec2-vs-fargate]] | Los dos modos de cluster de ECS: qué administrás, qué pagás, placement, `awsvpc` vs `bridge`, cuándo elegir cada uno |
 
 ---
 
@@ -169,8 +180,9 @@ Estructura: un archivo por sección (`NN.MM Título.md`) con navegación, + índ
 - `05 Virtual private cloud (VPC) Basics/` (13 secciones) — VPC sizing, custom VPC, subnets, routing e IGW, stateful vs stateless, NACLs, security groups, NAT Gateway *(05.01–05.08, ingestadas 2026-09-19)*; VPC endpoints, flow logs, Lambda en VPC, peering y cheat sheet *(05.09–05.13, ingestadas 2026-09-22)*
 - `06 Elastic Compute Cloud (EC2)/` (24 secciones, segmentadas e **ingestadas 2026-09-22**) — virtualización, arquitectura y resiliencia, instance types, storage refresh, EBS y sus tipos de volumen, instance store, snapshots y FSR, cifrado, ENI/IPs/DNS, Elastic IP, AMI, purchase options, status checks, scaling, IMDS, + 2 demos con comandos
 - `07 Monitoring and logging/` (8 secciones, segmentadas e **ingestadas 2026-09-24**) — arquitectura de CloudWatch, namespace/datapoint/metric/dimensions, resolution/retention/statistics, alarms, arquitectura de CloudWatch Logs, subscriptions y agregación, X-Ray, VPC Flow Logs
+- `08 Containers, ECS y ECR/` (10 secciones, segmentadas e **ingestadas 2026-09-28**) — virtualización vs containers, images/layers/registry, demo de Docker en EC2, ECS concepts y cluster types, EC2 vs ECS vs Fargate, demo de Fargate, ECR, Kubernetes 101, EKS
 
-> ✅ **Las 96 secciones están ingestadas.** El módulo **07** se ingestó el **2026-09-24**. El ingest del **2026-09-22** saldó las dos deudas que quedaban: VPC 05.09–05.13 y el módulo 06 completo. Antes: el módulo **05 (05.01–05.08)** se ingestó el 2026-09-19; los módulos **02, 03 y 04** fueron expandidos por el humano el 2026-07-23/24 e ingestados el 2026-07-25; el módulo 01 se ingestó el 2026-07-23. El próximo material tiene que venir de módulos nuevos del curso (08+) o de clippings nuevos. `raw/definiciones/` existe pero está **vacía**.
+> ✅ **Las 106 secciones están ingestadas.** El módulo **08** se ingestó el **2026-09-28**; el **07**, el **2026-09-24**. El ingest del **2026-09-22** saldó las dos deudas que quedaban: VPC 05.09–05.13 y el módulo 06 completo. Antes: el módulo **05 (05.01–05.08)** se ingestó el 2026-09-19; los módulos **02, 03 y 04** fueron expandidos por el humano el 2026-07-23/24 e ingestados el 2026-07-25; el módulo 01 se ingestó el 2026-07-23. El próximo material tiene que venir de módulos nuevos del curso (09+) o de clippings nuevos. `raw/definiciones/` existe pero está **vacía**.
 
 Cada página wiki cita en `sources` los **segmentos específicos** que la alimentan.
 
@@ -183,6 +195,8 @@ Complementan las notas con límites numéricos, permisos exactos y features no c
 - 37 clippings ingestados 2026-09-19 (tercer lote, **Amazon VPC**): qué es y cómo funciona, connectivity options, CIDR blocks/IP addressing/subnets, DNS (Route 53 Resolver, atributos), DHCP option sets (3), route tables y prioridad de rutas, internet gateway, NAT devices/NAT gateways/regional NAT/NAT64/NAT instance, comparativa NAT, security groups (8), NACLs, infrastructure security.
 
 > ⚠️ **No hay clippings de EC2 ni de EBS.** El ingest del 2026-09-22 se apoyó **solo en las notas del curso**, sin contraste contra doc oficial. Las páginas de EC2/EBS marcan con `⚠️ Outdated` lo que se sabe desactualizado (IMDSv2, cobro de IPv4 públicas, auto-recovery por defecto, generaciones de instance types), pero conviene traer clippings de Amazon EC2 y EBS para cruzar límites numéricos.
+
+> ⚠️ **Tampoco hay clippings de ECS, ECR ni EKS:** [[ECS]], [[ECR]], [[EKS]] y [[ecs-ec2-vs-fargate]] salen solo del curso (módulo 08) y marcan aparte lo que no viene de la nota.
 
 > ⚠️ **Tampoco hay clippings de X-Ray, ni de las subscriptions/export de CloudWatch Logs.** [[XRay]] sale solo del curso (07.07); los complementos que no vienen de la slide (daemon UDP 2000, sampling, annotations) están marcados como tales.
 

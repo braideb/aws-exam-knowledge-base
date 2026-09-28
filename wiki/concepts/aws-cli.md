@@ -4,7 +4,7 @@ category: concept
 tags: [cli, credenciales, profiles, acceso-programatico, sdk]
 exam: [DVA-C02, DOP-C02, SAA-C03]
 sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.05 Demostración - AWS CLI y perfiles.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md"]
-updated: 2026-07-24
+updated: 2026-09-28
 ---
 
 # AWS CLI y acceso programático
@@ -41,7 +41,7 @@ El primero que aparece gana — explica la mayoría de los "usa las credenciales
 2. **Variables de entorno** (`AWS_ACCESS_KEY_ID`, `AWS_PROFILE`)
 3. `~/.aws/credentials`
 4. `~/.aws/config`
-5. Credenciales de contenedor (ECS task role)
+5. Credenciales de contenedor ([[task-role|ECS task role]])
 6. **[[instance-profile|Instance profile]]** de [[EC2]] (rol vía IMDS)
 
 ## Patrones recomendados (examen)

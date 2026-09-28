@@ -4,7 +4,7 @@ category: glossary
 tags: [storage, ec2, instance-store]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.04 Storage Refresh.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.09 Instance Store Volumes.md"]
-updated: 2026-09-23
+updated: 2026-09-28
 ---
 
 # Ephemeral storage
@@ -20,7 +20,7 @@ Describe la **durabilidad**, no la forma de conectarse. En EC2 el caso es el **i
 - [[storage-types]] — efímero vs persistente
 - [[instance-store-vs-ebs]] — el eje de la decisión
 - [[EC2]] — ciclo de vida de la instancia
-- También en: [[ec2-cheat-sheet]] · [[global-infrastructure]]
+- También en: [[ec2-cheat-sheet]] · [[global-infrastructure]] · [[EKS]]
 
 ## Dato de examen
 

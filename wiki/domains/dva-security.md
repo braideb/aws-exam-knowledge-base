@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, security, iam, cifrado, autenticacion]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # DVA-C02 · Dominio 2 — Security
@@ -43,10 +43,14 @@ Implementar autenticación/autorización para las apps (IAM, roles, [[federation
 | Cifrado de volúmenes y snapshots (DEK por volumen) | [[EBS]] | ✅ |
 | Acceso privado a servicios y [[endpoint-policy\|endpoint policies]] | [[vpc-endpoints]] | ✅ |
 | Filtrado de red: SG vs NACL, diagnóstico con flow logs | [[security-groups-vs-nacls]], [[vpc-flow-logs]] | ✅ |
+| **Permisos de containers**: [[task-role\|task role]] vs task execution role vs container instance role; [[irsa\|IRSA / Pod Identity]] en EKS | [[ECS]], [[EKS]] | ✅ solo curso |
+| Seguridad de images: repository policies, image scanning (Inspector), tag immutability | [[ECR]] | ✅ solo curso |
 
 ## Servicios más importantes para este dominio
 
 [[IAM]], [[KMS]], [[S3]], [[Organizations]] — todos con página.
+
+> 🔐 **El gotcha de seguridad del módulo 08:** en [[ECS]] hay **tres roles** y el examen los mezcla. El código de la app usa el **task role**. El pull de la image, el envío de logs y la lectura de secrets usa el **task execution role**. En EC2 mode, registrar la instancia en el cluster usa el **container instance role**. Nunca se le dan permisos a la app vía el rol de la instancia. En EKS la misma idea es IRSA / Pod Identity, en vez del role del node.
 
 > 🔐 **El gotcha de seguridad más rentable del ingest de EC2:** si una app web en una instancia tiene un **SSRF**, con **IMDSv1** alcanza para robar las credenciales temporales del IAM role. La mitigación esperada en el examen es **exigir IMDSv2** (`HttpTokens: required`), que obliga a un `PUT` con header — algo que un SSRF no puede armar. Ver [[ec2-instance-metadata]].
 

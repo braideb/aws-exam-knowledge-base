@@ -4,7 +4,7 @@ category: service
 tags: [iam, seguridad, users, groups, roles, sts, federacion, access-keys]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.03 IAM — Conceptos básicos.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.02 IAM Users.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.04 Restricciones y datos útiles de IAM.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.05 IAM Groups.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.06 IAM Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.08 Service-Linked Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.09 Security Token Service (STS).md", "raw/doc oficial/IAM users - AWS Identity and Access Management.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/doc oficial/Temporary security credentials in IAM - AWS Identity and Access Management.md", "raw/doc oficial/Using AWS Identity and Access Management Access Analyzer - AWS Identity and Access Management.md"]
-updated: 2026-09-24
+updated: 2026-09-28
 ---
 
 # IAM — Identity and Access Management
@@ -95,7 +95,7 @@ Datos de STS de la doc oficial: es un servicio **global** y **gratis** (endpoint
 |---|---|---|
 | **`AssumeRole`** | Una identidad de AWS (user o role) | El caso general: misma cuenta, [[cross-account]], servicios |
 | **`AssumeRoleWithSAML`** | Identidad de un directorio corporativo | [[federation\|Federación]] empresarial (AD FS, Okta, Entra ID) |
-| **`AssumeRoleWithWebIdentity`** | Identidad de un proveedor OIDC | Login social, Cognito, y **los pods de EKS** |
+| **`AssumeRoleWithWebIdentity`** | Identidad de un proveedor OIDC | Login social, Cognito, y **los pods de EKS** ([[irsa\|IRSA]]) |
 | **`GetSessionToken`** | Un IAM user | Credenciales temporales **de sí mismo**, típicamente para cumplir MFA |
 | **`GetFederationToken`** | Un IAM user | Federar usuarios **sin rol**, con permisos acotados |
 | **`GetCallerIdentity`** | Cualquiera | "¿Quién soy?" — **no requiere permisos** |
@@ -120,7 +120,7 @@ Las tres primeras son las que hay que reconocer en el examen. `GetCallerIdentity
 
 Notas de cada uno que caen en el examen:
 
-- **(1) Es siempre el mismo patrón con nombres distintos**: *execution role* en Lambda, *[[instance-profile|instance profile]]* en EC2, *task role* en ECS, *service role* en CodeBuild o [[CloudFormation]]. Y **la aplicación no cambia nada**: los SDK recorren su cadena de credenciales y terminan tomando las del rol — migrar de access keys a rol suele ser **borrar la configuración de credenciales** y adjuntar el rol.
+- **(1) Es siempre el mismo patrón con nombres distintos**: *execution role* en Lambda, *[[instance-profile|instance profile]]* en EC2, *[[task-role|task role]]* en [[ECS]] ([[irsa|IRSA / Pod Identity]] en [[EKS]]), *service role* en CodeBuild o [[CloudFormation]]. Y **la aplicación no cambia nada**: los SDK recorren su cadena de credenciales y terminan tomando las del rol — migrar de access keys a rol suele ser **borrar la configuración de credenciales** y adjuntar el rol.
 - **(2) Break glass no es una feature de AWS**, es un **patrón**: rol con permisos elevados + trust policy que dice quién lo asume + fricción deliberada (MFA) + una **alerta automática** (Slack/PagerDuty) cada vez que alguien lo asume, para que "romper el vidrio" no pase desapercibido. Ventaja sobre dar permisos altos permanentes: el acceso **se vence solo** y [[CloudTrail]] registra tanto el `AssumeRole` como todo lo que se hizo después.
 - **(5) Object Owner**: cuando tus usuarios suben objetos al bucket del partner **asumiendo un rol de la cuenta del partner**, los objetos quedan siendo **propiedad del partner** — así se evita el problema clásico de "subí un archivo al bucket de otro y ni el dueño puede leerlo" (ver [[S3]]).
 

@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, troubleshooting, optimization, monitoring, logging]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-09-24
+updated: 2026-09-28
 ---
 
 # DVA-C02 · Dominio 4 — Troubleshooting and Optimization
@@ -49,10 +49,13 @@ Diagnosticar y resolver problemas de aplicaciones: observabilidad (métricas, lo
 | [[iops\|IOPS]] aprovisionadas que no se alcanzan (tope por instancia) | [[ebs-optimized]], [[instance-store-vs-ebs]] | ✅ |
 | Lambda en VPC que falla con `ENILimitReached` o pierde internet | [[lambda-in-vpc]] | ✅ |
 | Optimización de costo de cómputo | [[ec2-purchase-options]] | ✅ |
+| **Task de ECS que no arranca**: no hace pull de la image o no manda logs (task execution role), falta capacidad en EC2 mode ([[capacity-provider]]), health checks que fallan con [[dynamic-port-mapping]] | [[ECS]], [[ecs-ec2-vs-fargate]] | ✅ solo curso |
+| Tracing en containers: daemon de X-Ray como [[sidecar]] | [[XRay]], [[ECS]] | ✅ |
+| Optimización de costo de containers: right-sizing de la task, Fargate Spot, `binpack` | [[ecs-ec2-vs-fargate]] | ✅ |
 
 ## Servicios más importantes para este dominio
 
-[[CloudWatch]], [[CloudWatchLogs]], [[XRay]], [[CloudTrail]], [[EventBridge]] — todos con página. Se suman [[EC2]] y [[EBS]] como objeto de diagnóstico.
+[[CloudWatch]], [[CloudWatchLogs]], [[XRay]], [[CloudTrail]], [[EventBridge]] — todos con página. Se suman [[EC2]] y [[EBS]] como objeto de diagnóstico, y [[ECS]] para containers.
 
 > **Las tres patas de la observabilidad:** métricas ([[CloudWatch]]: *cuánto*), logs ([[CloudWatchLogs]]: *qué pasó*) y trazas ([[XRay]]: *por dónde pasó la request y cuánto tardó cada tramo* — [[distributed-tracing]]). "Quién hizo qué" no es ninguna de las tres: es auditoría, [[CloudTrail]].
 

@@ -4,7 +4,7 @@ category: service
 tags: [ec2, compute, iaas, ami, instancias, ebs, eni, imds]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.05 Elastic Compute Cloud (EC2) — Basics.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.06 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.07 Conectarse a EC2.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.02 EC2 Architecture and Resilience.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.14 Network Interfaces (ENI), IPs y DNS.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.15 Elastic IP.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.17 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.22 Instance Status Checks y Auto Recovery.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.16 Demostración - Instalación manual de WordPress.md"]
-updated: 2026-09-23
+updated: 2026-09-28
 ---
 
 # EC2 — Elastic Compute Cloud
@@ -184,6 +184,7 @@ Ante un fallo de System Status, EC2 puede hacer **auto-recovery**: mueve la inst
 - [[KMS]] — cifrado de los volúmenes EBS.
 - [[CloudWatch]] — métricas nativas (CPU, red) y los status checks; RAM/disco requieren el **CloudWatch Agent**.
 - [[S3]] — donde viven los snapshots de EBS y las AMIs.
+- [[ECS]] — en EC2 mode, las instancias son los container hosts (container instances) del cluster; para correr [[containers]] sin administrar instancias está Fargate ([[ecs-ec2-vs-fargate]]).
 
 ## Gotchas y trampas del examen
 

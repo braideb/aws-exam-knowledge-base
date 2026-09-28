@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, development, serverless, apis, sdk]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # DVA-C02 · Dominio 1 — Development with AWS Services
@@ -39,10 +39,11 @@ Desarrollar código para aplicaciones hospedadas en AWS: arquitecturas event-dri
 | Credenciales del SDK dentro de una instancia | [[ec2-instance-metadata]] | ✅ |
 | Requisitos de recursos (memoria, cores) al elegir dónde corre el código | [[ec2-instance-types]] | ✅ |
 | Apps [[stateless\|stateless]] y sesiones off-host | [[horizontal-vs-vertical-scaling]] | ✅ |
+| Microservicios en containers: task definition, services, [[sidecar\|sidecars]], credenciales del SDK vía [[task-role\|task role]] | [[containers]], [[ECS]] | ✅ solo curso |
 
 ## Servicios más importantes para este dominio
 
-Presentes en la wiki: [[S3]], [[EventBridge]], [[KMS]], [[EC2]], [[EBS]].
+Presentes en la wiki: [[S3]], [[EventBridge]], [[KMS]], [[EC2]], [[EBS]], [[ECS]].
 
 > **Lo que aporta el ingest de VPC al Task 2 (Lambda):** las tres configuraciones posibles de una función respecto a la red, la trampa de la subnet pública (la ENI de una Lambda **nunca** recibe IP pública), los permisos de `AWSLambdaVPCAccessExecutionRole` y el error `ENILimitReached` por agotamiento de IPs. Ver [[lambda-in-vpc]].
 

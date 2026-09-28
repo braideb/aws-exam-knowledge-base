@@ -4,7 +4,7 @@ category: comparison
 tags: [ec2, costos, spot, reserved, savings-plans, dedicated]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.18 EC2 Purchase Options - On-Demand y Spot.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.19 Reserved Instances y Savings Plans.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.20 Dedicated Hosts y Dedicated Instances.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.21 Capacity Reservations.md"]
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # EC2 Purchase Options
@@ -56,7 +56,7 @@ Cobertura **parcial**: una reserva de `T3.large` aplicada a una `T3.xlarge` cubr
 
 Igual que una reserva, pero el compromiso es de **gasto por hora**, no de tipo de instancia. Mucho más flexible.
 
-- **Compute Savings Plan** — hasta **66%**, aplica a **EC2, Fargate y Lambda**.
+- **Compute Savings Plan** — hasta **66%**, aplica a **EC2, Fargate y Lambda** (Fargate: ver [[ecs-ec2-vs-fargate]], que además tiene Fargate Spot).
 - **EC2 Savings Plan** — hasta **72%**, solo EC2, con flexibilidad de size y OS.
 
 Se cobra la tarifa reducida hasta agotar el monto comprometido por hora; lo que exceda va a precio On-Demand.

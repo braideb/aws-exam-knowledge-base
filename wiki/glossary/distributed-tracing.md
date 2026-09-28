@@ -4,7 +4,7 @@ category: glossary
 tags: [x-ray, tracing, observabilidad, microservices]
 exam: [DVA-C02, DOP-C02]
 sources: ["raw/notas curso mejorado/07 Monitoring and logging/07.07 AWS X-Ray — Service Map.md"]
-updated: 2026-09-24
+updated: 2026-09-28
 ---
 
 # Distributed Tracing
@@ -19,6 +19,7 @@ En una aplicación distribuida una request pasa por varios servicios; cada uno p
 
 - [[XRay]] — el servicio
 - [[dva-troubleshooting]] — "interpretar traces" y "annotations para tracing" en los task statements
+- También en: [[sidecar]]
 
 ## Dato de examen
 

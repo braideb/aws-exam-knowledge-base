@@ -118,3 +118,16 @@
 - [[07.06 CloudWatch Logs — Subscriptions y Aggregation|CloudWatch Logs — Subscriptions y Aggregation]]
 - [[07.07 AWS X-Ray — Service Map|AWS X-Ray — Service Map]]
 - [[07.08 VPC Flow Logs|VPC Flow Logs]]
+
+## [[08.00 Containers, ECS y ECR — Índice|Módulo 08 — Containers, ECS y ECR]] (10 secciones)
+
+- [[08.01 Containers — Virtualización vs Containerization|Containers — Virtualización vs Containerization]]
+- [[08.02 Docker Images, Containers y Registries|Docker Images, Containers y Registries]]
+- [[08.03 Demostración - Container of cats (Docker en EC2)|Demostración: Container of cats (Docker en EC2)]]
+- [[08.04 ECS — Concepts|ECS — Concepts]]
+- [[08.05 ECS — Cluster Types (EC2 y Fargate)|ECS — Cluster Types (EC2 y Fargate)]]
+- [[08.06 EC2 vs ECS (EC2) vs Fargate|EC2 vs ECS (EC2) vs Fargate]]
+- [[08.07 Demostración - Container of cats en Fargate|Demostración: Container of cats en Fargate]]
+- [[08.08 Elastic Container Registry (ECR)|Elastic Container Registry (ECR)]]
+- [[08.09 Kubernetes 101|Kubernetes 101]]
+- [[08.10 Elastic Kubernetes Service (EKS) 101|Elastic Kubernetes Service (EKS) 101]]
