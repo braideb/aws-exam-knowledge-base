@@ -312,3 +312,67 @@ Las cuatro páginas de servicio/comparación llevan ⚠️ "sin contraste con do
 **Resultado:** 239 imágenes, 199 en uso y **40 sin ninguna referencia**. Ninguna de las 40 estaba referenciada tampoco en el último commit (`git grep` en `HEAD`), así que no es una referencia borrada por accidente. Son capturas que se pegaron y nunca se embebieron, de 2026-06-27 a 2026-09-24. Incluyen las 6 que el lint del 09-24 ya había detectado (`…022643`, `…202850`, `…203416`, `…231906`, `…235801`, `…000304`). Aquel lint contaba menos porque no cubría las carpetas de `raw/`.
 
 **Eliminadas con `git rm`** (40): quedan **199 imágenes, todas en uso**. 0 embeds rotos después de borrar. Se pueden recuperar desde git mientras no se reescriba la historia (`git checkout HEAD -- "raw/assets/<nombre>"`).
+
+## [2026-09-30] update | Versión mejorada del módulo 09 — Advanced EC2
+
+**Pedido del humano:** crear la versión mejorada de `raw/notas curso/Advanced EC2.md` con el formato de los módulos anteriores.
+
+- Nueva carpeta `raw/notas curso mejorado/09 Advanced EC2/` con el índice del módulo y **13 secciones** (09.01–09.13), con navegación, links a la wiki y callouts de examen. El contenido no se resumió: se reorganizó en tablas. Se corrigieron typos ("desafiado" → "descifrado", "AMI banking" → "AMI baking") y se agregó una nota CMK → KMS key.
+- [[00 Índice general]] suma el módulo 09.
+
+## [2026-09-30] ingest | Módulo 09 — Advanced EC2 (09.01–09.13)
+
+**Fuentes:** las 13 secciones de `raw/notas curso mejorado/09 Advanced EC2/`. Sin clippings de doc oficial: lo que no viene del curso queda marcado como complemento.
+
+**Páginas nuevas (4):**
+- [[ec2-bootstrapping]] (concept): user data (`/latest/user-data`, solo en el primer launch, 16 KB, root/cloud-init, no seguro, si falla queda `running`), boot time to service time, bootstrapping vs AMI baking vs combinado.
+- [[SSMParameterStore]] (service): tipos, SecureString + KMS (`--with-decryption` + `kms:Decrypt`), jerarquías y `get-parameters-by-path`, versionado, tiers Standard/Advanced, parámetros públicos, `/aws/reference/secretsmanager/`.
+- [[parameter-store-vs-secrets-manager]] (comparison): la rotación como diferencia de examen.
+- [[placement-groups]] (comparison): cluster/spread/partition, límites de 7, 10 Gbps single-stream, topology-aware.
+
+**Páginas actualizadas:**
+- [[EC2]]: secciones de bootstrapping, placement groups y rendimiento de red/EBS; gotchas; demos de WordPress con user data.
+- [[IAM]]: escenario 1 en detalle (role → instance profile, CLI/CFN por separado, renovación vía STS, keys en disco que pisan al rol); demo de instance roles.
+- [[ec2-instance-metadata]]: user data por el mismo endpoint, token de 6 h, hop limit 1.
+- [[aws-cli]]: la trampa de las keys en la instancia.
+- [[CloudWatchLogs]]: CloudWatch Agent (los 3 requisitos, log group por archivo y stream por instancia, config en SSM); demos part 1/2.
+- [[CloudWatch]], [[EBS]], [[virtualization]]: una línea cada una.
+- [[ec2-cheat-sheet]]: puntos, números y escenarios del módulo 09, y 3 errores frecuentes nuevos.
+
+**Glosario:**
+- **Nuevos (5):** [[cloud-init]], [[fault-domain]], [[topology-aware]], [[ssrf]] (estaba suelto en IMDS/IAM/dominios) y [[hpc]].
+- **Actualizados:** [[enhanced-networking]] (ENA/Intel 82599 VF/EFA, requisito de cluster PG), [[ebs-optimized]] (on/off, default sin costo), [[instance-profile]] (CLI/CFN por separado), [[golden-ami]] (combinación 90/10) y [[blast-radius]] (spread PG).
+- `placement-group` sale del backlog **sin** entrada propia: lo cubre [[placement-groups]].
+
+**Dominios:**
+- [[dva-security]]: secret management (SecureString, doble permiso, rotación → Secrets Manager) y secretos fuera del user data. **Parameter Store sale de la lista de huecos.**
+- [[dva-deployment]]: bootstrapping vs baking y boot time to service time.
+- [[dva-troubleshooting]]: user data fallido, métricas de memoria con el agent, keys que pisan al rol, `kms:Decrypt` y red entre instancias.
+- [[dva-development]]: leer configuración desde el código.
+
+**Otros:**
+- [[index]]: 151 → **160** páginas (55 de conocimiento + 103 de glosario + 2 de examen); fuentes 119/119.
+- [[guia-estudio]]: **sin bloque nuevo**, el módulo se reparte por prerequisitos.
+  - Bloque 4: [[placement-groups]] (después de instance types) y [[ec2-bootstrapping]] (después del IMDS).
+  - Bloque 5: Parameter Store + la comparación, después de [[KMS]].
+  - Las lecturas profundas de 09.xx quedan repartidas en los bloques 2, 4, 5 y 6.
+- [[demos]]: +6 demos, 42 → **48** (sección nueva "EC2 avanzado").
+
+**Pendiente:** Secrets Manager como servicio (hoy solo existe la comparación), clippings de doc oficial de EC2/EBS/Systems Manager y un Auto Scaling que conecte AMI baking + user data con los launch templates.
+
+## [2026-10-01] lint | Revisión completa post-ingest del módulo 09
+
+**Estructura:** 0 links rotos y 0 imágenes rotas en `wiki/`, `raw/notas curso mejorado/`, [[index]], [[guia-estudio]], [[demos]] y este log; 0 páginas huérfanas; las 158 páginas de `wiki/` figuran en [[index]], y todas las que no son glosario ni cheat sheet figuran en [[guia-estudio]]; 0 pipes de alias sin escapar en tablas; frontmatter completo en todas. Las 13 secciones del módulo 09 están citadas en algún `sources:`.
+
+**Contradicciones numéricas:** 0. Revisados user data 16 KB, token de IMDSv2 6 h / 21.600 s, placement groups 7 instancias / 7 particiones por AZ, Parameter Store 10.000 / 4 KB / 8 KB y ENA 100 Gbps. La cadena de credenciales de [[aws-cli]] (6 pasos) y la de 09.03 (3 pasos simplificados) no se contradicen: las dos dejan el instance profile último.
+
+**Corregido:**
+- **Backlinks de glosario:** 5 links que faltaban en "Dónde aparece": [[enhanced-networking]] ← [[dva-troubleshooting]]; [[hpc]] ← [[EC2]] · [[ec2-cheat-sheet]]; [[topology-aware]] ← [[EC2]]; [[execution-role]] ← [[SSMParameterStore]].
+- **Detector de modificados:** [[arn]], [[aws-account]], [[global-infrastructure]] y [[s3-storage-classes]] seguían marcadas. **El fix que registró el lint del 09-28 nunca llegó a los archivos**: sus `updated:` seguían en 07-24, 09-22 y 09-19. Esta vez se abrió cada fuente y se comparó con su página (01.03, 02.01, 02.02, 03.03 y los clippings de root user, MFA, ARNs y S3 Lifecycle). **No hay contenido sin ingestar**, así que se pusieron en `updated: 2026-10-01`. El detector queda en **0 pendientes**.
+- [[global-infrastructure]]: "dominio de falla" ahora linkea a [[fault-domain]] (con su backlink).
+
+**Pendiente (decide el humano):**
+- **Temas sin página propia**, por cantidad de páginas que los mencionan: Lambda (37), DynamoDB (25), ELB/ALB (22), RDS (18), SQS (15), SNS (15), API Gateway (11), Auto Scaling (9), Direct Connect (8), Secrets Manager (6), EFS (6), CodeBuild / CodeDeploy / CodePipeline (5), Beanstalk (4) y Cognito (3). Para DVA-C02 la prioridad sigue siendo **Lambda, DynamoDB y API Gateway**. Con el módulo 09 sube **Secrets Manager** (hoy solo existe como columna de [[parameter-store-vs-secrets-manager]]), y **Auto Scaling** pasa a ser el hueco que conecta AMI baking, user data y launch templates.
+- **Sin clippings de doc oficial** para EC2/EBS, Systems Manager, ECS/ECR/EKS ni X-Ray.
+- [[confused-deputy]] e [[idempotency]] siguen con `sources: []`.
+- Los problemas en `raw/` que reportaron lints anteriores (anclas en 05.09/05.12/05.13, etc.) siguen ahí: el LLM no edita `raw/` salvo pedido explícito.
