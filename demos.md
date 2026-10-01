@@ -2,8 +2,8 @@
 
 > Índice de todas las **demos prácticas** del curso (learn.cantrill.io), extraídas de las notas de `raw/notas curso mejorado/`. Cada demo linkea a la página wiki relacionada. El LLM lo actualiza cuando se ingestan notas nuevas con demos.
 
-**Última actualización:** 2026-09-28
-**Total de demos:** 42
+**Última actualización:** 2026-09-30
+**Total de demos:** 48
 
 ---
 
@@ -61,6 +61,17 @@
 | Shutdown, Terminate & Termination Protection | https://learn.cantrill.io/courses/1101194/lectures/27806479 | [[EC2]] |
 | Viendo los metadatos en una instancia EC2 | https://learn.cantrill.io/courses/1101194/lectures/27806481 | [[ec2-instance-metadata]] |
 
+## EC2 avanzado
+
+| Demo | Link | Página wiki |
+|---|---|---|
+| WordPress installation con user data — PART 1 | https://learn.cantrill.io/courses/1101194/lectures/27895409 | [[ec2-bootstrapping]] |
+| WordPress installation con user data — PART 2 (después de CloudFormation) | https://learn.cantrill.io/courses/1101194/lectures/29447330 | [[ec2-bootstrapping]] |
+| Using EC2 instance roles | https://learn.cantrill.io/courses/1101194/lectures/27895412 | [[IAM]] |
+| Parameter Store | https://learn.cantrill.io/courses/1101194/lectures/27895415 | [[SSMParameterStore]] |
+| Logging and metrics with CloudWatch Agent — PART 1 | https://learn.cantrill.io/courses/1101194/lectures/27895417 | [[CloudWatchLogs]] |
+| Logging and metrics with CloudWatch Agent — PART 2 | https://learn.cantrill.io/courses/1101194/lectures/29448612 | [[CloudWatchLogs]] |
+
 ## S3
 
 | Demo | Link | Página wiki |
@@ -105,3 +116,5 @@ De la **Instalación manual de WordPress**, la **Parte 2** quedó en las notas c
 Las secciones nuevas de VPC (05.09–05.13: endpoints, flow logs, Lambda en VPC, peering y cheat sheet) **no traen demos**. Del módulo 07 (Monitoring and logging), la única demo es la de Lambda & X-Ray.
 
 Del módulo 08 (Containers), la demo de **Docker en EC2** tiene los comandos transcritos (build, run, push a Docker Hub; ver [[08.03 Demostración - Container of cats (Docker en EC2)]]). La de **Fargate** solo tiene el link y una descripción, sin pasos (ver [[08.07 Demostración - Container of cats en Fargate]]).
+
+Del módulo 09 (Advanced EC2), las demos de **Parameter Store** y del **CloudWatch Agent** tienen los comandos transcritos (ver [[09.05 Demostración - Parameter Store]] y [[09.07 Demostración - Logging y métricas con CloudWatch Agent]]). Las de **WordPress con user data** y **instance roles** solo tienen el link.

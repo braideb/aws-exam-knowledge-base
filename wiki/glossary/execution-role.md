@@ -20,7 +20,7 @@ Cuando Lambda invoca una función, asume ese role y le entrega a tu código [[te
 - [[lambda-in-vpc]] — necesita `AWSLambdaVPCAccessExecutionRole` para crear y borrar sus ENIs
 - [[IAM]] — escenarios de uso de roles
 - [[XRay]] — el execution role de una Lambda necesita `xray:PutTraceSegments` para enviar traces
-- También en: [[dva-development]] · [[dva-security]] · [[Organizations]] · [[ECS]] · [[task-role]]
+- También en: [[dva-development]] · [[dva-security]] · [[Organizations]] · [[ECS]] · [[task-role]] · [[SSMParameterStore]]
 
 ## Dato de examen
 

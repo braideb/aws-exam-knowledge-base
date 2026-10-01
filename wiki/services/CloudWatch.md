@@ -3,8 +3,8 @@ title: CloudWatch
 category: service
 tags: [cloudwatch, monitoring, metrics, alarms, dimensions, namespaces, resolution]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.11 CloudWatch — Basics.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/notas curso mejorado/07 Monitoring and logging/07.01 CloudWatch — Architecture Concepts.md", "raw/notas curso mejorado/07 Monitoring and logging/07.02 CloudWatch Data (Namespace, Datapoint, Metric, Dimensions).md", "raw/notas curso mejorado/07 Monitoring and logging/07.03 CloudWatch — Resolution, Retention y Statistics.md", "raw/notas curso mejorado/07 Monitoring and logging/07.04 CloudWatch Alarms.md", "raw/doc oficial/Metrics concepts - Amazon CloudWatch.md", "raw/doc oficial/Using Amazon CloudWatch alarms.md"]
-updated: 2026-09-24
+sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.11 CloudWatch — Basics.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/notas curso mejorado/07 Monitoring and logging/07.01 CloudWatch — Architecture Concepts.md", "raw/notas curso mejorado/07 Monitoring and logging/07.02 CloudWatch Data (Namespace, Datapoint, Metric, Dimensions).md", "raw/notas curso mejorado/07 Monitoring and logging/07.03 CloudWatch — Resolution, Retention y Statistics.md", "raw/notas curso mejorado/07 Monitoring and logging/07.04 CloudWatch Alarms.md", "raw/doc oficial/Metrics concepts - Amazon CloudWatch.md", "raw/doc oficial/Using Amazon CloudWatch alarms.md", "raw/notas curso mejorado/09 Advanced EC2/09.06 Logging en EC2 con CloudWatch Agent.md"]
+updated: 2026-09-30
 ---
 
 # CloudWatch
@@ -110,7 +110,7 @@ De la doc: existen **metric alarms, composite alarms** (combinan varias con AND/
 
 ## Gotchas y trampas del examen
 
-- "No veo la memoria RAM de mi EC2" → instalar el **CloudWatch Agent** (con su IAM role).
+- "No veo la memoria RAM de mi EC2" → instalar el **CloudWatch Agent** (con su IAM role). El interior de la instancia es opaco para CloudWatch; el agente unificado manda métricas del SO **y** logs ([[CloudWatchLogs]]).
 - Un datapoint ≠ un servidor: es una medición; las **dimensions** identifican la fuente.
 - Métrica custom con una dimensión por usuario/request → **explosión de cardinalidad y costo**; eso va a logs, no a métricas.
 - Alertar solo si CPU alta **Y** latencia alta → **composite alarm**.

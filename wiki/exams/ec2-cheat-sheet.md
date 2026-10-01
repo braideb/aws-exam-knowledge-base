@@ -3,13 +3,13 @@ title: EC2 y almacenamiento — Cheat sheet de examen
 category: exam
 tags: [ec2, ebs, storage, repaso, cheat-sheet, dva-c02]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.00 Elastic Compute Cloud (EC2) — Índice.md"]
-updated: 2026-09-24
+sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.00 Elastic Compute Cloud (EC2) — Índice.md", "raw/notas curso mejorado/09 Advanced EC2/09.00 Advanced EC2 — Índice.md"]
+updated: 2026-09-30
 ---
 
 # EC2 y almacenamiento — Cheat sheet de examen
 
-Destilado del módulo 06. A diferencia del de VPC, el curso no trae este resumen: está armado con los mismos criterios. Cada punto linkea a su página.
+Destilado de los módulos 06 (EC2) y 09 (Advanced EC2). A diferencia del de VPC, el curso no trae este resumen: está armado con los mismos criterios. Cada punto linkea a su página.
 
 ## Los puntos, uno por línea
 
@@ -24,7 +24,13 @@ Destilado del módulo 06. A diferencia del de VPC, el curso no trae este resumen
 - **Cifrado EBS:** [[envelope-encryption|envelope encryption]], **DEK única por volumen**, AES-256, **sin impacto de rendimiento**. No se puede descifrar. → [[EBS]]
 - **ENI:** lleva IPs, DNS y **security groups**. La IPv4 privada es fija; la pública **cambia con stop+start**. → [[EC2]]
 - **AMI:** **regional**, **no se edita**, privada por defecto. Borrarla **no borra sus snapshots**. → [[golden-ami]]
-- **IMDS:** `169.254.169.254`. Entrega las credenciales del role. **IMDSv2** es la defensa contra SSRF. → [[ec2-instance-metadata]]
+- **IMDS:** `169.254.169.254`. Entrega las credenciales del role. **IMDSv2** es la defensa contra [[ssrf|SSRF]]. → [[ec2-instance-metadata]]
+- **User data:** script que corre **como root, solo en el primer launch**, máximo 16 KB, **no es seguro**. Si falla, la instancia queda `running` igual. → [[ec2-bootstrapping]]
+- **Instance role:** se adjunta el **instance profile**; las credenciales llegan por el IMDS y STS las renueva. Las keys en disco **pisan** al rol. → [[IAM]]
+- **Parameter Store:** String / StringList / **SecureString** (KMS). Jerarquías, versionado, **sin rotación**. → [[SSMParameterStore]]
+- **CloudWatch Agent:** el interior de la instancia es opaco. Memoria, disco y logs del SO solo llegan con el agente + un rol. → [[CloudWatchLogs]]
+- **Placement groups:** cluster (rendimiento, 1 AZ) · spread (7 por AZ) · partition (7 particiones por AZ). → [[placement-groups]]
+- **Red:** [[enhanced-networking]] (SR-IOV, ENA 100 Gbps, EFA para HPC) · [[ebs-optimized]] (red dedicada para EBS, por defecto).
 - **Status checks:** *System* (el host) vs *Instance* (adentro). Auto-recovery mueve a otro host → **se pierde el instance store**. → [[EC2]]
 - **Escalado:** vertical = downtime + techo; horizontal = necesita app [[stateless]] + load balancer. → [[horizontal-vs-vertical-scaling]]
 
@@ -48,6 +54,14 @@ Destilado del módulo 06. A diferencia del de VPC, el curso no trae este resumen
 | Reserved — plazos | **1 o 3 años** |
 | Savings Plans — ahorro | Compute **66%** · EC2 **72%** |
 | IP del IMDS | **169.254.169.254** |
+| User data — tamaño máximo | **16 KB** |
+| IMDSv2 — TTL máx. del token / hop limit | **6 h** (21.600 s) / **1** |
+| Parameter Store Standard | **10.000** parámetros, **4 KB** (gratis) |
+| Parameter Store Advanced | **8 KB** + parameter policies |
+| Spread placement group | **7 instancias por AZ** |
+| Partition placement group | **7 particiones por AZ** |
+| Cluster PG — single-stream | **10 Gbps** (5 Gbps fuera) |
+| ENA / Intel 82599 VF | **100** / 10 Gbps |
 
 ## Escenario → respuesta
 
@@ -77,6 +91,16 @@ Destilado del módulo 06. A diferencia del de VPC, el curso no trae este resumen
 | Proteger esas credenciales de un SSRF | **IMDSv2** (`HttpTokens: required`) |
 | Usuarios que se deslogean al escalar | Sesiones **off-host** ([[stateless]]) |
 | Acceso admin sin abrir puertos ni llaves | **SSM Session Manager** |
+| Instancia lista para servir en el menor tiempo | **AMI baking** (+ user data para lo variable) |
+| Cambié el user data y reinicié: no pasó nada | Solo corre en el **primer launch** |
+| `running`, 2/2 checks, pero la app no responde | **User data fallido**: EC2 no lo valida |
+| Contraseña de la DB para la instancia | **Parameter Store SecureString** / Secrets Manager + instance role, **no** user data |
+| Rotación automática de credenciales de RDS | **Secrets Manager** ([[parameter-store-vs-secrets-manager]]) |
+| `AccessDenied` con `--with-decryption` | Falta **`kms:Decrypt`** sobre la key |
+| Métrica de **memoria** o **disco** de la instancia | **CloudWatch Agent** + rol `CloudWatchAgentServerPolicy` |
+| Mínima latencia entre nodos ([[hpc\|HPC]]) | **Cluster PG** + enhanced networking / **EFA** |
+| Pocas instancias críticas que no caigan juntas | **Spread PG** |
+| HDFS / HBase / Cassandra con cientos de nodos | **Partition PG** |
 
 ## Los errores que más se repiten
 
@@ -88,7 +112,10 @@ Destilado del módulo 06. A diferencia del de VPC, el curso no trae este resumen
 6. Creer que un **Savings Plan o una reserva regional garantizan capacidad**: solo dan descuento.
 7. Tomar el **precio máximo de Spot** como lo que se paga: es un techo.
 8. Querer **agregar instance store** a una instancia ya lanzada: solo se adjunta al lanzar.
+9. Pensar que el **user data se re-ejecuta** en cada reboot: corre solo en el primer launch.
+10. Elegir **Parameter Store** cuando el enunciado pide **rotación automática**: eso es Secrets Manager.
+11. Poner un **cluster PG en varias AZs**, o un **spread PG con más de 7 instancias por AZ**: ninguno de los dos se puede.
 
 ## Ver también
 
-[[EC2]] · [[EBS]] · [[ebs-volume-types]] · [[instance-store-vs-ebs]] · [[ec2-purchase-options]] · [[vpc-cheat-sheet]]
+[[EC2]] · [[EBS]] · [[ebs-volume-types]] · [[instance-store-vs-ebs]] · [[ec2-purchase-options]] · [[ec2-bootstrapping]] · [[placement-groups]] · [[SSMParameterStore]] · [[vpc-cheat-sheet]]

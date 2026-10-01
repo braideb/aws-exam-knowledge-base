@@ -4,7 +4,7 @@ category: concept
 tags: [fundamentos, regions, availability-zones, edge-locations, resiliencia, networking]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.01 Servicios públicos vs. privados.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.02 AWS Global Infrastructure.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.03 Availability Zones (AZ).md"]
-updated: 2026-09-22
+updated: 2026-10-01
 ---
 
 # AWS Global Infrastructure
@@ -46,7 +46,7 @@ Las tres zonas de red:
 ### Availability Zones
 
 - Múltiples por region (2, 3, 4… hasta 6; la mayoría **3**), aisladas entre sí a nivel de energía, red e instalaciones. Conectadas con enlaces high-speed low-latency (**~1 ms** entre AZs vs. ~100 ms entre regiones → permite replicación **síncrona**).
-- Una AZ **no es un datacenter**: es **uno o más DCs** cercanos con dominio de falla independiente.
+- Una AZ **no es un datacenter**: es **uno o más DCs** cercanos con [[fault-domain|dominio de falla]] independiente.
 - Patrón de arquitectura: **repartir componentes entre AZs** (achica el [[blast-radius|blast radius]]) (6 VMs / 3 AZs = 2 por AZ).
 
 **Dimensionamiento N+1 a nivel de AZ (trampa clásica):** repartir no es sobrevivir. Si distribuís 6 VMs en 3 AZs (2 c/u) y se cae una AZ, te quedan **4** — insuficiente si necesitabas 6. Hay que dimensionar para que las AZs restantes absorban el 100%:

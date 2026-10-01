@@ -1,10 +1,10 @@
 ---
 title: EC2 (Elastic Compute Cloud)
 category: service
-tags: [ec2, compute, iaas, ami, instancias, ebs, eni, imds]
+tags: [ec2, compute, iaas, ami, instancias, ebs, eni, imds, user-data, placement-groups]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.05 Elastic Compute Cloud (EC2) — Basics.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.06 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.07 Conectarse a EC2.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.02 EC2 Architecture and Resilience.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.14 Network Interfaces (ENI), IPs y DNS.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.15 Elastic IP.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.17 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.22 Instance Status Checks y Auto Recovery.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.16 Demostración - Instalación manual de WordPress.md"]
-updated: 2026-09-28
+sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.05 Elastic Compute Cloud (EC2) — Basics.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.06 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.07 Conectarse a EC2.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.02 EC2 Architecture and Resilience.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.14 Network Interfaces (ENI), IPs y DNS.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.15 Elastic IP.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.17 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.22 Instance Status Checks y Auto Recovery.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.16 Demostración - Instalación manual de WordPress.md", "raw/notas curso mejorado/09 Advanced EC2/09.01 Bootstrapping EC2 con User Data.md", "raw/notas curso mejorado/09 Advanced EC2/09.02 Boot Time to Service Time y AMI Baking.md", "raw/notas curso mejorado/09 Advanced EC2/09.08 Placement Groups — Overview.md", "raw/notas curso mejorado/09 Advanced EC2/09.12 Enhanced Networking (SR-IOV, ENA, EFA).md", "raw/notas curso mejorado/09 Advanced EC2/09.13 EBS Optimized.md"]
+updated: 2026-09-30
 ---
 
 # EC2 — Elastic Compute Cloud
@@ -13,7 +13,7 @@ updated: 2026-09-28
 
 Servicio de **máquinas virtuales (instancias)** — el [[iaas|IaaS]] clásico de AWS. La unidad de consumo es la instancia: un SO con recursos asignados. Vos gestionás SO y aplicaciones; AWS gestiona del [[hypervisor]] para abajo ([[shared-responsibility-model]]), sobre su propia plataforma de [[virtualization|virtualización]], [[nitro|Nitro]].
 
-> **Esta página es el hub del tema.** Los subtemas grandes viven aparte: [[ec2-instance-types]] · [[EBS]] · [[ebs-volume-types]] · [[instance-store-vs-ebs]] · [[storage-types]] · [[ec2-purchase-options]] · [[ec2-instance-metadata]] · [[horizontal-vs-vertical-scaling]] · [[virtualization]].
+> **Esta página es el hub del tema.** Los subtemas grandes viven aparte: [[ec2-instance-types]] · [[EBS]] · [[ebs-volume-types]] · [[instance-store-vs-ebs]] · [[storage-types]] · [[ec2-purchase-options]] · [[ec2-instance-metadata]] · [[ec2-bootstrapping]] · [[placement-groups]] · [[horizontal-vs-vertical-scaling]] · [[virtualization]].
 
 ## Casos de uso
 
@@ -152,6 +152,19 @@ Ante un fallo de System Status, EC2 puede hacer **auto-recovery**: mueve la inst
 
 > Como mueve la instancia de host, el **instance store se pierde**. Por eso el auto-recovery no aplica a instancias cuyo almacenamiento principal sea local.
 
+### Bootstrapping: user data vs AMI baking
+
+El **user data** es un script que la instancia ejecuta **como root, una sola vez, en el primer launch** (lo corre [[cloud-init]]). Máximo **16 KB**, se lee de `169.254.169.254/latest/user-data` y **no es seguro** para secretos. Si falla, la instancia igual queda `running`. Frente al [[golden-ami|AMI baking]], es más flexible pero más lento: lo óptimo es hornear la parte pesada y configurar el resto con user data. Detalle completo en [[ec2-bootstrapping]].
+
+### Placement groups
+
+Por defecto AWS decide en qué host va cada instancia. Un placement group lo cambia: **cluster** (mismo rack, una AZ, 10 Gbps single-stream, poca resiliencia), **spread** (un rack por instancia, máximo 7 por AZ) o **partition** (7 particiones por AZ, instancias ilimitadas, para apps [[topology-aware]]). Ver [[placement-groups]].
+
+### Rendimiento de red y de EBS
+
+- **[[enhanced-networking|Enhanced networking]]** (SR-IOV): cada instancia tiene su tarjeta lógica, lo que da más ancho de banda, más PPS y latencia baja y constante. **ENA** llega a 100 Gbps; **EFA** es para [[hpc|HPC]]/MPI. Viene por defecto en los tipos modernos y es requisito del cluster placement group.
+- **[[ebs-optimized|EBS optimized]]**: capacidad de red dedicada para EBS, separada del tráfico de datos. Hoy viene habilitado por defecto y sin costo.
+
 ### Conectarse
 
 | SO | Protocolo | Puerto |
@@ -182,7 +195,8 @@ Ante un fallo de System Status, EC2 puede hacer **auto-recovery**: mueve la inst
 - [[EBS]] — el almacenamiento persistente; el ancho de banda hacia EBS depende del instance type ([[ebs-optimized]]).
 - [[IAM]] — instance roles: [[temporary-credentials|credenciales temporales]] vía [[instance-profile]], entregadas por el [[ec2-instance-metadata|IMDS]], sin access keys en disco.
 - [[KMS]] — cifrado de los volúmenes EBS.
-- [[CloudWatch]] — métricas nativas (CPU, red) y los status checks; RAM/disco requieren el **CloudWatch Agent**.
+- [[CloudWatch]] — métricas nativas (CPU, red) y los status checks; RAM/disco requieren el **CloudWatch Agent**, que también manda los logs del SO a [[CloudWatchLogs]].
+- [[SSMParameterStore]] — configuración y secretos que la instancia lee al arrancar con su instance role, en lugar de ponerlos en el user data.
 - [[S3]] — donde viven los snapshots de EBS y las AMIs.
 - [[ECS]] — en EC2 mode, las instancias son los container hosts (container instances) del cluster; para correr [[containers]] sin administrar instancias está Fargate ([[ecs-ec2-vs-fargate]]).
 
@@ -203,6 +217,9 @@ Ante un fallo de System Status, EC2 puede hacer **auto-recovery**: mueve la inst
 - Auto-recovery **mueve de host** → el instance store se pierde.
 - Acceso administrativo sin abrir puertos ni gestionar llaves → **SSM Session Manager** (la respuesta "mejor práctica").
 - Credenciales dentro de la instancia → **[[ec2-instance-metadata|IMDS]]**, y para protegerlas de un SSRF → **IMDSv2**.
+- El **user data** corre **solo en el primer launch**. Si falla, la instancia sigue `running` y pasa los checks. Nunca pongas secretos ahí ([[ec2-bootstrapping]]).
+- "Menor tiempo hasta estar en servicio" → **AMI baking**; con flexibilidad → baking + user data.
+- Cluster placement group = **una sola AZ**, poca resiliencia; spread = **máximo 7 por AZ**; más de 7 con aislamiento → **partition** ([[placement-groups]]).
 
 ## Demos del curso
 
@@ -216,3 +233,6 @@ Ante un fallo de System Status, EC2 puede hacer **auto-recovery**: mueve la inst
 - [Copy & Sharing an AMI](https://learn.cantrill.io/courses/1101194/lectures/27806469)
 - [Status Check y Auto Recovery](https://learn.cantrill.io/courses/1101194/lectures/27806478)
 - [Shutdown, Terminate & Termination Protection](https://learn.cantrill.io/courses/1101194/lectures/27806479)
+- [WordPress installation con user data — Part 1](https://learn.cantrill.io/courses/1101194/lectures/27895409) · [Part 2](https://learn.cantrill.io/courses/1101194/lectures/29447330) (ver [[ec2-bootstrapping]])
+
+> 📖 Lectura profunda del módulo 09: [[09.00 Advanced EC2 — Índice|Advanced EC2]] (bootstrapping, instance roles, Parameter Store, CloudWatch Agent, placement groups, enhanced networking, EBS optimized)

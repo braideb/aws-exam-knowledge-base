@@ -3,8 +3,8 @@ title: IAM (Identity and Access Management)
 category: service
 tags: [iam, seguridad, users, groups, roles, sts, federacion, access-keys]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.03 IAM — Conceptos básicos.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.02 IAM Users.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.04 Restricciones y datos útiles de IAM.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.05 IAM Groups.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.06 IAM Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.08 Service-Linked Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.09 Security Token Service (STS).md", "raw/doc oficial/IAM users - AWS Identity and Access Management.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/doc oficial/Temporary security credentials in IAM - AWS Identity and Access Management.md", "raw/doc oficial/Using AWS Identity and Access Management Access Analyzer - AWS Identity and Access Management.md"]
-updated: 2026-09-28
+sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.03 IAM — Conceptos básicos.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.02 IAM Users.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.04 Restricciones y datos útiles de IAM.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.05 IAM Groups.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.06 IAM Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.08 Service-Linked Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.09 Security Token Service (STS).md", "raw/doc oficial/IAM users - AWS Identity and Access Management.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/doc oficial/Temporary security credentials in IAM - AWS Identity and Access Management.md", "raw/doc oficial/Using AWS Identity and Access Management Access Analyzer - AWS Identity and Access Management.md", "raw/notas curso mejorado/09 Advanced EC2/09.03 EC2 Instance Roles e Instance Profiles.md"]
+updated: 2026-09-30
 ---
 
 # IAM — Identity and Access Management
@@ -126,6 +126,21 @@ Notas de cada uno que caen en el examen:
 
 ![[Pasted image 20260705181813.png]]
 
+#### Escenario 1 en detalle: EC2 instance roles
+
+```
+IAM role (+ permissions policy) ──► instance profile ──► instancia EC2
+                                                          │
+                       IMDS: /latest/meta-data/iam/security-credentials/<role>
+                                                          │
+                                         app / CLI / SDK ─┘  (credenciales temporales)
+```
+
+- Lo que se adjunta a la instancia es el **[[instance-profile|instance profile]]**, no el rol. La consola lo crea solo y con el mismo nombre; con **CLI o CloudFormation** hay que crearlo aparte.
+- Las credenciales llegan por el [[ec2-instance-metadata|IMDS]] y **siempre son válidas**: EC2 y STS las **renuevan antes de que venzan**. La app solo tiene que volver a leerlas, sin cachearlas más allá de su vencimiento.
+- Todo lo que corre en la instancia hereda los permisos del rol. Por eso conviene exigir **IMDSv2**, para que un [[ssrf|SSRF]] no alcance para robarlas.
+- **Trampa de precedencia:** la CLI y los SDK recorren su [[aws-cli|cadena de credenciales]], y el instance profile es **el último eslabón**. Si alguien dejó access keys en `~/.aws/credentials` de la instancia o en variables de entorno, **esas pisan al rol**.
+
 ### Service-Linked Roles
 
 Los [[service-linked-role|service-linked roles]] son roles que **AWS predefine** para servicios tan complejos que armar la policy a mano sería frágil (ej: Auto Scaling necesita lanzar instancias, engancharlas a un ELB, leer métricas de [[CloudWatch]]…). AWS dice "yo ya sé qué necesito, tomá este rol y no lo edites".
@@ -238,6 +253,8 @@ Como IAM es **global**, estos límites son **por cuenta, no por region**: no pod
 - Las credenciales temporales ya emitidas siguen vivas al quitar permisos → revocar con policy `aws:TokenIssueTime`.
 - No generar [[presigned-url|presigned URLs]] de S3 con un rol (expiran con la sesión).
 - "Access key `AKIA…` hardcodeada en una EC2" → el error es la key en sí: la respuesta es **instance role**.
+- "Le adjunté un rol a la instancia pero la CLI sigue usando otros permisos" → hay **keys en `~/.aws/credentials` o en variables de entorno** que tienen precedencia sobre el instance profile.
+- "Creé el rol con CloudFormation y no puedo asociarlo a la instancia" → falta el **`AWS::IAM::InstanceProfile`**.
 - "El script crea un rol y falla al usarlo inmediatamente" → **eventual consistency** de IAM, reintentar con backoff.
 - "¿Qué permisos sobran en esta identidad?" → **Access Advisor** (uso real); "¿qué policy debería tener?" → **Access Analyzer policy generation**.
 
@@ -246,3 +263,6 @@ Como IAM es **global**, estos límites son **por cuenta, no por region**: no pod
 - [Creating IAMADMIN user & adding MFA](https://learn.cantrill.io/courses/1101194/lectures/63973711)
 - [Creating Access Keys and setting up AWS CLI](https://learn.cantrill.io/courses/1101194/lectures/24949221)
 - [Permissions control using IAM Groups](https://learn.cantrill.io/courses/1101194/lectures/25335805)
+- [Using EC2 instance roles](https://learn.cantrill.io/courses/1101194/lectures/27895412)
+
+> 📖 Lectura profunda: [[09.03 EC2 Instance Roles e Instance Profiles]]

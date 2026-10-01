@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, troubleshooting, optimization, monitoring, logging]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-09-28
+updated: 2026-09-30
 ---
 
 # DVA-C02 · Dominio 4 — Troubleshooting and Optimization
@@ -44,6 +44,11 @@ Diagnosticar y resolver problemas de aplicaciones: observabilidad (métricas, lo
 | Fallas de conectividad: route tables, security groups, NACLs ([[ephemeral-port\|ephemeral ports]]), NAT, DNS de la VPC | [[VPC]], [[security-groups-vs-nacls]] | ✅ |
 | **Diagnosticar tráfico rechazado con evidencia** (`action = REJECT`) | [[vpc-flow-logs]] | ✅ fuerte |
 | Instancia que no responde: System vs Instance status check, auto-recovery | [[EC2]] | ✅ |
+| Instancia `running` con 2/2 checks pero mal configurada: **user data fallido** (EC2 no lo valida; solo corre en el primer launch) | [[ec2-bootstrapping]] | ✅ |
+| Métricas de **memoria/disco** y logs del SO: CloudWatch Agent + rol + config en Parameter Store | [[CloudWatchLogs]], [[CloudWatch]] | ✅ |
+| La CLI usa otras credenciales aunque la instancia tenga rol (keys en disco **pisan** al instance profile) | [[IAM]], [[aws-cli]] | ✅ |
+| `AccessDenied` al leer un SecureString (falta `kms:Decrypt`) | [[SSMParameterStore]] | ✅ |
+| Rendimiento de red entre instancias: [[enhanced-networking]], placement groups | [[placement-groups]] | ✅ |
 | Volumen que "se puso lento": [[burst-credit\|créditos]] agotados de gp2 | [[ebs-volume-types]] | ✅ |
 | Volumen restaurado que rinde poco al principio | [[lazy-restore]], [[EBS]] | ✅ |
 | [[iops\|IOPS]] aprovisionadas que no se alcanzan (tope por instancia) | [[ebs-optimized]], [[instance-store-vs-ebs]] | ✅ |

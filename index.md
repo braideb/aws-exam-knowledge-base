@@ -2,9 +2,9 @@
 
 > El LLM mantiene este archivo actualizado en cada ingest. Leer primero al responder queries.
 
-**Total de páginas:** 151 (51 de conocimiento + 98 términos de glosario + 2 de examen)
-**Fuentes ingestadas:** notas del curso **completas (106/106 secciones, módulos 01–08)** + 86 clippings de doc oficial
-**Última actualización:** 2026-09-28
+**Total de páginas:** 160 (55 de conocimiento + 103 términos de glosario + 2 de examen)
+**Fuentes ingestadas:** notas del curso **completas (119/119 secciones, módulos 01–09)** + 86 clippings de doc oficial
+**Última actualización:** 2026-09-30
 
 ---
 
@@ -14,7 +14,7 @@
 |--------|----------|-------|
 | [[S3]] | Simple Storage Service | Buckets/objects, seguridad, versioning, performance, replication, presigned URLs, CORS, events, object lock |
 | [[IAM]] | Identity and Access Management | Users, groups, roles, STS, access keys, federación, límites |
-| [[EC2]] | Elastic Compute Cloud | Hub del tema: arquitectura y hosts, ciclo de vida, estados, ENI/IPs/DNS, Elastic IP, AMI y lifecycle, status checks, key pairs |
+| [[EC2]] | Elastic Compute Cloud | Hub del tema: arquitectura y hosts, ciclo de vida, estados, ENI/IPs/DNS, Elastic IP, AMI y lifecycle, status checks, key pairs, bootstrapping, placement groups, enhanced networking / EBS optimized |
 | [[EBS]] | Elastic Block Store | Volúmenes, tipos, snapshots incrementales, lazy restore/FSR, cifrado con DEK por volumen |
 | [[VPC]] | Virtual Private Cloud | Default vs custom, CIDR/IPv6, subnets, DNS/DHCP, route tables, IGW, SGs y NACLs, NAT Gateway (zonal/regional), NAT64 |
 | [[KMS]] | Key Management Service | KMS keys, DEKs, envelope encryption, key policies, rotación |
@@ -22,7 +22,8 @@
 | [[Route53]] | Route 53 | Hosted zones, tipos de record DNS, TTL, alias |
 | [[CloudFormation]] | CloudFormation | Templates, secciones (inicial) |
 | [[CloudWatch]] | CloudWatch | Arquitectura (endpoint público, agent), namespaces, metrics, dimensions, resolution y retención, statistics, alarms (M of N, high resolution) |
-| [[CloudWatchLogs]] | CloudWatch Logs | Log groups/streams, metric filters, retención, export a S3, subscriptions, agregación multi-cuenta |
+| [[CloudWatchLogs]] | CloudWatch Logs | Log groups/streams, CloudWatch Agent en EC2, metric filters, retención, export a S3, subscriptions, agregación multi-cuenta |
+| [[SSMParameterStore]] | Systems Manager Parameter Store | String/StringList/SecureString (KMS), jerarquías, versionado, tiers, parámetros públicos, referencia a Secrets Manager |
 | [[XRay]] | AWS X-Ray | Distributed tracing: trace/segments/subsegments, service map, integración por servicio, annotations vs metadata |
 | [[CloudTrail]] | CloudTrail | Event history, trails, tipos de evento, global service events |
 | [[ECS]] | Elastic Container Service | Cluster, task/container definitions, service, los 3 roles, scaling en dos capas, placement, rolling vs blue/green |
@@ -54,6 +55,7 @@
 | [[virtualization]] | De la binary translation a SR-IOV y Nitro; por qué el cifrado de EBS no pesa |
 | [[ec2-instance-types]] | Las cinco categorías y el esquema de nombres `R5dn.8xlarge` |
 | [[ec2-instance-metadata]] | IMDS, `169.254.169.254`, credenciales del role, IMDSv1 vs IMDSv2 y el SSRF |
+| [[ec2-bootstrapping]] | User data (solo en el primer launch, 16 KB, no seguro), boot time to service time, bootstrapping vs AMI baking |
 | [[containers]] | VM vs container, image = layers read-only + R/W layer, Dockerfile, registry |
 
 ---
@@ -63,7 +65,7 @@
 Un archivo por **término**: definición corta y atómica de la jerga que aparece suelta en el resto de la wiki. No duplica páginas existentes — si el término ya es un servicio o concepto, se linkea esa página. Convenciones y criterio de corte en `CLAUDE.md` → *Páginas de glosario*.
 
 **Resiliencia e infraestructura**
-[[globally-resilient]] · [[region-resilient]] · [[az-resilient]] · [[edge-location]] · [[blast-radius]] · [[single-point-of-failure]] · [[data-sovereignty]] · [[multi-az]] · [[failover]] · [[sla]]
+[[globally-resilient]] · [[region-resilient]] · [[az-resilient]] · [[edge-location]] · [[blast-radius]] · [[fault-domain]] · [[single-point-of-failure]] · [[data-sovereignty]] · [[multi-az]] · [[failover]] · [[sla]]
 
 **Modelos de servicio**
 [[iaas]] · [[paas]] · [[saas]] · [[serverless]] · [[hypervisor]]
@@ -81,13 +83,13 @@ Un archivo por **término**: definición corta y atómica de la jerga que aparec
 [[object-storage]] · [[durability]] · [[availability]] · [[eventual-consistency]] · [[delete-marker]] · [[multipart-upload]] · [[prefix]] · [[worm]] · [[etag]] · [[presigned-url]] · [[ephemeral-storage]] · [[lazy-restore]]
 
 **Cómputo y virtualización**
-[[nitro]] · [[enhanced-networking]] · [[ebs-optimized]] · [[host-affinity]] · [[golden-ami]]
+[[nitro]] · [[enhanced-networking]] · [[ebs-optimized]] · [[host-affinity]] · [[golden-ami]] · [[cloud-init]] · [[hpc]]
 
 **Containers**
 [[task-role]] · [[sidecar]] · [[dynamic-port-mapping]] · [[capacity-provider]] · [[irsa]]
 
 **Arquitectura**
-[[idempotency]] · [[stateless]] · [[vendor-lock-in]]
+[[idempotency]] · [[stateless]] · [[vendor-lock-in]] · [[topology-aware]]
 
 **Deployment y scaling**
 [[rolling-deployment]] · [[blue-green-deployment]] · [[target-tracking-scaling]]
@@ -96,7 +98,7 @@ Un archivo por **término**: definición corta y atómica de la jerga que aparec
 [[cidr]] · [[zone-apex]] · [[ttl]] · [[public-subnet]] · [[longest-prefix-match]] · [[eni]] · [[elastic-ip]] · [[ip-masquerading]] · [[egress-only-internet-gateway]] · [[bastion-host]] · [[dedicated-tenancy]] · [[privatelink]] · [[prefix-list]] · [[endpoint-policy]] · [[transit-gateway]] · [[edge-to-edge-routing]] · [[traffic-mirroring]]
 
 **Seguridad de red**
-[[stateful-firewall]] · [[stateless-firewall]] · [[ephemeral-port]] · [[implicit-deny]]
+[[stateful-firewall]] · [[stateless-firewall]] · [[ephemeral-port]] · [[implicit-deny]] · [[ssrf]]
 
 **Observabilidad y costos**
 [[dimension]] · [[high-cardinality]] · [[metric-filter]] · [[custom-metric]] · [[high-resolution-metric]] · [[percentile]] · [[subscription-filter]] · [[near-real-time]] · [[distributed-tracing]]
@@ -108,7 +110,9 @@ Un archivo por **término**: definición corta y atómica de la jerga que aparec
 
 Identificados en las páginas actuales, todavía sin entrada — se van agregando en los próximos ingests:
 
-`strong-consistency` · `rpo` · `rto` · `soft-limit` · `registrar` · `registry` · `registrant` · `fqdn` · `role-chaining` · `zone-of-trust` · `sigv4` · `session-policy` · `hyperplane-eni` · `placement-group`
+`strong-consistency` · `rpo` · `rto` · `soft-limit` · `registrar` · `registry` · `registrant` · `fqdn` · `role-chaining` · `zone-of-trust` · `sigv4` · `session-policy` · `hyperplane-eni`
+
+> Cerrado en el ingest del 2026-09-30: `placement-group` **sin** entrada, porque lo cubre la comparación [[placement-groups]].
 
 > Cerrados en el ingest del 2026-09-22: `golden-ami` (con entrada propia); `block-storage` y `file-storage` **sin** entrada, porque los cubre [[storage-types]] — la regla de `CLAUDE.md` dice linkear la página existente en vez de crear un stub duplicado.
 
@@ -121,8 +125,8 @@ Identificados en las páginas actuales, todavía sin entrada — se van agregand
 | Página | Dominio | Examen | Peso | Cobertura actual |
 |--------|---------|--------|------|------------------|
 | [[dva-development]] | Development with AWS Services | DVA-C02 | 32% | ⚠️ Parcial — Lambda solo por el lado de red ([[lambda-in-vpc]]); containers con [[ECS]]; faltan la página de Lambda, API GW, DynamoDB, SQS/SNS |
-| [[dva-security]] | Security | DVA-C02 | 26% | ✅ Fuerte — reforzada con IMDSv2, cifrado de EBS y los roles de ECS/EKS; falta Cognito, Secrets Manager |
-| [[dva-deployment]] | Deployment | DVA-C02 | 24% | ⚠️ Parcial — AMI baking, images en ECR y rolling vs blue/green en ECS; faltan Code* como servicios, SAM, Beanstalk |
+| [[dva-security]] | Security | DVA-C02 | 26% | ✅ Fuerte — reforzada con IMDSv2, cifrado de EBS, los roles de ECS/EKS y Parameter Store (SecureString); falta Cognito y Secrets Manager como servicio |
+| [[dva-deployment]] | Deployment | DVA-C02 | 24% | ⚠️ Parcial — AMI baking + bootstrapping, images en ECR y rolling vs blue/green en ECS; faltan Code* como servicios, SAM, Beanstalk |
 | [[dva-troubleshooting]] | Troubleshooting and Optimization | DVA-C02 | 18% | ✅ Fuerte — reforzada con flow logs, status checks, créditos de EBS y el módulo 07 (X-Ray, subscriptions, resolution); faltan Logs Insights y EMF |
 
 ### DOP-C02 — AWS Certified DevOps Engineer – Professional
@@ -152,6 +156,8 @@ Identificados en las páginas actuales, todavía sin entrada — se van agregand
 | [[instance-store-vs-ebs]] | Efímero vs persistente + la escalera de IOPS hasta el corte de los 260.000 |
 | [[ec2-purchase-options]] | On-Demand / Spot / Reserved / Savings Plans / Dedicated / Capacity Reservations |
 | [[horizontal-vs-vertical-scaling]] | Downtime, techo, granularidad y el requisito de sesiones off-host |
+| [[placement-groups]] | Cluster vs Spread vs Partition: AZs, límites de 7, 10 Gbps single-stream, apps topology-aware |
+| [[parameter-store-vs-secrets-manager]] | Rotación automática, costo, tipos, cuándo usar cada uno |
 | [[ecs-ec2-vs-fargate]] | Los dos modos de cluster de ECS: qué administrás, qué pagás, placement, `awsvpc` vs `bridge`, cuándo elegir cada uno |
 
 ---
@@ -181,8 +187,9 @@ Estructura: un archivo por sección (`NN.MM Título.md`) con navegación, + índ
 - `06 Elastic Compute Cloud (EC2)/` (24 secciones, segmentadas e **ingestadas 2026-09-22**) — virtualización, arquitectura y resiliencia, instance types, storage refresh, EBS y sus tipos de volumen, instance store, snapshots y FSR, cifrado, ENI/IPs/DNS, Elastic IP, AMI, purchase options, status checks, scaling, IMDS, + 2 demos con comandos
 - `07 Monitoring and logging/` (8 secciones, segmentadas e **ingestadas 2026-09-24**) — arquitectura de CloudWatch, namespace/datapoint/metric/dimensions, resolution/retention/statistics, alarms, arquitectura de CloudWatch Logs, subscriptions y agregación, X-Ray, VPC Flow Logs
 - `08 Containers, ECS y ECR/` (10 secciones, segmentadas e **ingestadas 2026-09-28**) — virtualización vs containers, images/layers/registry, demo de Docker en EC2, ECS concepts y cluster types, EC2 vs ECS vs Fargate, demo de Fargate, ECR, Kubernetes 101, EKS
+- `09 Advanced EC2/` (13 secciones, segmentadas e **ingestadas 2026-09-30**) — bootstrapping con user data, boot time to service time y AMI baking, instance roles e instance profiles, SSM Parameter Store (+ demo), CloudWatch Agent (+ demo), placement groups (overview, cluster, spread, partition), enhanced networking, EBS optimized
 
-> ✅ **Las 106 secciones están ingestadas.** El módulo **08** se ingestó el **2026-09-28**; el **07**, el **2026-09-24**. El ingest del **2026-09-22** saldó las dos deudas que quedaban: VPC 05.09–05.13 y el módulo 06 completo. Antes: el módulo **05 (05.01–05.08)** se ingestó el 2026-09-19; los módulos **02, 03 y 04** fueron expandidos por el humano el 2026-07-23/24 e ingestados el 2026-07-25; el módulo 01 se ingestó el 2026-07-23. El próximo material tiene que venir de módulos nuevos del curso (09+) o de clippings nuevos. `raw/definiciones/` existe pero está **vacía**.
+> ✅ **Las 119 secciones están ingestadas.** El módulo **09** se ingestó el **2026-09-30**; el **08**, el **2026-09-28**; el **07**, el **2026-09-24**. El ingest del **2026-09-22** saldó las dos deudas que quedaban: VPC 05.09–05.13 y el módulo 06 completo. Antes: el módulo **05 (05.01–05.08)** se ingestó el 2026-09-19; los módulos **02, 03 y 04** fueron expandidos por el humano el 2026-07-23/24 e ingestados el 2026-07-25; el módulo 01 se ingestó el 2026-07-23. El próximo material tiene que venir de módulos nuevos del curso (10+) o de clippings nuevos. `raw/definiciones/` existe pero está **vacía**.
 
 Cada página wiki cita en `sources` los **segmentos específicos** que la alimentan.
 
@@ -194,7 +201,7 @@ Complementan las notas con límites numéricos, permisos exactos y features no c
 - 21 clippings ingestados 2026-07-19 (segundo lote): S3 Access Points (6), Block Public Access, condition keys de bucket policies, MFA Delete, Versioning, Batch Operations, KMS Grants y Multi-Region keys, IAM permissions boundaries / STS / Access Analyzer, SCPs y su evaluación, CloudTrail events + log file integrity, metric filters de CloudWatch Logs.
 - 37 clippings ingestados 2026-09-19 (tercer lote, **Amazon VPC**): qué es y cómo funciona, connectivity options, CIDR blocks/IP addressing/subnets, DNS (Route 53 Resolver, atributos), DHCP option sets (3), route tables y prioridad de rutas, internet gateway, NAT devices/NAT gateways/regional NAT/NAT64/NAT instance, comparativa NAT, security groups (8), NACLs, infrastructure security.
 
-> ⚠️ **No hay clippings de EC2 ni de EBS.** El ingest del 2026-09-22 se apoyó **solo en las notas del curso**, sin contraste contra doc oficial. Las páginas de EC2/EBS marcan con `⚠️ Outdated` lo que se sabe desactualizado (IMDSv2, cobro de IPv4 públicas, auto-recovery por defecto, generaciones de instance types), pero conviene traer clippings de Amazon EC2 y EBS para cruzar límites numéricos.
+> ⚠️ **No hay clippings de EC2, EBS ni Systems Manager.** [[SSMParameterStore]], [[ec2-bootstrapping]] y [[placement-groups]] (módulo 09) salen solo del curso. El ingest del 2026-09-22 se apoyó **solo en las notas del curso**, sin contraste contra doc oficial. Las páginas de EC2/EBS marcan con `⚠️ Outdated` lo que se sabe desactualizado (IMDSv2, cobro de IPv4 públicas, auto-recovery por defecto, generaciones de instance types), pero conviene traer clippings de Amazon EC2 y EBS para cruzar límites numéricos.
 
 > ⚠️ **Tampoco hay clippings de ECS, ECR ni EKS:** [[ECS]], [[ECR]], [[EKS]] y [[ecs-ec2-vs-fargate]] salen solo del curso (módulo 08) y marcan aparte lo que no viene de la nota.
 

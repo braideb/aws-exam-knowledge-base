@@ -3,8 +3,8 @@ title: CloudWatch Logs
 category: service
 tags: [cloudwatch-logs, logging, log-groups, metric-filters, subscriptions, monitoring]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.12 CloudWatch Logs.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/notas curso mejorado/07 Monitoring and logging/07.05 CloudWatch Logs — Architecture.md", "raw/notas curso mejorado/07 Monitoring and logging/07.06 CloudWatch Logs — Subscriptions y Aggregation.md", "raw/doc oficial/Working with log groups and log streams - Amazon CloudWatch Logs.md", "raw/doc oficial/Creating metrics from log events using filters - Amazon CloudWatch Logs.md"]
-updated: 2026-09-24
+sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.12 CloudWatch Logs.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.14 Precios.md", "raw/notas curso mejorado/07 Monitoring and logging/07.05 CloudWatch Logs — Architecture.md", "raw/notas curso mejorado/07 Monitoring and logging/07.06 CloudWatch Logs — Subscriptions y Aggregation.md", "raw/doc oficial/Working with log groups and log streams - Amazon CloudWatch Logs.md", "raw/doc oficial/Creating metrics from log events using filters - Amazon CloudWatch Logs.md", "raw/notas curso mejorado/09 Advanced EC2/09.06 Logging en EC2 con CloudWatch Agent.md", "raw/notas curso mejorado/09 Advanced EC2/09.07 Demostración - Logging y métricas con CloudWatch Agent.md"]
+updated: 2026-09-30
 ---
 
 # CloudWatch Logs
@@ -44,6 +44,18 @@ Ejemplo: 10 instancias EC2 enviando `/var/log/messages` → **1 log group**, **1
 | Servicios AWS | Integraciones nativas (Lambda, VPC…) con IAM roles |
 | SO de EC2 / on-premises / apps | **Unified CloudWatch Agent** |
 | Dentro del código | AWS SDK |
+
+#### Logs del SO de EC2: el CloudWatch Agent
+
+El interior de una instancia es **opaco** para CloudWatch y CloudWatch Logs: sin el agente no llegan ni los logs del SO ni los de las aplicaciones. El **unified CloudWatch Agent**, que reemplazó al viejo CloudWatch Logs agent, manda **logs y métricas a la vez**. Necesita tres cosas:
+
+| # | Qué | Detalle |
+|---|---|---|
+| 1 | **Instalar el agente** | `dnf install amazon-cloudwatch-agent` |
+| 2 | **Configurarlo** | Qué métricas y qué archivos de log. El wizard genera un `config.json`, que puede guardarse en **[[SSMParameterStore\|Parameter Store]]** (`AmazonCloudWatch-linux`) para reutilizarlo en todas las instancias |
+| 3 | **Darle permisos** | Un [[instance-profile\|instance role]] con `CloudWatchAgentServerPolicy` (y acceso a SSM si la config vive ahí). Nunca access keys en la instancia |
+
+Organización: **un log group por archivo de log** (`/var/log/secure`, `/var/log/httpd/access_log`…) y **un log stream por instancia** (instance ID). A escala, la instalación y la config se automatizan con [[CloudFormation]] o con user data ([[ec2-bootstrapping]]).
 
 > **"Instalé el agente y no llega nada"** — casi siempre falta una de dos cosas: un **IAM role** en la instancia con `logs:CreateLogStream` y `logs:PutLogEvents`, o el **archivo de configuración** del agente que le dice qué archivos leer y a qué log group mandarlos.
 
@@ -112,6 +124,7 @@ Borrar logs viejos ataca solo el almacenamiento, no la ingesta. Detalle completo
 - [[CloudTrail]] — puede enviar sus eventos aquí para alarmar sobre actividad de API.
 - [[S3]] — destino de exportación/archivado; también S3 Access Logs pueden entregarse acá (opción moderna).
 - [[KMS]] — cifrado del log group con una key propia.
+- [[EC2]] — el CloudWatch Agent manda los logs del SO y de las apps; su configuración puede vivir en [[SSMParameterStore]].
 
 ## Gotchas y trampas del examen
 
@@ -120,9 +133,14 @@ Borrar logs viejos ataca solo el almacenamiento, no la ingesta. Detalle completo
 - "Retener logs 7 años al menor costo" → **archivar en S3/Glacier**, no dejarlos en CloudWatch Logs.
 - "Alertar cuando aparece X en los logs" → **[[metric-filter|metric filter]] + alarm + SNS**.
 - Logs de una app custom u on-premises → **CloudWatch Agent** (no hay magia nativa).
+- "La misma config del agente en 100 instancias" → guardarla en **Parameter Store** y cargarla con `amazon-cloudwatch-agent-ctl -a fetch-config -c ssm:<nombre>`.
 - "Enviar logs a S3 **en (casi) tiempo real**" → **subscription + Firehose**, no `CreateExportTask` (hasta 12 h).
 - "Procesar cada evento de log **en tiempo real**" → subscription con **Lambda** o Kinesis Data Streams; Firehose es *near* real time.
 - "Centralizar logs de varias cuentas" → subscription filters → **Kinesis Data Stream central** (destination + destination policy) → Firehose → S3.
 - No encontrás los logs de Route 53 en tu region → están en **us-east-1**.
 
-> 📖 Lectura profunda: [[03.12 CloudWatch Logs]] · [[07.05 CloudWatch Logs — Architecture]] · [[07.06 CloudWatch Logs — Subscriptions y Aggregation]]
+## Demos del curso
+
+- [Logging and metrics with CloudWatch Agent — Part 1](https://learn.cantrill.io/courses/1101194/lectures/27895417) · [Part 2](https://learn.cantrill.io/courses/1101194/lectures/29448612): instalar el agente, crear el rol `CloudWatchRole`, capturar `/var/log/secure` y los logs de Apache, y guardar la config en SSM
+
+> 📖 Lectura profunda: [[03.12 CloudWatch Logs]] · [[07.05 CloudWatch Logs — Architecture]] · [[07.06 CloudWatch Logs — Subscriptions y Aggregation]] · [[09.06 Logging en EC2 con CloudWatch Agent]] · [[09.07 Demostración - Logging y métricas con CloudWatch Agent]]

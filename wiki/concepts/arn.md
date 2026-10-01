@@ -4,7 +4,7 @@ category: concept
 tags: [iam, arn, identificadores, policies]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.03 ARN (Amazon Resource Name).md", "raw/doc oficial/Identify AWS resources with Amazon Resource Names (ARNs) - AWS Identity and Access Management.md"]
-updated: 2026-07-24
+updated: 2026-10-01
 ---
 
 # ARN — Amazon Resource Name

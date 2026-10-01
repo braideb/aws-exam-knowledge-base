@@ -4,7 +4,7 @@ category: comparison
 tags: [s3, storage-classes, glacier, intelligent-tiering, lifecycle, costos]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/04 S3/04.08 S3 Object Storage Classes.md", "raw/notas curso mejorado/04 S3/04.09 S3 Lifecycle Configuration.md", "raw/doc oficial/Understanding and managing Amazon S3 storage classes - Amazon Simple Storage Service.md", "raw/doc oficial/Transitioning objects using Amazon S3 Lifecycle - Amazon Simple Storage Service.md"]
-updated: 2026-09-19
+updated: 2026-10-01
 ---
 
 # Comparativa: S3 Storage Classes

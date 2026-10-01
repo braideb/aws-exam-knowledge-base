@@ -22,6 +22,7 @@ Radios típicos: un bucket de [[S3]] → la **region**; una [[aws-account|AWS Ac
 - [[aws-account]] — "las cuentas contienen el blast radius de errores y exploits" (DEV/TEST/PROD separadas)
 - [[S3]] — el blast radius de un bucket es la region
 - [[global-infrastructure]] — repartir componentes entre AZs
+- [[placement-groups]] — spread placement group: un blast radius separado por instancia
 - También en: [[data-sovereignty]] · [[globally-resilient]] · [[least-privilege]] · [[region-resilient]] · [[single-point-of-failure]]
 
 ## Dato de examen

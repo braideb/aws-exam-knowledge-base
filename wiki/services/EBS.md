@@ -3,8 +3,8 @@ title: EBS (Elastic Block Store)
 category: service
 tags: [ebs, storage, ec2, snapshots, kms, cifrado, iops]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.05 Elastic Block Store (EBS) — Basics.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.11 EBS Snapshots, Restore y Fast Snapshot Restore (FSR).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.13 EBS Encryption.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.12 Demostración - EBS Volumes e Instance Store.md"]
-updated: 2026-09-24
+sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.05 Elastic Block Store (EBS) — Basics.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.11 EBS Snapshots, Restore y Fast Snapshot Restore (FSR).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.13 EBS Encryption.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.12 Demostración - EBS Volumes e Instance Store.md", "raw/notas curso mejorado/09 Advanced EC2/09.13 EBS Optimized.md"]
+updated: 2026-09-30
 ---
 
 # EBS — Elastic Block Store
@@ -81,7 +81,7 @@ Consecuencias que caen en el examen:
 
 ## Integración con otros servicios
 
-- [[EC2]] — el volumen se adjunta a una instancia; el ancho de banda hacia EBS depende del tipo de instancia ([[ebs-optimized]]).
+- [[EC2]] — el volumen se adjunta a una instancia; el ancho de banda hacia EBS depende del tipo de instancia ([[ebs-optimized]]). EBS optimized le da a EBS **capacidad de red dedicada**, separada del tráfico de datos. Hoy viene habilitado por defecto y sin costo, y es necesario para sacarle las IOPS prometidas a gp2/io1.
 - [[KMS]] — la KMS key que protege la DEK de cada volumen.
 - [[S3]] — donde viven los snapshots (y de ahí su resiliencia de región).
 - [[CloudWatch]] — métricas de IOPS, [[throughput]] y **balance de [[burst-credit|créditos de burst]]** de gp2.

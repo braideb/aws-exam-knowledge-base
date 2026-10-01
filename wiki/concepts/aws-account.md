@@ -4,7 +4,7 @@ category: concept
 tags: [fundamentos, cuenta, root-user, mfa, seguridad, multi-account]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.01 Cuenta de AWS (AWS Account).md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.02 Multi-Factor Authentication (MFA).md", "raw/doc oficial/AWS account root user - AWS Identity and Access Management.md", "raw/doc oficial/AWS Multi-factor authentication in IAM - AWS Identity and Access Management.md"]
-updated: 2026-07-24
+updated: 2026-10-01
 ---
 
 # AWS Account y Root User

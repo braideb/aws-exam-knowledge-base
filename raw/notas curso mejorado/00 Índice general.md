@@ -131,3 +131,19 @@
 - [[08.08 Elastic Container Registry (ECR)|Elastic Container Registry (ECR)]]
 - [[08.09 Kubernetes 101|Kubernetes 101]]
 - [[08.10 Elastic Kubernetes Service (EKS) 101|Elastic Kubernetes Service (EKS) 101]]
+
+## [[09.00 Advanced EC2 — Índice|Módulo 09 — Advanced EC2]] (13 secciones)
+
+- [[09.01 Bootstrapping EC2 con User Data|Bootstrapping EC2 con User Data]]
+- [[09.02 Boot Time to Service Time y AMI Baking|Boot Time to Service Time y AMI Baking]]
+- [[09.03 EC2 Instance Roles e Instance Profiles|EC2 Instance Roles e Instance Profiles]]
+- [[09.04 SSM Parameter Store|SSM Parameter Store]]
+- [[09.05 Demostración - Parameter Store|Demostración: Parameter Store]]
+- [[09.06 Logging en EC2 con CloudWatch Agent|Logging en EC2 con CloudWatch Agent]]
+- [[09.07 Demostración - Logging y métricas con CloudWatch Agent|Demostración: Logging y métricas con CloudWatch Agent]]
+- [[09.08 Placement Groups — Overview|Placement Groups — Overview]]
+- [[09.09 Cluster Placement Groups|Cluster Placement Groups]]
+- [[09.10 Spread Placement Groups|Spread Placement Groups]]
+- [[09.11 Partition Placement Groups|Partition Placement Groups]]
+- [[09.12 Enhanced Networking (SR-IOV, ENA, EFA)|Enhanced Networking (SR-IOV, ENA, EFA)]]
+- [[09.13 EBS Optimized|EBS Optimized]]

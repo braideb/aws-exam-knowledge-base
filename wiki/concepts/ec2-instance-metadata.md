@@ -3,8 +3,8 @@ title: Instance Metadata Service (IMDS)
 category: concept
 tags: [ec2, seguridad, iam, imds, ssrf, credenciales]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.24 Instance Metadata (IMDS).md"]
-updated: 2026-09-22
+sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.24 Instance Metadata (IMDS).md", "raw/notas curso mejorado/09 Advanced EC2/09.01 Bootstrapping EC2 con User Data.md", "raw/notas curso mejorado/09 Advanced EC2/09.03 EC2 Instance Roles e Instance Profiles.md"]
+updated: 2026-09-30
 ---
 
 # Instance Metadata Service (IMDS)
@@ -30,6 +30,8 @@ La ruta base es `http://169.254.169.254/latest/meta-data/`. Desde ahí se consul
 | Seguridad | `security-groups` |
 | **Credenciales** | `iam/security-credentials/<role>` → access key, secret y **token de sesión** |
 
+Por la misma IP, pero en **`/latest/user-data`**, la instancia lee su **user data**: el script de bootstrapping que se ejecuta en el primer launch ([[ec2-bootstrapping]]). Como cualquier proceso puede leerlo, no sirve para guardar secretos.
+
 Esa última fila es la razón de ser del tema: **así es como el SDK de AWS obtiene credenciales dentro de una instancia**, sin que haya access keys guardadas en disco. Es el mecanismo detrás de los [[instance-profile|instance profiles]].
 
 ### IMDSv1: el problema
@@ -41,7 +43,7 @@ curl http://169.254.169.254/latest/meta-data/public-ipv4
 curl http://169.254.169.254/latest/meta-data/iam/security-credentials/mi-role
 ```
 
-> ⚠️ El servicio **no requiere autenticación y no está cifrado**. Cualquier proceso dentro de la instancia puede consultarlo. Si un atacante logra ejecutar código en la instancia —o, peor, si encuentra un **SSRF** en una app web que corre ahí— puede pedirle al servidor que consulte esa URL y **robar las credenciales del role**.
+> ⚠️ El servicio **no requiere autenticación y no está cifrado**. Cualquier proceso dentro de la instancia puede consultarlo. Si un atacante logra ejecutar código en la instancia —o, peor, si encuentra un **[[ssrf|SSRF]]** en una app web que corre ahí— puede pedirle al servidor que consulte esa URL y **robar las credenciales del role**.
 
 ### IMDSv2: la mitigación
 
@@ -65,6 +67,8 @@ Por qué esto corta el ataque:
 
 Se exige por instancia con **`HttpTokens: required`** (el modo opuesto, `optional`, acepta las dos versiones).
 
+Datos que conviene memorizar: el token dura **hasta 6 horas** (21.600 s), el **hop limit por defecto es 1** y los SDK y la CLI modernos usan IMDSv2 de forma transparente.
+
 ## Patrones comunes
 
 ```
@@ -80,7 +84,8 @@ App web en EC2 con IAM role
 - *"Proteger las credenciales del role frente a un SSRF"* → **exigir IMDSv2** (`HttpTokens: required`). Es la respuesta esperada, por encima de "usar un WAF" o "rotar las claves".
 - *"¿Cómo sabe una instancia en qué AZ está?"* → `placement/availability-zone` del IMDS.
 - Dato fino: el tráfico al IMDS **no aparece en los [[vpc-flow-logs|VPC Flow Logs]]** — es una de las cosas que explícitamente no capturan.
-- Las credenciales que entrega son **temporales y rotan solas**: no hay que renovarlas a mano.
+- Las credenciales que entrega son **temporales y rotan solas**: EC2 y STS las renuevan antes de que venzan, así que no hay que renovarlas a mano.
+- *"Cambié el user data y no se ejecutó"* → el user data sale del mismo IMDS, pero **solo corre en el primer launch** ([[ec2-bootstrapping]]).
 
 ## Demos del curso
 
@@ -88,4 +93,6 @@ App web en EC2 con IAM role
 
 ## Ver también
 
-[[EC2]] · [[instance-profile]] · [[temporary-credentials]] · [[IAM]] · [[dva-security]]
+[[EC2]] · [[instance-profile]] · [[temporary-credentials]] · [[IAM]] · [[ec2-bootstrapping]] · [[ssrf]] · [[dva-security]]
+
+> 📖 Lectura profunda: [[06.24 Instance Metadata (IMDS)]] · [[09.03 EC2 Instance Roles e Instance Profiles]]

@@ -3,8 +3,8 @@ title: AWS CLI y acceso programático
 category: concept
 tags: [cli, credenciales, profiles, acceso-programatico, sdk]
 exam: [DVA-C02, DOP-C02, SAA-C03]
-sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.05 Demostración - AWS CLI y perfiles.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md"]
-updated: 2026-09-28
+sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.05 Demostración - AWS CLI y perfiles.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md", "raw/notas curso mejorado/09 Advanced EC2/09.03 EC2 Instance Roles e Instance Profiles.md"]
+updated: 2026-09-30
 ---
 
 # AWS CLI y acceso programático
@@ -56,4 +56,5 @@ El primero que aparece gana — explica la mayoría de los "usa las credenciales
 - "La CLI dice *Unable to locate credentials*" → falta `--profile` o el perfil default no está configurado.
 - "Configuré el archivo pero usa otras credenciales" → hay **variables de entorno** pisando la cadena (precedencia 2 > 3).
 - "¿Cómo accede una app en EC2 sin keys?" → instance profile (paso 6 de la cadena, automático para CLI y SDKs).
+- "La instancia tiene un rol, pero la CLI usa otros permisos" → hay keys en `~/.aws/credentials` o en variables de entorno de la instancia: los pasos 2–3 le ganan al 6. La solución es **borrar las keys** ([[IAM]]).
 - "Corrí el comando en la cuenta equivocada" → `AWS_PROFILE` exportado de una sesión anterior.

@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, security, iam, cifrado, autenticacion]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-09-28
+updated: 2026-09-30
 ---
 
 # DVA-C02 · Dominio 2 — Security
@@ -40,6 +40,8 @@ Implementar autenticación/autorización para las apps (IAM, roles, [[federation
 | Responsabilidad del cliente vs AWS | [[shared-responsibility-model]] | ✅ |
 | **Credenciales dentro de una instancia: IMDSv1 vs IMDSv2** | [[ec2-instance-metadata]] | ✅ fuerte |
 | Roles asumidos por servicios (instance profile, execution role) | [[instance-profile]], [[execution-role]] | ✅ |
+| **Secret management** (Task 3): Parameter Store SecureString + KMS, `--with-decryption`, rotación con Secrets Manager | [[SSMParameterStore]], [[parameter-store-vs-secrets-manager]] | ✅ solo curso; Secrets Manager sin página propia |
+| Secretos fuera del **user data** (se lee en texto plano desde el IMDS) | [[ec2-bootstrapping]] | ✅ |
 | Cifrado de volúmenes y snapshots (DEK por volumen) | [[EBS]] | ✅ |
 | Acceso privado a servicios y [[endpoint-policy\|endpoint policies]] | [[vpc-endpoints]] | ✅ |
 | Filtrado de red: SG vs NACL, diagnóstico con flow logs | [[security-groups-vs-nacls]], [[vpc-flow-logs]] | ✅ |
@@ -52,6 +54,8 @@ Implementar autenticación/autorización para las apps (IAM, roles, [[federation
 
 > 🔐 **El gotcha de seguridad del módulo 08:** en [[ECS]] hay **tres roles** y el examen los mezcla. El código de la app usa el **task role**. El pull de la image, el envío de logs y la lectura de secrets usa el **task execution role**. En EC2 mode, registrar la instancia en el cluster usa el **container instance role**. Nunca se le dan permisos a la app vía el rol de la instancia. En EKS la misma idea es IRSA / Pod Identity, en vez del role del node.
 
-> 🔐 **El gotcha de seguridad más rentable del ingest de EC2:** si una app web en una instancia tiene un **SSRF**, con **IMDSv1** alcanza para robar las credenciales temporales del IAM role. La mitigación esperada en el examen es **exigir IMDSv2** (`HttpTokens: required`), que obliga a un `PUT` con header — algo que un SSRF no puede armar. Ver [[ec2-instance-metadata]].
+> 🔐 **El gotcha de seguridad más rentable del ingest de EC2:** si una app web en una instancia tiene un **[[ssrf|SSRF]]**, con **IMDSv1** alcanza para robar las credenciales temporales del IAM role. La mitigación esperada en el examen es **exigir IMDSv2** (`HttpTokens: required`), que obliga a un `PUT` con header — algo que un SSRF no puede armar. Ver [[ec2-instance-metadata]].
 
-> ⚠️ **Huecos pendientes de ingest**: **Cognito** (User Pools vs Identity Pools — muy preguntado en DVA), **Secrets Manager**, **SSM Parameter Store**, **ACM** (certificados). El dominio con mejor cobertura actual de la wiki.
+> 🔐 **El gotcha del módulo 09:** un **SecureString** necesita **dos** permisos para leerse descifrado: el de SSM sobre el parámetro y **`kms:Decrypt`** sobre la key. Si el enunciado pide **rotación automática**, la respuesta es Secrets Manager, no Parameter Store. Y ningún secreto va en el **user data**. Ver [[SSMParameterStore]] y [[parameter-store-vs-secrets-manager]].
+
+> ⚠️ **Huecos pendientes de ingest**: **Cognito** (User Pools vs Identity Pools — muy preguntado en DVA), **Secrets Manager** como servicio (hoy solo aparece en la comparación con Parameter Store), **ACM** (certificados). El dominio con mejor cobertura actual de la wiki.
