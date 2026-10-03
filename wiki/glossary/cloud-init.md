@@ -4,7 +4,7 @@ category: glossary
 tags: [ec2, bootstrapping, user-data, linux]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/09 Advanced EC2/09.01 Bootstrapping EC2 con User Data.md"]
-updated: 2026-09-30
+updated: 2026-10-03
 ---
 
 # cloud-init
@@ -18,6 +18,7 @@ updated: 2026-09-30
 ## Dónde aparece
 
 - [[ec2-bootstrapping]]: el paso que ejecuta el user data.
+- También en: [[EC2]]
 
 ## Dato de examen
 

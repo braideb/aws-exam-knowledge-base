@@ -376,3 +376,81 @@ Las cuatro páginas de servicio/comparación llevan ⚠️ "sin contraste con do
 - **Sin clippings de doc oficial** para EC2/EBS, Systems Manager, ECS/ECR/EKS ni X-Ray.
 - [[confused-deputy]] e [[idempotency]] siguen con `sources: []`.
 - Los problemas en `raw/` que reportaron lints anteriores (anclas en 05.09/05.12/05.13, etc.) siguen ahí: el LLM no edita `raw/` salvo pedido explícito.
+
+## [2026-10-02] segmentación | Módulo 10 — Databases (SQL)
+
+- Pedido explícito del humano: nueva carpeta `raw/notas curso mejorado/10 Databases (SQL)/`, con el índice del módulo y **17 secciones** (10.01–10.17), cada una con navegación, links a la wiki y callouts de examen. Hay 3 demos: splitting de WordPress, migración a RDS y Multi-AZ + snapshot restore.
+- La sección **10.17 Aurora Global Database** se agregó al original mientras se segmentaba: estaba transcrita con muchos errores de tipeo y se pasó en limpio.
+- [[00 Índice general]] suma el módulo 10.
+
+## [2026-10-03] ingest | Módulo 10 — Databases (SQL) + 49 clippings de bases de datos
+
+**Fuentes:** las 17 secciones de `raw/notas curso mejorado/10 Databases (SQL)/` y el **cuarto lote de clippings** (49 nuevos en `raw/doc oficial/`: RDS, Aurora, RDS Proxy, IAM DB auth, Secrets Manager, Parameter Store).
+- Un clipping se descartó: `AWS Prescriptive Guidance.md`, que es el índice de "Industry solutions" y no tiene contenido técnico.
+- Hay 2 duplicados ("… 1.md"), citados igual.
+
+**Páginas nuevas (8):**
+- [[RDS]] (service): DB instance en la VPC, [[db-subnet-group]], puertos, costos, Multi-AZ instance vs cluster, read replicas, backups/PITR/restore, cifrado y TDE, IAM DB auth, RDS Proxy, contraseña del master en Secrets Manager.
+- [[Aurora]] (service): cluster volume (6 copias), 15 replicas y tiers, endpoints (custom, global writer), Standard vs I/O-Optimized, backtrack, fast clone, Serverless v1/v2 (ACU, auto-pause), Global Database (switchover vs failover, write forwarding), Data API.
+- [[SecretsManager]] (service): rotación con Lambda o *managed*, single vs alternating users, la Lambda de rotación en la VPC, costo.
+- [[databases-on-ec2]] (concept): cuándo se justifica y por qué casi nunca, más la migración de las demos.
+- [[rds-ha-options]], [[rds-vs-aurora]] y [[rds-automated-backups-vs-snapshots]] (comparisons).
+- [[databases-cheat-sheet]] (exam).
+
+**Correcciones al curso con doc oficial (marcadas `⚠️ Outdated` o con ¹):**
+- Read replicas: **15** por instancia, no 5. RDS solo garantiza 5 cross-region.
+- Aurora: **256 TiB** y *dynamic resizing*; la [[high-watermark]] es de versiones viejas.
+- IAM DB auth solo en MySQL/MariaDB/PostgreSQL.
+- Multi-AZ cluster solo en MySQL/PostgreSQL, con commit semisíncrono.
+- La Data API también funciona con clusters provisioned.
+- RDS suma el motor **Db2**.
+- Free tier de Aurora: una fuente generada por IA contradice al curso. Queda señalado sin resolver.
+
+**Páginas actualizadas:**
+- [[ha-ft-dr]]: tabla de qué mejora el RPO y qué el RTO en bases. **Contradicción corregida:** listaba "Aurora con réplicas" como FT, pero su failover corta ~30 s; ahora figura como HA.
+- [[parameter-store-vs-secrets-manager]]: los complementos sin fuente ahora citan clippings, más la fila de >4 KB.
+- [[SSMParameterStore]]: primer clipping de Systems Manager (100.000 parámetros Advanced, 100 versiones, compartir entre cuentas, high-throughput).
+- [[KMS]], [[EBS]], [[EC2]], [[IAM]], [[lambda-in-vpc]] (RDS Proxy y Data API) y [[vpc-endpoints]] (la rotación necesita el endpoint).
+- Primera mención linkeada a [[RDS]] / [[SecretsManager]] en otras 18 páginas.
+
+**Glosario:**
+- **Nuevos (14):** [[rpo]], [[rto]], [[sigv4]] (los tres salen del backlog), [[synchronous-replication]], [[asynchronous-replication]], [[replication-lag]], [[point-in-time-recovery]], [[db-subnet-group]], [[connection-pooling]], [[copy-on-write]], [[high-watermark]], [[transparent-data-encryption]], [[acu]] y [[dbaas]].
+- **Actualizados:** [[multi-az]] (las dos topologías de RDS) y [[failover]] (tiempos de bases, switchover).
+- **Backlog:** suma `write-forwarding` y `session-pinning`.
+
+**Dominios:**
+- [[dva-security]]: **Secrets Manager sale de la lista de huecos**; se suman IAM DB auth y el cifrado de bases.
+- [[dva-development]]: data stores relacionales, RDS Proxy y Data API.
+- [[dva-troubleshooting]]: conexiones, DNS tras un failover, lag y la rotación que falla.
+- [[dva-deployment]]: clones para test y migración de la base.
+
+**Otros:**
+- [[index]]: 160 → **182** páginas (62 de conocimiento + 117 de glosario + 3 de examen); fuentes 136/136 y 135 clippings.
+- [[guia-estudio]]: **bloque nuevo, el 6 — Bases de datos relacionales**, después de "Almacenamiento y cifrado". [[parameter-store-vs-secrets-manager]] se mueve del bloque 5 al 6. Observabilidad, Containers e IaC pasan a ser los bloques 7, 8 y 9.
+- [[demos]]: +5 demos, 48 → **53** (sección nueva "Bases de datos (SQL)").
+
+## [2026-10-03] lint | Revisión en profundidad post-ingest del módulo 10
+
+Con un script nuevo (node) que revisa toda la wiki en una pasada: links, embeds, pipes en tablas, frontmatter, `sources`, huérfanas, cobertura de [[index]] y [[guia-estudio]], backlinks en las dos direcciones, detector de modificados y fuentes sin citar.
+
+**Estructura:**
+- 0 links o imágenes rotas en `wiki/`, `raw/notas curso mejorado/`, [[index]], [[guia-estudio]] y [[demos]]. Las imágenes del módulo 10, que el humano movió a `raw/assets/`, resuelven bien.
+- La única "rota" es `[[05.04 …]]` en este log: es una cita textual dentro de una entrada vieja, y el log no se reescribe.
+- 0 huérfanas; 182/182 páginas en [[index]] y todas las de estudio en [[guia-estudio]]; 0 pipes sin escapar; frontmatter completo; 0 `sources` que apunten a archivos inexistentes.
+
+**Corregido:**
+- **Pipes en tablas:** 2 alias sin escapar en [[ec2-cheat-sheet]] y [[ECS]] (salieron del propio ingest).
+- **Backlinks (página → glosario):** 13 que faltaban, la mayoría del ingest ([[failover]], [[lazy-restore]], [[replication-lag]], [[execution-role]], [[task-role]], [[service-linked-role]], [[serverless]], [[throttling]], [[connection-pooling]], [[idempotency]]) y 2 viejos ([[cloud-init]] ← [[EC2]], [[iaas]] ← [[paas]]).
+- **Backlinks (glosario → página):** 8 páginas figuraban en "Dónde aparece" sin linkear el término. Se linkeó la primera mención en [[Aurora]] (5 términos), [[RDS]] (2), [[databases-on-ec2]] y [[global-infrastructure]].
+- **Detector de modificados:** 9 páginas aparecían con fuentes de mtime 2026-10-03 (04.06, 09.12, y los clippings de access points, CloudTrail integrity y SCPs). Se comparó cada fuente con `git diff HEAD`: son **idénticas**, solo cambió el mtime (probablemente por mover las imágenes). No hay contenido sin ingestar, así que esas páginas pasan a `updated: 2026-10-03` y el detector queda en **0**.
+- [[idempotency]] deja de tener `sources: []`: ahora cita el clipping de S3 Event Notifications (*at least once*) y la guía de HA de RDS (reintentos idempotentes tras un failover). Tiene además una línea nueva de examen.
+
+**Revisado sin cambios:**
+- **Contradicciones numéricas: 0.** Se revisaron failover (60–120 s / ~35 s / ~30 s / ~1 min), retención de 0–35 días, transaction logs cada 5 min, 15 replicas, 256 TiB, token de 15 min y rotación cada 7 días.
+- 16 entradas de "Dónde aparece" listan páginas que no nombran el término literalmente (`bastion-host`, `hypervisor`, `object-storage`, etc.). Son backlinks curados del concepto o falsos positivos (el link está dentro del bullet de otra página), así que no se tocan.
+
+**Pendiente (decide el humano):**
+- **Temas sin página propia**, por cantidad de páginas que los mencionan: Lambda (43), DynamoDB (26), ELB/ALB (~20), SNS (15), SQS (14), API Gateway (9), Auto Scaling (8), Direct Connect (8), EFS (6), CodeBuild / CodeDeploy / CodePipeline (5), Beanstalk (4), CloudHSM (4), Cognito (3) y ElastiCache (3). Para DVA-C02 la prioridad sigue siendo **Lambda, DynamoDB y API Gateway**. RDS y Secrets Manager salieron de esta lista.
+- [[confused-deputy]] sigue con `sources: []`: no hay ninguna fuente en `raw/` que lo mencione.
+- Sin clippings de EC2/EBS, ECS/ECR/EKS ni X-Ray.
+- `raw/doc oficial/AWS Prescriptive Guidance.md` no tiene contenido útil: se puede borrar.

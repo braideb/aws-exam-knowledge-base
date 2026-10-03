@@ -4,7 +4,7 @@ category: glossary
 tags: [modelos-de-servicio, paas, shared-responsibility]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.12 Modelo de responsabilidad compartida (Shared Responsibility Model).md"]
-updated: 2026-09-28
+updated: 2026-10-03
 ---
 
 # PaaS — Platform as a Service
@@ -15,7 +15,7 @@ updated: 2026-09-28
 
 El proveedor gestiona infraestructura, sistema operativo, runtime y contenedor; vos solo llevás tu código y tus datos. Menos control que [[iaas]], mucho menos trabajo operativo.
 
-Ejemplos en AWS: Elastic Beanstalk, RDS (motor gestionado), [[ECS]] Fargate.
+Ejemplos en AWS: Elastic Beanstalk, [[RDS]] (motor gestionado), [[ECS]] Fargate.
 
 ## Dónde aparece
 

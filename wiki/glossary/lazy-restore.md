@@ -4,7 +4,7 @@ category: glossary
 tags: [ebs, snapshots, performance]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.11 EBS Snapshots, Restore y Fast Snapshot Restore (FSR).md"]
-updated: 2026-09-23
+updated: 2026-10-03
 ---
 
 # Lazy restore
@@ -19,7 +19,7 @@ updated: 2026-09-23
 
 - [[EBS]] — restore de snapshots
 - [[dva-troubleshooting]] — "el volumen restaurado anda lento"
-- También en: [[ec2-cheat-sheet]] · [[ha-ft-dr]]
+- También en: [[ec2-cheat-sheet]] · [[ha-ft-dr]] · [[RDS]] · [[rds-automated-backups-vs-snapshots]]
 
 ## Dato de examen
 

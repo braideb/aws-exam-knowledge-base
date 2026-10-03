@@ -147,3 +147,23 @@
 - [[09.11 Partition Placement Groups|Partition Placement Groups]]
 - [[09.12 Enhanced Networking (SR-IOV, ENA, EFA)|Enhanced Networking (SR-IOV, ENA, EFA)]]
 - [[09.13 EBS Optimized|EBS Optimized]]
+
+## [[10.00 Databases (SQL) — Índice|Módulo 10 — Databases (SQL)]] (17 secciones)
+
+- [[10.01 Databases on EC2|Databases on EC2]]
+- [[10.02 Demostración - Splitting WordPress (app y DB)|Demostración: Splitting WordPress (app y DB)]]
+- [[10.03 RDS — Architecture|RDS — Architecture]]
+- [[10.04 RDS — Costos|RDS — Costos]]
+- [[10.05 Demostración - Migrar DB de EC2 a RDS|Demostración: Migrar DB de EC2 a RDS]]
+- [[10.06 RDS Multi-AZ Instance|RDS Multi-AZ Instance]]
+- [[10.07 RDS Multi-AZ Cluster|RDS Multi-AZ Cluster]]
+- [[10.08 RDS Backups y Restore|RDS Backups y Restore]]
+- [[10.09 RDS Read Replicas|RDS Read Replicas]]
+- [[10.10 Demostración - Multi-AZ y snapshot restore con RDS|Demostración: Multi-AZ y snapshot restore con RDS]]
+- [[10.11 RDS Security (Encryption y TDE)|RDS Security (Encryption y TDE)]]
+- [[10.12 RDS IAM Authentication|RDS IAM Authentication]]
+- [[10.13 Aurora — Architecture|Aurora — Architecture]]
+- [[10.14 Aurora — Restore, Clone y Backtrack|Aurora — Restore, Clone y Backtrack]]
+- [[10.15 Aurora Serverless|Aurora Serverless]]
+- [[10.16 AWS Secrets Manager|AWS Secrets Manager]]
+- [[10.17 Aurora Global Database|Aurora Global Database]]

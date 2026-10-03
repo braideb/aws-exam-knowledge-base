@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, troubleshooting, optimization, monitoring, logging]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-09-30
+updated: 2026-10-03
 ---
 
 # DVA-C02 · Dominio 4 — Troubleshooting and Optimization
@@ -57,6 +57,9 @@ Diagnosticar y resolver problemas de aplicaciones: observabilidad (métricas, lo
 | **Task de ECS que no arranca**: no hace pull de la image o no manda logs (task execution role), falta capacidad en EC2 mode ([[capacity-provider]]), health checks que fallan con [[dynamic-port-mapping]] | [[ECS]], [[ecs-ec2-vs-fargate]] | ✅ solo curso |
 | Tracing en containers: daemon de X-Ray como [[sidecar]] | [[XRay]], [[ECS]] | ✅ |
 | Optimización de costo de containers: right-sizing de la task, Fargate Spot, `binpack` | [[ecs-ec2-vs-fargate]] | ✅ |
+| **Base de datos**: `too many connections` desde Lambda (RDS Proxy), app que no vuelve tras un failover (cache de DNS), lecturas desactualizadas en una réplica ([[replication-lag]]), failover lento (lag o Aurora sin replicas) | [[RDS]], [[Aurora]], [[rds-ha-options]] | ✅ curso + doc oficial |
+| Rotación de Secrets Manager que falla (la Lambda en la VPC sin endpoint ni NAT) | [[SecretsManager]], [[vpc-endpoints]] | ✅ |
+| Optimización de costo de bases: Aurora Serverless v2 / auto-pause, I/O-Optimized vs Standard | [[Aurora]] | ✅ |
 
 ## Servicios más importantes para este dominio
 

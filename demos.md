@@ -2,8 +2,8 @@
 
 > Índice de todas las **demos prácticas** del curso (learn.cantrill.io), extraídas de las notas de `raw/notas curso mejorado/`. Cada demo linkea a la página wiki relacionada. El LLM lo actualiza cuando se ingestan notas nuevas con demos.
 
-**Última actualización:** 2026-09-30
-**Total de demos:** 48
+**Última actualización:** 2026-10-03
+**Total de demos:** 53
 
 ---
 
@@ -72,6 +72,16 @@
 | Logging and metrics with CloudWatch Agent — PART 1 | https://learn.cantrill.io/courses/1101194/lectures/27895417 | [[CloudWatchLogs]] |
 | Logging and metrics with CloudWatch Agent — PART 2 | https://learn.cantrill.io/courses/1101194/lectures/29448612 | [[CloudWatchLogs]] |
 
+## Bases de datos (SQL)
+
+| Demo | Link | Página wiki |
+|---|---|---|
+| Splitting WordPress monolith into app and DB | https://learn.cantrill.io/courses/1101194/lectures/27894839 | [[databases-on-ec2]] |
+| Migrating EC2 DB into RDS — PART 1 | https://learn.cantrill.io/courses/1101194/lectures/27894843 | [[RDS]] |
+| Migrating EC2 DB into RDS — PART 2 | https://learn.cantrill.io/courses/1101194/lectures/27894844 | [[RDS]] |
+| Multi-AZ & snapshot restore with RDS — PART 1 | https://learn.cantrill.io/courses/1101194/lectures/27894848 | [[RDS]] |
+| Multi-AZ & snapshot restore with RDS — PART 2 | https://learn.cantrill.io/courses/1101194/lectures/27894849 | [[RDS]] |
+
 ## S3
 
 | Demo | Link | Página wiki |
@@ -118,3 +128,5 @@ Las secciones nuevas de VPC (05.09–05.13: endpoints, flow logs, Lambda en VPC,
 Del módulo 08 (Containers), la demo de **Docker en EC2** tiene los comandos transcritos (build, run, push a Docker Hub; ver [[08.03 Demostración - Container of cats (Docker en EC2)]]). La de **Fargate** solo tiene el link y una descripción, sin pasos (ver [[08.07 Demostración - Container of cats en Fargate]]).
 
 Del módulo 09 (Advanced EC2), las demos de **Parameter Store** y del **CloudWatch Agent** tienen los comandos transcritos (ver [[09.05 Demostración - Parameter Store]] y [[09.07 Demostración - Logging y métricas con CloudWatch Agent]]). Las de **WordPress con user data** y **instance roles** solo tienen el link.
+
+Del módulo 10 (Databases SQL), las demos de **splitting de WordPress** y de **migración a RDS** tienen los comandos transcritos (`mysqldump`, restore, cambio de `DB_HOST`; ver [[10.02 Demostración - Splitting WordPress (app y DB)]] y [[10.05 Demostración - Migrar DB de EC2 a RDS]]). La de **Multi-AZ y snapshot restore** solo tiene los links (ver [[10.10 Demostración - Multi-AZ y snapshot restore con RDS]]). Las secciones de Aurora y Secrets Manager no traen demos.

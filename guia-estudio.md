@@ -2,8 +2,8 @@
 
 > El LLM mantiene este archivo actualizado en cada ingest (ver `CLAUDE.md` → sección `guia-estudio.md`). Propone el **orden de aprendizaje** del material ya ingestado en `wiki/` — no está organizado por examen ni por peso de dominio (eso vive en `index.md`), sino por prerequisitos conceptuales: qué conviene entender antes de qué.
 
-**Última actualización:** 2026-09-30 *(ingest del módulo 09 — Advanced EC2: **no hay bloque nuevo**, porque el módulo se reparte según sus prerequisitos. En el **Bloque 4** entran [[placement-groups]] (después de [[ec2-instance-types]], porque necesita enhanced networking y la noción de AZ) y [[ec2-bootstrapping]] (después de [[ec2-instance-metadata]], porque el user data sale del mismo endpoint y el baking supone AMI). En el **Bloque 5** entran [[SSMParameterStore]] y [[parameter-store-vs-secrets-manager]], **después de [[KMS]]**, porque SecureString se apoya en KMS. Los instance roles se leen en el Bloque 2 ([[IAM]]) y el CloudWatch Agent en el Bloque 6 ([[CloudWatchLogs]]). Anterior, 2026-09-28: ingest del módulo 08 — Containers, ECS y ECR: **bloque nuevo, el 7 — Containers**, que se ubica **después de observabilidad y antes de IaC**. Va después del 6 y no pegado a cómputo (bloque 4) porque ECS reusa casi todo lo anterior: [[virtualization]] y [[EC2]] (bloque 4), ENIs y security groups (bloque 3), roles (bloque 2), y [[CloudWatchLogs]] + el daemon de [[XRay]] como [[sidecar]] (bloque 6). IaC pasa a ser el bloque 8. Anterior, 2026-09-24: ingest del módulo 07 — Monitoring and logging: [[XRay]] entra al Bloque 6 **entre Logs y CloudTrail**, cerrando las tres patas de la observabilidad —métricas, logs, trazas— antes de pasar a auditoría; [[vpc-flow-logs]] no se mueve del Bloque 3, porque se entiende por los firewalls, pero su lectura profunda suma 07.08. Anterior, 2026-09-22: ingest de VPC 05.09–05.13 y del módulo 06 — EC2. Dos cambios de orden, no solo agregados: **[[storage-types]] se adelanta al Bloque 4**, porque es prerequisito tanto de EBS como de S3 y hasta ahora el bloque de S3 lo daba por sabido; y el **Bloque 4 deja de ser una sola página** para convertirse en el más largo de la guía, con cómputo y almacenamiento en bloque juntos. El Bloque 3 suma las cuatro páginas nuevas de VPC)*
-**Páginas cubiertas:** 55 (51 de estudio + 4 mapas de dominio DVA-C02) + 103 términos de glosario (transversales) + 2 cheat sheets de repaso
+**Última actualización:** 2026-10-03 *(ingest del módulo 10 — Databases (SQL): **bloque nuevo, el 6 — Bases de datos relacionales**, ubicado **inmediatamente después de "Almacenamiento y cifrado"**. Necesita [[EC2]] y [[EBS]] (bloque 4: RDS es un servidor con su EBS), [[VPC]] y security groups (bloque 3), [[KMS]] (bloque 5: el cifrado de RDS) y [[SSMParameterStore]] (bloque 5: Secrets Manager se entiende por contraste). Nada de observabilidad ni de containers lo necesita, así que no hace falta llevarlo más atrás. **Cambio de orden:** [[parameter-store-vs-secrets-manager]] **se mueve del Bloque 5 al 6**, justo después de [[SecretsManager]], porque la comparación recién se entiende entera con las dos páginas leídas. Observabilidad, Containers e IaC pasan a ser los bloques **7, 8 y 9**. En el historial de abajo los números de bloque son los de **cada fecha**. Anterior, 2026-09-30: ingest del módulo 09 — Advanced EC2: **no hay bloque nuevo**, porque el módulo se reparte según sus prerequisitos. En el **Bloque 4** entran [[placement-groups]] (después de [[ec2-instance-types]], porque necesita enhanced networking y la noción de AZ) y [[ec2-bootstrapping]] (después de [[ec2-instance-metadata]], porque el user data sale del mismo endpoint y el baking supone AMI). En el **Bloque 5** entran [[SSMParameterStore]] y [[parameter-store-vs-secrets-manager]], **después de [[KMS]]**, porque SecureString se apoya en KMS. Los instance roles se leen en el Bloque 2 ([[IAM]]) y el CloudWatch Agent en el Bloque 6 ([[CloudWatchLogs]]). Anterior, 2026-09-28: ingest del módulo 08 — Containers, ECS y ECR: **bloque nuevo, el 7 — Containers**, que se ubica **después de observabilidad y antes de IaC**. Va después del 6 y no pegado a cómputo (bloque 4) porque ECS reusa casi todo lo anterior: [[virtualization]] y [[EC2]] (bloque 4), ENIs y security groups (bloque 3), roles (bloque 2), y [[CloudWatchLogs]] + el daemon de [[XRay]] como [[sidecar]] (bloque 6). IaC pasa a ser el bloque 8. Anterior, 2026-09-24: ingest del módulo 07 — Monitoring and logging: [[XRay]] entra al Bloque 6 **entre Logs y CloudTrail**, cerrando las tres patas de la observabilidad —métricas, logs, trazas— antes de pasar a auditoría; [[vpc-flow-logs]] no se mueve del Bloque 3, porque se entiende por los firewalls, pero su lectura profunda suma 07.08. Anterior, 2026-09-22: ingest de VPC 05.09–05.13 y del módulo 06 — EC2. Dos cambios de orden, no solo agregados: **[[storage-types]] se adelanta al Bloque 4**, porque es prerequisito tanto de EBS como de S3 y hasta ahora el bloque de S3 lo daba por sabido; y el **Bloque 4 deja de ser una sola página** para convertirse en el más largo de la guía, con cómputo y almacenamiento en bloque juntos. El Bloque 3 suma las cuatro páginas nuevas de VPC)*
+**Páginas cubiertas:** 62 (58 de estudio + 4 mapas de dominio DVA-C02) + 117 términos de glosario (transversales) + 3 cheat sheets de repaso
 
 ---
 
@@ -88,13 +88,28 @@
 2. [[s3-storage-classes]] — clases de almacenamiento + lifecycle. *La dimensión económica de S3.*
 3. [[KMS]] — claves, DEKs, envelope encryption, key policies. *Antes del cifrado de S3, porque SSE-KMS se apoya en esto.*
 4. [[s3-encryption]] — client-side vs SSE-C/S3/KMS + bucket keys. *La síntesis: une S3 con KMS.*
-5. [[SSMParameterStore]] — configuración y secretos: String / StringList / SecureString, jerarquías, tiers. *Después de KMS, porque SecureString es KMS + doble permiso. Cierra el hilo de "dónde van los secretos" que abre [[ec2-bootstrapping]].*
-6. [[parameter-store-vs-secrets-manager]] — la comparación de examen (rotación). *Inmediatamente después.*
-7. [[CloudFront]] — CDN, OAC, contenido privado. *Cierra el bloque: la capa de entrega delante de S3.*
+5. [[SSMParameterStore]] — configuración y secretos: String / StringList / SecureString, jerarquías, tiers. *Después de KMS, porque SecureString es KMS + doble permiso. Abre el hilo de "dónde van los secretos" que empieza en [[ec2-bootstrapping]]; lo cierra [[SecretsManager]] en el bloque 6.*
+6. [[CloudFront]] — CDN, OAC, contenido privado. *Cierra el bloque: la capa de entrega delante de S3.*
 
 > 📖 Lectura profunda: [[01.08 S3 Buckets — Basics]] · [[01.09 S3 — Patterns y Anti-Patterns]] · [[04.00 S3 — Índice|Módulo 04 completo (04.01–04.17: security, versioning, performance, KMS, encryption, storage classes, replication, presigned URLs, CORS, object lock)]] · [[09.04 SSM Parameter Store]] · [[09.05 Demostración - Parameter Store]]
 
-## Bloque 6 — Observabilidad y auditoría
+## Bloque 6 — Bases de datos relacionales
+
+*De "instalo MySQL en la instancia" a una base gestionada, con HA, réplicas, backups, cifrado y credenciales que rotan solas. Se apoya en EC2/EBS (bloque 4), VPC y security groups (bloque 3), y KMS y Parameter Store (bloque 5).*
+
+1. [[databases-on-ec2]] — la base self-managed: cuándo se justifica y por qué casi nunca. *Primero, porque es el punto de partida del curso y explica qué te ahorra RDS.*
+2. [[RDS]] — el hub: DB instance en la VPC, DB subnet group, Multi-AZ, read replicas, backups, cifrado, IAM DB auth, RDS Proxy. *Usa [[EBS]] (cada instancia tiene el suyo) y [[KMS]].*
+3. [[rds-automated-backups-vs-snapshots]] — retención, PITR vs punto fijo, restore = endpoint nuevo. *Inmediatamente después de RDS: es la parte de backups ampliada y la base del razonamiento RPO/RTO.*
+4. [[Aurora]] — cluster con storage compartido, 15 replicas, endpoints, backtrack, clone, Serverless y Global Database. *Después de RDS, porque se explica por contraste con él.*
+5. [[rds-vs-aurora]] — la comparación de arquitectura. *Inmediatamente después de Aurora.*
+6. [[rds-ha-options]] — Multi-AZ instance vs cluster vs read replicas vs Aurora vs Global Database. *Recién acá, porque cruza todo lo anterior. Es la comparación que más cae del bloque.*
+7. [[SecretsManager]] — secretos con rotación (Lambda o *managed*) e integración con RDS. *Al final: la rotación tiene sentido una vez que sabés qué credencial de RDS se rota.*
+8. [[parameter-store-vs-secrets-manager]] — la comparación de examen (rotación). *Movida desde el bloque 5: con las dos páginas leídas se entiende entera.*
+
+> 📖 Lectura profunda: [[10.00 Databases (SQL) — Índice|Módulo 10 completo (10.01–10.17: bases en EC2, RDS architecture y costos, Multi-AZ instance y cluster, backups y restore, read replicas, seguridad y TDE, IAM DB auth, Aurora, Serverless, Global Database, Secrets Manager, + 3 demos)]]
+> 🎯 Repaso: [[databases-cheat-sheet]] al terminar el bloque. Para el razonamiento RPO/RTO de las bases, volvé a [[ha-ft-dr]] (bloque 1).
+
+## Bloque 7 — Observabilidad y auditoría
 
 *Ver qué pasa (métricas, logs y trazas), auditar quién hizo qué y reaccionar (eventos).*
 
@@ -107,19 +122,19 @@
 
 > 📖 Lectura profunda: [[01.11 CloudWatch — Basics]] · [[03.12 CloudWatch Logs]] · [[07.00 Monitoring and logging — Índice|Módulo 07 completo (07.01–07.08: arquitectura de CloudWatch, datos, resolution/retention, alarms, arquitectura de Logs, subscriptions y agregación, X-Ray, flow logs)]] · [[09.06 Logging en EC2 con CloudWatch Agent]] · [[09.07 Demostración - Logging y métricas con CloudWatch Agent]] · [[03.13 CloudTrail]] · [[03.14 Precios]]
 
-## Bloque 7 — Containers
+## Bloque 8 — Containers
 
 *Del "una VM por app" al "un proceso aislado por app": qué es un container, cómo lo orquesta AWS y dónde se guardan las images. Pesa en DVA por los roles de ECS y las estrategias de deployment.*
 
 1. [[containers]] — VM vs container, images como layers read-only + R/W layer, Dockerfile, registry. *Primero, porque todo lo que sigue da por sabido qué es una image. Se apoya en [[virtualization]] (bloque 4).*
-2. [[ECS]] — cluster, task definition, service, los tres roles, scaling en dos capas, rolling vs blue/green. *El corazón del bloque; necesita IAM roles (bloque 2), ENIs y SGs (bloque 3) y CloudWatch Logs / X-Ray (bloque 6).*
+2. [[ECS]] — cluster, task definition, service, los tres roles, scaling en dos capas, rolling vs blue/green. *El corazón del bloque; necesita IAM roles (bloque 2), ENIs y SGs (bloque 3) y CloudWatch Logs / X-Ray (bloque 7).*
 3. [[ecs-ec2-vs-fargate]] — los dos modos de cluster, networking (`awsvpc` vs `bridge`) y costos. *Inmediatamente después de ECS: es la decisión de examen del bloque, y usa [[ec2-purchase-options]].*
 4. [[ECR]] — el registry: repositories, tags, scanning, repository policies, push. *Después de ECS porque su gotcha principal (quién hace el pull) solo se entiende sabiendo qué es el task execution role.*
 5. [[EKS]] — Kubernetes 101 y Kubernetes managed. *Al final: se entiende por contraste con ECS (IRSA ↔ task role, Fargate profiles ↔ Fargate). Para DVA pesa menos que ECS.*
 
 > 📖 Lectura profunda: [[08.00 Containers, ECS y ECR — Índice|Módulo 08 completo (08.01–08.10: containers, images y registry, demo de Docker en EC2, ECS concepts, cluster types, EC2 vs ECS vs Fargate, demo de Fargate, ECR, Kubernetes 101, EKS)]]
 
-## Bloque 8 — Infraestructura como código
+## Bloque 9 — Infraestructura como código
 
 1. [[CloudFormation]] — templates y secciones. *Va último por ahora: declara recursos de todos los bloques anteriores. Página inicial, se ampliará con el curso.*
 
@@ -129,9 +144,9 @@
 
 ## Sugerencia de ruta
 
-- **Si arrancás de cero**: bloques en orden, 1 → 8.
-- **Si ya viste el curso** (este material sale de tus notas): usá los bloques como checklist de repaso y saltá directo a las páginas de comparación ([[s3-storage-classes]], [[s3-encryption]], [[alias-vs-cname]], [[security-groups-vs-nacls]], [[nat-gateway-vs-nat-instance]], [[gateway-vs-interface-endpoint]], [[ebs-volume-types]], [[instance-store-vs-ebs]], [[ec2-purchase-options]], [[horizontal-vs-vertical-scaling]], [[placement-groups]], [[parameter-store-vs-secrets-manager]], [[ecs-ec2-vs-fargate]]) + las secciones "Gotchas" de cada página, que es donde vive el jugo de examen.
-- **Última pasada antes del examen**: los dos cheat sheets, [[vpc-cheat-sheet]] y [[ec2-cheat-sheet]]. **No están en la secuencia** — no enseñan nada nuevo, condensan lo ya leído en tablas de "escenario → respuesta" y listas de números. Leerlos antes de estudiar el tema no sirve.
+- **Si arrancás de cero**: bloques en orden, 1 → 9.
+- **Si ya viste el curso** (este material sale de tus notas): usá los bloques como checklist de repaso y saltá directo a las páginas de comparación ([[s3-storage-classes]], [[s3-encryption]], [[alias-vs-cname]], [[security-groups-vs-nacls]], [[nat-gateway-vs-nat-instance]], [[gateway-vs-interface-endpoint]], [[ebs-volume-types]], [[instance-store-vs-ebs]], [[ec2-purchase-options]], [[horizontal-vs-vertical-scaling]], [[placement-groups]], [[parameter-store-vs-secrets-manager]], [[ecs-ec2-vs-fargate]], [[rds-automated-backups-vs-snapshots]], [[rds-vs-aurora]], [[rds-ha-options]]) + las secciones "Gotchas" de cada página, que es donde vive el jugo de examen.
+- **Última pasada antes del examen**: los tres cheat sheets, [[vpc-cheat-sheet]], [[ec2-cheat-sheet]] y [[databases-cheat-sheet]]. **No están en la secuencia** — no enseñan nada nuevo, condensan lo ya leído en tablas de "escenario → respuesta" y listas de números. Leerlos antes de estudiar el tema no sirve.
 - **Práctica activa**: al terminar un bloque, pedí un **quiz** ("quiz bloque 2") para repasar en activo lo que acabás de leer.
 
 ## Mapas de dominio (transversales, no secuenciales)

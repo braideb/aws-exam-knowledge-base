@@ -3,8 +3,8 @@ title: EC2 (Elastic Compute Cloud)
 category: service
 tags: [ec2, compute, iaas, ami, instancias, ebs, eni, imds, user-data, placement-groups]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.05 Elastic Compute Cloud (EC2) — Basics.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.06 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.07 Conectarse a EC2.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.02 EC2 Architecture and Resilience.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.14 Network Interfaces (ENI), IPs y DNS.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.15 Elastic IP.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.17 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.22 Instance Status Checks y Auto Recovery.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.16 Demostración - Instalación manual de WordPress.md", "raw/notas curso mejorado/09 Advanced EC2/09.01 Bootstrapping EC2 con User Data.md", "raw/notas curso mejorado/09 Advanced EC2/09.02 Boot Time to Service Time y AMI Baking.md", "raw/notas curso mejorado/09 Advanced EC2/09.08 Placement Groups — Overview.md", "raw/notas curso mejorado/09 Advanced EC2/09.12 Enhanced Networking (SR-IOV, ENA, EFA).md", "raw/notas curso mejorado/09 Advanced EC2/09.13 EBS Optimized.md"]
-updated: 2026-09-30
+sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.05 Elastic Compute Cloud (EC2) — Basics.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.06 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.07 Conectarse a EC2.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.02 EC2 Architecture and Resilience.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.14 Network Interfaces (ENI), IPs y DNS.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.15 Elastic IP.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.17 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.22 Instance Status Checks y Auto Recovery.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.16 Demostración - Instalación manual de WordPress.md", "raw/notas curso mejorado/09 Advanced EC2/09.01 Bootstrapping EC2 con User Data.md", "raw/notas curso mejorado/09 Advanced EC2/09.02 Boot Time to Service Time y AMI Baking.md", "raw/notas curso mejorado/09 Advanced EC2/09.08 Placement Groups — Overview.md", "raw/notas curso mejorado/09 Advanced EC2/09.12 Enhanced Networking (SR-IOV, ENA, EFA).md", "raw/notas curso mejorado/09 Advanced EC2/09.13 EBS Optimized.md", "raw/notas curso mejorado/10 Databases (SQL)/10.01 Databases on EC2.md"]
+updated: 2026-10-03
 ---
 
 # EC2 — Elastic Compute Cloud
@@ -199,6 +199,7 @@ Por defecto AWS decide en qué host va cada instancia. Un placement group lo cam
 - [[SSMParameterStore]] — configuración y secretos que la instancia lee al arrancar con su instance role, en lugar de ponerlos en el user data.
 - [[S3]] — donde viven los snapshots de EBS y las AMIs.
 - [[ECS]] — en EC2 mode, las instancias son los container hosts (container instances) del cluster; para correr [[containers]] sin administrar instancias está Fargate ([[ecs-ec2-vs-fargate]]).
+- [[RDS]] — la alternativa gestionada a instalar la base de datos en la instancia. Poner la base en EC2 solo se justifica con un motor o versión no soportada o con acceso al SO ([[databases-on-ec2]]).
 
 ## Gotchas y trampas del examen
 

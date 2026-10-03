@@ -4,7 +4,7 @@ category: concept
 tags: [ec2, user-data, bootstrapping, ami, deployment, cloud-init]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/09 Advanced EC2/09.01 Bootstrapping EC2 con User Data.md", "raw/notas curso mejorado/09 Advanced EC2/09.02 Boot Time to Service Time y AMI Baking.md"]
-updated: 2026-09-30
+updated: 2026-10-03
 ---
 
 # EC2 Bootstrapping (User Data) y AMI baking
@@ -65,7 +65,7 @@ Ejemplo del combinado: si un proceso es **90% instalación y 10% configuración*
 
 - *"Cambié el user data y reinicié, pero no pasó nada"* → el user data **solo corre en el primer launch**.
 - *"La instancia está `running` y pasa 2/2 checks, pero la app no responde"* → el user data probablemente **falló**. EC2 no lo valida.
-- *"Pasar la contraseña de la DB por user data"* → **no**: se lee en texto plano desde el IMDS. Usá Parameter Store SecureString o Secrets Manager, más un instance role.
+- *"Pasar la contraseña de la DB por user data"* → **no**: se lee en texto plano desde el IMDS. Usá Parameter Store SecureString o [[SecretsManager|Secrets Manager]], más un instance role.
 - *"Minimizar el tiempo hasta que la instancia esté en servicio"* → **AMI baking**. *"…sin perder flexibilidad de configuración"* → **baking + bootstrapping**.
 - *"Script de user data de más de 16 KB"* → que el user data descargue el script de S3.
 

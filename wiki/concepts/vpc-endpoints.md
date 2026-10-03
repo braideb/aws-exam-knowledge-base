@@ -3,8 +3,8 @@ title: VPC Endpoints
 category: concept
 tags: [vpc, networking, endpoints, privatelink, s3, dynamodb]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.09 VPC Endpoints.md"]
-updated: 2026-09-23
+sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.09 VPC Endpoints.md", "raw/doc oficial/Set up alternating users rotation for AWS Secrets Manager - AWS Secrets Manager.md"]
+updated: 2026-10-03
 ---
 
 # VPC Endpoints
@@ -70,6 +70,7 @@ Existe el **Gateway Load Balancer Endpoint**, que redirige tráfico hacia applia
 - *"¿Qué tipo soporta DynamoDB?"* → **solo Gateway**. S3 soporta los dos.
 - *"Limitar a qué buckets se puede llegar por el endpoint"* → [[endpoint-policy|endpoint policy]].
 - Una Lambda en VPC que debe hablar con DynamoDB sin salir a internet → Gateway Endpoint ([[lambda-in-vpc]]).
+- *"La rotación de Secrets Manager falla con timeout y la base está en subnets privadas"* → la Lambda de rotación corre en la VPC y no llega a la API: falta un **Interface Endpoint** de Secrets Manager (o un NAT) ([[SecretsManager]]).
 
 ## Ver también
 

@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, roles, seguridad, servicios]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.08 Service-Linked Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md"]
-updated: 2026-09-24
+updated: 2026-10-03
 ---
 
 # Service-Linked Role
@@ -21,12 +21,13 @@ Se reconocen por el path reservado **`/aws-service-role/`** y el prefijo de nomb
 arn:aws:iam::123456789012:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
 ```
 
-Los usan Auto Scaling, ELB, RDS, EKS, [[Organizations]], GuardDuty, Config, Trusted Advisor.
+Los usan Auto Scaling, ELB, [[RDS]], EKS, [[Organizations]], GuardDuty, Config, Trusted Advisor.
 
 ## Dónde aparece
 
 - [[IAM]] — tabla comparativa completa contra un service role normal
 - [[permissions-boundary]] — no se le puede aplicar boundary a un service-linked role
+- También en: [[RDS]]
 
 ## Dato de examen
 

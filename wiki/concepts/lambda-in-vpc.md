@@ -3,8 +3,8 @@ title: Lambda en una VPC
 category: concept
 tags: [lambda, vpc, networking, serverless, dva-development]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.11 Lambda en una VPC.md"]
-updated: 2026-09-23
+sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.11 Lambda en una VPC.md", "raw/doc oficial/Using Amazon RDS Proxy with AWS Lambda.md", "raw/doc oficial/Using the Amazon RDS Data API.md"]
+updated: 2026-10-03
 ---
 
 # Lambda en una VPC
@@ -15,7 +15,7 @@ updated: 2026-09-23
 
 ## Definición
 
-Por defecto, una función **Lambda corre en una VPC gestionada por AWS** y tiene salida a internet, pero **no** puede ver los recursos privados de tu [[VPC]] (por ejemplo, una base RDS en una subnet privada).
+Por defecto, una función **Lambda corre en una VPC gestionada por AWS** y tiene salida a internet, pero **no** puede ver los recursos privados de tu [[VPC]] (por ejemplo, una base [[RDS]] en una subnet privada).
 
 Cuando la configurás para conectarse a **tu** VPC, Lambda crea [[eni|ENIs]] en las subnets que le indiques y, a través de ellas, alcanza esos recursos. Le das **subnets y un security group**.
 
@@ -64,6 +64,8 @@ Lambda en VPC
 - *"Mi Lambda en VPC tiene que llegar a DynamoDB sin internet"* → **Gateway Endpoint** de DynamoDB.
 - *"La puse en una subnet pública y sigue sin internet"* → esperado: la ENI nunca recibe IP pública.
 - *"Las invocaciones fallan con `ENILimitReached`"* → la subnet se quedó sin IPs libres; subnets más grandes y en más AZs.
+- *"Con mucha concurrencia, la Lambda agota las conexiones de RDS"* → **RDS Proxy** ([[connection-pooling]]): mismo VPC que la base, y la Lambda se conecta al proxy ([[RDS]]).
+- *"Consultar Aurora desde Lambda sin meterla en la VPC ni manejar conexiones"* → **RDS Data API** (HTTPS, credenciales en [[SecretsManager]]) ([[Aurora]]).
 
 ## Ver también
 

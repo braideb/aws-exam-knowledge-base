@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, deployment, cicd, iac, cloudformation]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-09-30
+updated: 2026-10-03
 ---
 
 # DVA-C02 · Dominio 3 — Deployment
@@ -43,6 +43,8 @@ Preparar artefactos y desplegarlos: entornos de dev/test, despliegues automatiza
 | Build + push de la image en CI/CD (CodeBuild con privileged mode), tag immutability | [[ECR]] | ✅ solo curso |
 | **Estrategias de deployment** (Task 4): [[rolling-deployment\|rolling]] (`minimumHealthyPercent` / `maximumPercent`) y [[blue-green-deployment\|blue/green]] con CodeDeploy (canary / linear) | [[ECS]] | ✅ para ECS; falta Lambda/Beanstalk |
 | Dónde corre el artefacto: EC2 mode vs Fargate | [[ecs-ec2-vs-fargate]] | ✅ |
+| Entornos de test con datos reales sin copiar todo (Aurora **fast clone**) y bases de dev/test que se pausan solas (Serverless v2) | [[Aurora]] | ✅ |
+| Migrar la base de un entorno (EC2 → RDS: dump/restore y cambio de endpoint) | [[databases-on-ec2]], [[RDS]] | ✅ solo curso |
 
 ## Servicios más importantes para este dominio
 

@@ -4,7 +4,7 @@ category: glossary
 tags: [cifrado, seguridad, tls, sse]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/04 S3/04.06 S3 Object Encryption.md", "raw/doc oficial/AWS KMS keys - AWS Key Management Service.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.13 EBS Encryption.md"]
-updated: 2026-09-24
+updated: 2026-10-03
 ---
 
 # Encryption at Rest / in Transit
@@ -24,7 +24,7 @@ En [[S3]] el cifrado in transit ocurre **siempre** (HTTPS); las decisiones inter
 ## Dónde aparece
 
 - [[s3-encryption]] — contexto y tabla comparativa de los cuatro métodos
-- [[KMS]] — cifrado en reposo de S3/EBS/RDS/DynamoDB
+- [[KMS]] — cifrado en reposo de S3/EBS/[[RDS]]/DynamoDB
 - [[shared-responsibility-model]] — el cifrado client-side y server-side es responsabilidad **del cliente**
 - [[EBS]] — cifrado de volúmenes y snapshots con AES-256, sin impacto de rendimiento
 - También en: [[dva-security]] · [[data-encryption-key]] · [[envelope-encryption]]

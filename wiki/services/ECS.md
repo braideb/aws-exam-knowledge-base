@@ -4,7 +4,7 @@ category: service
 tags: [ecs, containers, fargate, compute, orquestacion, deployment]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/08 Containers, ECS y ECR/08.04 ECS — Concepts.md", "raw/notas curso mejorado/08 Containers, ECS y ECR/08.05 ECS — Cluster Types (EC2 y Fargate).md", "raw/notas curso mejorado/08 Containers, ECS y ECR/08.06 EC2 vs ECS (EC2) vs Fargate.md", "raw/notas curso mejorado/08 Containers, ECS y ECR/08.07 Demostración - Container of cats en Fargate.md"]
-updated: 2026-09-28
+updated: 2026-10-03
 ---
 
 # Amazon ECS (Elastic Container Service)
@@ -43,7 +43,7 @@ El **orquestador de [[containers]] propio de AWS**: recibe container images y la
 | Rol | Lo usa | Para |
 |---|---|---|
 | **[[task-role\|Task role]]** | Tu código dentro del container | Llamar a S3, DynamoDB, etc. con [[temporary-credentials\|credenciales temporales]] |
-| **Task execution role** | El ECS agent / Fargate | **Pull** de la image desde [[ECR]], **logs** a [[CloudWatchLogs]], leer **secrets** (Secrets Manager / Parameter Store) referenciados en la task definition |
+| **Task execution role** | El ECS agent / Fargate | **Pull** de la image desde [[ECR]], **logs** a [[CloudWatchLogs]], leer **secrets** ([[SecretsManager\|Secrets Manager]] / Parameter Store) referenciados en la task definition |
 | **Container instance role** | El ECS agent (**solo EC2 mode**) | Es el [[instance-profile]] de las instancias; las registra en el cluster |
 
 El task role es la best practice para darle permisos a un container, igual que el [[execution-role|execution role]] en Lambda. Según el instructor, aparece en al menos una pregunta del examen.

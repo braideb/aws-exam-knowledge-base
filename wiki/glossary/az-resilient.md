@@ -4,7 +4,7 @@ category: glossary
 tags: [resiliencia, infraestructura, availability-zones]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.03 Availability Zones (AZ).md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.05 Elastic Compute Cloud (EC2) — Basics.md", "raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.03 VPC Subnets.md"]
-updated: 2026-09-24
+updated: 2026-10-03
 ---
 
 # AZ Resilient
@@ -15,7 +15,7 @@ updated: 2026-09-24
 
 El nivel más bajo de resiliencia: el servicio o recurso se ejecuta dentro de una única Availability Zone y no tiene redundancia propia. El nombre confunde — no significa "resistente a la caída de una AZ", sino "resiliente **solo dentro de** su AZ".
 
-Ejemplos: instancia [[EC2]], volumen EBS, subnet de [[VPC]], RDS single-AZ, NAT Gateway.
+Ejemplos: instancia [[EC2]], volumen EBS, subnet de [[VPC]], [[RDS]] single-AZ, NAT Gateway.
 
 ## Dónde aparece
 

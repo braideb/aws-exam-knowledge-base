@@ -4,7 +4,7 @@ category: glossary
 tags: [ecs, iam, roles, permisos, containers]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/08 Containers, ECS y ECR/08.04 ECS — Concepts.md"]
-updated: 2026-09-28
+updated: 2026-10-03
 ---
 
 # Task role
@@ -29,7 +29,7 @@ Hay tres roles que se confunden seguido en ECS:
 - [[IAM]] — el mismo patrón de "rol asumido por el servicio"
 - [[aws-cli]] — paso de la cadena de credenciales del SDK
 - [[EKS]] — su equivalente es [[irsa|IRSA / EKS Pod Identity]]
-- También en: [[ECR]] · [[XRay]] · [[dva-development]] · [[dva-security]]
+- También en: [[ECR]] · [[XRay]] · [[dva-development]] · [[dva-security]] · [[SecretsManager]]
 
 ## Dato de examen
 

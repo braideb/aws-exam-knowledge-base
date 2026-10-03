@@ -3,8 +3,8 @@ title: KMS (Key Management Service)
 category: service
 tags: [kms, seguridad, cifrado, claves, dek, envelope-encryption, key-policy]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/04 S3/04.05 KMS (Key Management Service).md", "raw/doc oficial/AWS KMS keys - AWS Key Management Service.md", "raw/doc oficial/Rotate AWS KMS keys - AWS Key Management Service.md", "raw/doc oficial/Grants in AWS KMS - AWS Key Management Service.md", "raw/doc oficial/Multi-Region keys in AWS KMS - AWS Key Management Service.md"]
-updated: 2026-09-24
+sources: ["raw/notas curso mejorado/04 S3/04.05 KMS (Key Management Service).md", "raw/doc oficial/AWS KMS keys - AWS Key Management Service.md", "raw/doc oficial/Rotate AWS KMS keys - AWS Key Management Service.md", "raw/doc oficial/Grants in AWS KMS - AWS Key Management Service.md", "raw/doc oficial/Multi-Region keys in AWS KMS - AWS Key Management Service.md", "raw/notas curso mejorado/10 Databases (SQL)/10.11 RDS Security (Encryption y TDE).md", "raw/doc oficial/Encrypting Amazon RDS resources - Amazon Relational Database Service.md"]
+updated: 2026-10-03
 ---
 
 # KMS — Key Management Service
@@ -17,7 +17,7 @@ Flujo básico de la API: **`CreateKey`** → **`Encrypt`** (le mandás hasta 4 K
 
 ## Casos de uso
 
-- [[encryption-at-rest|Cifrado en reposo]] de S3/EBS/RDS/DynamoDB y demás.
+- [[encryption-at-rest|Cifrado en reposo]] de S3/EBS/[[RDS]]/DynamoDB y demás.
 - **[[role-separation|Role separation]]**: quien administra el recurso ≠ quien puede descifrar.
 - Auditoría de uso de claves ([[CloudTrail]] registra cada operación).
 
@@ -111,6 +111,7 @@ Claves **relacionadas** en distintas regiones con el **mismo key ID y mismo mate
 - [[EBS]] — cada volumen cifrado recibe su propia [[data-encryption-key|DEK]] vía `GenerateDataKeyWithoutPlaintext`; la clave en claro solo vive en la memoria del EC2 host, nunca en disco. Un snapshot hereda la DEK del volumen.
 
 - [[S3]] / [[s3-encryption]] — SSE-KMS, bucket keys.
+- [[RDS]] / [[Aurora]] — cifrado en reposo elegido **al crear** la base: storage, logs, snapshots y réplicas con la **misma key**, que después no se puede cambiar. Las réplicas y copias en otra región usan una key **de esa región**. [[SecretsManager]] también cifra cada secreto con KMS.
 - [[IAM]] — key policy + identity policies.
 - [[CloudTrail]] — auditoría de cada `GenerateDataKey`/`Decrypt` (quién descifró qué y cuándo).
 
@@ -120,7 +121,7 @@ Claves **relacionadas** en distintas regiones con el **mismo key ID y mismo mate
 - "Reescribí la key policy y ahora nadie puede usar la clave" → **caso con soporte de AWS**; no hay forma de arreglarlo desde la cuenta.
 - "Que el equipo de seguridad administre la clave pero no lea los datos" → separar las **dos familias de permisos** (uso vs. administración).
 - KMS Key ≠ cifrar datos grandes: >4KB → DEKs (envelope encryption).
-- La AWS managed key `aws/s3` **no sirve cross-account** → customer managed key con ARN explícito.
+- La AWS managed key `aws/s3` **no sirve cross-account** → customer managed key con ARN explícito. Lo mismo con RDS: un snapshot cifrado con la AWS managed key **no se puede compartir** con otra cuenta ([[RDS]]).
 - Role separation: admin de S3 sin permisos sobre la KMS Key **no puede leer** los objetos cifrados con SSE-KMS.
 - Los aliases no son globales; cada region tiene el suyo.
 - "Permiso temporal a la clave sin modificar policies" → **grant**; "AccessDenied justo después de `CreateGrant`" → eventual consistency, usar el **grant token**.

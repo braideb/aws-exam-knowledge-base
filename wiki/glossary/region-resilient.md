@@ -4,7 +4,7 @@ category: glossary
 tags: [resiliencia, infraestructura, regions, availability-zones]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.03 Availability Zones (AZ).md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.08 S3 Buckets — Basics.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.04 Default VPC (Virtual Private Cloud) — Basics.md"]
-updated: 2026-09-24
+updated: 2026-10-03
 ---
 
 # Region Resilient
@@ -15,7 +15,7 @@ updated: 2026-09-24
 
 Servicio que replica automáticamente entre las Availability Zones de su region. Opera mientras quede al menos una AZ sana, pero si cae la region entera, el servicio cae con ella. Su [[blast-radius]] es **la region**.
 
-Ejemplos: [[S3]], DynamoDB, [[VPC]], ELB, RDS [[multi-az|Multi-AZ]].
+Ejemplos: [[S3]], DynamoDB, [[VPC]], ELB, [[RDS]] [[multi-az|Multi-AZ]].
 
 ## Dónde aparece
 

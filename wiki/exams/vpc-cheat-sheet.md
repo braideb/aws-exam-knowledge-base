@@ -4,7 +4,7 @@ category: exam
 tags: [vpc, networking, repaso, cheat-sheet, dva-c02]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.13 Resumen para el examen (cheat sheet).md"]
-updated: 2026-09-24
+updated: 2026-10-03
 ---
 
 # VPC — Cheat sheet de examen
@@ -55,7 +55,7 @@ Repaso rápido de lo que más se pregunta de redes. Cada punto linkea a la pági
 | Ver el **contenido** de los paquetes | **[[traffic-mirroring\|Traffic Mirroring]]** (no Flow Logs) |
 | Conectar **2** VPCs | **VPC Peering** |
 | Conectar **muchas** VPCs | **Transit Gateway** |
-| Lambda que lee una **RDS privada** | Lambda **en la VPC** (subnets privadas + SG) |
+| Lambda que lee una **[[RDS]] privada** | Lambda **en la VPC** (subnets privadas + SG) |
 | Usar el NAT/IGW de la VPC vecina | **No se puede** ([[edge-to-edge-routing]]) |
 
 ## Los errores que más se repiten

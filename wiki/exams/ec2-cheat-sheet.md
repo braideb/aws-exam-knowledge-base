@@ -4,7 +4,7 @@ category: exam
 tags: [ec2, ebs, storage, repaso, cheat-sheet, dva-c02]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.00 Elastic Compute Cloud (EC2) — Índice.md", "raw/notas curso mejorado/09 Advanced EC2/09.00 Advanced EC2 — Índice.md"]
-updated: 2026-09-30
+updated: 2026-10-03
 ---
 
 # EC2 y almacenamiento — Cheat sheet de examen
@@ -94,8 +94,8 @@ Destilado de los módulos 06 (EC2) y 09 (Advanced EC2). A diferencia del de VPC,
 | Instancia lista para servir en el menor tiempo | **AMI baking** (+ user data para lo variable) |
 | Cambié el user data y reinicié: no pasó nada | Solo corre en el **primer launch** |
 | `running`, 2/2 checks, pero la app no responde | **User data fallido**: EC2 no lo valida |
-| Contraseña de la DB para la instancia | **Parameter Store SecureString** / Secrets Manager + instance role, **no** user data |
-| Rotación automática de credenciales de RDS | **Secrets Manager** ([[parameter-store-vs-secrets-manager]]) |
+| Contraseña de la DB para la instancia | **Parameter Store SecureString** / [[SecretsManager\|Secrets Manager]] + instance role, **no** user data |
+| Rotación automática de credenciales de [[RDS]] | **Secrets Manager** ([[parameter-store-vs-secrets-manager]]) |
 | `AccessDenied` con `--with-decryption` | Falta **`kms:Decrypt`** sobre la key |
 | Métrica de **memoria** o **disco** de la instancia | **CloudWatch Agent** + rol `CloudWatchAgentServerPolicy` |
 | Mínima latencia entre nodos ([[hpc\|HPC]]) | **Cluster PG** + enhanced networking / **EFA** |

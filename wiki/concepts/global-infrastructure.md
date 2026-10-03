@@ -4,7 +4,7 @@ category: concept
 tags: [fundamentos, regions, availability-zones, edge-locations, resiliencia, networking]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.01 Servicios públicos vs. privados.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.02 AWS Global Infrastructure.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.03 Availability Zones (AZ).md"]
-updated: 2026-10-01
+updated: 2026-10-03
 ---
 
 # AWS Global Infrastructure
@@ -45,7 +45,7 @@ Las tres zonas de red:
 
 ### Availability Zones
 
-- Múltiples por region (2, 3, 4… hasta 6; la mayoría **3**), aisladas entre sí a nivel de energía, red e instalaciones. Conectadas con enlaces high-speed low-latency (**~1 ms** entre AZs vs. ~100 ms entre regiones → permite replicación **síncrona**).
+- Múltiples por region (2, 3, 4… hasta 6; la mayoría **3**), aisladas entre sí a nivel de energía, red e instalaciones. Conectadas con enlaces high-speed low-latency (**~1 ms** entre AZs vs. ~100 ms entre regiones → permite [[synchronous-replication|replicación **síncrona**]]).
 - Una AZ **no es un datacenter**: es **uno o más DCs** cercanos con [[fault-domain|dominio de falla]] independiente.
 - Patrón de arquitectura: **repartir componentes entre AZs** (achica el [[blast-radius|blast radius]]) (6 VMs / 3 AZs = 2 por AZ).
 
@@ -68,7 +68,7 @@ Puntos de presencia pequeños (**400+ PoPs**, muchos más que regiones) cerca de
 | Nivel | Significa | Ejemplos |
 |---|---|---|
 | **[[globally-resilient\|Globally Resilient]]** | La caída de una region no lo afecta; datos replicados entre regiones | [[IAM]], [[Route53]], CloudFront |
-| **[[region-resilient\|Region Resilient]]** | Replica entre AZs; cae la region → cae el servicio | [[S3]], DynamoDB, [[VPC]], ELB, RDS [[multi-az\|Multi-AZ]] |
+| **[[region-resilient\|Region Resilient]]** | Replica entre AZs; cae la region → cae el servicio | [[S3]], DynamoDB, [[VPC]], ELB, [[RDS]] [[multi-az\|Multi-AZ]] |
 | **[[az-resilient\|AZ Resilient]]** | Vive en una sola AZ | instancia [[EC2]], volumen EBS, subnet, RDS single-AZ, NAT Gateway zonal (el modo regional, de nov-2025, no — ver [[nat-gateway-vs-nat-instance]]) |
 
 > **Almacenamiento y AZs:** un volumen [[EBS]] es [[az-resilient|AZ-resilient]] y **no cruza de AZ**; el **instance store** es todavía más acotado, porque vive en el host físico ([[ephemeral-storage|efímero]]). Lo que sube un escalón de resiliencia son los **snapshots**, que se guardan en [[S3]] y por lo tanto son de región.

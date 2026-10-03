@@ -3,8 +3,8 @@ title: EBS (Elastic Block Store)
 category: service
 tags: [ebs, storage, ec2, snapshots, kms, cifrado, iops]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.05 Elastic Block Store (EBS) — Basics.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.11 EBS Snapshots, Restore y Fast Snapshot Restore (FSR).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.13 EBS Encryption.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.12 Demostración - EBS Volumes e Instance Store.md", "raw/notas curso mejorado/09 Advanced EC2/09.13 EBS Optimized.md"]
-updated: 2026-09-30
+sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.05 Elastic Block Store (EBS) — Basics.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.11 EBS Snapshots, Restore y Fast Snapshot Restore (FSR).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.13 EBS Encryption.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.12 Demostración - EBS Volumes e Instance Store.md", "raw/notas curso mejorado/09 Advanced EC2/09.13 EBS Optimized.md", "raw/notas curso mejorado/10 Databases (SQL)/10.03 RDS — Architecture.md"]
+updated: 2026-10-03
 ---
 
 # EBS — Elastic Block Store
@@ -85,6 +85,7 @@ Consecuencias que caen en el examen:
 - [[KMS]] — la KMS key que protege la DEK de cada volumen.
 - [[S3]] — donde viven los snapshots (y de ahí su resiliencia de región).
 - [[CloudWatch]] — métricas de IOPS, [[throughput]] y **balance de [[burst-credit|créditos de burst]]** de gp2.
+- [[RDS]] — cada DB instance tiene **su propio volumen EBS** (gp2/gp3 o Provisioned IOPS), y sus snapshots funcionan como los de EBS (incrementales, a S3). [[Aurora]] no usa EBS por instancia: tiene un cluster volume compartido.
 
 ## Gotchas y trampas del examen
 

@@ -4,7 +4,7 @@ category: glossary
 tags: [ec2, rendimiento, networking, placement-groups]
 exam: [SAA-C03, DVA-C02]
 sources: ["raw/notas curso mejorado/09 Advanced EC2/09.09 Cluster Placement Groups.md", "raw/notas curso mejorado/09 Advanced EC2/09.12 Enhanced Networking (SR-IOV, ENA, EFA).md"]
-updated: 2026-09-30
+updated: 2026-10-03
 ---
 
 # HPC (High-Performance Computing)

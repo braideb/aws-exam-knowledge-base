@@ -3,8 +3,8 @@ title: SSM Parameter Store
 category: service
 tags: [ssm, systems-manager, parameter-store, configuracion, secretos, kms]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/09 Advanced EC2/09.04 SSM Parameter Store.md", "raw/notas curso mejorado/09 Advanced EC2/09.05 Demostración - Parameter Store.md", "raw/notas curso mejorado/09 Advanced EC2/09.06 Logging en EC2 con CloudWatch Agent.md"]
-updated: 2026-09-30
+sources: ["raw/notas curso mejorado/09 Advanced EC2/09.04 SSM Parameter Store.md", "raw/notas curso mejorado/09 Advanced EC2/09.05 Demostración - Parameter Store.md", "raw/notas curso mejorado/09 Advanced EC2/09.06 Logging en EC2 con CloudWatch Agent.md", "raw/doc oficial/AWS Systems Manager Parameter Store - AWS Systems Manager.md"]
+updated: 2026-10-03
 ---
 
 # SSM Parameter Store
@@ -46,19 +46,23 @@ Para leer el valor descifrado se pide con **`--with-decryption`**, y hacen falta
 
 - Un parámetro se lee por su **nombre completo** (`get-parameters --names /wordpress/DBPassword`) o se lee **toda la rama** de una vez (`get-parameters-by-path --path /wordpress/`).
 - La jerarquía sirve para separar por aplicación, por entorno o por equipo, y se combina con IAM: se puede dar permiso solo sobre `/dev-team/*`.
-- Cada cambio genera una **versión nueva** del parámetro (como el versionado de objetos de S3).
+- Cada cambio genera una **versión nueva** del parámetro (como el versionado de objetos de S3). Se guardan las **últimas 100** ¹.
 
 ### Tiers
 
 | Tier | Costo | Cantidad | Tamaño del valor | Extras |
 |---|---|---|---|---|
 | **Standard** | Gratis | Hasta **10.000** parámetros | **4 KB** | — |
-| **Advanced** | De pago | — | **8 KB** | **Parameter policies** (por ejemplo, expiración) |
+| **Advanced** | De pago | Hasta **100.000** ¹ | **8 KB** | **Parameter policies** (por ejemplo, expiración); **compartir con otras cuentas** ¹ |
+
+Un parámetro Standard se puede **pasar a Advanced, pero no volver** ¹. Por defecto el throughput es bajo: para muchas lecturas por segundo hay un modo **high-throughput** de pago (si no, [[throttling]]) ¹.
+
+¹ Complemento de la doc oficial de Parameter Store. La doc recomienda además **Secrets Manager** para credenciales de bases de datos, API keys y tokens, y deja SecureString para configuración sensible.
 
 ### Integraciones
 
 - **Parámetros públicos**: los crea AWS. El clásico es el ID de la AMI más reciente de un SO en una región.
-- **Referencia a Secrets Manager**: con el prefijo `/aws/reference/secretsmanager/<secreto>` se lee un secreto de Secrets Manager a través de la API de Parameter Store.
+- **Referencia a [[SecretsManager|Secrets Manager]]**: con el prefijo `/aws/reference/secretsmanager/<secreto>` se lee un secreto de Secrets Manager a través de la API de Parameter Store.
 - Lo usan de forma nativa CloudFormation, EC2 (la CLI desde la instancia), Lambda, [[ECS]] (secrets en la task definition) y el CloudWatch Agent.
 
 ## Integración con otros servicios
@@ -72,7 +76,7 @@ Para leer el valor descifrado se pide con **`--with-decryption`**, y hacen falta
 
 ## Gotchas y trampas del examen
 
-- **Rotación automática** de credenciales (por ejemplo, de RDS) → **Secrets Manager**, no Parameter Store. Ver [[parameter-store-vs-secrets-manager]].
+- **Rotación automática** de credenciales (por ejemplo, de [[RDS]]) → **Secrets Manager**, no Parameter Store. Ver [[parameter-store-vs-secrets-manager]].
 - *"`AccessDenied` al leer un SecureString con `--with-decryption`"* → falta **`kms:Decrypt`** sobre la key, no el permiso de SSM.
 - *"Leer toda la configuración de una app en una llamada"* → **`get-parameters-by-path`** sobre su rama.
 - *"Valor de 6 KB"* o *"que el parámetro expire"* → tier **Advanced**.

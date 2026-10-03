@@ -4,7 +4,7 @@ category: concept
 tags: [seguridad, fundamentos, iaas, paas, saas]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.12 Modelo de responsabilidad compartida (Shared Responsibility Model).md"]
-updated: 2026-09-23
+updated: 2026-10-03
 ---
 
 # Shared Responsibility Model
@@ -38,7 +38,7 @@ La línea de corte depende del modelo de servicio. Con **[[iaas|IaaS]]** ([[EC2]
 ## Ejemplos concretos para no confundirse
 
 - Parchear el SO de una EC2 → **tuyo** (IaaS).
-- Parchear el motor de RDS → AWS aplica, vos elegís la ventana.
+- Parchear el motor de [[RDS]] → AWS aplica, vos elegís la ventana.
 - Parchear Lambda/DynamoDB → **AWS** (managed/[[serverless]]).
 - Configurar un Security Group → **siempre tuyo**.
 - Seguridad física del datacenter → **siempre AWS**.

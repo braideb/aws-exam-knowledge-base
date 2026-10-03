@@ -3,8 +3,8 @@ title: IAM (Identity and Access Management)
 category: service
 tags: [iam, seguridad, users, groups, roles, sts, federacion, access-keys]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.03 IAM — Conceptos básicos.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.02 IAM Users.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.04 Restricciones y datos útiles de IAM.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.05 IAM Groups.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.06 IAM Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.08 Service-Linked Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.09 Security Token Service (STS).md", "raw/doc oficial/IAM users - AWS Identity and Access Management.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/doc oficial/Temporary security credentials in IAM - AWS Identity and Access Management.md", "raw/doc oficial/Using AWS Identity and Access Management Access Analyzer - AWS Identity and Access Management.md", "raw/notas curso mejorado/09 Advanced EC2/09.03 EC2 Instance Roles e Instance Profiles.md"]
-updated: 2026-09-30
+sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.03 IAM — Conceptos básicos.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.02 IAM Users.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.04 Restricciones y datos útiles de IAM.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.05 IAM Groups.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.06 IAM Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.08 Service-Linked Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.09 Security Token Service (STS).md", "raw/doc oficial/IAM users - AWS Identity and Access Management.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/doc oficial/Temporary security credentials in IAM - AWS Identity and Access Management.md", "raw/doc oficial/Using AWS Identity and Access Management Access Analyzer - AWS Identity and Access Management.md", "raw/notas curso mejorado/09 Advanced EC2/09.03 EC2 Instance Roles e Instance Profiles.md", "raw/notas curso mejorado/10 Databases (SQL)/10.12 RDS IAM Authentication.md"]
+updated: 2026-10-03
 ---
 
 # IAM — Identity and Access Management
@@ -151,7 +151,7 @@ Cómo se reconocen: viven bajo el path reservado **`/aws-service-role/`** y el n
 arn:aws:iam::123456789012:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
 ```
 
-Servicios que los usan: Auto Scaling, ELB, RDS, EKS, [[Organizations]], GuardDuty, Config, Trusted Advisor.
+Servicios que los usan: Auto Scaling, ELB, [[RDS]], EKS, [[Organizations]], GuardDuty, Config, Trusted Advisor.
 
 | Aspecto | Role normal (service role) | Service-linked role |
 |---|---|---|
@@ -188,7 +188,7 @@ Relacionado: `iam:PassRole` = permiso para *entregarle* un rol a un servicio (co
 
 Ver un `AKIA` dentro de una instancia [[EC2]] es por sí solo una señal de mala configuración: ahí debería haber un [[instance-profile|rol]].
 
-> **La secret key nunca viaja en la request.** Se usa localmente para firmar el pedido con **SigV4**; lo que se envía es la firma. Por eso interceptar una request de AWS no revela la credencial — y por eso un **reloj muy desfasado** en el cliente rompe la firma.
+> **La secret key nunca viaja en la request.** Se usa localmente para firmar el pedido con **[[sigv4|SigV4]]**; lo que se envía es la firma. Por eso interceptar una request de AWS no revela la credencial — y por eso un **reloj muy desfasado** en el cliente rompe la firma.
 
 | | **Access keys (largo plazo)** | **[[temporary-credentials\|Temporales]] (STS)** |
 |---|---|---|
@@ -241,6 +241,7 @@ Como IAM es **global**, estos límites son **por cuenta, no por region**: no pod
 
 - [[Organizations]] — multi-cuenta con roles + `sts:AssumeRole` ("switch role").
 - [[KMS]] — key policies + IAM policies para acceso a claves.
+- [[RDS]] — **IAM database authentication**: un user o role con `rds-db:connect` genera un token de 15 minutos que reemplaza a la contraseña de la base. Autentica, pero no autoriza: los permisos dentro de la base siguen siendo del usuario local.
 - [[S3]] — bucket policies (resource) vs. identity policies.
 - [[CloudTrail]] — audita cada AssumeRole y llamada de API.
 

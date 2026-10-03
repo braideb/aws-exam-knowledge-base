@@ -4,7 +4,7 @@ category: glossary
 tags: [modelos-de-servicio, iaas, shared-responsibility]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.05 Elastic Compute Cloud (EC2) — Basics.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.12 Modelo de responsabilidad compartida (Shared Responsibility Model).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.01 Virtualization 101.md"]
-updated: 2026-09-24
+updated: 2026-10-03
 ---
 
 # IaaS — Infrastructure as a Service
@@ -22,7 +22,7 @@ El IaaS clásico de AWS es [[EC2]].
 - [[shared-responsibility-model]] — tabla On-Prem / IaaS / [[paas|PaaS]] / [[saas|SaaS]]
 - [[EC2]] — "vos gestionás SO y aplicaciones; AWS del hypervisor para abajo"
 - [[virtualization]] — la línea que separa lo que controlás de lo que controla AWS
-- También en: [[ec2-cheat-sheet]] · [[hypervisor]] · [[serverless]]
+- También en: [[ec2-cheat-sheet]] · [[hypervisor]] · [[serverless]] · [[paas]]
 
 ## Dato de examen
 

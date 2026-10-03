@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, development, serverless, apis, sdk]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-09-30
+updated: 2026-10-03
 ---
 
 # DVA-C02 · Dominio 1 — Development with AWS Services
@@ -41,11 +41,16 @@ Desarrollar código para aplicaciones hospedadas en AWS: arquitecturas event-dri
 | Requisitos de recursos (memoria, cores) al elegir dónde corre el código | [[ec2-instance-types]] | ✅ |
 | Apps [[stateless\|stateless]] y sesiones off-host | [[horizontal-vs-vertical-scaling]] | ✅ |
 | Microservicios en containers: task definition, services, [[sidecar\|sidecars]], credenciales del SDK vía [[task-role\|task role]] | [[containers]], [[ECS]] | ✅ solo curso |
+| **Data stores relacionales desde el código** (Task 3): conectar por el **endpoint DNS**, leer de réplicas por el reader endpoint, tolerar el [[replication-lag\|lag]] de una réplica asíncrona | [[RDS]], [[Aurora]], [[rds-ha-options]] | ✅ curso + doc oficial |
+| Conexiones desde Lambda: **RDS Proxy** ([[connection-pooling]]) o la **RDS Data API** por HTTPS | [[RDS]], [[Aurora]], [[lambda-in-vpc]] | ✅ |
+| Leer credenciales de la base en runtime con el SDK | [[SecretsManager]] | ✅ |
 
 ## Servicios más importantes para este dominio
 
-Presentes en la wiki: [[S3]], [[EventBridge]], [[KMS]], [[EC2]], [[EBS]], [[ECS]], [[SSMParameterStore]].
+Presentes en la wiki: [[S3]], [[EventBridge]], [[KMS]], [[EC2]], [[EBS]], [[ECS]], [[SSMParameterStore]], [[RDS]], [[Aurora]], [[SecretsManager]].
+
+> **Lo que aporta el módulo 10 (bases SQL):** la app nunca se conecta a una IP, sino al **endpoint**, que sigue al failover. Lee de las réplicas, que van atrasadas, y escribe en la primary. Con Lambda, el riesgo es agotar `max_connections`: la respuesta es **RDS Proxy**, o la **Data API** para Aurora. Ver [[databases-cheat-sheet]].
 
 > **Lo que aporta el ingest de VPC al Task 2 (Lambda):** las tres configuraciones posibles de una función respecto a la red, la trampa de la subnet pública (la ENI de una Lambda **nunca** recibe IP pública), los permisos de `AWSLambdaVPCAccessExecutionRole` y el error `ENILimitReached` por agotamiento de IPs. Ver [[lambda-in-vpc]].
 
-> ⚠️ **Huecos grandes pendientes de ingest** (el curso aún no los cubrió): **Lambda**, **API Gateway**, **DynamoDB**, **SQS/SNS**, **Step Functions**, **ElastiCache**, SDK patterns (reintentos, backoff, paginación). Son el corazón de este dominio — prioridad alta para próximos ingest.
+> ⚠️ **Huecos grandes pendientes de ingest** (el curso aún no los cubrió): **Lambda**, **API Gateway**, **DynamoDB** (las bases relacionales ya están, con [[RDS]] y [[Aurora]]), **SQS/SNS**, **Step Functions**, **ElastiCache**, SDK patterns (reintentos, backoff, paginación). Son el corazón de este dominio — prioridad alta para próximos ingest.

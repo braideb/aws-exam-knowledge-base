@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, security, iam, cifrado, autenticacion]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-09-30
+updated: 2026-10-03
 ---
 
 # DVA-C02 · Dominio 2 — Security
@@ -40,7 +40,9 @@ Implementar autenticación/autorización para las apps (IAM, roles, [[federation
 | Responsabilidad del cliente vs AWS | [[shared-responsibility-model]] | ✅ |
 | **Credenciales dentro de una instancia: IMDSv1 vs IMDSv2** | [[ec2-instance-metadata]] | ✅ fuerte |
 | Roles asumidos por servicios (instance profile, execution role) | [[instance-profile]], [[execution-role]] | ✅ |
-| **Secret management** (Task 3): Parameter Store SecureString + KMS, `--with-decryption`, rotación con Secrets Manager | [[SSMParameterStore]], [[parameter-store-vs-secrets-manager]] | ✅ solo curso; Secrets Manager sin página propia |
+| **Secret management** (Task 3): Parameter Store SecureString + KMS, `--with-decryption`, rotación con Secrets Manager (Lambda o *managed*, single vs alternating users) | [[SSMParameterStore]], [[SecretsManager]], [[parameter-store-vs-secrets-manager]] | ✅ curso + doc oficial |
+| **Autenticación a la base sin contraseña**: IAM DB auth (token de 15 min, `rds-db:connect`, autentica pero no autoriza) | [[RDS]] | ✅ |
+| **Cifrado de bases**: KMS al crear, réplica = mismo estado, snapshot → copia cifrada; [[transparent-data-encryption\|TDE]]; compartir snapshots cifrados | [[RDS]], [[KMS]] | ✅ |
 | Secretos fuera del **user data** (se lee en texto plano desde el IMDS) | [[ec2-bootstrapping]] | ✅ |
 | Cifrado de volúmenes y snapshots (DEK por volumen) | [[EBS]] | ✅ |
 | Acceso privado a servicios y [[endpoint-policy\|endpoint policies]] | [[vpc-endpoints]] | ✅ |
@@ -58,4 +60,6 @@ Implementar autenticación/autorización para las apps (IAM, roles, [[federation
 
 > 🔐 **El gotcha del módulo 09:** un **SecureString** necesita **dos** permisos para leerse descifrado: el de SSM sobre el parámetro y **`kms:Decrypt`** sobre la key. Si el enunciado pide **rotación automática**, la respuesta es Secrets Manager, no Parameter Store. Y ningún secreto va en el **user data**. Ver [[SSMParameterStore]] y [[parameter-store-vs-secrets-manager]].
 
-> ⚠️ **Huecos pendientes de ingest**: **Cognito** (User Pools vs Identity Pools — muy preguntado en DVA), **Secrets Manager** como servicio (hoy solo aparece en la comparación con Parameter Store), **ACM** (certificados). El dominio con mejor cobertura actual de la wiki.
+> 🔐 **El gotcha del módulo 10:** IAM DB auth **autentica pero no autoriza**: los permisos dentro de la base siguen siendo del usuario local. El cifrado de RDS se elige **al crear** y no se activa después: snapshot → copia cifrada → restore. Y un snapshot cifrado con la **AWS managed key** no se puede compartir con otra cuenta. Ver [[RDS]] y [[SecretsManager]].
+
+> ⚠️ **Huecos pendientes de ingest**: **Cognito** (User Pools vs Identity Pools — muy preguntado en DVA), **ACM** (certificados). *Secrets Manager salió de esta lista con el ingest del módulo 10.* El dominio con mejor cobertura actual de la wiki.
