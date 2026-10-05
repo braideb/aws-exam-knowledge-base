@@ -3,8 +3,8 @@ title: Lambda en una VPC
 category: concept
 tags: [lambda, vpc, networking, serverless, dva-development]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.11 Lambda en una VPC.md", "raw/doc oficial/Using Amazon RDS Proxy with AWS Lambda.md", "raw/doc oficial/Using the Amazon RDS Data API.md"]
-updated: 2026-10-03
+sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.11 Lambda en una VPC.md", "raw/doc oficial/Using Amazon RDS Proxy with AWS Lambda.md", "raw/doc oficial/Using the Amazon RDS Data API.md", "raw/notas curso mejorado/11 Advanced Storage/11.02 EFS — Performance, Throughput y Storage Classes.md"]
+updated: 2026-10-05
 ---
 
 # Lambda en una VPC
@@ -65,8 +65,9 @@ Lambda en VPC
 - *"La puse en una subnet pública y sigue sin internet"* → esperado: la ENI nunca recibe IP pública.
 - *"Las invocaciones fallan con `ENILimitReached`"* → la subnet se quedó sin IPs libres; subnets más grandes y en más AZs.
 - *"Con mucha concurrencia, la Lambda agota las conexiones de RDS"* → **RDS Proxy** ([[connection-pooling]]): mismo VPC que la base, y la Lambda se conecta al proxy ([[RDS]]).
+- *"Mi Lambda necesita storage persistente y compartido, más que `/tmp`"* → montar **[[EFS]]**. *(Complemento, doc de Lambda)*: exige **conectarla a la VPC** del file system, un **access point**, una ruta bajo `/mnt/`, el puerto **2049** abierto en los SGs de la función y del mount target, y los permisos de VPC en el [[execution-role]].
 - *"Consultar Aurora desde Lambda sin meterla en la VPC ni manejar conexiones"* → **RDS Data API** (HTTPS, credenciales en [[SecretsManager]]) ([[Aurora]]).
 
 ## Ver también
 
-[[VPC]] · [[vpc-endpoints]] · [[nat-gateway-vs-nat-instance]] · [[execution-role]] · [[dva-development]]
+[[VPC]] · [[vpc-endpoints]] · [[nat-gateway-vs-nat-instance]] · [[execution-role]] · [[EFS]] · [[dva-development]]

@@ -4,7 +4,7 @@ category: glossary
 tags: [backups, rds, aurora, dr]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/10 Databases (SQL)/10.08 RDS Backups y Restore.md", "raw/doc oficial/Restoring a DB instance to a specified time for Amazon RDS - Amazon Relational Database Service.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # Point-in-time recovery (PITR)
@@ -20,6 +20,7 @@ updated: 2026-10-03
 - [[RDS]] — automated backups, retención de 0 a 35 días
 - [[rds-automated-backups-vs-snapshots]]
 - [[Aurora]] — mismo modelo, más el backtrack como alternativa in-place
+- También en: [[ha-ft-dr]] · [[rds-ha-options]] · [[databases-on-ec2]] · [[databases-cheat-sheet]]
 
 ## Dato de examen
 

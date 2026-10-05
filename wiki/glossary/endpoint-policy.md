@@ -4,7 +4,7 @@ category: glossary
 tags: [vpc, endpoints, iam, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.09 VPC Endpoints.md"]
-updated: 2026-09-24
+updated: 2026-10-05
 ---
 
 # Endpoint policy
@@ -23,7 +23,7 @@ No otorga permisos: **acota** los que ya existen. Se evalúa junto con la identi
 
 ## Dato de examen
 
-- Es **el** control de un **gateway endpoint** (que no tiene security group, porque no es una ENI). Un **interface endpoint** usa **security group + endpoint policy**.
+- Es **el** control de un **gateway endpoint** (que no tiene security group, porque no es una [[eni|ENI]]). Un **interface endpoint** usa **security group + endpoint policy**.
 - Una endpoint policy permisiva no habilita nada por sí sola: si la identity policy no permite la acción, sigue denegada.
 
 ## Ver también

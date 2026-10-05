@@ -4,7 +4,7 @@ category: glossary
 tags: [s3, performance, storage, policies]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/doc oficial/Bucket policy examples using condition keys - Amazon Simple Storage Service.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.08 S3 Buckets — Basics.md", "raw/doc oficial/What is Amazon S3 - Amazon Simple Storage Service.md"]
-updated: 2026-09-24
+updated: 2026-10-05
 ---
 
 # Prefix (prefijo)

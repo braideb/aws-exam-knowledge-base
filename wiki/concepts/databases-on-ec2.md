@@ -4,7 +4,7 @@ category: concept
 tags: [ec2, databases, rds, self-managed, arquitectura]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/10 Databases (SQL)/10.01 Databases on EC2.md", "raw/notas curso mejorado/10 Databases (SQL)/10.02 Demostración - Splitting WordPress (app y DB).md", "raw/doc oficial/What is Amazon Relational Database Service (Amazon RDS) - Amazon Relational Database Service.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # Bases de datos en EC2 (self-managed)
@@ -43,7 +43,7 @@ Instalar y operar vos mismo el motor de base de datos (MySQL, MariaDB, etc.) den
 **Por qué no:**
 - **Overhead de administración**: parchear SO y motor, mantener compatibilidad de versiones.
 - **Backups y DR a mano**: EC2 y su [[EBS]] son [[az-resilient|AZ-resilient]]. Si cae la AZ, cae la base, y los snapshots y la copia a [[S3]] los tenés que hacer vos.
-- **Sin features gestionadas**: Multi-AZ, read replicas, PITR, cifrado integrado, RDS Proxy.
+- **Sin features gestionadas**: [[multi-az|Multi-AZ]], read replicas, [[point-in-time-recovery|PITR]], cifrado integrado, RDS Proxy.
 - **Escalado**: una instancia está prendida o apagada (sin [[serverless]]) y fija un **costo base mínimo**.
 - **Rendimiento**: un motor de estantería no aprovecha las optimizaciones de RDS/Aurora.
 

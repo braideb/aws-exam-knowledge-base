@@ -4,7 +4,7 @@ category: glossary
 tags: [rds, cifrado, oracle, sql-server, cloudhsm]
 exam: [DVA-C02, SAA-C03]
 sources: ["raw/notas curso mejorado/10 Databases (SQL)/10.11 RDS Security (Encryption y TDE).md", "raw/doc oficial/Amazon Relational Database Service - AWS Prescriptive Guidance.md", "raw/doc oficial/Sharing encrypted snapshots for Amazon RDS - Amazon Relational Database Service.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # TDE (Transparent Data Encryption)
@@ -21,6 +21,7 @@ En [[RDS]] el cifrado por defecto es KMS + EBS: lo hace el **host** y el motor e
 
 - [[RDS]] — seguridad en reposo
 - [[databases-cheat-sheet]]
+- También en: [[dva-security]]
 
 ## Dato de examen
 

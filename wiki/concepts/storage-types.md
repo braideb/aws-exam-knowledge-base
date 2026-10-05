@@ -3,8 +3,8 @@ title: Tipos de almacenamiento en AWS
 category: concept
 tags: [storage, ebs, s3, efs, performance, iops]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.04 Storage Refresh.md"]
-updated: 2026-09-22
+sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.04 Storage Refresh.md", "raw/notas curso mejorado/11 Advanced Storage/11.08 Comparativa - EFS vs FSx for Windows vs FSx for Lustre.md"]
+updated: 2026-10-05
 ---
 
 # Tipos de almacenamiento en AWS
@@ -34,7 +34,7 @@ Antes de elegir un servicio de almacenamiento hay que separar **tres ejes** que 
 | Categoría | Qué te entrega | ¿Booteable? | Servicio en AWS |
 |---|---|---|---|
 | **Block** | Bloques direccionables en crudo; el OS pone el file system encima | **Sí** | [[EBS]], Instance Store |
-| **File** | Un file system ya armado, con carpetas para navegar | No | EFS |
+| **File** | Un file system ya armado, con carpetas para navegar | No | [[EFS]] (Linux), [[FSx]] (Windows, Lustre) |
 | **Object** | [[object-storage\|Objetos]] planos con key y metadatos | No | [[S3]] |
 
 - **Block storage** no trae estructura propia: le presentás el volumen al servidor y es el **sistema operativo** el que crea el file system (NTFS, ext4, XFS) y lo monta como `C:` o como volumen raíz. La mayoría de las instancias EC2 usan un volumen EBS como **boot volume**.
@@ -69,7 +69,8 @@ Ese salto explica por qué `st1` publica su rendimiento en **MB/s por TB** y no 
 ```
 ¿Qué necesito?
 ├── Bootear un sistema operativo        → block (EBS SSD)
-├── Que varios servidores compartan     → file (EFS)
+├── Que varios servidores compartan     → file (EFS en Linux, FSx en Windows)
+├── [[hpc|HPC]] / ML sobre datos de S3          → file (FSx for Lustre)
 ├── Guardar archivos/backups, web       → object (S3)
 ├── Máximo rendimiento, datos tirables  → block efímero (Instance Store)
 └── Datos que tienen que sobrevivir     → block persistente (EBS)
@@ -77,11 +78,11 @@ Ese salto explica por qué `st1` publica su rendimiento en **MB/s por TB** y no 
 
 ## Preguntas de examen frecuentes
 
-- *"Necesito que varias instancias monten el mismo file system"* → **EFS** (file). EBS se adjunta a una instancia a la vez en el caso típico.
+- *"Necesito que varias instancias monten el mismo file system"* → **EFS** (file). EBS se adjunta a una instancia a la vez en el caso típico. Si los clientes son Windows ([[smb|SMB]], [[active-directory|Active Directory]]) → **FSx for Windows**. La comparación completa está en [[efs-vs-fsx]].
 - *"Bootear desde esto"* → tiene que ser **block**, y además **SSD**: los HDD `st1`/`sc1` no sirven como boot volume ([[ebs-volume-types]]).
 - *"Millones de clientes leyendo los mismos archivos por HTTP"* → **S3** (object), no EBS.
 - Cuenta típica: un volumen con bloques de 16 KB y tope de 3.000 IOPS da ~47 MB/s — puede que choques con el límite de IOPS mucho antes que con el de throughput, o al revés.
 
 ## Ver también
 
-[[EBS]] · [[S3]] · [[instance-store-vs-ebs]] · [[iops]] · [[throughput]] · [[ephemeral-storage]]
+[[EBS]] · [[S3]] · [[EFS]] · [[FSx]] · [[efs-vs-fsx]] · [[instance-store-vs-ebs]] · [[iops]] · [[throughput]] · [[ephemeral-storage]]

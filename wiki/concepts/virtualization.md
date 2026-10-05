@@ -4,7 +4,7 @@ category: concept
 tags: [ec2, virtualizacion, hypervisor, nitro, performance]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.01 Virtualization 101.md", "raw/notas curso mejorado/09 Advanced EC2/09.12 Enhanced Networking (SR-IOV, ENA, EFA).md"]
-updated: 2026-09-30
+updated: 2026-10-05
 ---
 
 # Virtualización
@@ -55,7 +55,7 @@ SR-IOV / Nitro    → el hardware colabora            (casi nativo)
 Este tema **no se pregunta directamente** en el DVA-C02: es el andamiaje conceptual. Lo que sí aparece, y se explica desde acá:
 
 - *"¿El cifrado de EBS degrada el rendimiento?"* → **No**, ocurre en el host (Nitro), fuera del OS.
-- *"Necesito latencia de red baja y predecible entre instancias"* → **Enhanced Networking** (+ cluster [[placement-groups|placement group]]). Adaptadores: **ENA** (hasta 100 Gbps), Intel 82599 VF (viejo, 10 Gbps) y **EFA** para HPC/MPI.
+- *"Necesito latencia de red baja y predecible entre instancias"* → **Enhanced Networking** (+ cluster [[placement-groups|placement group]]). Adaptadores: **ENA** (hasta 100 Gbps), Intel 82599 VF (viejo, 10 Gbps) y **EFA** para [[hpc|HPC]]/MPI.
 - Por qué una instancia [[iaas|IaaS]] te deja controlar el SO pero no el hypervisor: es la línea del [[shared-responsibility-model]].
 - La `n` en un type como `R5dn` indica justamente networking mejorado ([[ec2-instance-types]]).
 

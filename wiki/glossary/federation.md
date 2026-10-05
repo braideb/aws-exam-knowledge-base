@@ -4,7 +4,7 @@ category: glossary
 tags: [iam, sts, saml, oidc, cognito, seguridad]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/doc oficial/Temporary security credentials in IAM - AWS Identity and Access Management.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md"]
-updated: 2026-09-28
+updated: 2026-10-05
 ---
 
 # Federation — federación de identidades
@@ -34,7 +34,7 @@ Para apps móviles/web la recomendación oficial es **Cognito** (mismos IdPs + a
 
 - **Más de 5.000 identidades** (el límite de IAM users por cuenta) → **roles + federación**, jamás "pedir aumento de límite".
 - Una identidad externa **no puede usarse directamente**: solo puede **asumir un rol**.
-- Escenario "empleados ya tienen cuentas en Active Directory" → SAML; "millones de usuarios de una app móvil" → Web Identity / Cognito.
+- Escenario "empleados ya tienen cuentas en [[active-directory|Active Directory]]" → SAML; "millones de usuarios de una app móvil" → Web Identity / Cognito.
 
 ## Ver también
 

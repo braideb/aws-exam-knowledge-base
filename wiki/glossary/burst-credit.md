@@ -3,8 +3,8 @@ title: Burst credit
 category: glossary
 tags: [ebs, ec2, performance, gp2]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.06 EBS Volume Types - General Purpose SSD (gp2 y gp3).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.08 EBS Volume Types - HDD (st1 y sc1).md"]
-updated: 2026-09-24
+sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.06 EBS Volume Types - General Purpose SSD (gp2 y gp3).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.08 EBS Volume Types - HDD (st1 y sc1).md", "raw/notas curso mejorado/11 Advanced Storage/11.02 EFS — Performance, Throughput y Storage Classes.md", "raw/notas curso mejorado/11 Advanced Storage/11.07 FSx for Lustre — Storage, Performance y Arquitectura.md"]
+updated: 2026-10-05
 ---
 
 # Burst credit
@@ -20,6 +20,8 @@ El modelo del "balde": se rellena a un ritmo fijo y cada operación gasta fichas
 - [[ebs-volume-types]] — gp2, st1 y sc1 funcionan con créditos; **gp3 no**
 - [[ec2-instance-types]] — las instancias T son el *burst pool* de cómputo
 - [[dva-troubleshooting]] — "el volumen se puso lento" suele ser el balde vacío
+- [[EFS]] — el throughput mode **Bursting**: créditos de throughput que escalan con el tamaño del file system
+- [[FSx]] — FSx for Lustre: burst hasta 1.300 MB/s por TiB
 - También en: [[CloudWatch]] · [[EBS]] · [[ec2-cheat-sheet]] · [[iops]] · [[throughput]]
 
 ## Dato de examen

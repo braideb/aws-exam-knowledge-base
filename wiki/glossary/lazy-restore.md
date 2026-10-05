@@ -4,7 +4,7 @@ category: glossary
 tags: [ebs, snapshots, performance]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.11 EBS Snapshots, Restore y Fast Snapshot Restore (FSR).md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # Lazy restore
@@ -29,4 +29,4 @@ Dos formas de evitarlo, y las dos aparecen como opciones:
 
 ## Ver también
 
-[[EBS]] · [[iops]]
+[[EBS]] · [[iops]] · [[lazy-loading]]

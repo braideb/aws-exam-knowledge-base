@@ -4,7 +4,7 @@ category: service
 tags: [iam, seguridad, users, groups, roles, sts, federacion, access-keys]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.03 IAM — Conceptos básicos.md", "raw/notas curso mejorado/02 Fundamentos y cuenta AWS/02.04 IAM Access Keys.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.02 IAM Users.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.04 Restricciones y datos útiles de IAM.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.05 IAM Groups.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.06 IAM Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.07 Cuándo usar IAM Roles - los cinco escenarios.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.08 Service-Linked Roles.md", "raw/notas curso mejorado/03 IAM ACCOUNTS y AWS Organization/03.09 Security Token Service (STS).md", "raw/doc oficial/IAM users - AWS Identity and Access Management.md", "raw/doc oficial/IAM roles - AWS Identity and Access Management.md", "raw/doc oficial/Temporary security credentials in IAM - AWS Identity and Access Management.md", "raw/doc oficial/Using AWS Identity and Access Management Access Analyzer - AWS Identity and Access Management.md", "raw/notas curso mejorado/09 Advanced EC2/09.03 EC2 Instance Roles e Instance Profiles.md", "raw/notas curso mejorado/10 Databases (SQL)/10.12 RDS IAM Authentication.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # IAM — Identity and Access Management
@@ -21,7 +21,7 @@ Sus tres funciones: **Identity Provider** (crear/modificar/borrar identidades) �
 
 - Crear identidades restringibles (el [[aws-account|root user]] no se puede restringir; todo lo demás sí).
 - Dar acceso a humanos, aplicaciones y servicios con **mínimo privilegio** ([[least-privilege]]) — se construye **al revés de la intuición**: arrancar **sin permisos** y agregar según aparecen los *access denied*, en vez de arrancar con `AdministratorAccess` y prometerse recortarlo (nunca pasa).
-- [[federation|Federar identidades externas]] (Active Directory, Google/Facebook) mediante roles.
+- [[federation|Federar identidades externas]] ([[active-directory|Active Directory]], Google/Facebook) mediante roles.
 
 ## Características clave
 

@@ -4,7 +4,7 @@ category: glossary
 tags: [dns, route53, cache, records]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.15 DNS Record Types.md", "raw/doc oficial/Choosing between alias and non-alias records - Amazon Route 53.md"]
-updated: 2026-09-24
+updated: 2026-10-05
 ---
 
 # TTL — Time To Live
@@ -21,7 +21,7 @@ Trade-off: TTL **alto** = menos consultas y más barato, pero los cambios tardan
 
 - [[Route53]] — sección TTL y caching
 - [[alias-vs-cname]] — los ALIAS **no permiten TTL configurable** (lo maneja AWS)
-- También en: [[failover]] · [[zone-apex]]
+- También en: [[failover]] · [[zone-apex]] · [[databases-cheat-sheet]] · [[ec2-cheat-sheet]] · [[RDS]]
 
 ## Dato de examen
 

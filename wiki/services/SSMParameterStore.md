@@ -4,7 +4,7 @@ category: service
 tags: [ssm, systems-manager, parameter-store, configuracion, secretos, kms]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/09 Advanced EC2/09.04 SSM Parameter Store.md", "raw/notas curso mejorado/09 Advanced EC2/09.05 Demostración - Parameter Store.md", "raw/notas curso mejorado/09 Advanced EC2/09.06 Logging en EC2 con CloudWatch Agent.md", "raw/doc oficial/AWS Systems Manager Parameter Store - AWS Systems Manager.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # SSM Parameter Store
@@ -55,7 +55,7 @@ Para leer el valor descifrado se pide con **`--with-decryption`**, y hacen falta
 | **Standard** | Gratis | Hasta **10.000** parámetros | **4 KB** | — |
 | **Advanced** | De pago | Hasta **100.000** ¹ | **8 KB** | **Parameter policies** (por ejemplo, expiración); **compartir con otras cuentas** ¹ |
 
-Un parámetro Standard se puede **pasar a Advanced, pero no volver** ¹. Por defecto el throughput es bajo: para muchas lecturas por segundo hay un modo **high-throughput** de pago (si no, [[throttling]]) ¹.
+Un parámetro Standard se puede **pasar a Advanced, pero no volver** ¹. Por defecto el [[throughput]] es bajo: para muchas lecturas por segundo hay un modo **high-throughput** de pago (si no, [[throttling]]) ¹.
 
 ¹ Complemento de la doc oficial de Parameter Store. La doc recomienda además **Secrets Manager** para credenciales de bases de datos, API keys y tokens, y deja SecureString para configuración sensible.
 

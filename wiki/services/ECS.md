@@ -4,7 +4,7 @@ category: service
 tags: [ecs, containers, fargate, compute, orquestacion, deployment]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/08 Containers, ECS y ECR/08.04 ECS — Concepts.md", "raw/notas curso mejorado/08 Containers, ECS y ECR/08.05 ECS — Cluster Types (EC2 y Fargate).md", "raw/notas curso mejorado/08 Containers, ECS y ECR/08.06 EC2 vs ECS (EC2) vs Fargate.md", "raw/notas curso mejorado/08 Containers, ECS y ECR/08.07 Demostración - Container of cats en Fargate.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # Amazon ECS (Elastic Container Service)
@@ -35,7 +35,7 @@ El **orquestador de [[containers]] propio de AWS**: recibe container images y la
 | **Service** (service definition) | **Cuántas copias** de la task, reemplazo de tasks caídas, scaling, load balancer delante |
 
 - Task ≠ container: una task puede tener varios containers. El caso típico es el **[[sidecar]]**, como el daemon de [[XRay]] corriendo al lado de la app.
-- Storage persistente y compartido entre tasks → **EFS** (funciona también en Fargate).
+- Storage persistente y compartido entre tasks → **[[EFS]]** (funciona también en Fargate).
 - Para una copia suelta alcanza con una task. Para algo de larga duración y business critical → **service**.
 
 ### Los tres roles

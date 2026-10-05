@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, security, iam, cifrado, autenticacion]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # DVA-C02 · Dominio 2 — Security
@@ -44,7 +44,8 @@ Implementar autenticación/autorización para las apps (IAM, roles, [[federation
 | **Autenticación a la base sin contraseña**: IAM DB auth (token de 15 min, `rds-db:connect`, autentica pero no autoriza) | [[RDS]] | ✅ |
 | **Cifrado de bases**: KMS al crear, réplica = mismo estado, snapshot → copia cifrada; [[transparent-data-encryption\|TDE]]; compartir snapshots cifrados | [[RDS]], [[KMS]] | ✅ |
 | Secretos fuera del **user data** (se lee en texto plano desde el IMDS) | [[ec2-bootstrapping]] | ✅ |
-| Cifrado de volúmenes y snapshots (DEK por volumen) | [[EBS]] | ✅ |
+| Cifrado de volúmenes y snapshots ([[data-encryption-key\|DEK]] por volumen) | [[EBS]] | ✅ |
+| File storage: EFS montado con **TLS** y aislado por access points (identidad [[posix\|POSIX]] + IAM); FSx for Windows con AD, KMS y cifrado en tránsito forzado | [[EFS]], [[FSx]] | ✅ solo curso |
 | Acceso privado a servicios y [[endpoint-policy\|endpoint policies]] | [[vpc-endpoints]] | ✅ |
 | Filtrado de red: SG vs NACL, diagnóstico con flow logs | [[security-groups-vs-nacls]], [[vpc-flow-logs]] | ✅ |
 | **Permisos de containers**: [[task-role\|task role]] vs task execution role vs container instance role; [[irsa\|IRSA / Pod Identity]] en EKS | [[ECS]], [[EKS]] | ✅ solo curso |

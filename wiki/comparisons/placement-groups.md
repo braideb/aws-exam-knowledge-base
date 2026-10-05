@@ -4,7 +4,7 @@ category: comparison
 tags: [ec2, placement-groups, rendimiento, resiliencia, hpc]
 exam: [SAA-C03, DVA-C02, DOP-C02]
 sources: ["raw/notas curso mejorado/09 Advanced EC2/09.08 Placement Groups — Overview.md", "raw/notas curso mejorado/09 Advanced EC2/09.09 Cluster Placement Groups.md", "raw/notas curso mejorado/09 Advanced EC2/09.10 Spread Placement Groups.md", "raw/notas curso mejorado/09 Advanced EC2/09.11 Partition Placement Groups.md"]
-updated: 2026-09-30
+updated: 2026-10-05
 ---
 
 # Placement Groups — Cluster vs Spread vs Partition
@@ -37,7 +37,7 @@ Por defecto, AWS decide en qué host de la AZ va cada instancia [[EC2]]. Un **pl
 
 | Escenario | Respuesta |
 |---|---|
-| Latencia de red mínima y máximo throughput entre nodos (HPC, MPI) | **Cluster** + enhanced networking (o EFA) |
+| Latencia de red mínima y máximo [[throughput]] entre nodos (HPC, MPI) | **Cluster** + enhanced networking (o EFA) |
 | Un puñado de instancias críticas que no pueden caer juntas | **Spread** |
 | Cientos de instancias de Cassandra/HDFS repartidas en fault domains | **Partition** |
 | Spread con más de 7 instancias por AZ | No se puede: **Partition** |

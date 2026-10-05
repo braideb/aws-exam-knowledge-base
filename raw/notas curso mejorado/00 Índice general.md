@@ -167,3 +167,14 @@
 - [[10.15 Aurora Serverless|Aurora Serverless]]
 - [[10.16 AWS Secrets Manager|AWS Secrets Manager]]
 - [[10.17 Aurora Global Database|Aurora Global Database]]
+
+## [[11.00 Advanced Storage — Índice|Módulo 11 — Advanced Storage]] (8 secciones)
+
+- [[11.01 EFS — Architecture|EFS — Architecture]]
+- [[11.02 EFS — Performance, Throughput y Storage Classes|EFS — Performance, Throughput y Storage Classes]]
+- [[11.03 Demostración - Implementación de EFS|Demostración: Implementación de EFS]]
+- [[11.04 FSx for Windows File Server|FSx for Windows File Server]]
+- [[11.05 FSx — Key Features and Benefits|FSx — Key Features and Benefits]]
+- [[11.06 FSx for Lustre — Concepts|FSx for Lustre — Concepts]]
+- [[11.07 FSx for Lustre — Storage, Performance y Arquitectura|FSx for Lustre — Storage, Performance y Arquitectura]]
+- [[11.08 Comparativa - EFS vs FSx for Windows vs FSx for Lustre|Comparativa: EFS vs FSx for Windows vs FSx for Lustre]]

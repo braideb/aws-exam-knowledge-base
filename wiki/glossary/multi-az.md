@@ -4,7 +4,7 @@ category: glossary
 tags: [resiliencia, rds, ha, availability-zones]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.13 HA vs. FT vs. DR.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.03 Availability Zones (AZ).md", "raw/doc oficial/Regional NAT gateways for automatic multi-AZ expansion - Amazon Virtual Private Cloud.md", "raw/notas curso mejorado/10 Databases (SQL)/10.06 RDS Multi-AZ Instance.md", "raw/notas curso mejorado/10 Databases (SQL)/10.07 RDS Multi-AZ Cluster.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # Multi-AZ
@@ -23,7 +23,7 @@ En [[RDS]] "Multi-AZ" son **dos topologías distintas**: *Multi-AZ DB instance* 
 - [[global-infrastructure]] — tabla de niveles de resiliencia, RDS Multi-AZ como ejemplo de [[region-resilient]]
 - [[region-resilient]]
 - [[vpc-design]] — subnets por tier repetidas en 3 AZs (+1 de reserva)
-- También en: [[failover]] · [[nat-gateway-vs-nat-instance]] · [[EKS]]
+- También en: [[failover]] · [[nat-gateway-vs-nat-instance]] · [[EKS]] · [[FSx]] (FSx for Windows Single-AZ vs Multi-AZ) · [[ecs-ec2-vs-fargate]] · [[efs-vs-fsx]] · [[rds-automated-backups-vs-snapshots]] · [[rds-ha-options]] · [[rds-vs-aurora]] · [[databases-on-ec2]] · [[databases-cheat-sheet]] · [[ec2-cheat-sheet]] · [[dbaas]] · [[rpo]] · [[rto]] · [[Aurora]] · [[RDS]]
 
 ## Dato de examen
 

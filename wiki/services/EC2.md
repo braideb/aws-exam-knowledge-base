@@ -4,7 +4,7 @@ category: service
 tags: [ec2, compute, iaas, ami, instancias, ebs, eni, imds, user-data, placement-groups]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.05 Elastic Compute Cloud (EC2) — Basics.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.06 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.07 Conectarse a EC2.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.02 EC2 Architecture and Resilience.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.14 Network Interfaces (ENI), IPs y DNS.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.15 Elastic IP.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.17 Amazon Machine Image (AMI).md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.22 Instance Status Checks y Auto Recovery.md", "raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.16 Demostración - Instalación manual de WordPress.md", "raw/notas curso mejorado/09 Advanced EC2/09.01 Bootstrapping EC2 con User Data.md", "raw/notas curso mejorado/09 Advanced EC2/09.02 Boot Time to Service Time y AMI Baking.md", "raw/notas curso mejorado/09 Advanced EC2/09.08 Placement Groups — Overview.md", "raw/notas curso mejorado/09 Advanced EC2/09.12 Enhanced Networking (SR-IOV, ENA, EFA).md", "raw/notas curso mejorado/09 Advanced EC2/09.13 EBS Optimized.md", "raw/notas curso mejorado/10 Databases (SQL)/10.01 Databases on EC2.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # EC2 — Elastic Compute Cloud
@@ -217,7 +217,7 @@ Por defecto AWS decide en qué host va cada instancia. Un placement group lo cam
 - Una **AMI no se edita** y **borrarla no borra sus snapshots**.
 - Auto-recovery **mueve de host** → el instance store se pierde.
 - Acceso administrativo sin abrir puertos ni gestionar llaves → **SSM Session Manager** (la respuesta "mejor práctica").
-- Credenciales dentro de la instancia → **[[ec2-instance-metadata|IMDS]]**, y para protegerlas de un SSRF → **IMDSv2**.
+- Credenciales dentro de la instancia → **[[ec2-instance-metadata|IMDS]]**, y para protegerlas de un [[ssrf|SSRF]] → **IMDSv2**.
 - El **user data** corre **solo en el primer launch**. Si falla, la instancia sigue `running` y pasa los checks. Nunca pongas secretos ahí ([[ec2-bootstrapping]]).
 - "Menor tiempo hasta estar en servicio" → **AMI baking**; con flexibilidad → baking + user data.
 - Cluster placement group = **una sola AZ**, poca resiliencia; spread = **máximo 7 por AZ**; más de 7 con aislamiento → **partition** ([[placement-groups]]).

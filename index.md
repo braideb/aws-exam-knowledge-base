@@ -2,9 +2,9 @@
 
 > El LLM mantiene este archivo actualizado en cada ingest. Leer primero al responder queries.
 
-**Total de páginas:** 182 (62 de conocimiento + 117 términos de glosario + 3 de examen)
-**Fuentes ingestadas:** notas del curso **completas (136/136 secciones, módulos 01–10)** + 135 clippings de doc oficial (1 descartado, ver abajo)
-**Última actualización:** 2026-10-03
+**Total de páginas:** 190 (65 de conocimiento + 122 términos de glosario + 3 de examen)
+**Fuentes ingestadas:** notas del curso **completas (144/144 secciones, módulos 01–11)** + 135 clippings de doc oficial (1 descartado, ver abajo)
+**Última actualización:** 2026-10-05
 
 ---
 
@@ -16,6 +16,8 @@
 | [[IAM]] | Identity and Access Management | Users, groups, roles, STS, access keys, federación, límites |
 | [[EC2]] | Elastic Compute Cloud | Hub del tema: arquitectura y hosts, ciclo de vida, estados, ENI/IPs/DNS, Elastic IP, AMI y lifecycle, status checks, key pairs, bootstrapping, placement groups, enhanced networking / EBS optimized |
 | [[EBS]] | Elastic Block Store | Volúmenes, tipos, snapshots incrementales, lazy restore/FSR, cifrado con DEK por volumen |
+| [[EFS]] | Elastic File System | NFSv4 para Linux, mount targets por AZ (SG 2049), Regional vs One Zone, performance/throughput modes, Standard/IA/Archive, access points, Lambda + EFS |
+| [[FSx]] | FSx for Windows / for Lustre | Windows: SMB, Active Directory, Single/Multi-AZ, VSS, DFS. Lustre: HPC, Scratch vs Persistent, repositorio S3 con lazy load, MDT/OST, baseline por TiB |
 | [[VPC]] | Virtual Private Cloud | Default vs custom, CIDR/IPv6, subnets, DNS/DHCP, route tables, IGW, SGs y NACLs, NAT Gateway (zonal/regional), NAT64 |
 | [[KMS]] | Key Management Service | KMS keys, DEKs, envelope encryption, key policies, rotación |
 | [[Organizations]] | AWS Organizations | Estructura, consolidated billing, SCPs |
@@ -78,13 +80,13 @@ Un archivo por **término**: definición corta y atómica de la jerga que aparec
 [[control-plane]] · [[data-plane]]
 
 **Identidad y acceso**
-[[principal]] · [[trust-policy]] · [[permissions-boundary]] · [[least-privilege]] · [[federation]] · [[temporary-credentials]] · [[confused-deputy]] · [[instance-profile]] · [[execution-role]] · [[abac]] · [[service-linked-role]] · [[break-glass]] · [[cross-account]] · [[external-id]] · [[sigv4]]
+[[principal]] · [[active-directory]] · [[trust-policy]] · [[permissions-boundary]] · [[least-privilege]] · [[federation]] · [[temporary-credentials]] · [[confused-deputy]] · [[instance-profile]] · [[execution-role]] · [[abac]] · [[service-linked-role]] · [[break-glass]] · [[cross-account]] · [[external-id]] · [[sigv4]]
 
 **Cifrado**
 [[envelope-encryption]] · [[data-encryption-key]] · [[encryption-context]] · [[role-separation]] · [[encryption-at-rest]] · [[transparent-data-encryption]]
 
 **Almacenamiento y datos**
-[[object-storage]] · [[durability]] · [[availability]] · [[eventual-consistency]] · [[delete-marker]] · [[multipart-upload]] · [[prefix]] · [[worm]] · [[etag]] · [[presigned-url]] · [[ephemeral-storage]] · [[lazy-restore]]
+[[object-storage]] · [[durability]] · [[availability]] · [[eventual-consistency]] · [[delete-marker]] · [[multipart-upload]] · [[prefix]] · [[worm]] · [[etag]] · [[presigned-url]] · [[ephemeral-storage]] · [[lazy-restore]] · [[lazy-loading]] · [[nfs]] · [[smb]] · [[posix]]
 
 **Cómputo y virtualización**
 [[nitro]] · [[enhanced-networking]] · [[ebs-optimized]] · [[host-affinity]] · [[golden-ami]] · [[cloud-init]] · [[hpc]]
@@ -171,6 +173,7 @@ Identificados en las páginas actuales, todavía sin entrada — se van agregand
 | [[rds-ha-options]] | Multi-AZ instance vs Multi-AZ cluster vs read replicas vs Aurora replicas vs Global Database: lecturas, failover, RPO |
 | [[rds-vs-aurora]] | Storage por instancia vs cluster volume, réplicas, failover, endpoints, restore, costos, motores |
 | [[rds-automated-backups-vs-snapshots]] | Retención, PITR vs punto fijo, compartir, cross-region, restore = endpoint nuevo |
+| [[efs-vs-fsx]] | EFS vs FSx for Windows vs FSx for Lustre: protocolo, SO, permisos, resiliencia, palabras disparadoras |
 
 ---
 
@@ -181,7 +184,7 @@ Material de **repaso rápido**: no reemplaza a las páginas, condensa lo que má
 | Página | Cubre |
 |--------|-------|
 | [[vpc-cheat-sheet]] | Redes: números de memoria, escenario→respuesta, los errores más repetidos |
-| [[ec2-cheat-sheet]] | Cómputo y almacenamiento: la escalera de IOPS, purchase options, IMDSv2 |
+| [[ec2-cheat-sheet]] | Cómputo y almacenamiento: la escalera de IOPS, purchase options, IMDSv2, EFS/FSx |
 | [[databases-cheat-sheet]] | Bases SQL: Multi-AZ vs réplicas, backups, cifrado, IAM DB auth, Aurora, Secrets Manager |
 
 ---
@@ -202,8 +205,9 @@ Estructura: un archivo por sección (`NN.MM Título.md`) con navegación, + índ
 - `08 Containers, ECS y ECR/` (10 secciones, segmentadas e **ingestadas 2026-09-28**) — virtualización vs containers, images/layers/registry, demo de Docker en EC2, ECS concepts y cluster types, EC2 vs ECS vs Fargate, demo de Fargate, ECR, Kubernetes 101, EKS
 - `09 Advanced EC2/` (13 secciones, segmentadas e **ingestadas 2026-09-30**) — bootstrapping con user data, boot time to service time y AMI baking, instance roles e instance profiles, SSM Parameter Store (+ demo), CloudWatch Agent (+ demo), placement groups (overview, cluster, spread, partition), enhanced networking, EBS optimized
 - `10 Databases (SQL)/` (17 secciones, segmentadas el 2026-10-02 e **ingestadas 2026-10-03**) — bases en EC2 (+ demo), RDS architecture y costos (+ demo de migración), Multi-AZ instance y cluster, backups y restore, read replicas (+ demo), seguridad y TDE, IAM DB auth, Aurora (architecture, restore/clone/backtrack, Serverless, Global Database), Secrets Manager
+- `11 Advanced Storage/` (8 secciones, segmentadas e **ingestadas 2026-10-05**) — EFS (arquitectura, performance/throughput/storage classes, + demo), FSx for Windows (+ key features), FSx for Lustre (conceptos; storage, performance y arquitectura), comparativa EFS vs FSx
 
-> ✅ **Las 136 secciones están ingestadas.** El módulo **10** se ingestó el **2026-10-03**; el **09**, el **2026-09-30**; el **08**, el **2026-09-28**; el **07**, el **2026-09-24**. El ingest del **2026-09-22** saldó las dos deudas que quedaban: VPC 05.09–05.13 y el módulo 06 completo. Antes: el módulo **05 (05.01–05.08)** se ingestó el 2026-09-19; los módulos **02, 03 y 04** fueron expandidos por el humano el 2026-07-23/24 e ingestados el 2026-07-25; el módulo 01 se ingestó el 2026-07-23. El próximo material tiene que venir de módulos nuevos del curso (11+) o de clippings nuevos. `raw/definiciones/` existe pero está **vacía**.
+> ✅ **Las 144 secciones están ingestadas.** El módulo **11** se ingestó el **2026-10-05**; el **10**, el **2026-10-03**; el **09**, el **2026-09-30**; el **08**, el **2026-09-28**; el **07**, el **2026-09-24**. El ingest del **2026-09-22** saldó las dos deudas que quedaban: VPC 05.09–05.13 y el módulo 06 completo. Antes: el módulo **05 (05.01–05.08)** se ingestó el 2026-09-19; los módulos **02, 03 y 04** fueron expandidos por el humano el 2026-07-23/24 e ingestados el 2026-07-25; el módulo 01 se ingestó el 2026-07-23. El próximo material tiene que venir de módulos nuevos del curso (12+) o de clippings nuevos. `raw/definiciones/` existe pero está **vacía**.
 
 Cada página wiki cita en `sources` los **segmentos específicos** que la alimentan.
 
@@ -221,6 +225,8 @@ Complementan las notas con límites numéricos, permisos exactos y features no c
 > ⚠️ **No hay clippings de EC2 ni EBS.** [[ec2-bootstrapping]] y [[placement-groups]] (módulo 09) salen solo del curso. Systems Manager ya tiene uno: el de Parameter Store, ingestado el 2026-10-03 en [[SSMParameterStore]]. El ingest del 2026-09-22 se apoyó **solo en las notas del curso**, sin contraste contra doc oficial. Las páginas de EC2/EBS marcan con `⚠️ Outdated` lo que se sabe desactualizado (IMDSv2, cobro de IPv4 públicas, auto-recovery por defecto, generaciones de instance types), pero conviene traer clippings de Amazon EC2 y EBS para cruzar límites numéricos.
 
 > ⚠️ **Tampoco hay clippings de ECS, ECR ni EKS:** [[ECS]], [[ECR]], [[EKS]] y [[ecs-ec2-vs-fargate]] salen solo del curso (módulo 08) y marcan aparte lo que no viene de la nota.
+
+> ⚠️ **Tampoco hay clippings de EFS ni de FSx:** [[EFS]], [[FSx]] y [[efs-vs-fsx]] salen del curso (módulo 11). Los complementos (access points, Lambda + EFS, rendimiento actual de FSx for Windows, Lustre Persistent_2) se contrastaron con doc oficial online y se citan con link en la página, no con clipping en `raw/`.
 
 > ⚠️ **Tampoco hay clippings de X-Ray, ni de las subscriptions/export de CloudWatch Logs.** [[XRay]] sale solo del curso (07.07); los complementos que no vienen de la slide (daemon UDP 2000, sampling, annotations) están marcados como tales.
 

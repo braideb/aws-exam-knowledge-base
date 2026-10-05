@@ -4,7 +4,7 @@ category: comparison
 tags: [ecs, fargate, containers, costos, networking, compute]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/08 Containers, ECS y ECR/08.05 ECS — Cluster Types (EC2 y Fargate).md", "raw/notas curso mejorado/08 Containers, ECS y ECR/08.06 EC2 vs ECS (EC2) vs Fargate.md"]
-updated: 2026-09-28
+updated: 2026-10-05
 ---
 
 # ECS — EC2 mode vs Fargate
@@ -15,7 +15,7 @@ Los dos modos de cluster de [[ECS]]. En los dos existen los mismos componentes d
 
 | | EC2 mode | Fargate mode |
 |---|---|---|
-| Dónde corren las tasks | **Container instances** (EC2) en tu VPC, multi-AZ, gestionadas por un **ASG** | **Fargate shared infrastructure** de AWS; cada task se **inyecta en tu VPC** con su [[eni\|ENI]] |
+| Dónde corren las tasks | **Container instances** (EC2) en tu VPC, [[multi-az\|multi-AZ]], gestionadas por un **ASG** | **Fargate shared infrastructure** de AWS; cada task se **inyecta en tu VPC** con su [[eni\|ENI]] |
 | Qué administrás | Capacidad y disponibilidad de los hosts | Nada a nivel host |
 | [[serverless\|Serverless]] | No | Sí |
 | Qué pagás | Las **instancias EC2, estén usadas o no** | **vCPU + memoria asignadas** a cada task, por segundo, **aunque la app use menos** |

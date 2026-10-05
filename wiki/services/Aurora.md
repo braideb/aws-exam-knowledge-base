@@ -4,21 +4,21 @@ category: service
 tags: [aurora, rds, databases, sql, serverless, global-database, backtrack, clone, acu]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/10 Databases (SQL)/10.13 Aurora — Architecture.md", "raw/notas curso mejorado/10 Databases (SQL)/10.14 Aurora — Restore, Clone y Backtrack.md", "raw/notas curso mejorado/10 Databases (SQL)/10.15 Aurora Serverless.md", "raw/notas curso mejorado/10 Databases (SQL)/10.17 Aurora Global Database.md", "raw/doc oficial/What is Amazon Aurora.md", "raw/doc oficial/What is Amazon Aurora 1.md", "raw/doc oficial/Amazon Aurora storage.md", "raw/doc oficial/Amazon Aurora MySQL database clusters now support up to 256 TiB of storage volume.md", "raw/doc oficial/Amazon Aurora endpoint connections.md", "raw/doc oficial/Custom endpoints for Amazon Aurora.md", "raw/doc oficial/Considerations for custom endpoints in Amazon Aurora.md", "raw/doc oficial/AWS CLI examples for custom endpoints for Amazon Aurora.md", "raw/doc oficial/Backtracking an Aurora DB cluster.md", "raw/doc oficial/Cloning a volume for an Amazon Aurora DB cluster.md", "raw/doc oficial/Amazon Aurora Fast Database Cloning.md", "raw/doc oficial/Using Aurora serverless.md", "raw/doc oficial/Performance and scaling for Aurora serverless.md", "raw/doc oficial/Scaling to Zero ACUs with automatic pause and resume for Aurora serverless.md", "raw/doc oficial/ServerlessV2ScalingConfiguration - Amazon Relational Database Service.md", "raw/doc oficial/Understanding how ACU minimum and maximum range impacts scaling in Amazon Aurora Serverless v2.md", "raw/doc oficial/Using Amazon Aurora Global Database.md", "raw/doc oficial/Promoting a read replica to a DB cluster for Aurora MySQL.md", "raw/doc oficial/Using the Amazon RDS Data API.md", "raw/doc oficial/Enabling the Amazon RDS Data API.md", "raw/doc oficial/Supported Regions and Aurora DB engines for RDS Data API.md", "raw/doc oficial/Amazon RDS Proxy for Aurora.md", "raw/doc oficial/Amazon RDS and Aurora High Availability Guide - Multi-AZ, Read Replicas, RDS Proxy, and Global Database Failover.md", "raw/doc oficial/Differences between Amazon Aurora and Amazon RDS.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # Amazon Aurora
 
 ## ¿Qué es?
 
-Motor relacional **creado por AWS**, compatible con **MySQL y PostgreSQL**. Oficialmente es parte de [[RDS]] (misma consola, API y CLI), pero su arquitectura es distinta: un **cluster** con **una primary + hasta 15 replicas que sí se leen**, todas sobre un **cluster volume compartido** en vez de un EBS por instancia. Tiene variantes **provisioned**, **Serverless** (capacidad en [[acu|ACUs]]) y **Global Database** (multi-región).
+Motor relacional **creado por AWS**, compatible con **MySQL y PostgreSQL**. Oficialmente es parte de [[RDS]] (misma consola, API y CLI), pero su arquitectura es distinta: un **cluster** con **una primary + hasta 15 replicas que sí se leen**, todas sobre un **cluster volume compartido** en vez de un EBS por instancia. Tiene variantes **provisioned**, **[[serverless|Serverless]]** (capacidad en [[acu|ACUs]]) y **Global Database** (multi-región).
 
 ## Casos de uso
 
-- Cargas relacionales MySQL/PostgreSQL que necesitan **más rendimiento, failover rápido o muchas réplicas** que RDS.
+- Cargas relacionales MySQL/PostgreSQL que necesitan **más rendimiento, [[failover]] rápido o muchas réplicas** que RDS.
 - **Escalar lecturas y HA a la vez** sin elegir entre una cosa y la otra.
 - **Cargas impredecibles, con picos o ociosas** → Aurora **Serverless v2**.
-- **DR cross-region con RPO de ~1 s** y lecturas globales de baja latencia → **Global Database**.
+- **DR cross-region con [[rpo|RPO]] de ~1 s** y lecturas globales de baja latencia → **Global Database**.
 - **Copias rápidas para test** de una base grande → **fast clone**.
 - **Deshacer un error (un `DELETE` sin `WHERE`) sin restaurar** → **backtrack** (solo Aurora MySQL).
 
@@ -84,7 +84,7 @@ Motor relacional **creado por AWS**, compatible con **MySQL y PostgreSQL**. Ofic
 | | **v1** (el curso) | **v2** (vigente) |
 |---|---|---|
 | Escalado | Duplica/divide la capacidad | Incrementos de **0,5 ACU**, casi instantáneo |
-| Features | Limitadas | Read replicas, Multi-AZ, Global Database, RDS Proxy, IAM auth |
+| Features | Limitadas | Read replicas, [[multi-az\|Multi-AZ]], Global Database, RDS Proxy, IAM auth |
 | Rango ¹ | — | 0,5 a **256 ACU** (128 en versiones viejas) |
 | Escalar a cero | Pausa | **Auto-pause** con **mínimo 0 ACU** |
 
@@ -132,7 +132,7 @@ Motor relacional **creado por AWS**, compatible con **MySQL y PostgreSQL**. Ofic
 - *"Volver atrás 10 minutos tras un `DELETE` sin `WHERE`, sin cambiar endpoints"* → **backtrack** (Aurora **MySQL**, habilitado de antemano).
 - *"Copia de producción para test en minutos, sin pagar el doble de storage"* → **fast clone**.
 - *"Carga SQL impredecible con largos períodos sin uso"* → **Aurora Serverless v2** (con auto-pause si tolera ~15 s de arranque).
-- *"DR multi-región con RPO de segundos y RTO de ~1 minuto"* → **Global Database** (failover). *"Mover la región primaria sin perder datos"* → **switchover**.
+- *"DR multi-región con RPO de segundos y [[rto|RTO]] de ~1 minuto"* → **Global Database** (failover). *"Mover la región primaria sin perder datos"* → **switchover**.
 - *"Escribir desde una región secundaria"* → **write forwarding**; sin él la secundaria es read-only.
 - *"Lambda que consulta Aurora sin manejar conexiones ni meterse en la VPC"* → **Data API**.
 - Un failover de Aurora sin ninguna replica es **lento**: recrea la primary.

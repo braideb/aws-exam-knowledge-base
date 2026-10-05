@@ -4,7 +4,7 @@ category: domain
 tags: [dva-c02, troubleshooting, optimization, monitoring, logging]
 exam: [DVA-C02]
 sources: ["https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # DVA-C02 · Dominio 4 — Troubleshooting and Optimization
@@ -46,18 +46,20 @@ Diagnosticar y resolver problemas de aplicaciones: observabilidad (métricas, lo
 | Instancia que no responde: System vs Instance status check, auto-recovery | [[EC2]] | ✅ |
 | Instancia `running` con 2/2 checks pero mal configurada: **user data fallido** (EC2 no lo valida; solo corre en el primer launch) | [[ec2-bootstrapping]] | ✅ |
 | Métricas de **memoria/disco** y logs del SO: CloudWatch Agent + rol + config en Parameter Store | [[CloudWatchLogs]], [[CloudWatch]] | ✅ |
-| La CLI usa otras credenciales aunque la instancia tenga rol (keys en disco **pisan** al instance profile) | [[IAM]], [[aws-cli]] | ✅ |
+| La CLI usa otras credenciales aunque la instancia tenga rol (keys en disco **pisan** al [[instance-profile\|instance profile]]) | [[IAM]], [[aws-cli]] | ✅ |
 | `AccessDenied` al leer un SecureString (falta `kms:Decrypt`) | [[SSMParameterStore]] | ✅ |
 | Rendimiento de red entre instancias: [[enhanced-networking]], placement groups | [[placement-groups]] | ✅ |
 | Volumen que "se puso lento": [[burst-credit\|créditos]] agotados de gp2 | [[ebs-volume-types]] | ✅ |
 | Volumen restaurado que rinde poco al principio | [[lazy-restore]], [[EBS]] | ✅ |
+| **EFS que no monta**: el SG del mount target no permite **TCP 2049** desde el cliente; Lambda sin conexión a la VPC; on-premises montando por DNS en vez de la IP del mount target | [[EFS]], [[lambda-in-vpc]] | ✅ solo curso (+ doc de Lambda) |
+| Optimización de costo y rendimiento de file storage: Elastic vs Provisioned, lifecycle a IA/Archive (con retrieval fee), One Zone; Lustre Scratch vs Persistent | [[EFS]], [[FSx]] | ✅ solo curso |
 | [[iops\|IOPS]] aprovisionadas que no se alcanzan (tope por instancia) | [[ebs-optimized]], [[instance-store-vs-ebs]] | ✅ |
 | Lambda en VPC que falla con `ENILimitReached` o pierde internet | [[lambda-in-vpc]] | ✅ |
 | Optimización de costo de cómputo | [[ec2-purchase-options]] | ✅ |
-| **Task de ECS que no arranca**: no hace pull de la image o no manda logs (task execution role), falta capacidad en EC2 mode ([[capacity-provider]]), health checks que fallan con [[dynamic-port-mapping]] | [[ECS]], [[ecs-ec2-vs-fargate]] | ✅ solo curso |
+| **Task de ECS que no arranca**: no hace pull de la image o no manda logs (task [[execution-role\|execution role]]), falta capacidad en EC2 mode ([[capacity-provider]]), health checks que fallan con [[dynamic-port-mapping]] | [[ECS]], [[ecs-ec2-vs-fargate]] | ✅ solo curso |
 | Tracing en containers: daemon de X-Ray como [[sidecar]] | [[XRay]], [[ECS]] | ✅ |
 | Optimización de costo de containers: right-sizing de la task, Fargate Spot, `binpack` | [[ecs-ec2-vs-fargate]] | ✅ |
-| **Base de datos**: `too many connections` desde Lambda (RDS Proxy), app que no vuelve tras un failover (cache de DNS), lecturas desactualizadas en una réplica ([[replication-lag]]), failover lento (lag o Aurora sin replicas) | [[RDS]], [[Aurora]], [[rds-ha-options]] | ✅ curso + doc oficial |
+| **Base de datos**: `too many connections` desde Lambda (RDS Proxy), app que no vuelve tras un [[failover]] (cache de DNS), lecturas desactualizadas en una réplica ([[replication-lag]]), failover lento (lag o Aurora sin replicas) | [[RDS]], [[Aurora]], [[rds-ha-options]] | ✅ curso + doc oficial |
 | Rotación de Secrets Manager que falla (la Lambda en la VPC sin endpoint ni NAT) | [[SecretsManager]], [[vpc-endpoints]] | ✅ |
 | Optimización de costo de bases: Aurora Serverless v2 / auto-pause, I/O-Optimized vs Standard | [[Aurora]] | ✅ |
 

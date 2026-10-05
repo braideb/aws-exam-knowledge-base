@@ -3,8 +3,8 @@ title: Throughput
 category: glossary
 tags: [storage, ebs, performance, red]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.04 Storage Refresh.md"]
-updated: 2026-09-24
+sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.04 Storage Refresh.md", "raw/notas curso mejorado/11 Advanced Storage/11.02 EFS — Performance, Throughput y Storage Classes.md"]
+updated: 2026-10-05
 ---
 
 # Throughput
@@ -19,7 +19,9 @@ Es el producto del tamaño de bloque por las [[iops|IOPS]]. Un volumen puede ten
 
 - [[storage-types]] — la relación entre las tres métricas
 - [[ebs-volume-types]] — 250 MB/s (gp2) vs 1.000 MB/s (gp3, io1, io2) vs 4.000 MB/s (io2 Block Express)
-- También en: [[ec2-cheat-sheet]] · [[CloudWatch]] · [[EBS]] · [[S3]] · [[burst-credit]] · [[ebs-optimized]] · [[ec2-instance-types]] · [[instance-store-vs-ebs]] · [[iops]] · [[prefix]]
+- [[EFS]] — los throughput modes Elastic / Bursting / Provisioned
+- [[FSx]] — FSx for Lustre mide su baseline en MB/s **por TiB**
+- También en: [[ec2-cheat-sheet]] · [[CloudWatch]] · [[EBS]] · [[S3]] · [[burst-credit]] · [[ebs-optimized]] · [[ec2-instance-types]] · [[instance-store-vs-ebs]] · [[iops]] · [[prefix]] · [[placement-groups]] · [[rds-vs-aurora]] · [[SSMParameterStore]]
 
 ## Dato de examen
 

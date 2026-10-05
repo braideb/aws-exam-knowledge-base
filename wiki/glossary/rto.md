@@ -4,7 +4,7 @@ category: glossary
 tags: [dr, resiliencia, backups, rds]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.13 HA vs. FT vs. DR.md", "raw/notas curso mejorado/10 Databases (SQL)/10.08 RDS Backups y Restore.md", "raw/notas curso mejorado/10 Databases (SQL)/10.09 RDS Read Replicas.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # RTO (Recovery Time Objective)
@@ -20,10 +20,11 @@ Mira **hacia adelante**: desde la falla hasta la recuperación. Depende de **qu�
 - [[ha-ft-dr]] — definición y estrategias de DR (de Backup & Restore a Active/Active)
 - [[RDS]] — el restore es lento (mal RTO); una read replica promovida da un RTO bajo
 - [[rds-automated-backups-vs-snapshots]]
+- También en: [[databases-cheat-sheet]] · [[Aurora]]
 
 ## Dato de examen
 
-- *"Recuperarse en minutos"* → **réplica promovible**, Multi-AZ o Global Database, **no** restaurar un snapshot.
+- *"Recuperarse en minutos"* → **réplica promovible**, [[multi-az|Multi-AZ]] o Global Database, **no** restaurar un snapshot.
 - Un restore de RDS crea una **instancia nueva**: al RTO hay que sumarle reconfigurar la app con el endpoint nuevo.
 
 ## Ver también

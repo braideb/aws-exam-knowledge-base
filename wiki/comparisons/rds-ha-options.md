@@ -4,7 +4,7 @@ category: comparison
 tags: [rds, aurora, multi-az, read-replicas, global-database, ha, dr, rpo, rto]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/10 Databases (SQL)/10.06 RDS Multi-AZ Instance.md", "raw/notas curso mejorado/10 Databases (SQL)/10.07 RDS Multi-AZ Cluster.md", "raw/notas curso mejorado/10 Databases (SQL)/10.09 RDS Read Replicas.md", "raw/notas curso mejorado/10 Databases (SQL)/10.13 Aurora — Architecture.md", "raw/notas curso mejorado/10 Databases (SQL)/10.17 Aurora Global Database.md", "raw/doc oficial/Amazon RDS and Aurora High Availability Guide - Multi-AZ, Read Replicas, RDS Proxy, and Global Database Failover.md", "raw/doc oficial/RDS Multi-AZ Deployment – Failover, Sync Replication & HA Guide.md", "raw/doc oficial/RDS Cross-Region Read Replicas – DR & Scaling.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # RDS — Multi-AZ vs Read Replicas vs Aurora
@@ -13,7 +13,7 @@ Cinco mecanismos con nombres parecidos que resuelven **fallas distintas**. La pr
 
 ## Tabla comparativa
 
-| | **[[RDS]] Multi-AZ instance** | **RDS Multi-AZ cluster** | **RDS read replica** | **[[Aurora]] replicas** | **Aurora Global Database** |
+| | **[[RDS]] [[multi-az\|Multi-AZ]] instance** | **RDS Multi-AZ cluster** | **RDS read replica** | **[[Aurora]] replicas** | **Aurora Global Database** |
 |---|---|---|---|---|---|
 | Réplicas | 1 standby | 2 readers | Hasta 15 ¹ | Hasta 15 | 1 + 10 regiones (16 replicas c/u) |
 | ¿Sirve lecturas? | ❌ | ✅ | ✅ | ✅ | ✅ (secundarias read-only) |
@@ -26,7 +26,7 @@ Cinco mecanismos con nombres parecidos que resuelven **fallas distintas**. La pr
 
 ¹ El curso dice 5; la doc actual dice 15 combinadas (ver [[RDS]]).
 
-**Contra corrupción o borrados**, ninguna réplica sirve: hace falta **PITR** o snapshots ([[rds-automated-backups-vs-snapshots]]) o, en Aurora MySQL, **backtrack**.
+**Contra corrupción o borrados**, ninguna réplica sirve: hace falta **[[point-in-time-recovery|PITR]]** o snapshots ([[rds-automated-backups-vs-snapshots]]) o, en Aurora MySQL, **backtrack**.
 
 ## Cuándo usar X vs Y
 

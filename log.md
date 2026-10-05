@@ -454,3 +454,78 @@ Con un script nuevo (node) que revisa toda la wiki en una pasada: links, embeds,
 - [[confused-deputy]] sigue con `sources: []`: no hay ninguna fuente en `raw/` que lo mencione.
 - Sin clippings de EC2/EBS, ECS/ECR/EKS ni X-Ray.
 - `raw/doc oficial/AWS Prescriptive Guidance.md` no tiene contenido útil: se puede borrar.
+
+## [2026-10-05] segmentación | Módulo 11 — Advanced Storage
+
+- Pedido explícito del humano: nueva carpeta `raw/notas curso mejorado/11 Advanced Storage/`, con el índice del módulo y **8 secciones** (11.01–11.08): EFS (arquitectura y performance/throughput/storage classes), una demo de implementación de EFS, FSx for Windows (y sus key features), FSx for Lustre (conceptos, y storage/performance/arquitectura) y la comparativa EFS vs FSx.
+- El humano pidió **prosa por sobre bullets**: los bullets del original se reescribieron como párrafos, salvo los que son listas de verdad (baselines de Lustre, features nativas de FSx, pasos de la demo).
+- Correcciones sobre el original: Lustre "Metadata Targets (MST)" → **MDT**. También se sacaron meta-notas de transcripción.
+- Las 4 imágenes del módulo se movieron de la raíz del repo a `raw/assets/`. `Pasted image 20261005013129.png` sigue en la raíz: ninguna nota la referencia.
+- Los links a la wiki (`[[EFS]]`, `[[FSx]]`, `[[efs-vs-fsx]]`) apuntan a páginas que todavía no existen: las va a crear el ingest.
+- [[00 Índice general]] suma el módulo 11.
+
+## [2026-10-05] ingest | Módulo 11 — Advanced Storage
+
+**Fuentes:** las 8 secciones de `raw/notas curso mejorado/11 Advanced Storage/` (11.01–11.08). **No hay clippings de EFS ni de FSx.** Los complementos se contrastaron con doc oficial online y quedan citados con link en la página.
+
+**Páginas nuevas (3):**
+- [[EFS]] (service): NFSv4, mount targets por AZ (SG + 2049), Regional vs One Zone, IP del mount target desde on-premises, performance modes (Max I/O legacy), throughput modes (Elastic fuerza General Purpose), Standard/IA/Archive + lifecycle, access points, Lambda + EFS.
+- [[FSx]] (service): FSx for Windows (SMB, AD managed o self-managed, Single/Multi-AZ, VSS, DFS, KMS) y FSx for Lustre (Scratch vs Persistent, repositorio S3 con lazy load y `hsm_archive`, MDT/OST, baseline y burst por TiB, una ENI, backups 0–35 días).
+- [[efs-vs-fsx]] (comparison): protocolo, SO, permisos, resiliencia, escenario → respuesta y trampas.
+
+**Correcciones al curso (marcadas `⚠️ Outdated`):**
+- FSx for Windows: el máximo es **12 GB/s** en varias regiones desde 2023, no 2 GB/s.
+- FSx for Lustre: los baselines 50/100/200 MB/s/TiB son de **Persistent_1**; Persistent_2 ofrece 125/250/500/1.000.
+- Ya en la segmentación: Lustre "MST" → **MDT**.
+
+**Complementos (no vienen de la nota):**
+- Lambda + EFS: la función tiene que estar en la VPC, montar con access point bajo `/mnt/`, tener 2049 abierto en los dos SGs y permisos de VPC en el execution role.
+- Familia FSx: ONTAP y OpenZFS.
+
+**Páginas actualizadas:**
+- [[storage-types]]: la fila File y el árbol de decisión ahora nombran EFS y FSx, y linkean la comparación.
+- [[lambda-in-vpc]]: pregunta de examen de Lambda + EFS.
+- [[ec2-cheat-sheet]]: punto de file storage, 5 números nuevos, 4 escenarios y el error número 12.
+- Primera mención linkeada a [[EFS]] / [[FSx]] en [[ECS]], [[EKS]], [[S3]] y [[containers]].
+
+**Glosario:**
+- **Nuevos (5):** [[nfs]], [[smb]], [[posix]], [[active-directory]] y [[lazy-loading]]. Lazy loading queda escrito de forma general para reusarlo con ElastiCache.
+- **Actualizados ("Dónde aparece"):** [[hpc]], [[burst-credit]], [[throughput]], [[object-storage]], [[ephemeral-storage]], [[eni]], [[az-resilient]], [[region-resilient]], [[execution-role]], [[multi-az]] y [[lazy-restore]].
+
+**Dominios:**
+- [[dva-development]]: storage compartido para Lambda y containers.
+- [[dva-troubleshooting]]: EFS que no monta, y costo/rendimiento de file storage.
+- [[dva-security]]: TLS al montar, access points, AD/KMS en FSx.
+
+**Otros:**
+- [[index]]: 182 → **190** páginas (65 + 122 + 3); fuentes 144/144.
+- [[guia-estudio]]: EFS, FSx y efs-vs-fsx entran al **Bloque 5**, entre [[s3-storage-classes]] y [[KMS]]. No hay bloque nuevo.
+- [[demos]]: +2 demos (EFS, partes 1 y 2), 53 → **55**.
+
+## [2026-10-05] lint | Revisión en profundidad post-ingest del módulo 11
+
+Con un script (node) que revisa toda la wiki en una pasada: links, embeds, pipes en tablas, frontmatter, `sources`, huérfanas, cobertura de [[index]] y [[guia-estudio]], backlinks en las dos direcciones, detector de modificados, fuentes sin citar y, **por primera vez, términos de glosario mencionados sin link** (la regla de la primera aparición).
+
+**Estructura:**
+- 0 links o imágenes rotas en `wiki/`, `raw/notas curso mejorado/`, [[index]], [[guia-estudio]] y [[demos]]. Las únicas "rotas" siguen siendo las dos citas a la sección 05.04 de una entrada vieja de este log.
+- 0 huérfanas; 190/190 páginas en [[index]] y todas las de estudio en [[guia-estudio]]; 0 pipes sin escapar; frontmatter completo; 0 `sources` que apunten a archivos inexistentes.
+
+**Corregido:**
+- **Regla de primera aparición: 68 links nuevos en 50 páginas.** Es la primera vez que se chequea en toda la wiki y había deuda vieja: `Multi-AZ`, `failover`, `PITR`, `RPO`/`RTO`, `TTL`, `IOPS`, `HPC`, `ENI`, `DEK`, `execution role`, `instance profile` y `SSRF` aparecían sin link en páginas de RDS, Aurora, cheat sheets y dominios. También hubo unos cuantos en las páginas nuevas del módulo 11. Cada término suma esas páginas a su "Dónde aparece".
+- **Backlinks página → glosario:** 7 viejos que faltaban ([[az-resilient]] ← [[databases-on-ec2]], [[failover]] ← [[rds-ha-options]], [[point-in-time-recovery]] ← [[ha-ft-dr]], [[region-resilient]] y [[temporary-credentials]] ← [[RDS]], [[replication-lag]] ← [[dva-development]], [[transparent-data-encryption]] ← [[dva-security]]).
+- **Backlinks glosario → página** que salieron del propio ingest: [[FSx]] linkea ahora [[az-resilient]] y [[burst-credit]]; [[EFS]] linkea [[ephemeral-storage]]. De [[object-storage]], [[nfs]] y [[lazy-loading]] se sacaron entradas que no correspondían.
+- **Falso positivo del detector de modificados:** el script comparaba mtimes en UTC y marcaba el módulo 09 (escrito el 30/09 a las 22:00, hora local) como "modificado el 01/10". Ya compara en fecha local.
+- **Detector de modificados:** quedaron 10 páginas con fuentes de mtime posterior (04.06, 09.12, y los clippings de access points, CloudTrail integrity, SCPs y condition keys). Contra git son **idénticas** (`git diff` ignorando fin de línea = 0); el clipping de condition keys solo tiene cambios de CRLF sin commitear. No hay contenido sin ingestar, así que esas páginas pasan a `updated: 2026-10-05`.
+- [[EFS]]: gotcha nuevo, lifecycle por último acceso (EFS) vs por creación (S3).
+
+**Revisado sin cambios:**
+- **Contradicciones numéricas: 0.** Se revisaron puerto 2049, retención de 0–35 días (RDS y Lustre), `/tmp` de 512 MB a 10 GB, y One Zone (EFS) vs One Zone-IA (S3).
+- 15 entradas de "Dónde aparece" listan páginas que no linkean el término: son los backlinks curados que ya había señalado el lint anterior (`bastion-host`, `hypervisor`, `single-point-of-failure`, etc.).
+- Términos "sin link" que son falsos positivos: "Aurora Serverless" (nombre de producto), "aísla" en [[CloudWatch]] (no es SLA) y "Object Storage Targets" de Lustre (no es object storage).
+
+**Pendiente (decide el humano):**
+- **Temas sin página propia**, por cantidad de páginas que los mencionan: Lambda (46), DynamoDB (26), ELB/ALB (24), SNS (16), SQS (15), API Gateway (11), Direct Connect (11), Auto Scaling (10), ElastiCache (4), Cognito (3), Directory Service (2) y WorkSpaces (2). Para DVA-C02 la prioridad sigue siendo **Lambda, DynamoDB y API Gateway**. EFS salió de la lista.
+- [[confused-deputy]] sigue con `sources: []`.
+- Sin clippings de EFS/FSx, EC2/EBS, ECS/ECR/EKS ni X-Ray.
+- `raw/doc oficial/AWS Prescriptive Guidance.md` sigue sin contenido útil y sin citar: se puede borrar.
+- El clipping `Bucket policy examples using condition keys` tiene cambios de fin de línea sin commitear (no de contenido).

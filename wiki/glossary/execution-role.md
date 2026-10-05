@@ -4,7 +4,7 @@ category: glossary
 tags: [lambda, iam, roles, permisos]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.11 Lambda en una VPC.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # Execution role
@@ -20,7 +20,7 @@ Cuando Lambda invoca una función, asume ese role y le entrega a tu código [[te
 - [[lambda-in-vpc]] — necesita `AWSLambdaVPCAccessExecutionRole` para crear y borrar sus ENIs
 - [[IAM]] — escenarios de uso de roles
 - [[XRay]] — el execution role de una Lambda necesita `xray:PutTraceSegments` para enviar traces
-- También en: [[dva-development]] · [[dva-security]] · [[Organizations]] · [[ECS]] · [[task-role]] · [[SSMParameterStore]] · [[SecretsManager]]
+- También en: [[dva-development]] · [[dva-security]] · [[Organizations]] · [[ECS]] · [[task-role]] · [[SSMParameterStore]] · [[SecretsManager]] · [[EFS]] (Lambda que monta EFS necesita permisos de VPC) · [[dva-troubleshooting]] · [[ECR]]
 
 ## Dato de examen
 

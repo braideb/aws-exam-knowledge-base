@@ -4,7 +4,7 @@ category: glossary
 tags: [seguridad, ec2, imds, web]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.24 Instance Metadata (IMDS).md", "raw/notas curso mejorado/09 Advanced EC2/09.03 EC2 Instance Roles e Instance Profiles.md"]
-updated: 2026-09-30
+updated: 2026-10-05
 ---
 
 # SSRF (Server-Side Request Forgery)
@@ -18,7 +18,7 @@ Es una vulnerabilidad de la aplicación web. Por ejemplo, un parámetro "traer i
 ## Dónde aparece
 
 - [[ec2-instance-metadata]]: IMDSv1 vs IMDSv2
-- También en: [[dva-security]] · [[ec2-cheat-sheet]] · [[IAM]]
+- También en: [[dva-security]] · [[ec2-cheat-sheet]] · [[IAM]] · [[EC2]]
 
 ## Dato de examen
 

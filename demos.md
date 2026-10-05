@@ -2,8 +2,8 @@
 
 > Índice de todas las **demos prácticas** del curso (learn.cantrill.io), extraídas de las notas de `raw/notas curso mejorado/`. Cada demo linkea a la página wiki relacionada. El LLM lo actualiza cuando se ingestan notas nuevas con demos.
 
-**Última actualización:** 2026-10-03
-**Total de demos:** 53
+**Última actualización:** 2026-10-05
+**Total de demos:** 55
 
 ---
 
@@ -58,6 +58,8 @@
 | EBS Volumes — PART 2 | https://learn.cantrill.io/courses/1101194/lectures/28705524 | [[EBS]] |
 | EBS Volumes — PART 3 | https://learn.cantrill.io/courses/1101194/lectures/28705526 | [[instance-store-vs-ebs]] |
 | Status Check y Auto Recovery | https://learn.cantrill.io/courses/1101194/lectures/27806478 | [[EC2]] |
+| Implementación de EFS — PART 1 | https://learn.cantrill.io/courses/3028179/lectures/66797497 | [[EFS]] |
+| Implementación de EFS — PART 2 | https://learn.cantrill.io/courses/3028179/lectures/66797498 | [[EFS]] |
 | Shutdown, Terminate & Termination Protection | https://learn.cantrill.io/courses/1101194/lectures/27806479 | [[EC2]] |
 | Viendo los metadatos en una instancia EC2 | https://learn.cantrill.io/courses/1101194/lectures/27806481 | [[ec2-instance-metadata]] |
 
@@ -130,3 +132,5 @@ Del módulo 08 (Containers), la demo de **Docker en EC2** tiene los comandos tra
 Del módulo 09 (Advanced EC2), las demos de **Parameter Store** y del **CloudWatch Agent** tienen los comandos transcritos (ver [[09.05 Demostración - Parameter Store]] y [[09.07 Demostración - Logging y métricas con CloudWatch Agent]]). Las de **WordPress con user data** y **instance roles** solo tienen el link.
 
 Del módulo 10 (Databases SQL), las demos de **splitting de WordPress** y de **migración a RDS** tienen los comandos transcritos (`mysqldump`, restore, cambio de `DB_HOST`; ver [[10.02 Demostración - Splitting WordPress (app y DB)]] y [[10.05 Demostración - Migrar DB de EC2 a RDS]]). La de **Multi-AZ y snapshot restore** solo tiene los links (ver [[10.10 Demostración - Multi-AZ y snapshot restore con RDS]]). Las secciones de Aurora y Secrets Manager no traen demos.
+
+Del módulo 11 (Advanced Storage), la demo de **implementación de EFS** (2 partes) tiene los comandos transcritos (`amazon-efs-utils`, línea en `/etc/fstab` con `tls`, montaje en dos instancias; ver [[11.03 Demostración - Implementación de EFS]]). Ojo: estos links usan otro curso (`courses/3028179`), no el `1101194` del resto. FSx for Windows y FSx for Lustre no traen demos.

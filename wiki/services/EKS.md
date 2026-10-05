@@ -4,7 +4,7 @@ category: service
 tags: [eks, kubernetes, containers, compute, fargate]
 exam: [SAA-C03, DVA-C02, DOP-C02]
 sources: ["raw/notas curso mejorado/08 Containers, ECS y ECR/08.09 Kubernetes 101.md", "raw/notas curso mejorado/08 Containers, ECS y ECR/08.10 Elastic Kubernetes Service (EKS) 101.md"]
-updated: 2026-09-28
+updated: 2026-10-05
 ---
 
 # Amazon EKS (Elastic Kubernetes Service)
@@ -58,7 +58,7 @@ Los nodes tienen su IAM role, pero lo correcto es darle a **cada pod solo lo que
 
 ### Storage
 
-El storage de un pod es [[ephemeral-storage|efímero]]. Para persistencia, EKS usa como storage providers **EBS, EFS, FSx for Lustre y FSx for NetApp ONTAP**.
+El storage de un pod es [[ephemeral-storage|efímero]]. Para persistencia, EKS usa como storage providers **EBS, [[EFS]], [[FSx]] for Lustre y FSx for NetApp ONTAP**.
 
 ### Arquitectura de red
 

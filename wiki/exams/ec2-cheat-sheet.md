@@ -3,8 +3,8 @@ title: EC2 y almacenamiento — Cheat sheet de examen
 category: exam
 tags: [ec2, ebs, storage, repaso, cheat-sheet, dva-c02]
 exam: [DVA-C02, SAA-C03, DOP-C02]
-sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.00 Elastic Compute Cloud (EC2) — Índice.md", "raw/notas curso mejorado/09 Advanced EC2/09.00 Advanced EC2 — Índice.md"]
-updated: 2026-10-03
+sources: ["raw/notas curso mejorado/06 Elastic Compute Cloud (EC2)/06.00 Elastic Compute Cloud (EC2) — Índice.md", "raw/notas curso mejorado/09 Advanced EC2/09.00 Advanced EC2 — Índice.md", "raw/notas curso mejorado/11 Advanced Storage/11.00 Advanced Storage — Índice.md"]
+updated: 2026-10-05
 ---
 
 # EC2 y almacenamiento — Cheat sheet de examen
@@ -20,9 +20,10 @@ Destilado de los módulos 06 (EC2) y 09 (Advanced EC2). A diferencia del de VPC,
 - **Storage:** block (bootea) / file / object. DAS = instance store, NAS = EBS. → [[storage-types]]
 - **EBS:** block por red, **persistente**, **AZ-resilient**, por **GB-mes** aunque la instancia esté detenida. → [[EBS]]
 - **Instance store:** local, **[[ephemeral-storage|efímero]]**, el más rápido, **solo se adjunta al lanzar**. → [[instance-store-vs-ebs]]
+- **File storage:** [[EFS]] = [[nfs|NFS]] para Linux, muchos clientes a la vez, mount target por AZ (SG **2049**). [[FSx]] = Windows/[[smb|SMB]]/AD o Lustre para HPC. → [[efs-vs-fsx]]
 - **Snapshots:** a [[S3]] → **resilientes de región**. **Incrementales**; se cobran por **datos usados**. → [[EBS]]
-- **Cifrado EBS:** [[envelope-encryption|envelope encryption]], **DEK única por volumen**, AES-256, **sin impacto de rendimiento**. No se puede descifrar. → [[EBS]]
-- **ENI:** lleva IPs, DNS y **security groups**. La IPv4 privada es fija; la pública **cambia con stop+start**. → [[EC2]]
+- **Cifrado EBS:** [[envelope-encryption|envelope encryption]], **[[data-encryption-key|DEK]] única por volumen**, AES-256, **sin impacto de rendimiento**. No se puede descifrar. → [[EBS]]
+- **[[eni|ENI]]:** lleva IPs, DNS y **security groups**. La IPv4 privada es fija; la pública **cambia con stop+start**. → [[EC2]]
 - **AMI:** **regional**, **no se edita**, privada por defecto. Borrarla **no borra sus snapshots**. → [[golden-ami]]
 - **IMDS:** `169.254.169.254`. Entrega las credenciales del role. **IMDSv2** es la defensa contra [[ssrf|SSRF]]. → [[ec2-instance-metadata]]
 - **User data:** script que corre **como root, solo en el primer launch**, máximo 16 KB, **no es seguro**. Si falla, la instancia queda `running` igual. → [[ec2-bootstrapping]]
@@ -55,13 +56,18 @@ Destilado de los módulos 06 (EC2) y 09 (Advanced EC2). A diferencia del de VPC,
 | Savings Plans — ahorro | Compute **66%** · EC2 **72%** |
 | IP del IMDS | **169.254.169.254** |
 | User data — tamaño máximo | **16 KB** |
-| IMDSv2 — TTL máx. del token / hop limit | **6 h** (21.600 s) / **1** |
+| IMDSv2 — [[ttl\|TTL]] máx. del token / hop limit | **6 h** (21.600 s) / **1** |
 | Parameter Store Standard | **10.000** parámetros, **4 KB** (gratis) |
 | Parameter Store Advanced | **8 KB** + parameter policies |
 | Spread placement group | **7 instancias por AZ** |
 | Partition placement group | **7 particiones por AZ** |
 | Cluster PG — single-stream | **10 Gbps** (5 Gbps fuera) |
 | ENA / Intel 82599 VF | **100** / 10 Gbps |
+| EFS — puerto NFS | **2049** |
+| Lambda — `/tmp` | **512 MB a 10 GB** (más → EFS) |
+| FSx for Lustre — OST / mínimo / incremento | **1,17 TiB** / **1,2 TiB** / **2,4 TiB** |
+| FSx for Lustre — burst | **1.300 MB/s por TiB** |
+| FSx for Lustre — retención de backups | **0 a 35 días** |
 
 ## Escenario → respuesta
 
@@ -100,6 +106,10 @@ Destilado de los módulos 06 (EC2) y 09 (Advanced EC2). A diferencia del de VPC,
 | Métrica de **memoria** o **disco** de la instancia | **CloudWatch Agent** + rol `CloudWatchAgentServerPolicy` |
 | Mínima latencia entre nodos ([[hpc\|HPC]]) | **Cluster PG** + enhanced networking / **EFA** |
 | Pocas instancias críticas que no caigan juntas | **Spread PG** |
+| Varias instancias Linux comparten los mismos archivos | **EFS** |
+| La instancia no puede montar el EFS | SG del mount target sin **2049** desde el SG de la instancia |
+| File shares Windows con el AD de la empresa | **FSx for Windows** |
+| HPC/ML sobre un dataset que está en S3 | **FSx for Lustre** |
 | HDFS / HBase / Cassandra con cientos de nodos | **Partition PG** |
 
 ## Los errores que más se repiten
@@ -115,6 +125,7 @@ Destilado de los módulos 06 (EC2) y 09 (Advanced EC2). A diferencia del de VPC,
 9. Pensar que el **user data se re-ejecuta** en cada reboot: corre solo en el primer launch.
 10. Elegir **Parameter Store** cuando el enunciado pide **rotación automática**: eso es Secrets Manager.
 11. Poner un **cluster PG en varias AZs**, o un **spread PG con más de 7 instancias por AZ**: ninguno de los dos se puede.
+12. Creer que **FSx for Lustre Persistent es [[multi-az|multi-AZ]]**: replica dentro de **una** AZ. Y elegir **EFS** cuando el escenario dice Windows/SMB: eso es FSx.
 
 ## Ver también
 

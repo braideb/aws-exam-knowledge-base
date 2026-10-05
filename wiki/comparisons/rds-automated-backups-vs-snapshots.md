@@ -4,7 +4,7 @@ category: comparison
 tags: [rds, backups, snapshots, pitr, rpo, rto, dr]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/10 Databases (SQL)/10.08 RDS Backups y Restore.md", "raw/doc oficial/Restoring a DB instance to a specified time for Amazon RDS - Amazon Relational Database Service.md", "raw/doc oficial/Sharing encrypted snapshots for Amazon RDS - Amazon Relational Database Service.md", "raw/doc oficial/Encrypting Amazon RDS resources - Amazon Relational Database Service.md", "raw/doc oficial/RDS Cross-Region Read Replicas – DR & Scaling.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # RDS — Automated backups vs Snapshots manuales
@@ -38,7 +38,7 @@ En los dos casos, **restaurar crea una instancia nueva con un endpoint nuevo** y
 | Llevar la base a otra cuenta | **Snapshot manual** compartido (+ key compartida si está cifrado) |
 | Pasar una base **sin cifrar** a **cifrada** | Snapshot → **copia cifrada** → restore |
 | DR en otra región con RPO de minutos | **Replicación cross-region de automated backups** |
-| RTO de minutos, no de horas | Ninguno de los dos: **read replica** promovible o Multi-AZ ([[rds-ha-options]]) |
+| RTO de minutos, no de horas | Ninguno de los dos: **read replica** promovible o [[multi-az\|Multi-AZ]] ([[rds-ha-options]]) |
 
 ## Trampa típica del examen
 

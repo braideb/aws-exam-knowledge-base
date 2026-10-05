@@ -4,7 +4,7 @@ category: exam
 tags: [rds, aurora, secrets-manager, repaso, cheat-sheet, dva-c02]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/10 Databases (SQL)/10.00 Databases (SQL) — Índice.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # Bases de datos (SQL) — Cheat sheet de examen
@@ -16,12 +16,12 @@ Destilado del módulo 10 (Databases SQL), con los números ya corregidos contra 
 - **Base en EC2:** casi siempre mala práctica; se justifica con **motor/versión no soportada** o **acceso al SO**. → [[databases-on-ec2]]
 - **RDS:** "database server as a service". Una **DB instance** con varias bases, **en una VPC**, **EBS propio**, endpoint **DNS**. → [[RDS]]
 - **[[db-subnet-group|DB subnet group]]:** las subnets donde RDS ubica primary y standby (en AZs distintas). → [[RDS]]
-- **Multi-AZ instance:** 1 standby **síncrona** que **no se lee**. Failover por **CNAME**, **60–120 s**. Solo misma región. → [[rds-ha-options]]
+- **[[multi-az|Multi-AZ]] instance:** 1 standby **síncrona** que **no se lee**. [[failover|Failover]] por **CNAME**, **60–120 s**. Solo misma región. → [[rds-ha-options]]
 - **Multi-AZ cluster:** 1 writer + **2 readers legibles**, solo MySQL/PostgreSQL, commit con ≥1 reader, failover **~35 s**. **No es Aurora.** → [[rds-ha-options]]
 - **Read replicas:** **asíncronas**, endpoint propio, **promote manual**, cross-region posible. **Sirven ante fallas, no ante corrupción.** → [[rds-ha-options]]
-- **Automated backups:** diario + **transaction logs cada 5 min** → **PITR**, retención **0–35 días**. → [[rds-automated-backups-vs-snapshots]]
+- **Automated backups:** diario + **transaction logs cada 5 min** → **[[point-in-time-recovery|PITR]]**, retención **0–35 días**. → [[rds-automated-backups-vs-snapshots]]
 - **Snapshots manuales:** **no caducan**, sobreviven a la instancia, se comparten y se copian. → [[rds-automated-backups-vs-snapshots]]
-- **Restore:** siempre **instancia nueva = endpoint nuevo**, y lento (mal RTO). → [[RDS]]
+- **Restore:** siempre **instancia nueva = endpoint nuevo**, y lento (mal [[rto|RTO]]). → [[RDS]]
 - **Cifrado RDS:** KMS + EBS, **solo al crear**, no se quita, la key no cambia. Réplica = mismo estado de cifrado. Sin cifrar → **snapshot → copia cifrada → restore**. → [[RDS]]
 - **TDE:** cifrado **dentro del motor**, Oracle y SQL Server. Oracle + **CloudHSM** = AWS no ve las claves. → [[transparent-data-encryption]]
 - **IAM DB auth:** token de **15 min** con `generate-db-auth-token`, permiso `rds-db:connect`. **Autenticación, no autorización.** MySQL/MariaDB/PostgreSQL. → [[RDS]]
@@ -42,7 +42,7 @@ Destilado del módulo 10 (Databases SQL), con los números ya corregidos contra 
 | Failover Multi-AZ cluster | **~35 s** |
 | Failover Aurora (con replica) | **~30 s**; sin replica, recrea la primary (~10 min) |
 | Retención de automated backups | **0–35 días** |
-| Transaction logs a S3 | **cada 5 min** (RPO ≈ 5 min) |
+| Transaction logs a S3 | **cada 5 min** ([[rpo\|RPO]] ≈ 5 min) |
 | Read replicas RDS por instancia | **15** (el curso dice 5); cross-region garantizadas: **5** |
 | Readers en Multi-AZ cluster | **2** |
 | Aurora replicas | **15** (16 en una región secundaria de Global Database) |
@@ -65,7 +65,7 @@ Destilado del módulo 10 (Databases SQL), con los números ya corregidos contra 
 | HA ante la caída de una AZ, motor Oracle | **RDS Multi-AZ** (instance) |
 | La primary está saturada de lecturas | **Read replicas** / Multi-AZ cluster / Aurora + reader endpoint |
 | Lambda abre miles de conexiones y la base se cae | **RDS Proxy** |
-| La app tarda minutos en volver tras un failover | Cache de **DNS** → TTL corto o **RDS Proxy** |
+| La app tarda minutos en volver tras un failover | Cache de **DNS** → [[ttl\|TTL]] corto o **RDS Proxy** |
 | Recuperar el estado de hace 2 horas tras un borrado | **PITR** (automated backups) |
 | Guardar una copia por 7 años | **Snapshot manual** |
 | Cifrar una base creada sin cifrar | Snapshot → **copia cifrada** → restore |

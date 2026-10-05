@@ -4,7 +4,7 @@ category: glossary
 tags: [route53, ha, resiliencia, dns]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/01 Fundamentos de AWS/01.13 HA vs. FT vs. DR.md", "raw/notas curso mejorado/01 Fundamentos de AWS/01.15 DNS Record Types.md", "raw/notas curso mejorado/05 Virtual private cloud (VPC) Basics/05.08 Network Address Translation (NAT) y NAT Gateway.md", "raw/notas curso mejorado/10 Databases (SQL)/10.06 RDS Multi-AZ Instance.md", "raw/notas curso mejorado/10 Databases (SQL)/10.07 RDS Multi-AZ Cluster.md", "raw/notas curso mejorado/10 Databases (SQL)/10.17 Aurora Global Database.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # Failover
@@ -22,7 +22,7 @@ Tiempos típicos en bases de datos: RDS Multi-AZ instance **60–120 s** (cambia
 - [[Route53]] — failover routing policy, MX failover con prioridades escalonadas, [[ttl|TTL]] bajo (~60 s) en registros de failover de DR
 - [[ha-ft-dr]] — RDS Multi-AZ failover; "failover automático" es palabra clave de **HA**
 - [[availability]], [[region-resilient]], [[globally-resilient]] — un escenario de failover DNS multi-region apunta a Route 53 por ser globally resilient
-- También en: [[nat-gateway-vs-nat-instance]] · [[RDS]] · [[rto]] · [[ttl]]
+- También en: [[rds-ha-options]] · [[nat-gateway-vs-nat-instance]] · [[RDS]] · [[rto]] · [[ttl]] · [[rds-vs-aurora]] · [[dva-development]] · [[dva-troubleshooting]] · [[databases-cheat-sheet]] · [[idempotency]] · [[replication-lag]] · [[Aurora]]
 
 ## Dato de examen
 

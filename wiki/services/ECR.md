@@ -4,7 +4,7 @@ category: service
 tags: [ecr, containers, registry, docker, seguridad, cicd]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/08 Containers, ECS y ECR/08.08 Elastic Container Registry (ECR).md", "raw/notas curso mejorado/08 Containers, ECS y ECR/08.02 Docker Images, Containers y Registries.md"]
-updated: 2026-09-28
+updated: 2026-10-05
 ---
 
 # Amazon ECR (Elastic Container Registry)
@@ -68,7 +68,7 @@ docker push <account-id>.dkr.ecr.<region>.amazonaws.com/app:latest
 
 ## Integración con otros servicios
 
-- [[ECS]] — el pull lo hace el **task execution role** (no el [[task-role|task role]]).
+- [[ECS]] — el pull lo hace el **task [[execution-role|execution role]]** (no el [[task-role|task role]]).
 - [[EKS]] — registry de las images de los pods.
 - CodeBuild — build + tag + push en el pipeline; necesita **privileged mode** para construir images de Docker.
 - Amazon Inspector — enhanced scanning.

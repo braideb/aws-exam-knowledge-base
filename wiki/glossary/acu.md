@@ -4,7 +4,7 @@ category: glossary
 tags: [aurora, serverless, capacidad]
 exam: [DVA-C02, SAA-C03]
 sources: ["raw/notas curso mejorado/10 Databases (SQL)/10.15 Aurora Serverless.md", "raw/doc oficial/Understanding how ACU minimum and maximum range impacts scaling in Amazon Aurora Serverless v2.md", "raw/doc oficial/ServerlessV2ScalingConfiguration - Amazon Relational Database Service.md", "raw/doc oficial/Performance and scaling for Aurora serverless.md"]
-updated: 2026-10-03
+updated: 2026-10-05
 ---
 
 # ACU (Aurora Capacity Unit)
@@ -21,6 +21,7 @@ En Aurora Serverless no elegís un tipo de instancia: fijás un **mínimo y un m
 
 - [[Aurora]] — Aurora Serverless v1/v2
 - [[databases-cheat-sheet]]
+- También en: [[rds-vs-aurora]]
 
 ## Dato de examen
 

@@ -4,7 +4,7 @@ category: concept
 tags: [containers, docker, virtualizacion, images, registry, compute]
 exam: [DVA-C02, SAA-C03, DOP-C02]
 sources: ["raw/notas curso mejorado/08 Containers, ECS y ECR/08.01 Containers — Virtualización vs Containerization.md", "raw/notas curso mejorado/08 Containers, ECS y ECR/08.02 Docker Images, Containers y Registries.md", "raw/notas curso mejorado/08 Containers, ECS y ECR/08.03 Demostración - Container of cats (Docker en EC2).md"]
-updated: 2026-09-28
+updated: 2026-10-05
 ---
 
 # Containers (Docker)
@@ -75,7 +75,7 @@ Un registry guarda muchas images, y cada host baja solo las que necesita. En AWS
 - "Correr más aplicaciones en el mismo hardware, sin un OS completo por app" → **containers** (densidad).
 - "La app corre igual en la laptop del dev y en producción" → containers son **portables** / self-contained.
 - "Dónde se guardan las images en AWS" → [[ECR]], no S3.
-- Lo que un container escribe vive en su **R/W layer** y se pierde con el container. Para datos persistentes hacen falta volúmenes (en ECS, **EFS**; ver [[ECS]]).
+- Lo que un container escribe vive en su **R/W layer** y se pierde con el container. Para datos persistentes hacen falta volúmenes (en ECS, **[[EFS]]**; ver [[ECS]]).
 
 ## Demos del curso
 
