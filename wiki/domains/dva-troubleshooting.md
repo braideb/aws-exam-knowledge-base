@@ -45,6 +45,7 @@ Diagnosticar y resolver problemas de aplicaciones: observabilidad (métricas, lo
 | **Diagnosticar tráfico rechazado con evidencia** (`action = REJECT`) | [[vpc-flow-logs]] | ✅ fuerte |
 | Instancia que no responde: System vs Instance status check, auto-recovery | [[EC2]] | ✅ |
 | Instancia `running` con 2/2 checks pero mal configurada: **user data fallido** (EC2 no lo valida; solo corre en el primer launch) | [[ec2-bootstrapping]] | ✅ |
+| **Deploy de CloudFormation que falla**: `CREATE_COMPLETE` no implica "la app anda" (falta [[cfn-init-and-signals\|cfn-signal]] + CreationPolicy); un update destructivo se anticipa con **change sets** (ve el *replacement* antes de aplicar); logs del bootstrap en `cloud-init-output.log` y `cfn-init-cmd.log` | [[cfn-init-and-signals]], [[wiki/services/CloudFormation]] | ✅ solo curso |
 | Métricas de **memoria/disco** y logs del SO: CloudWatch Agent + rol + config en Parameter Store | [[CloudWatchLogs]], [[CloudWatch]] | ✅ |
 | La CLI usa otras credenciales aunque la instancia tenga rol (keys en disco **pisan** al [[instance-profile\|instance profile]]) | [[IAM]], [[aws-cli]] | ✅ |
 | `AccessDenied` al leer un SecureString (falta `kms:Decrypt`) | [[SSMParameterStore]] | ✅ |

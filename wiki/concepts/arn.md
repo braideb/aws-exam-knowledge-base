@@ -65,7 +65,7 @@ No son solo cosa de policies:
 
 - El campo `Resource` de identity y resource policies.
 - **Referencias entre servicios**: el ARN del rol que ejecuta una Lambda, el del topic SNS al que notifica una alarma de [[CloudWatch]].
-- Salidas de [[CloudFormation]] (`!GetAtt MiRecurso.Arn`).
+- Salidas de [[wiki/services/CloudFormation]] (`!GetAtt MiRecurso.Arn`).
 - Comandos de la CLI que identifican un recurso de otra cuenta.
 
 Por eso conviene leerlos de un vistazo: un ARN te dice servicio, region, cuenta dueña y tipo de recurso sin buscar nada.

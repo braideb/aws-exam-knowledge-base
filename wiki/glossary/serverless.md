@@ -22,7 +22,7 @@ Ejemplos: Lambda, DynamoDB on-demand, [[S3]], SQS, API Gateway, EventBridge, Far
 - [[EC2]] — "eventos, ejecuciones cortas, no quiero administrar servidores → Lambda o gestionado"
 - [[shared-responsibility-model]] — parchear Lambda/DynamoDB es **de AWS**
 - [[dva-development]] — pilar del dominio de Development
-- También en: [[CloudFormation]] · [[EventBridge]] · [[S3]] · [[IAM]] · [[XRay]] · [[execution-role]] · [[iaas]] · [[idempotency]] · [[paas]] · [[presigned-url]] · [[ECS]] · [[containers]] · [[ecs-ec2-vs-fargate]] · [[databases-on-ec2]] · [[rds-vs-aurora]] · [[Aurora]]
+- También en: [[wiki/services/CloudFormation]] · [[EventBridge]] · [[S3]] · [[IAM]] · [[XRay]] · [[execution-role]] · [[iaas]] · [[idempotency]] · [[paas]] · [[presigned-url]] · [[ECS]] · [[containers]] · [[ecs-ec2-vs-fargate]] · [[databases-on-ec2]] · [[rds-vs-aurora]] · [[Aurora]]
 
 ## Dato de examen
 

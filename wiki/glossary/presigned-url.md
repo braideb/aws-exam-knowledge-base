@@ -20,6 +20,7 @@ Es la URL normal de un objeto S3 más query params con las credenciales del gene
 - [[S3]] — sección completa "Presigned URLs": mecánica, expiraciones por origen, gotchas
 - [[CloudFront]] — comparación con Signed URLs/Cookies (alcance: un objeto de S3 vs. contenido detrás del CDN)
 - [[IAM]], [[temporary-credentials]] — por qué no conviene generarlas con credenciales de un rol
+- [[wiki/services/CloudFormation]], [[cfn-init-and-signals]] — la **ResponseURL** de un custom resource y el **WaitHandle** son URLs prefirmadas
 - [[dva-development]] — dominio 1 del examen DVA-C02
 
 ## Dato de examen

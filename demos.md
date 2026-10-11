@@ -2,8 +2,8 @@
 
 > Índice de todas las **demos prácticas** del curso (learn.cantrill.io), extraídas de las notas de `raw/notas curso mejorado/`. Cada demo linkea a la página wiki relacionada. El LLM lo actualiza cuando se ingestan notas nuevas con demos.
 
-**Última actualización:** 2026-10-05
-**Total de demos:** 55
+**Última actualización:** 2026-10-10
+**Total de demos:** 63
 
 ---
 
@@ -115,7 +115,20 @@
 |---|---|---|
 | Demo de CloudWatch (sin título en la nota) | https://learn.cantrill.io/courses/1101194/lectures/25301525 | [[CloudWatch]] |
 | Lambda & AWS X-Ray | https://learn.cantrill.io/courses/1101194/lectures/46260482 | [[XRay]] |
-| Simple Automation With CloudFormation | https://learn.cantrill.io/courses/1101194/lectures/25216284 | [[CloudFormation]] |
+| Simple Automation With CloudFormation | https://learn.cantrill.io/courses/1101194/lectures/25216284 | [[wiki/services/CloudFormation]] |
+
+## CloudFormation (módulo 12)
+
+| Demo | Link | Página wiki |
+|---|---|---|
+| Simple non-portable template — Part 1 | https://learn.cantrill.io/courses/3028179/lectures/66797628 | [[wiki/services/CloudFormation]] |
+| Simple non-portable template — Part 2 | https://learn.cantrill.io/courses/3028179/lectures/66797629 | [[wiki/services/CloudFormation]] |
+| Template v2 Portable | https://learn.cantrill.io/courses/1101194/lectures/28326940 | [[cloudformation-template]] |
+| WaitCondition / cfn-signal / cfn-init / cfn-hup — Part 1 | https://learn.cantrill.io/courses/1101194/lectures/28333069 | [[cfn-init-and-signals]] |
+| WaitCondition / cfn-signal / cfn-init / cfn-hup — Part 2 | https://learn.cantrill.io/courses/1101194/lectures/30471883 | [[cfn-init-and-signals]] |
+| Change Sets | https://learn.cantrill.io/courses/1101194/lectures/28338687 | [[wiki/services/CloudFormation]] |
+| Custom Resources — Part 1 | https://learn.cantrill.io/courses/1101194/lectures/28338903 | [[wiki/services/CloudFormation]] |
+| Custom Resources — Part 2 | https://learn.cantrill.io/courses/1101194/lectures/29652962 | [[wiki/services/CloudFormation]] |
 
 ---
 
@@ -134,3 +147,5 @@ Del módulo 09 (Advanced EC2), las demos de **Parameter Store** y del **CloudWat
 Del módulo 10 (Databases SQL), las demos de **splitting de WordPress** y de **migración a RDS** tienen los comandos transcritos (`mysqldump`, restore, cambio de `DB_HOST`; ver [[10.02 Demostración - Splitting WordPress (app y DB)]] y [[10.05 Demostración - Migrar DB de EC2 a RDS]]). La de **Multi-AZ y snapshot restore** solo tiene los links (ver [[10.10 Demostración - Multi-AZ y snapshot restore con RDS]]). Las secciones de Aurora y Secrets Manager no traen demos.
 
 Del módulo 11 (Advanced Storage), la demo de **implementación de EFS** (2 partes) tiene los comandos transcritos (`amazon-efs-utils`, línea en `/etc/fstab` con `tls`, montaje en dos instancias; ver [[11.03 Demostración - Implementación de EFS]]). Ojo: estos links usan otro curso (`courses/3028179`), no el `1101194` del resto. FSx for Windows y FSx for Lustre no traen demos.
+
+Del módulo 12 (CloudFormation), la demo de **cfn-signal / cfn-init / cfn-hup** tiene **los tres templates YAML completos** transcritos (ver [[12.11 Demostración - cfn-signal, cfn-init y cfn-hup]]), y la de **custom resources** trae el template + la Lambda en Python (ver [[12.18 Custom Resources]]). Las de **non-portable template** (partes 1 y 2) usan el curso `3028179`, como las de EFS. **Template v2 Portable** y **change sets** solo tienen el link y capturas descritas en la nota.

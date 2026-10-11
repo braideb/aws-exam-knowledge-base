@@ -42,7 +42,7 @@ EC2 ── user data ──►│  el SO lee 169.254.169.254/latest/user-data
                running ── lista para el servicio (si el script anduvo)
 ```
 
-> **Si el script falla, la instancia igual queda `running` y pasa los status checks.** EC2 solo entrega el user data: no sabe si el script funcionó. El resultado típico es una instancia accesible pero **mal configurada**.
+> **Si el script falla, la instancia igual queda `running` y pasa los status checks.** EC2 solo entrega el user data: no sabe si el script funcionó. El resultado típico es una instancia accesible pero **mal configurada**. Para que CloudFormation **sí** se entere del resultado del bootstrapping, está [[cfn-init-and-signals|cfn-signal + CreationPolicy]]; y para configurar por *desired state* en vez de procedural, **cfn-init**.
 
 ### Boot time to service time
 
@@ -72,10 +72,10 @@ Ejemplo del combinado: si un proceso es **90% instalación y 10% configuración*
 ## Demos del curso
 
 - [WordPress installation — Part 1 (con user data)](https://learn.cantrill.io/courses/1101194/lectures/27895409)
-- [WordPress installation — Part 2](https://learn.cantrill.io/courses/1101194/lectures/29447330), para ver después de [[CloudFormation]]
+- [WordPress installation — Part 2](https://learn.cantrill.io/courses/1101194/lectures/29447330), para ver después de [[wiki/services/CloudFormation]]
 
 > 📖 Lectura profunda: [[09.01 Bootstrapping EC2 con User Data]] · [[09.02 Boot Time to Service Time y AMI Baking]]
 
 ## Ver también
 
-[[EC2]] · [[golden-ami]] · [[ec2-instance-metadata]] · [[SSMParameterStore]] · [[dva-deployment]]
+[[EC2]] · [[golden-ami]] · [[ec2-instance-metadata]] · [[SSMParameterStore]] · [[cfn-init-and-signals]] · [[dva-deployment]]

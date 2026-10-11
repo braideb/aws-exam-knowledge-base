@@ -13,7 +13,7 @@ updated: 2026-09-24
 
 Registra las **acciones de API** de la cuenta: quién hizo qué, cuándo y desde dónde. Son "las cámaras de seguridad de AWS" — no le importa qué hace tu app por dentro ([[CloudWatchLogs]]), le importa quién apretó qué botón.
 
-> **Todo en AWS es una llamada a la API, incluso clickear en la consola** (la consola es un cliente que llama a la API en tu nombre). Por eso CloudTrail ve absolutamente todo, sin importar si la acción vino de la consola, la CLI, un SDK o [[CloudFormation]].
+> **Todo en AWS es una llamada a la API, incluso clickear en la consola** (la consola es un cliente que llama a la API en tu nombre). Por eso CloudTrail ve absolutamente todo, sin importar si la acción vino de la consola, la CLI, un SDK o [[wiki/services/CloudFormation]].
 
 ### Qué hay dentro de un evento
 

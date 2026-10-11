@@ -19,7 +19,7 @@ Parte de **AWS Systems Manager (SSM)**. Guarda **parámetros** (nombre + valor) 
 - **Secretos sin rotación**: contraseñas, códigos de licencia (con SecureString).
 - **Bootstrapping de EC2**: el user data o la app leen la configuración al arrancar con el instance role, en lugar de llevar secretos en el user data ([[ec2-bootstrapping]]).
 - **Configuración del CloudWatch Agent**: el agente la guarda y la lee como parámetro ([[CloudWatchLogs]]).
-- **AMI ID más reciente**: los **parámetros públicos** de AWS, que usa [[CloudFormation]] para no hardcodear AMIs.
+- **AMI ID más reciente**: los **parámetros públicos** de AWS, que usa [[wiki/services/CloudFormation]] para no hardcodear AMIs.
 
 ## Características clave
 
@@ -72,7 +72,7 @@ Un parámetro Standard se puede **pasar a Advanced, pero no volver** ¹. Por def
 - [[EC2]]: la instancia lee su configuración al arrancar ([[ec2-bootstrapping]]).
 - [[CloudWatchLogs]]: el CloudWatch Agent guarda su config como parámetro (`ssm:AmazonCloudWatch-linux`).
 - [[ECS]]: el task execution role lee los secrets referenciados en la task definition.
-- [[CloudFormation]]: parámetros públicos para resolver AMI IDs.
+- [[wiki/services/CloudFormation]]: parámetros públicos para resolver AMI IDs.
 
 ## Gotchas y trampas del examen
 

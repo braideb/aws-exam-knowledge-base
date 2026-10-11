@@ -120,7 +120,7 @@ Las tres primeras son las que hay que reconocer en el examen. `GetCallerIdentity
 
 Notas de cada uno que caen en el examen:
 
-- **(1) Es siempre el mismo patrón con nombres distintos**: *execution role* en Lambda, *[[instance-profile|instance profile]]* en EC2, *[[task-role|task role]]* en [[ECS]] ([[irsa|IRSA / Pod Identity]] en [[EKS]]), *service role* en CodeBuild o [[CloudFormation]]. Y **la aplicación no cambia nada**: los SDK recorren su cadena de credenciales y terminan tomando las del rol — migrar de access keys a rol suele ser **borrar la configuración de credenciales** y adjuntar el rol.
+- **(1) Es siempre el mismo patrón con nombres distintos**: *execution role* en Lambda, *[[instance-profile|instance profile]]* en EC2, *[[task-role|task role]]* en [[ECS]] ([[irsa|IRSA / Pod Identity]] en [[EKS]]), *service role* en CodeBuild o [[wiki/services/CloudFormation]]. Y **la aplicación no cambia nada**: los SDK recorren su cadena de credenciales y terminan tomando las del rol — migrar de access keys a rol suele ser **borrar la configuración de credenciales** y adjuntar el rol.
 - **(2) Break glass no es una feature de AWS**, es un **patrón**: rol con permisos elevados + trust policy que dice quién lo asume + fricción deliberada (MFA) + una **alerta automática** (Slack/PagerDuty) cada vez que alguien lo asume, para que "romper el vidrio" no pase desapercibido. Ventaja sobre dar permisos altos permanentes: el acceso **se vence solo** y [[CloudTrail]] registra tanto el `AssumeRole` como todo lo que se hizo después.
 - **(5) Object Owner**: cuando tus usuarios suben objetos al bucket del partner **asumiendo un rol de la cuenta del partner**, los objetos quedan siendo **propiedad del partner** — así se evita el problema clásico de "subí un archivo al bucket de otro y ni el dueño puede leerlo" (ver [[S3]]).
 
@@ -256,6 +256,7 @@ Como IAM es **global**, estos límites son **por cuenta, no por region**: no pod
 - "Access key `AKIA…` hardcodeada en una EC2" → el error es la key en sí: la respuesta es **instance role**.
 - "Le adjunté un rol a la instancia pero la CLI sigue usando otros permisos" → hay **keys en `~/.aws/credentials` o en variables de entorno** que tienen precedencia sobre el instance profile.
 - "Creé el rol con CloudFormation y no puedo asociarlo a la instancia" → falta el **`AWS::IAM::InstanceProfile`**.
+- "Un operador debe desplegar stacks sin poder crear sus recursos por fuera de CloudFormation" → **stack role** + **[[pass-role|iam:PassRole]]**: el servicio asume el rol; el operador no obtiene esos permisos. Ver [[wiki/services/CloudFormation]].
 - "El script crea un rol y falla al usarlo inmediatamente" → **eventual consistency** de IAM, reintentar con backoff.
 - "¿Qué permisos sobran en esta identidad?" → **Access Advisor** (uso real); "¿qué policy debería tener?" → **Access Analyzer policy generation**.
 

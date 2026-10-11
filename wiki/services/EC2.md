@@ -122,7 +122,7 @@ Imagen para crear instancias (o creada desde una instancia). Contiene:
 
 > Una AMI no es un archivo: es **metadata que apunta a EBS snapshots** + permisos + block device mapping. Por eso **borrar la AMI no borra sus snapshots** (te los siguen cobrando).
 
-> Las AMIs son **regionales**: el `ami-xxxx` solo vale en su region. Para otra region → **Copy AMI** (copia snapshots, genera costo). Por eso los templates de [[CloudFormation]] resuelven el AMI ID con `Mappings` o **SSM Parameters** en vez de hardcodearlo.
+> Las AMIs son **regionales**: el `ami-xxxx` solo vale en su region. Para otra region → **Copy AMI** (copia snapshots, genera costo). Por eso los templates de [[wiki/services/CloudFormation]] resuelven el AMI ID con `Mappings` o **SSM Parameters** en vez de hardcodearlo.
 
 **Fuentes y costo:** una AMI puede venir de **AWS**, de la **comunidad** o del **Marketplace**. Las del Marketplace traen software comercial preinstalado, y ahí el costo total es **instancia (cómputo) + licencia del software**.
 

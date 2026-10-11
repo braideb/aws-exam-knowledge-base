@@ -22,6 +22,7 @@ Cómo se logra: deduplicar por un ID único del evento, usar escrituras condicio
 - [[S3]] — Event Notifications: entrega **at least once** → "diseñar consumidores idempotentes"
 - [[EventBridge]] — reintentos y DLQ
 - [[dva-development]] — arquitecturas event-driven, pilar del DVA-C02
+- [[cfn-init-and-signals]], [[desired-state-configuration]] — `cfn-init` es idempotente: si ya está en el estado deseado, no hace nada
 - También en: [[horizontal-vs-vertical-scaling]] · [[eventual-consistency]] · [[serverless]] · [[stateless]] · [[RDS]]
 
 ## Dato de examen

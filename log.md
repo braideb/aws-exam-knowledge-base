@@ -42,7 +42,7 @@
 **Sin problemas:** 0 links rotos, 0 páginas huérfanas, las 96 páginas de `wiki/` están en [[index]], frontmatter completo y `category` coherente con la carpeta en todas.
 
 **Corregido:**
-- **Links de glosario faltantes (primera aparición sin link):** 30 en 17 páginas. En las comparaciones de VPC recién creadas: bastion, public subnet, AZ/region resilient, failover, ENI. En páginas viejas: [[S3]] (data plane, control plane, soberanía, deny implícito, serverless), [[KMS]] (confused deputy, trust policy), [[CloudFront]] (confused deputy, presigned URL), [[iam-policy-evaluation]], [[permissions-boundary]], [[s3-encryption]] (envelope encryption), [[s3-storage-classes]] (WORM), [[global-infrastructure]] (blast radius, Multi-AZ), [[Organizations]] (least privilege), [[EC2]], [[CloudFormation]] y [[EventBridge]] (serverless), [[multipart-upload]] (ETag), [[VPC]] (throttling), [[dva-development]] (idempotencia), [[dva-troubleshooting]] (ephemeral ports).
+- **Links de glosario faltantes (primera aparición sin link):** 30 en 17 páginas. En las comparaciones de VPC recién creadas: bastion, public subnet, AZ/region resilient, failover, ENI. En páginas viejas: [[S3]] (data plane, control plane, soberanía, deny implícito, serverless), [[KMS]] (confused deputy, trust policy), [[CloudFront]] (confused deputy, presigned URL), [[iam-policy-evaluation]], [[permissions-boundary]], [[s3-encryption]] (envelope encryption), [[s3-storage-classes]] (WORM), [[global-infrastructure]] (blast radius, Multi-AZ), [[Organizations]] (least privilege), [[EC2]], [[wiki/services/CloudFormation]] y [[EventBridge]] (serverless), [[multipart-upload]] (ETag), [[VPC]] (throttling), [[dva-development]] (idempotencia), [[dva-troubleshooting]] (ephemeral ports).
 - **"Ver también" recíprocos:** [[least-privilege]] → [[abac]]; [[confused-deputy]] → [[cross-account]].
 - **Dato desactualizado por el ingest:** [[global-infrastructure]] listaba "NAT Gateway" como AZ resilient sin matiz → ahora "NAT Gateway zonal" + mención del modo regional.
 
@@ -529,3 +529,48 @@ Con un script (node) que revisa toda la wiki en una pasada: links, embeds, pipes
 - Sin clippings de EFS/FSx, EC2/EBS, ECS/ECR/EKS ni X-Ray.
 - `raw/doc oficial/AWS Prescriptive Guidance.md` sigue sin contenido útil y sin citar: se puede borrar.
 - El clipping `Bucket policy examples using condition keys` tiene cambios de fin de línea sin commitear (no de contenido).
+
+## [2026-10-10] ingest | Módulo 12 CloudFormation
+
+**Fuentes:**
+- `raw/notas curso mejorado/12 CloudFormation/` — 18 secciones nuevas (12.01–12.18) + índice, segmentadas en esta misma sesión desde `raw/notas curso/CloudFormation.md`. Ninguna página wiki las citaba en `sources:`.
+- Chequeo de modificados (regla mtime vs `updated:`): `01.10 CloudFormation — Basics` solo cambió el alias del link wiki (`[[CloudFormation]]`→`[[wiki/services/CloudFormation]]`), sin contenido nuevo; `02.01 Cuenta de AWS` solo tiene cambios de CRLF. **Nada extra que ingestar.**
+
+**Decisión de estructura:** patrón **hub + conceptos + comparación** (como [[EC2]]), porque 18 secciones no entran en una sola página de servicio sin romper la regla de concisión.
+
+**Páginas nuevas (6):**
+- Conceptos (3): [[cloudformation-template]] (parameters/pseudo/Mappings/Conditions/Outputs/DependsOn), [[cloudformation-intrinsic-functions]] (Ref/GetAtt/Join/Split/GetAZs/Select/Sub/Base64/Cidr/FindInMap/ImportValue), [[cfn-init-and-signals]] (CreationPolicy/WaitCondition/cfn-signal/cfn-init/cfn-hup).
+- Comparación (1): [[nested-stacks-vs-cross-stack-references]].
+- Glosario (2): [[desired-state-configuration]], [[pass-role]].
+
+**Páginas actualizadas:** [[wiki/services/CloudFormation]] (reescrita de stub a hub: lifecycle, StackSets, DeletionPolicy, stack roles, change sets, custom resources, gotchas, demos; `sources` + 6 secciones), [[ec2-bootstrapping]] (contraste con cfn-init + "Ver también"), [[IAM]] (gotcha de stack roles/PassRole), [[dva-deployment]] (5 filas nuevas de IaC; nota del módulo 12; huecos actualizados), [[dva-troubleshooting]] (fila de deploy de CFN fallido). Backlinks de glosario: [[idempotency]], [[presigned-url]] (ResponseURL/WaitHandle). [[serverless]] ya linkeaba CFN; [[SSMParameterStore]] ya integraba el parámetro público de AMI.
+
+**Contradicciones / números a vigilar:** CloudFormation sale **solo del curso** (no hay clippings de doc oficial). Marcado en [[index]] el dato "**500 recursos por stack**" como verificable cuando entren clippings.
+
+**Otros:** [[index]] (190→**196**: +3 conceptos, +1 comparación, +2 glosario; fuentes 162/162 módulos 01–12; grupo de glosario "IaC / CloudFormation"; nota de "sin clippings de CFN"), [[guia-estudio]] (**Bloque 9** pasa de stub a 5 páginas ordenadas por prerequisitos; 69 páginas), [[demos]] (+8 demos, 55→**63**; grupo "CloudFormation (módulo 12)").
+
+**No ingestado a propósito (fuera del flujo):** las ediciones sin commitear previas a la sesión (wiki: arn, ec2-bootstrapping, EC2, EventBridge, CloudTrail, CloudWatchLogs, serverless, dva-deployment) no se revierten; solo se tocaron donde este ingest lo requería.
+
+## [2026-10-10] lint | Revisión post-ingest del módulo 12
+
+Con el script node de siempre (recreado en el scratchpad): links/embeds rotos, huérfanas, cobertura de [[index]], conteos, pipes sin escapar en tablas, frontmatter, `sources` inexistentes y detector de modificados.
+
+**Estructura (OK):**
+- **0 links/embeds rotos** en `wiki/` y en `raw/notas curso mejorado/` (incluido el módulo 12). Los 5 "rotos" que quedan son los de siempre: 2 citas a la vieja sección `05.04` en este log y 3 ejemplos literales (`[[...]]`, `[[NombreDePágina]]`) dentro de `CLAUDE.md`.
+- **0 huérfanas**: las 6 páginas nuevas tienen links entrantes (desde el hub, index, guía y páginas relacionadas).
+- **196/196 en [[index]]**; conteos recomputados coinciden con la cabecera: 69 conocimiento (24 services + 23 concepts + 18 comparisons + 4 domains) + 124 glosario + 3 examen.
+- **0 `sources` apuntando a archivos inexistentes**; frontmatter completo en las 196 páginas.
+
+**Corregido:**
+- **Pipes sin escapar en celdas de tabla (5):** 3 en páginas nuevas de este ingest ([[cfn-init-and-signals]], [[cloudformation-intrinsic-functions]], [[dva-troubleshooting]]) y **2 preexistentes** en [[10.04 RDS — Costos]] (`[[10.06 …|…]]` y `[[10.07 …|…]]`, que rompían esa fila de la tabla). Todos pasados a `\|`.
+- **Regla de primera aparición:** en [[cloudformation-intrinsic-functions]], "CIDR" y "ARN" se mencionaban antes de su link; se movió el link a la primera aparición ([[cidr]], [[arn]]) y se dejó plano el posterior.
+
+**Revisado sin cambios (contradicciones/números):**
+- CloudFormation sale **solo del curso** (no hay clipping oficial que cruzar). El dato **500 recursos por stack** queda marcado en [[index]] como verificable cuando entren clippings; "timeout de señales 12 h", el orden de secciones de cfn-init y "cross-stack solo misma región/cuenta" son consistentes entre las páginas.
+
+**Detector de modificados — todo falso positivo conocido (no hay contenido sin ingestar):**
+- `01.10` solo cambió el alias de un link y `02.01` solo CRLF (verificado con `git diff` en el ingest), así que [[serverless]], [[blast-radius]] y [[aws-account]] no requieren cambios.
+- El resto (módulo 09 escrito el 30/09 hora local = 01/10 UTC; clippings de doc oficial con CRLF) son los mismos que documentó el lint del 2026-10-05.
+- **Nuevo** por este lint: tras escapar los pipes de `10.04`, su mtime quedó hoy, así que [[rds-vs-aurora]], [[rds-ha-options]] y [[RDS]] figuran como "modificadas" — es solo el arreglo de formato, sin contenido nuevo. No se tocan sus `updated:`.
+
+**Pendiente (igual que el lint anterior, decide el humano):** temas sin página (Lambda, DynamoDB, API Gateway…); [[confused-deputy]] con `sources: []`; sin clippings de CloudFormation/EC2/ECS/EFS/X-Ray; `AWS Prescriptive Guidance.md` sin contenido útil. Las ediciones sin commitear ajenas a este ingest se **reportan, no se tocan**.

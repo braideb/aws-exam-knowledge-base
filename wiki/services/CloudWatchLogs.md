@@ -55,7 +55,7 @@ El interior de una instancia es **opaco** para CloudWatch y CloudWatch Logs: sin
 | 2 | **Configurarlo** | Qué métricas y qué archivos de log. El wizard genera un `config.json`, que puede guardarse en **[[SSMParameterStore\|Parameter Store]]** (`AmazonCloudWatch-linux`) para reutilizarlo en todas las instancias |
 | 3 | **Darle permisos** | Un [[instance-profile\|instance role]] con `CloudWatchAgentServerPolicy` (y acceso a SSM si la config vive ahí). Nunca access keys en la instancia |
 
-Organización: **un log group por archivo de log** (`/var/log/secure`, `/var/log/httpd/access_log`…) y **un log stream por instancia** (instance ID). A escala, la instalación y la config se automatizan con [[CloudFormation]] o con user data ([[ec2-bootstrapping]]).
+Organización: **un log group por archivo de log** (`/var/log/secure`, `/var/log/httpd/access_log`…) y **un log stream por instancia** (instance ID). A escala, la instalación y la config se automatizan con [[wiki/services/CloudFormation]] o con user data ([[ec2-bootstrapping]]).
 
 > **"Instalé el agente y no llega nada"** — casi siempre falta una de dos cosas: un **IAM role** en la instancia con `logs:CreateLogStream` y `logs:PutLogEvents`, o el **archivo de configuración** del agente que le dice qué archivos leer y a qué log group mandarlos.
 

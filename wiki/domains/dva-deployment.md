@@ -31,7 +31,11 @@ Preparar artefactos y desplegarlos: entornos de dev/test, despliegues automatiza
 
 | Tema | Página | Estado |
 |---|---|---|
-| CloudFormation: templates, secciones | [[CloudFormation]] | ⚠️ inicial |
+| **IaC con CloudFormation** (Tasks 3/4): templates, stacks, lifecycle, StackSets, DeletionPolicy, stack roles, change sets, custom resources | [[wiki/services/CloudFormation]] | ✅ solo curso |
+| Templates **portables**: parameters, pseudo parameters, Mappings, Conditions, Outputs, DependsOn | [[cloudformation-template]] | ✅ solo curso |
+| Funciones intrínsecas (`!Ref`, `!GetAtt`, `!Sub`, `!ImportValue`…) | [[cloudformation-intrinsic-functions]] | ✅ solo curso |
+| Configurar/validar el deploy en EC2: cfn-init (desired state), cfn-signal, cfn-hup, CreationPolicy | [[cfn-init-and-signals]] | ✅ solo curso |
+| Reutilizar template vs reutilizar stack; **change sets** como preview antes de aplicar | [[nested-stacks-vs-cross-stack-references]], [[wiki/services/CloudFormation]] | ✅ solo curso |
 | Hosting estático como target de deploy | [[S3]] (static hosting), [[CloudFront]] | ✅ parcial |
 | **Artefactos inmutables: AMI baking y el AMI lifecycle** | [[golden-ami]], [[EC2]] | ✅ |
 | **Bootstrapping con user data** vs baking, boot time to service time | [[ec2-bootstrapping]] | ✅ |
@@ -48,10 +52,12 @@ Preparar artefactos y desplegarlos: entornos de dev/test, despliegues automatiza
 
 ## Servicios más importantes para este dominio
 
-Presente en la wiki: [[CloudFormation]] (inicial), [[EC2]] y [[EBS]] como destino de despliegue, [[ECS]] y [[ECR]] para containers.
+Presente en la wiki: [[wiki/services/CloudFormation]] (ahora en profundidad — ver [[cloudformation-template]], [[cloudformation-intrinsic-functions]], [[cfn-init-and-signals]], [[nested-stacks-vs-cross-stack-references]]), [[EC2]] y [[EBS]] como destino de despliegue, [[ECS]] y [[ECR]] para containers.
 
 > **Lo que aporta el módulo 08 (containers):** el primer contacto real con las estrategias de deployment del Task 4. En [[ECS]] un deploy es **registrar una nueva revisión de la task definition y actualizar el service**. El tipo por defecto es [[rolling-deployment|rolling]], controlado por `minimumHealthyPercent` y `maximumPercent`. La alternativa es [[blue-green-deployment|blue/green]] con **CodeDeploy**, que mueve el tráfico del ALB todo de una vez, en **canary** o en **linear**. El artefacto es una image versionada por **tag** en [[ECR]].
 
 > **El patrón que sí cubre la wiki hoy:** despliegue **inmutable** vía [[golden-ami|AMI baking]] — lanzar, configurar, hornear la AMI y relanzar desde ella. Su contraste de examen es configurar en boot con **user data** ([[ec2-bootstrapping]]): baking da arranque rápido y determinista (clave para autoscaling) pero exige rehornear ante cualquier cambio; user data es más flexible y más lento. Una AMI **no se edita** y es **regional**. Lo óptimo es **combinar**: hornear lo lento y dejar el user data para la configuración final, que reduce el **boot time to service time** sin perder flexibilidad.
 
-> ⚠️ **Sigue siendo el dominio con más huecos** — el curso todavía no llegó a esta parte: **CodePipeline, CodeBuild, CodeDeploy** como servicios (hoy solo aparecen por su rol en ECS/ECR), **AWS SAM**, **Elastic Beanstalk**, **CDK**, estrategias de deployment fuera de ECS (all-at-once, immutable, traffic shifting de Lambda), versionado/aliases de Lambda. Prioridad alta cuando el curso avance — 24% del examen depende de esto.
+> **Lo que aporta el módulo 12 (CloudFormation):** el dominio gana su pata de **IaC** completa. CFN deja de ser una página inicial y pasa a cubrir templates portables, funciones intrínsecas, la configuración de EC2 con cfn-init (desired state) vs user data (procedural), señales honestas del bootstrapping (cfn-signal/CreationPolicy), arquitecturas multi-stack (nested vs cross-stack), StackSets, DeletionPolicy, stack roles y **change sets** (preview de un update antes de aplicarlo, clave para evitar replacements destructivos).
+
+> ⚠️ **Sigue siendo el dominio con huecos**, pero menos: resuelto CloudFormation, el curso **todavía no llegó** a **CodePipeline, CodeBuild, CodeDeploy** como servicios (hoy solo aparecen por su rol en ECS/ECR), **AWS SAM** (extensión de CFN para serverless), **Elastic Beanstalk**, **CDK**, estrategias de deployment fuera de ECS (all-at-once, immutable, traffic shifting de Lambda), versionado/aliases de Lambda. Prioridad alta cuando el curso avance — 24% del examen depende de esto.

@@ -2,9 +2,9 @@
 
 > El LLM mantiene este archivo actualizado en cada ingest. Leer primero al responder queries.
 
-**Total de páginas:** 190 (65 de conocimiento + 122 términos de glosario + 3 de examen)
-**Fuentes ingestadas:** notas del curso **completas (144/144 secciones, módulos 01–11)** + 135 clippings de doc oficial (1 descartado, ver abajo)
-**Última actualización:** 2026-10-05
+**Total de páginas:** 196 (69 de conocimiento + 124 términos de glosario + 3 de examen)
+**Fuentes ingestadas:** notas del curso **completas (162/162 secciones, módulos 01–12)** + 135 clippings de doc oficial (1 descartado, ver abajo)
+**Última actualización:** 2026-10-10
 
 ---
 
@@ -22,7 +22,7 @@
 | [[KMS]] | Key Management Service | KMS keys, DEKs, envelope encryption, key policies, rotación |
 | [[Organizations]] | AWS Organizations | Estructura, consolidated billing, SCPs |
 | [[Route53]] | Route 53 | Hosted zones, tipos de record DNS, TTL, alias |
-| [[CloudFormation]] | CloudFormation | Templates, secciones (inicial) |
+| [[wiki/services/CloudFormation]] | CloudFormation | Hub IaC: templates y stacks, lifecycle, StackSets, DeletionPolicy, stack roles (PassRole), change sets, custom resources; delega en los 3 conceptos y la comparación de abajo |
 | [[CloudWatch]] | CloudWatch | Arquitectura (endpoint público, agent), namespaces, metrics, dimensions, resolution y retención, statistics, alarms (M of N, high resolution) |
 | [[CloudWatchLogs]] | CloudWatch Logs | Log groups/streams, CloudWatch Agent en EC2, metric filters, retención, export a S3, subscriptions, agregación multi-cuenta |
 | [[SSMParameterStore]] | Systems Manager Parameter Store | String/StringList/SecureString (KMS), jerarquías, versionado, tiers, parámetros públicos, referencia a Secrets Manager |
@@ -63,6 +63,9 @@
 | [[ec2-bootstrapping]] | User data (solo en el primer launch, 16 KB, no seguro), boot time to service time, bootstrapping vs AMI baking |
 | [[containers]] | VM vs container, image = layers read-only + R/W layer, Dockerfile, registry |
 | [[databases-on-ec2]] | Base de datos self-managed en EC2: monolito vs split, cuándo se justifica, por qué no, migración a RDS |
+| [[cloudformation-template]] | Anatomía de una template portable: parameters, pseudo parameters, Mappings, Conditions, Outputs, DependsOn |
+| [[cloudformation-intrinsic-functions]] | `!Ref` vs `!GetAtt`, `!Join`/`!Split`, `!GetAZs`/`!Select`, `!Sub`/`!Base64`, `!Cidr`, `!FindInMap`, `!ImportValue` |
+| [[cfn-init-and-signals]] | CreationPolicy/WaitCondition/cfn-signal, cfn-init (desired state), cfn-hup; por qué `CREATE_COMPLETE` miente |
 
 ---
 
@@ -103,6 +106,9 @@ Un archivo por **término**: definición corta y atómica de la jerga que aparec
 **Deployment y scaling**
 [[rolling-deployment]] · [[blue-green-deployment]] · [[target-tracking-scaling]]
 
+**IaC / CloudFormation**
+[[desired-state-configuration]] · [[pass-role]]
+
 **Redes y DNS**
 [[cidr]] · [[zone-apex]] · [[ttl]] · [[public-subnet]] · [[longest-prefix-match]] · [[eni]] · [[elastic-ip]] · [[ip-masquerading]] · [[egress-only-internet-gateway]] · [[bastion-host]] · [[dedicated-tenancy]] · [[privatelink]] · [[prefix-list]] · [[endpoint-policy]] · [[transit-gateway]] · [[edge-to-edge-routing]] · [[traffic-mirroring]]
 
@@ -137,7 +143,7 @@ Identificados en las páginas actuales, todavía sin entrada — se van agregand
 |--------|---------|--------|------|------------------|
 | [[dva-development]] | Development with AWS Services | DVA-C02 | 32% | ⚠️ Parcial — Lambda solo por el lado de red ([[lambda-in-vpc]]); containers con [[ECS]]; data stores relacionales con [[RDS]] y [[Aurora]]; faltan la página de Lambda, API GW, DynamoDB, SQS/SNS |
 | [[dva-security]] | Security | DVA-C02 | 26% | ✅ Fuerte — reforzada con IMDSv2, cifrado de EBS, los roles de ECS/EKS, Parameter Store, [[SecretsManager]] e IAM DB auth; falta Cognito y ACM |
-| [[dva-deployment]] | Deployment | DVA-C02 | 24% | ⚠️ Parcial — AMI baking + bootstrapping, images en ECR y rolling vs blue/green en ECS; faltan Code* como servicios, SAM, Beanstalk |
+| [[dva-deployment]] | Deployment | DVA-C02 | 24% | ⚠️ Parcial — **IaC con CloudFormation ahora en profundidad** (templates, intrínsecas, cfn-init, nested/cross-stack, StackSets, change sets), AMI baking + bootstrapping, images en ECR y rolling vs blue/green en ECS; faltan Code* como servicios, SAM, Beanstalk |
 | [[dva-troubleshooting]] | Troubleshooting and Optimization | DVA-C02 | 18% | ✅ Fuerte — reforzada con flow logs, status checks, créditos de EBS, el módulo 07 (X-Ray, subscriptions, resolution) y el troubleshooting de bases (conexiones, DNS tras failover, lag); faltan Logs Insights y EMF |
 
 ### DOP-C02 — AWS Certified DevOps Engineer – Professional
@@ -174,6 +180,7 @@ Identificados en las páginas actuales, todavía sin entrada — se van agregand
 | [[rds-vs-aurora]] | Storage por instancia vs cluster volume, réplicas, failover, endpoints, restore, costos, motores |
 | [[rds-automated-backups-vs-snapshots]] | Retención, PITR vs punto fijo, compartir, cross-region, restore = endpoint nuevo |
 | [[efs-vs-fsx]] | EFS vs FSx for Windows vs FSx for Lustre: protocolo, SO, permisos, resiliencia, palabras disparadoras |
+| [[nested-stacks-vs-cross-stack-references]] | Reutilizar la template (nested) vs reutilizar la stack (cross-stack); ciclo de vida; `!ImportValue`; misma región/cuenta |
 
 ---
 
@@ -206,8 +213,9 @@ Estructura: un archivo por sección (`NN.MM Título.md`) con navegación, + índ
 - `09 Advanced EC2/` (13 secciones, segmentadas e **ingestadas 2026-09-30**) — bootstrapping con user data, boot time to service time y AMI baking, instance roles e instance profiles, SSM Parameter Store (+ demo), CloudWatch Agent (+ demo), placement groups (overview, cluster, spread, partition), enhanced networking, EBS optimized
 - `10 Databases (SQL)/` (17 secciones, segmentadas el 2026-10-02 e **ingestadas 2026-10-03**) — bases en EC2 (+ demo), RDS architecture y costos (+ demo de migración), Multi-AZ instance y cluster, backups y restore, read replicas (+ demo), seguridad y TDE, IAM DB auth, Aurora (architecture, restore/clone/backtrack, Serverless, Global Database), Secrets Manager
 - `11 Advanced Storage/` (8 secciones, segmentadas e **ingestadas 2026-10-05**) — EFS (arquitectura, performance/throughput/storage classes, + demo), FSx for Windows (+ key features), FSx for Lustre (conceptos; storage, performance y arquitectura), comparativa EFS vs FSx
+- `12 CloudFormation/` (18 secciones, segmentadas e **ingestadas 2026-10-10**) — physical/logical resources y lifecycle, template portable (parameters/pseudo parameters, Mappings, Conditions, Outputs, DependsOn), funciones intrínsecas, CreationPolicy/WaitConditions/cfn-signal, cfn-init, cfn-hup (+ demo con 3 templates), nested stacks, cross-stack references, StackSets, DeletionPolicy, stack roles, change sets, custom resources
 
-> ✅ **Las 144 secciones están ingestadas.** El módulo **11** se ingestó el **2026-10-05**; el **10**, el **2026-10-03**; el **09**, el **2026-09-30**; el **08**, el **2026-09-28**; el **07**, el **2026-09-24**. El ingest del **2026-09-22** saldó las dos deudas que quedaban: VPC 05.09–05.13 y el módulo 06 completo. Antes: el módulo **05 (05.01–05.08)** se ingestó el 2026-09-19; los módulos **02, 03 y 04** fueron expandidos por el humano el 2026-07-23/24 e ingestados el 2026-07-25; el módulo 01 se ingestó el 2026-07-23. El próximo material tiene que venir de módulos nuevos del curso (12+) o de clippings nuevos. `raw/definiciones/` existe pero está **vacía**.
+> ✅ **Las 162 secciones están ingestadas.** El módulo **12** (CloudFormation) se ingestó el **2026-10-10**; el **11**, el **2026-10-05**; el **10**, el **2026-10-03**; el **09**, el **2026-09-30**; el **08**, el **2026-09-28**; el **07**, el **2026-09-24**. El ingest del **2026-09-22** saldó las dos deudas que quedaban: VPC 05.09–05.13 y el módulo 06 completo. Antes: el módulo **05 (05.01–05.08)** se ingestó el 2026-09-19; los módulos **02, 03 y 04** fueron expandidos por el humano el 2026-07-23/24 e ingestados el 2026-07-25; el módulo 01 se ingestó el 2026-07-23. El próximo material tiene que venir de módulos nuevos del curso (13+) o de clippings nuevos. `raw/definiciones/` existe pero está **vacía**.
 
 Cada página wiki cita en `sources` los **segmentos específicos** que la alimentan.
 
@@ -229,5 +237,7 @@ Complementan las notas con límites numéricos, permisos exactos y features no c
 > ⚠️ **Tampoco hay clippings de EFS ni de FSx:** [[EFS]], [[FSx]] y [[efs-vs-fsx]] salen del curso (módulo 11). Los complementos (access points, Lambda + EFS, rendimiento actual de FSx for Windows, Lustre Persistent_2) se contrastaron con doc oficial online y se citan con link en la página, no con clipping en `raw/`.
 
 > ⚠️ **Tampoco hay clippings de X-Ray, ni de las subscriptions/export de CloudWatch Logs.** [[XRay]] sale solo del curso (07.07); los complementos que no vienen de la slide (daemon UDP 2000, sampling, annotations) están marcados como tales.
+
+> ⚠️ **Tampoco hay clippings de CloudFormation.** [[wiki/services/CloudFormation]] y sus conceptos ([[cloudformation-template]], [[cloudformation-intrinsic-functions]], [[cfn-init-and-signals]], [[nested-stacks-vs-cross-stack-references]]) salen **solo del curso** (módulo 12). El dato "**500 recursos por stack**" conviene cruzarlo contra doc oficial cuando entren clippings de CloudFormation.
 
 Los task statements oficiales citados en las 4 páginas de `wiki/domains/` vienen del [AWS Certified Developer - Associate (DVA-C02) — Exam Guide oficial](https://docs.aws.amazon.com/aws-certification/latest/developer-associate-02/developer-associate-02.html).
